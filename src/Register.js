@@ -8,9 +8,18 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class Register extends Component {
   render() {
+    function clear(e) {
+      e.preventDefault();
+      console.log('Пользователь был удален.');
+    }
+
+
+
     return (
         <div>
           <DropdownButton title="Time" id="1" bsSize="small">
+            menuItems
+            <MenuItem eventKey="1">{this.props.registerCount}</MenuItem>
             <MenuItem eventKey="8">08.00</MenuItem>
             <MenuItem eventKey="9">09.00</MenuItem>
             <MenuItem eventKey="10">10.00</MenuItem>
@@ -25,7 +34,7 @@ class Register extends Component {
             <MenuItem eventKey="4">Add time</MenuItem>
           </DropdownButton>
           <input className="input-name" placeholder="Name"/>
-          <Button bsSize="xsmall"  bsStyle="danger" className="btn-close"> <Glyphicon glyph="remove" /></Button>
+          <Button bsSize="xsmall"  bsStyle="danger" className="btn-close" onClick={clear}> <Glyphicon glyph="remove" /></Button>
       </div>
     );
   }

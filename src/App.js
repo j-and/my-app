@@ -6,10 +6,14 @@ import MonthTable from './MonthTable.js';
 
 class App extends Component {
   render() {
+
+      const date=new Date();
+      const daysInMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+      
     return (
         <div>
    <PageHeader>My-app</PageHeader>
-          <MonthTable/>
+          <MonthTable  daysInmonth={daysInMonth}/>
       </div>
     );
   }

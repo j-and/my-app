@@ -7,9 +7,9 @@ import Register from './Register.js';
 class DayList extends Component {
   render() {
     return (
-        <div>
+        <div>{this.props.daysInMonth}
           <ListGroup>
-            <ListGroupItem><Register /></ListGroupItem>
+            <ListGroupItem><Register registerCount="5"/></ListGroupItem>
             <ListGroupItem><Register /></ListGroupItem>
             <ListGroupItem><Register /></ListGroupItem>
             <ListGroupItem><Register /></ListGroupItem>
