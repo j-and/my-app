@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import RegisterObject from './RegisterObject.js';
+
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class Register extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {time:0};
+  }
+
+  onSelectAlert(eventKey) {
+    this.state = {time:eventKey};
+    var newRegisterObject=new RegisterObject('firstname','lastname','newDate',this.state.time);
+    newRegisterObject.setTime(this.state.time);
+}
+  clear(e) {
+  e.preventDefault();
+  alert('Delete registerObject');
+}
+
   render() {
-    function clear(e) {
-      e.preventDefault();
-      console.log('Пользователь был удален.');
-    }
-
-
-
+    
     return (
         <div>
-          <DropdownButton title="Time" id="1" bsSize="small">
-            <MenuItem eventKey="1">{this.props.registerCount}</MenuItem>
+          <DropdownButton title="Time" id="1" onSelect={this.onSelectAlert.bind(this)}>
             <MenuItem eventKey="8">08.00</MenuItem>
             <MenuItem eventKey="9">09.00</MenuItem>
             <MenuItem eventKey="10">10.00</MenuItem>
@@ -33,7 +43,7 @@ class Register extends Component {
             <MenuItem eventKey="4">Add time</MenuItem>
           </DropdownButton>
           <input className="input-name" placeholder="Name"/>
-          <Button bsSize="xsmall"  bsStyle="danger" className="btn-close" onClick={clear}> <Glyphicon glyph="remove" /></Button>
+          <Button bsSize="xsmall"  bsStyle="danger" className="btn-close" onClick={this.clear}> <Glyphicon glyph="remove" /></Button>
       </div>
     );
   }
