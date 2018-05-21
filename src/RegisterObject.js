@@ -19,12 +19,8 @@ export default class RegisterObject {
         this.time = time;
     };
 
-    setFullName(firstName, lastName) {
-        alert(this.name.first + ' ' + this.name.last);
-        this.fullName = this.name.first + ' ' + this.name.last;
+    setFullName(name) {
+        alert('name= ' + name);
+        this.name = name;
     };
-
-    // getTime() {
-    //     return time;
-    // };
 }
