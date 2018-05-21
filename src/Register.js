@@ -18,7 +18,6 @@ class Register extends Component {
     return (
         <div>
           <DropdownButton title="Time" id="1" bsSize="small">
-            menuItems
             <MenuItem eventKey="1">{this.props.registerCount}</MenuItem>
             <MenuItem eventKey="8">08.00</MenuItem>
             <MenuItem eventKey="9">09.00</MenuItem>

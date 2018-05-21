@@ -34,3 +34,12 @@
 .btn-close{
   float:right;
 }
+
+.ordinaryDay{
+  border:2px solid red;
+}
+
+.weekendDay{
+  display:none;
+  border:2px solid green;
+}
