@@ -51,7 +51,7 @@ class Register extends Component {
                     <MenuItem eventKey="16">16.00</MenuItem>
                     <MenuItem eventKey="17">17.00</MenuItem>
                     <MenuItem divider/>
-                    <MenuItem eventKey="4">Add time</MenuItem>
+                    <MenuItem eventKey="4">Add</MenuItem>
                 </DropdownButton>
                 <input className="input-name" placeholder="Name" value={this.state.value} onChange={this.enterName}/>
                 <Button bsSize="xsmall" bsStyle="danger" className="btn-close" onClick={this.clear}> <Glyphicon

@@ -49,10 +49,14 @@
 }
 
 .dropdown-menu {
-    min-width: 70px;
+    min-width: 57px;
 }
 
 .dropdown-menu > li > a {
-    padding: 3px 6px;
+    padding: 3px 3px;
     text-align: center;
+}
+
+.dropdown-toggle.btn.btn-default{
+    padding: 3px 6px;
 }
