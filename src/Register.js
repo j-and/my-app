@@ -14,18 +14,8 @@ class Register extends Component {
         this.state = {time: 0, name: 0};
         this.clear = this.clear.bind(this);
         this.enterName = this.enterName.bind(this);
+        this.save = this.save.bind(this);
         this.selectTime = this.selectTime.bind(this);
-    }
-
-    selectTime(eventKey) {
-        this.state = {time: eventKey};
-        var newRegisterObject = new RegisterObject('', '', '', '');
-        newRegisterObject.setTime(this.state.time);
-    }
-
-    enterName(event) {
-        var newRegisterObject = new RegisterObject('', '', '', '');
-        newRegisterObject.setFullName(event.target.value);
     }
 
 
@@ -33,6 +23,21 @@ class Register extends Component {
         e.preventDefault();
         alert('Delete registerObject');
         this.setState({value: 0});
+    }
+
+    enterName(event) {
+        var newRegisterObject = new RegisterObject('', '', '', '');
+        newRegisterObject.setFullName(event.target.value);
+    }
+
+    save() {
+
+    }
+    
+    selectTime(eventKey) {
+        this.state = {time: eventKey};
+        var newRegisterObject = new RegisterObject('', '', '', '');
+        newRegisterObject.setTime(this.state.time);
     }
 
     render() {
@@ -54,6 +59,8 @@ class Register extends Component {
                     <MenuItem eventKey="4">Add</MenuItem>
                 </DropdownButton>
                 <input className="input-name" placeholder="Name" value={this.state.value} onChange={this.enterName}/>
+                <Button bsSize="xsmall" bsStyle="success" className="btn-close" onClick={this.save}> <Glyphicon
+                    glyph="ok"/></Button>
                 <Button bsSize="xsmall" bsStyle="danger" className="btn-close" onClick={this.clear}> <Glyphicon
                     glyph="remove"/></Button>
             </div>
