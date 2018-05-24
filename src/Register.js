@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import RegisterObject from './RegisterObject.js';
 
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
@@ -11,11 +10,13 @@ class Register extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {time: 'Time', value: ''};
         this.clear = this.clear.bind(this);
         this.enterName = this.enterName.bind(this);
         this.save = this.save.bind(this);
         this.selectTime = this.selectTime.bind(this);
+
     }
 
 
@@ -27,13 +28,11 @@ class Register extends Component {
     }
 
     enterName(event) {
-        this.setState({value:event.target.value});
+        this.setState({value: event.target.value});
     }
 
     save(event) {
-        var newRegisterObject = new RegisterObject('', '', '', '');
-        newRegisterObject.setFullName(this.state.value);
-        newRegisterObject.setTime(this.state.time);
+        this.props.updateData(this.state.time, this.state.value);
     }
 
     selectTime(eventKey) {
@@ -43,6 +42,7 @@ class Register extends Component {
     render() {
 
         return (
+
             <div>
                 <DropdownButton title={this.state.time} id="1" onSelect={this.selectTime}>
                     <MenuItem eventKey="08.00">08.00</MenuItem>
@@ -59,9 +59,9 @@ class Register extends Component {
                     <MenuItem eventKey="4">Add</MenuItem>
                 </DropdownButton>
                 <input class="input-name" placeholder="Name" value={this.state.value} onChange={this.enterName}/>
-                <Button bsSize="xsmall" bsStyle="success" className="btn-close" onClick={this.save}> <Glyphicon
+                <Button bsSize="xsmall" bsStyle="success" className="" onClick={this.save}> <Glyphicon
                     glyph="ok"/></Button>
-                <Button bsSize="xsmall" bsStyle="danger" className="btn-close" onClick={this.clear}> <Glyphicon
+                <Button bsSize="xsmall" bsStyle="danger" className="" onClick={this.clear}> <Glyphicon
                     glyph="remove"/></Button>
             </div>
         );
