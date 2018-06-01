@@ -17,7 +17,6 @@ class MonthTable extends Component {
 
         /*Month start*/
         var monthStart = new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDay();
-        // alert('monthStart='+monthStart);
 
         /*Calendar*/
         var trArray = [];
@@ -42,7 +41,6 @@ class MonthTable extends Component {
                 for (j = 5; j < 7; j++) {
                     tr.push(<td class="weekendDay"><DayList/></td>);
                 }
-
 
             }
             else {

@@ -11,6 +11,7 @@ class App extends Component {
       const daysInMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
       
     return (
+
         <div>
    <PageHeader>My-app</PageHeader>
           <MonthTable  daysInmonth={daysInMonth}/>

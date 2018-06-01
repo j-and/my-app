@@ -19,22 +19,38 @@ class RegisterList extends Component {
         alert('Delete registerObject');
     }
 
-    render() {
-        return (
-            <div>
-                <div>
-                    <ListGroup>
-                        <ListGroupItem>{this.props.time} {this.props.value}
-                            <Button bsSize="xsmall" bsStyle="danger" className="btn-close" onClick={this.clear}>
-                                <Glyphicon
-                                    glyph="remove"/>
-                            </Button>
-                        </ListGroupItem>
-                    </ListGroup>
-                </div>
-            </div>
-        );
-    }
+    render () {
+    return (
+        <div >
+            <ul >
+                {
+                    Object.keys(this.props.registers).map(function(key) {
+                        return <li >{this.props.registers[key]}</li>
+                    }.bind(this))
+                }
+            </ul>
+        </div>
+    );
+}
+
+    // render() {
+    //     return (
+    //         <div>
+    //             <div>
+    //                 <ListGroup>
+    //                     <ListGroupItem>{this.props.time} {this.props.value}
+    //                         <Button bsSize="xsmall" bsStyle="danger" className="btn-close" onClick={this.clear}>
+    //                             <Glyphicon
+    //                                 glyph="remove"/>
+    //                         </Button>
+    //                     </ListGroupItem>
+    //                 </ListGroup>
+    //             </div>
+    //         </div>
+    //     );
+    // }
+
+
 }
 
 export default RegisterList;
