@@ -10,44 +10,31 @@ class DayList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {time: 'Time', value: ''};
-        this.updateData = this.updateData.bind(this);
+        this.state = {
+            registers: {
+                'fruit-1': 'orange',
+                'fruit-2': 'apple'
+            }
+        };
+
+        this.addRegister = this.addRegister.bind(this);
+
     }
 
-    getInitialState () {
-    return (
-    {
-        registers : {
-            'time_1' : 'orange',
-            'time_2' : 'apple'
-        }
+    addRegister(registers, e) {
+        this.setState({registers: registers});
+
     }
-    )
-}
-    addRegister (register) {
-    //create a unike key for each new register item
-    var timestamp = (new Date()).getTime();
-    // update the state object
-    this.state.registers['time_' + timestamp ] = register;
-    // set the state
-    this.setState({ registers : this.state.registers });
-}
-
-    updateData(time, value) {
-        this.setState({time: time, value: value});
-    }
-
-
-
 
     render() {
-    return (
-        <div >
-            <RegisterList registers={this.state.registers} />
-            <FruitForm addRegister={this.addRegister} />
-        </div>
-    );
-}
+        return (
+            <div >
+
+                <RegisterList registers={this.state.registers}/>
+                <FruitForm addRegister={this.addRegister}/>
+            </div>
+        );
+    }
 
     // render() {
     //     return (
@@ -60,7 +47,4 @@ class DayList extends Component {
     //     );
     // }
 }
-
-
-
 export default DayList;

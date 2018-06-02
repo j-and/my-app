@@ -6,29 +6,42 @@ import Table from 'react-bootstrap/lib/Table';
 
 class FruitForm extends Component {
 
-        createRegister (e) {
-            e.preventDefault();
-            alert('added');
-             var register = "ddd";//this.refs.registerName.value;
-           // if(typeof register === 'string' && fruit.length > 0) {
-            this.props.addRegister(register);
-            this.refs.fruitForm.reset();
-           // }
-        }
-        render () {
-            return(
-                <form ref="fruitForm" onSubmit={this.createRegister}>
-                    <div >
-                        <label for="fruitItem">
-                            Fruit Name
-                            <input type="text" id="fruitItem" placeholder="e.x.lemmon" name="registerName"  />
-                        </label>
-                    </div>
-                    <button type="submit" >Add Fruit</button>
+    constructor(props) {
+        super(props);
+        this.state = {
+            registers: {}
+        };
+        this.add = this.add.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.counter = 3;
+    }
+
+    add() {
+        return this.counter += 1;
+    }
+
+    handleChange(event) {
+        this.state.registers['fruit-' + this.counter] = event.target.value;
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.addRegister(this.state.registers);
+        this.add();
+    }
+
+    render() {
+        return (
+
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input type="submit" value="Add"/>
                 </form>
-            )
-        }
-    }//)
-//}
+            </div>
+        )
+    }
+}
 
 export default FruitForm;
