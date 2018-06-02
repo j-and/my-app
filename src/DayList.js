@@ -27,6 +27,7 @@ class DayList extends Component {
             <div >
 
                 <RegisterList registers={this.state.registers}/>
+                <Register/>
                 <FruitForm addRegister={this.addRegister}/>
             </div>
         );

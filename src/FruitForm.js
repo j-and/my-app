@@ -37,6 +37,8 @@ class FruitForm extends Component {
 
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm">
+
+
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
                 </form>
