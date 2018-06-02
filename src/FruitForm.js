@@ -14,7 +14,7 @@ class FruitForm extends Component {
         this.add = this.add.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.counter = 3;
+        this.counter = 1;
     }
 
     add() {
@@ -22,12 +22,13 @@ class FruitForm extends Component {
     }
 
     handleChange(event) {
-        this.state.registers['fruit-' + this.counter] = event.target.value;
+        this.state.registers['register-' + this.counter] = event.target.value;
     }
 
     handleSubmit(event) {
         event.preventDefault();
         this.props.addRegister(this.state.registers);
+        this.refs.registerForm.reset();
         this.add();
     }
 
@@ -35,7 +36,7 @@ class FruitForm extends Component {
         return (
 
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} ref="registerForm">
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
                 </form>

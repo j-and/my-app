@@ -12,18 +12,14 @@ class DayList extends Component {
         super(props);
         this.state = {
             registers: {
-                'fruit-1': 'orange',
-                'fruit-2': 'apple'
+                'item-1': 'Time   Name'
             }
         };
-
         this.addRegister = this.addRegister.bind(this);
-
     }
 
     addRegister(registers, e) {
         this.setState({registers: registers});
-
     }
 
     render() {
