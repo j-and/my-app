@@ -4,7 +4,7 @@ import DayList from './DayList.js';
 
 import Table from 'react-bootstrap/lib/Table';
 
-class FruitForm extends Component {
+class ClientNameInput extends Component {
 
     constructor(props) {
         super(props);
@@ -47,4 +47,4 @@ class FruitForm extends Component {
     }
 }
 
-export default FruitForm;
+export default ClientNameInput;

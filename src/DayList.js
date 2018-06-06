@@ -4,7 +4,7 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Register from './Register.js';
 import RegisterList from './RegisterList.js';
-import FruitForm from './FruitForm.js';
+import ClientNameInput from './ClientNameInput.js';
 
 class DayList extends Component {
 
@@ -28,7 +28,7 @@ class DayList extends Component {
 
                 <RegisterList registers={this.state.registers}/>
                 <Register/>
-                <FruitForm addRegister={this.addRegister}/>
+                <ClientNameInput addRegister={this.addRegister}/>
             </div>
         );
     }
