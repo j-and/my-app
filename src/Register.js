@@ -56,23 +56,24 @@ class Register extends Component {
         return (
 
             <div>
-                <form onSubmit={this.handleSubmit}>
 
-                        <select value={this.state.value} onChange={this.handleChange}>
-                            <option value="grapefruit">Grapefruit</option>
-                            <option value="lime">Lime</option>
-                            <option value="coconut">Coconut</option>
-                            <option value="mango">Mango</option>
-                        </select>
-
-                    <input type="submit" value="Submit" />
-                </form>
             </div>
-        );
+       );
     }
 }
 
 export default Register;
+// <form onSubmit={this.handleSubmit}>
+//
+//     <select value={this.state.value} onChange={this.handleChange}>
+//         <option value="grapefruit">Grapefruit</option>
+//         <option value="lime">Lime</option>
+//         <option value="coconut">Coconut</option>
+//         <option value="mango">Mango</option>
+//     </select>
+//
+//     <input type="submit" value="Submit" />
+// </form>
 // <DropdownButton title={this.state.time} id="1" value={this.state.value} onChange={this.handleChange}>
 //     <MenuItem eventKey="08.00">08.00</MenuItem>
 //     <MenuItem eventKey="09.00">09.00</MenuItem>

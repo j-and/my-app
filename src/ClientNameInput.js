@@ -13,6 +13,7 @@ class ClientNameInput extends Component {
         };
         this.add = this.add.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.counter = 1;
     }
@@ -23,6 +24,10 @@ class ClientNameInput extends Component {
 
     handleChange(event) {
         this.state.registers['register-' + this.counter] = event.target.value;
+    }
+    handleTimeChange(event) {
+        alert('event.target.value='+event.target.value);
+        this.state.registers['time-' + this.counter] = event.target.time;
     }
 
     handleSubmit(event) {
@@ -38,7 +43,12 @@ class ClientNameInput extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm">
 
-
+                    <select value={this.state.value} onChange={this.handleTimeChange}>
+                        <option value="08.00">08.00</option>
+                        <option value="09.00">09.00</option>
+                        <option value="10.00">10.00</option>
+                        <option value="11.00">11.00</option>
+                    </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
                 </form>
