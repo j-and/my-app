@@ -9,7 +9,9 @@ class ClientNameInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            registers: {}
+            registers: {},
+            times: {},
+            names: {}
         };
         this.add = this.add.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -23,18 +25,19 @@ class ClientNameInput extends Component {
     }
 
     handleChange(event) {
-        this.state.registers['register-' + this.counter] = event.target.value;
-    }
-    handleTimeChange(event) {
-        alert('event.target.value='+event.target.value);
-        this.state.registers['time-' + this.counter] = event.target.time;
+        this.state.names[this.counter] = event.target.value;
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        this.state.registers[this.counter] = this.state.times[this.counter] +' - '+ this.state.names[this.counter];
         this.props.addRegister(this.state.registers);
         this.refs.registerForm.reset();
         this.add();
+    }
+
+    handleTimeChange(event) {
+        this.state.times[this.counter] = event.target.value;
     }
 
     render() {
@@ -48,6 +51,10 @@ class ClientNameInput extends Component {
                         <option value="09.00">09.00</option>
                         <option value="10.00">10.00</option>
                         <option value="11.00">11.00</option>
+                        <option value="11.00">12.00</option>
+                        <option value="11.00">13.00</option>
+                        <option value="11.00">14.00</option>
+                        <option value="11.00">15.00</option>
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
