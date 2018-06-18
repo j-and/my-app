@@ -8,16 +8,18 @@ class DayList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            registers: {
-                'item-1': 'Time   Name'
-            }
+            registers: {}
         };
         this.addRegister = this.addRegister.bind(this);
     }
 
+
     addRegister(registers) {
+
         this.setState({registers: registers});
         //TO DO - save like object Register
+       // alert((this.state.registers[1]));
+        // this.sendData('sendData= '+);
     }
 
     render() {

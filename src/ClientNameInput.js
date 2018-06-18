@@ -17,6 +17,7 @@ class ClientNameInput extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.sendData = this.sendData.bind(this);
         this.counter = 1;
     }
 
@@ -24,6 +25,13 @@ class ClientNameInput extends Component {
         return this.counter += 1;
     }
 
+    sendData(data){
+        var request = new XMLHttpRequest();
+        request.open('POST', '/my/url', true);
+        // alert(data);
+        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        request.send(data);
+    }
 
     handleChange(event) {
         this.state.names[this.counter] = event.target.value;
@@ -36,6 +44,7 @@ class ClientNameInput extends Component {
         if (this.state.times[this.counter] && this.state.names[this.counter]) {
             this.state.registers[this.counter] = this.state.times[this.counter] + ' - ' + this.state.names[this.counter];
             this.props.addRegister(this.state.registers);
+            this.sendData(this.state.registers);
             this.refs.registerForm.reset();
             this.add();
         }
