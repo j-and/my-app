@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import Register from './Register.js';
 import RegisterList from './RegisterList.js';
 import ClientNameInput from './ClientNameInput.js';
 
@@ -18,8 +15,9 @@ class DayList extends Component {
         this.addRegister = this.addRegister.bind(this);
     }
 
-    addRegister(registers, e) {
+    addRegister(registers) {
         this.setState({registers: registers});
+        //TO DO - save like object Register
     }
 
     render() {
@@ -27,21 +25,11 @@ class DayList extends Component {
             <div >
 
                 <RegisterList registers={this.state.registers}/>
-                <Register/>
+
                 <ClientNameInput addRegister={this.addRegister}/>
             </div>
         );
     }
 
-    // render() {
-    //     return (
-    //         <div>
-    //             <ListGroup>
-    //                 <ListGroupItem><Register updateData={this.updateData}/></ListGroupItem>
-    //                 <ListGroupItem><RegisterList time={this.state.time} value={this.state.value}/></ListGroupItem>
-    //             </ListGroup>
-    //         </div>
-    //     );
-    // }
 }
 export default DayList;

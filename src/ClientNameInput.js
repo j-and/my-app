@@ -24,16 +24,25 @@ class ClientNameInput extends Component {
         return this.counter += 1;
     }
 
+
     handleChange(event) {
         this.state.names[this.counter] = event.target.value;
     }
 
+
     handleSubmit(event) {
         event.preventDefault();
-        this.state.registers[this.counter] = this.state.times[this.counter] +' - '+ this.state.names[this.counter];
-        this.props.addRegister(this.state.registers);
-        this.refs.registerForm.reset();
-        this.add();
+
+        if (this.state.times[this.counter] && this.state.names[this.counter]) {
+            this.state.registers[this.counter] = this.state.times[this.counter] + ' - ' + this.state.names[this.counter];
+            this.props.addRegister(this.state.registers);
+            this.refs.registerForm.reset();
+            this.add();
+        }
+        else {
+            alert("Enter name");
+        }
+
     }
 
     handleTimeChange(event) {
