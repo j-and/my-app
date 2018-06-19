@@ -13,7 +13,6 @@ class ClientNameInput extends Component {
             times: '',
             names: ''
         };
-        this.add = this.add.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
