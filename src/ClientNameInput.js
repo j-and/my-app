@@ -9,20 +9,16 @@ class ClientNameInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            registers: {},
-            times: {},
-            names: {}
+            registers: [],
+            times: '',
+            names: ''
         };
         this.add = this.add.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.sendData = this.sendData.bind(this);
-        this.counter = 1;
-    }
 
-    add() {
-        return this.counter += 1;
     }
 
     sendData(data){
@@ -34,19 +30,23 @@ class ClientNameInput extends Component {
     }
 
     handleChange(event) {
-        this.state.names[this.counter] = event.target.value;
+        this.state.names = event.target.value;
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
+        if (this.state.times && this.state.names) {
 
-        if (this.state.times[this.counter] && this.state.names[this.counter]) {
-            this.state.registers[this.counter] = this.state.times[this.counter] + ' - ' + this.state.names[this.counter];
-            this.props.addRegister(this.state.registers);
+        this.props.addRegister(this.state.registers);
+
+        var newArray = this.state.registers;//.slice();
+        newArray.push(this.state.times + ' - ' + this.state.names);
+        this.setState({registers:newArray});
+
             this.sendData(this.state.registers);
             this.refs.registerForm.reset();
-            this.add();
+
         }
         else {
             alert("Enter name");
@@ -55,7 +55,7 @@ class ClientNameInput extends Component {
     }
 
     handleTimeChange(event) {
-        this.state.times[this.counter] = event.target.value;
+        this.state.times = event.target.value;
     }
 
     render() {
@@ -65,14 +65,16 @@ class ClientNameInput extends Component {
                 <form onSubmit={this.handleSubmit} ref="registerForm">
 
                     <select value={this.state.value} onChange={this.handleTimeChange}>
+
+                        <option value="Time" selected disabled>Time</option>
                         <option value="08.00">08.00</option>
                         <option value="09.00">09.00</option>
                         <option value="10.00">10.00</option>
                         <option value="11.00">11.00</option>
-                        <option value="11.00">12.00</option>
-                        <option value="11.00">13.00</option>
-                        <option value="11.00">14.00</option>
-                        <option value="11.00">15.00</option>
+                        <option value="12.00">12.00</option>
+                        <option value="13.00">13.00</option>
+                        <option value="14.00">14.00</option>
+                        <option value="15.00">15.00</option>
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
