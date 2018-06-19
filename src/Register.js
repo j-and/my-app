@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class Register extends Component {
 

@@ -5,16 +5,21 @@ import PageHeader from 'react-bootstrap/lib/PageHeader';
 import MonthTable from './MonthTable.js';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate()
+        };
+    }
+
   render() {
-
-      const date=new Date();
-      const daysInMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-
+      
     return (
 
         <div>
    <PageHeader>My-app</PageHeader>
-          <MonthTable  daysInmonth={daysInMonth}/>
+          <MonthTable daysInMonth={this.state.daysInMonth}/>
       </div>
     );
   }

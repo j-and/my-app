@@ -15,19 +15,13 @@ class DayList extends Component {
 
 
     addRegister(registers) {
-
         this.setState({registers: registers});
-        //TO DO - save like object Register
-       // alert((this.state.registers[1]));
-        // this.sendData('sendData= '+);
     }
 
     render() {
         return (
             <div >
-
                 <RegisterList registers={this.state.registers}/>
-
                 <ClientNameInput addRegister={this.addRegister}/>
             </div>
         );

@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 
-
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-
 class RegisterList extends Component {
 
     constructor(props) {
@@ -25,7 +19,7 @@ class RegisterList extends Component {
                 <ul >
                     {
                         Object.keys(this.props.registers).map(function (key) {
-                            return <li >{this.props.registers[key]}</li>
+                            return <li>{this.props.registers[key]}</li>
                         }.bind(this))
                     }
                 </ul>

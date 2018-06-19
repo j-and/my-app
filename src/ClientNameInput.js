@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 
-import DayList from './DayList.js';
-
-import Table from 'react-bootstrap/lib/Table';
 
 class ClientNameInput extends Component {
 
@@ -64,8 +61,7 @@ class ClientNameInput extends Component {
                 <form onSubmit={this.handleSubmit} ref="registerForm">
 
                     <select value={this.state.value} onChange={this.handleTimeChange}>
-
-                        <option value="Time" selected disabled>Time</option>
+                        <option value="Time" defaultValue disabled>Time</option>
                         <option value="08.00">08.00</option>
                         <option value="09.00">09.00</option>
                         <option value="10.00">10.00</option>
