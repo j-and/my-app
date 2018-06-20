@@ -44,23 +44,29 @@
 }
 
 .weekendDay {
-  /*  display: none;*/
-    border: 2px solid green;
+   display: none;
+border: 2px solid green;
 }
 .month-header{
-    border: 2px solid black;
+border: 2px solid black;
 }
 
+tr{
+height: 120px;
+}
+thead>tr{
+height: 70px;
+}
 .dropdown-menu {
-    min-width: 57px;
+min-width: 57px;
 }
 
 .dropdown-menu > li > a {
-    padding: 3px 3px;
-    text-align: center;
+padding: 3px 3px;
+text-align: center;
 }
 
 .dropdown-toggle.btn.btn-default{
-    padding: 3px 6px;
+padding: 3px 6px;
 }
 

@@ -23,6 +23,7 @@ class DayList extends Component {
             <div >
                 <RegisterList registers={this.state.registers}/>
                 <ClientNameInput addRegister={this.addRegister}/>
+
             </div>
         );
     }

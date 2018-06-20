@@ -94,8 +94,7 @@ class MonthTable extends Component {
 
         return (
             <div>
-                {this.props.daysInMonth}
-                <h1>{(new Date().getMonth())}{(new Date().getDay())}</h1>
+               
                 <Table responsive  >
                     <thead class="month-header">
                     <tr>
