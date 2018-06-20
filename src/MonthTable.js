@@ -22,8 +22,17 @@ class MonthTable extends Component {
             // wholeWeekCount: 5//Math.floor(this.props.daysInmonth / 7)
         };
         //this.handleChange = this.handleChange.bind(this);
+        this.fillHeadArray = this.fillHeadArray.bind(this);
         this.fillWeekArray = this.fillWeekArray.bind(this);
 
+    }
+
+    fillHeadArray(){
+        var array=["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        for(var i=0;i<array.length;i++){
+            this.state.trHead.push(<td className="ordinaryDay">array[i]</td>);
+        }
+        return this.state.trHead;
     }
 
     fillWeekArray(arrayName) {
@@ -87,10 +96,12 @@ class MonthTable extends Component {
             <div>
                 {this.props.daysInMonth}
                 <h1>{(new Date().getMonth())}{(new Date().getDay())}</h1>
-                <Table responsive>
-                    <thead>
+                <Table responsive  >
+                    <thead class="month-header">
                     <tr>
-                        <th>{this.state.trHead}</th>
+                        {this.state.trHead.map(function (day) {
+                            return <td class="month-header">{day}</td>;
+                        })}
                     </tr>
                     </thead>
                     <tbody>

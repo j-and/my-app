@@ -47,6 +47,9 @@
   /*  display: none;*/
     border: 2px solid green;
 }
+.month-header{
+    border: 2px solid black;
+}
 
 .dropdown-menu {
     min-width: 57px;
