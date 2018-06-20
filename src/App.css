@@ -36,7 +36,7 @@
 }
 
 .btn-close {
-   float: right;
+    float: right;
 }
 
 .ordinaryDay {
@@ -44,29 +44,56 @@
 }
 
 .weekendDay {
-   display: none;
-border: 2px solid green;
-}
-.month-header{
-border: 2px solid black;
+    display: none;
+
+    border: 2px solid green;
 }
 
-tr{
-height: 120px;
+.month-header {
+    border: 2px solid black;
 }
-thead>tr{
-height: 70px;
+
+tr {
+    height: 120px;
 }
+
+thead > tr {
+    height: 70px;
+}
+
 .dropdown-menu {
-min-width: 57px;
+    min-width: 57px;
 }
 
 .dropdown-menu > li > a {
-padding: 3px 3px;
-text-align: center;
+    padding: 3px 3px;
+    text-align: center;
 }
 
-.dropdown-toggle.btn.btn-default{
-padding: 3px 6px;
+.dropdown-toggle.btn.btn-default {
+    padding: 3px 6px;
 }
 
+.loginform {
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0, 100, 100, 0.6);
+}
+
+.form-control {
+    margin: 10px auto;
+}

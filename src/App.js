@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import MonthTable from './MonthTable.js';
+import LoginForm from './LoginForm.js';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
         <div>
    <PageHeader>My-app</PageHeader>
           <MonthTable daysInMonth={this.state.daysInMonth}/>
+            <LoginForm />
       </div>
     );
   }
