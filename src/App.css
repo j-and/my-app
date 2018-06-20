@@ -44,7 +44,7 @@
 }
 
 .weekendDay {
-    display: none;
+  /*  display: none;*/
     border: 2px solid green;
 }
 

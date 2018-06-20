@@ -26,7 +26,8 @@ class ClientNameInput extends Component {
     }
 
     handleChange(event) {
-        this.state.names = event.target.value;
+       // this.state.names = event.target.value;
+        this.setState({names: event.target.value});
     }
 
 
@@ -51,7 +52,8 @@ class ClientNameInput extends Component {
     }
 
     handleTimeChange(event) {
-        this.state.times = event.target.value;
+        //this.state.times = event.target.value;
+        this.setState({times: event.target.value});
     }
 
     render() {

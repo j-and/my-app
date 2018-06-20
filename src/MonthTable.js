@@ -18,65 +18,68 @@ class MonthTable extends Component {
             thirdWeekInMonth: [],
             forthWeekInMonth: [],
             fifthWeekInMonth: [],
-            wholeWeekCount: 5//Math.floor(this.props.daysInmonth / 7)
+            daysInmonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate()
+            // wholeWeekCount: 5//Math.floor(this.props.daysInmonth / 7)
         };
         //this.handleChange = this.handleChange.bind(this);
+        this.fillWeekArray = this.fillWeekArray.bind(this);
 
+    }
+
+    fillWeekArray(arrayName) {
+        arrayName = [];
+        var j;
+        for (j = 0; j < 5; j++) {
+            arrayName.push(<td className="ordinaryDay"><DayList/></td>);
+        }
+        for (j = 5; j < 7; j++) {
+            arrayName.push(<td className="weekendDay"><DayList/></td>);
+        }
+        return arrayName;
     }
 
     render() {
         /*Calendar*/
         var i, j;
-        for (i = 0; i < this.state.wholeWeekCount; i++) {
-            if (i = 1) {
-                for (j = 0; j < this.state.monthStart; j++) {
-                    if (j < 5) {
-                        this.state.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">0</td>);
+        var wholeWeekCount = Math.floor(this.state.daysInmonth / 7);
+        var counter = 0;
+        for (i = 0; i <= wholeWeekCount; i++) {
+            switch (i) {
+                case 0:
+                    for (j = 0; j < this.state.monthStart; j++) {
+                        (j < 5) ? this.state.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">0</td>) :
+                            this.state.firstWeekBeforeMonthStart.push(<td className="weekendDay">0</td>);
                     }
-                    else {
-                        this.state.firstWeekBeforeMonthStart.push(<td className="weekendDay">0</td>);
+                    for (j = this.state.monthStart; j < 7; j++) {
+                        (j < 5) ? this.state.firstWeekBeforeMonthStart.push(<td className="ordinaryDay"><DayList/>
+                        </td>) :
+                            this.state.firstWeekBeforeMonthStart.push(<td className="weekendDay"><DayList/></td>);
+                        counter++;
                     }
-                }
-
-                for (j = this.state.monthStart ; j < 5; j++) {
-                    this.state.firstWeekAfterMonthStart.push(<td className="ordinaryDay"><DayList/></td>);
-                }
-                for (j = 5; j < 7; j++) {
-                    this.state.firstWeekAfterMonthStart.push(<td className="weekendDay"><DayList/></td>);
-                }
-
-            }
-            if (i = 2) {
-                for (j = 0; j < 5; j++) {
-                    this.state.secondWeekInMonth.push(<td className="ordinaryDay"><DayList/></td>);
-                }
-                for (j = 5; j < 7; j++) {
-                    this.state.secondWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
-                }
-            }
-            if (i = 3) {
-                for (j = 0; j < 5; j++) {
-                    this.state.thirdWeekInMonth.push(<td className="ordinaryDay"><DayList/></td>);
-                }
-                for (j = 5; j < 7; j++) {
-                    this.state.thirdWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
-                }
-            }
-            if (i = 4) {
-                for (j = 0; j < 5; j++) {
-                    this.state.forthWeekInMonth.push(<td className="ordinaryDay"><DayList/></td>);
-                }
-                for (j = 5; j < 7; j++) {
-                    this.state.forthWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
-                }
-            }
-            if (i = 5) {
-                for (j = 0; j < 5; j++) {
-                    this.state.fifthWeekInMonth.push(<td className="ordinaryDay"><DayList/></td>);
-                }
-                for (j = 5; j < 7; j++) {
-                    this.state.fifthWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
-                }
+                    break;
+                case 1:
+                    this.state.secondWeekInMonth = this.fillWeekArray('secondWeekInMonth');
+                    counter += 7;
+                    break;
+                case 2:
+                    this.state.thirdWeekInMonth = this.fillWeekArray('thirdWeekInMonth');
+                    counter += 7;
+                    break;
+                case 3:
+                    this.state.forthWeekInMonth = this.fillWeekArray('forthWeekInMonth');
+                    counter += 7;
+                    break;
+                case 4:
+                    for (j = 0; j < this.state.daysInmonth - counter; j++) {
+                        (j < 5) ? this.state.fifthWeekInMonth.push(<td className="ordinaryDay"><DayList/></td>) :
+                            this.state.fifthWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
+                    }
+                    for (j = this.state.daysInmonth; j < 7; j++) {
+                        (j < 5) ? this.state.fifthWeekInMonth.push(<td className="ordinaryDay">0</td>) :
+                            this.state.fifthWeekInMonth.push(<td className="weekendDay">0</td>);
+                        counter++;
+                    }
+                    break;
             }
         }
 
@@ -85,10 +88,11 @@ class MonthTable extends Component {
                 {this.props.daysInMonth}
                 <h1>{(new Date().getMonth())}{(new Date().getDay())}</h1>
                 <Table responsive>
-                    <thead><tr>
-                    <th>{this.state.trHead}</th></tr>
+                    <thead>
+                    <tr>
+                        <th>{this.state.trHead}</th>
+                    </tr>
                     </thead>
-
                     <tbody>
                     <tr>{this.state.firstWeekBeforeMonthStart.map(function (i) {
                         return i;
@@ -118,10 +122,7 @@ class MonthTable extends Component {
                         })}
                     </tr>
                     </tbody>
-
                 </Table>
-
-
             </div>
         );
     }
