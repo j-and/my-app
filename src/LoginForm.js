@@ -4,43 +4,58 @@ import React, {Component} from 'react';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Button from 'react-bootstrap/lib/Button';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
+import {sendData} from './methods.js';
 
 class LoginForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            formInstance: 'ff'
+            name: '',
+            password: '',
+            servantData: {}
         };
-        this.fieldGroup = this.fieldGroup.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    fieldGroup({id, label, help, ...props}) {
-        return
+    handleChange(event) {
+        this.setState({name: event.target.value});
+    }
 
-        const formInstance = (
-            <form>
-                <input type="email" label="Email address" placeholder="Email"/>
-                <input label="Password" type="password"/>
-                <Button type="submit">Submit</Button>
-            </form>
-        );
+    handlePasswordChange(event) {
+        this.setState({password: event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        if (this.state.name && this.state.password) {
+            var servantDataArray = this.state.servantData;//.slice();
+            servantDataArray.name = this.state.name;
+            servantDataArray.password = this.state.password;
+            this.setState({servantData: servantDataArray});
+            sendData(this.state.servantData);
+            this.refs.registerForm.reset();
+
+        }
+        else {
+            alert("Enter name");
+        }
     }
 
     render() {
         return (<div>
             <div className="overlay">
-                <form className="loginform">
-                    <FormControl type="email" label="Email address" placeholder="Email"/>
-                    <FormControl label="Password" type="password" placeholder="Password"/>
-                    <Button type="submit">Login</Button>
+                <form className="loginform" onSubmit={this.handleSubmit} ref="registerForm">
+                    <FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Name"/>
+                    <FormControl type="password" value={this.state.value} onChange={this.handlePasswordChange}
+                                 placeholder="Password"/>
+                    <Button type="submit" onClick={this.handleSubmit}>Login</Button>
                 </form>
             </div>
         </div>)
     }
-
-
 }
 export default LoginForm;
 
