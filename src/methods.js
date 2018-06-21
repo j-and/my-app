@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-export const sendData = function(data) {
+export const sendData = function(dataObject) {
     var request = new XMLHttpRequest();
     request.open('POST', '/my/url', true);
-    alert(data.name);
+    //alert (Object.values(dataObject));
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.send(data);
+    request.send(dataObject);
 };

@@ -13,11 +13,18 @@ class LoginForm extends Component {
         this.state = {
             name: '',
             password: '',
-            servantData: {}
+            servantData: {},
+            isOpen:true
+
         };
+        this.closeLoginForm = this.closeLoginForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    closeLoginForm(){
+
     }
 
     handleChange(event) {
@@ -37,14 +44,20 @@ class LoginForm extends Component {
             this.setState({servantData: servantDataArray});
             sendData(this.state.servantData);
             this.refs.registerForm.reset();
-
+            this.setState({isOpen: false});
         }
         else {
             alert("Enter name");
+
         }
     }
 
     render() {
+
+        if(!this.state.isOpen) {
+            return null;
+        }
+
         return (<div>
             <div className="overlay">
                 <form className="loginform" onSubmit={this.handleSubmit} ref="registerForm">

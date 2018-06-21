@@ -24,11 +24,14 @@ class ClientNameInput extends Component {
         if (this.state.times && this.state.names) {
 
             this.props.addRegister(this.state.registers);
-
+            var newRegister = {
+                time: this.state.times,
+                name: this.state.names
+            };
             var newArray = this.state.registers;//.slice();
             newArray.push(this.state.times + ' - ' + this.state.names);
             this.setState({registers: newArray});
-            sendData(this.state.registers);
+            sendData(newRegister);
             this.refs.registerForm.reset();
 
         }
