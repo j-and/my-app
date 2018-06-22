@@ -14,7 +14,7 @@ class LoginForm extends Component {
             name: '',
             password: '',
             servantData: {},
-            isOpen:true
+            isOpen:false//true
 
         };
         this.closeLoginForm = this.closeLoginForm.bind(this);
