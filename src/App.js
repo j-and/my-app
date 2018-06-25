@@ -15,10 +15,10 @@ class App extends Component {
             isOpen: true,
             month: {
                 monthCount: new Date().getMonth() + 1,
-                monthStart: new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDay(),
-                daysInMonth: new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDate()
+                yearCount: new Date().getFullYear(),
+                monthStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDay(),
+                daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate()
             },
-            currentMonth:new Date().getMonth()+1,
             weeksObject: {
                 nullWeekBeforeMonthStart: [],
                 firstWeekBeforeMonthStart: [],
@@ -40,7 +40,7 @@ class App extends Component {
         });
     }
 
-    updateMonthCount(value) {
+    updateMonthCount(month, year) {
         this.setState({
             weeksObject: {
                 nullWeekBeforeMonthStart: [],
@@ -52,23 +52,22 @@ class App extends Component {
                 fifthWeekInMonth: []
             },
             month: {
-                monthCount: value,
-                monthStart: new Date(new Date().getYear(), value, 0).getDay() - 1,
-                daysInMonth: new Date(new Date().getYear(), value, 0).getDate()
-            },
-            currentMonth:value
+                monthCount: month,
+                yearCount: year,
+                monthStart: new Date(year, month, 0).getDay() - 1,
+                daysInMonth: new Date(year, month, 0).getDate()
+            }
         })
     }
 
     render() {
-
         return (
             <div>
-               App= {this.state.currentMonth} //
                 <PageHeader>My-app</PageHeader>
+                <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.month.monthCount}
+                                 currentYear={this.state.month.yearCount}/>
                 <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>
                 <LoginForm show={this.state.isOpen}/>
-                <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.currentMonth}/>
             </div>
         );
     }
