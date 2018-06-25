@@ -19,6 +19,7 @@ class App extends Component {
                 daysInMonth: new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDate()
             },
             weeksObject: {
+                nullWeekBeforeMonthStart: [],
                 firstWeekBeforeMonthStart: [],
                 firstWeekAfterMonthStart: [],
                 secondWeekInMonth: [],
@@ -41,6 +42,7 @@ class App extends Component {
     updateMonthCount(value) {
         this.setState({
             weeksObject: {
+                nullWeekBeforeMonthStart: [],
                 firstWeekBeforeMonthStart: [],
                 firstWeekAfterMonthStart: [],
                 secondWeekInMonth: [],
@@ -59,7 +61,6 @@ class App extends Component {
     render() {
 
         return (
-
             <div>
                 <PageHeader>My-app</PageHeader>
                 <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>

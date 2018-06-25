@@ -42,23 +42,39 @@ class MonthTable extends Component {
         /*Calendar*/
         var i, j;
         var wholeWeekCount = Math.ceil(this.props.month.daysInMonth / 7);
-
         var counter = 0;
+
         for (i = 1; i <= wholeWeekCount; i++) {
             switch (i) {
                 case 1:
-                    for (j = 0; j < this.props.month.monthStart; j++) {
-                        (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
-                            0</td>) :
-                            this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay">0</td>);
+                    if (this.props.month.monthStart != -1) {
+                        for (j = 0; j < this.props.month.monthStart; j++) {
+                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
+                                0</td>) :
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay">
+                                    0</td>);
+
+                        }
+                        for (j = this.props.month.monthStart; j < 7; j++) {
+                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
+                                <DayList/>
+                            </td>) :
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay">
+                                    <DayList/>
+                                </td>);
+                            counter++;
+                        }
                     }
-                    for (j = this.props.month.monthStart; j < 7; j++) {
-                        (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
-                            <DayList/>
-                        </td>) :
-                            this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay"><DayList/>
-                            </td>);
-                        counter++;
+                    else {
+                        for (j = 0; j < 5; j++) {
+                            this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="ordinaryDay">0</td>);
+                        }
+                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="weekendDay">0</td>);
+                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="weekendDay"><DayList/>
+                        </td>);
+                        counter += 1;
+                        this.props.weeksObject.firstWeekBeforeMonthStart = this.fillWeekArray('firstWeekBeforeMonthStart');
+                        counter += 7;
                     }
                     break;
                 case 2:
@@ -80,7 +96,8 @@ class MonthTable extends Component {
                         </td>) :
                             this.props.weeksObject.fifthWeekInMonth.push(<td className="weekendDay"><DayList/></td>);
                     }
-                    for (j = this.props.weeksObject.daysInMonth; j < 7; j++) {
+                    counter += j;
+                    for (j = (7 - (this.props.month.daysInMonth - counter)); j < 7; j++) {
                         (j < 5) ? this.props.weeksObject.fifthWeekInMonth.push(<td className="ordinaryDay">0</td>) :
                             this.props.weeksObject.fifthWeekInMonth.push(<td className="weekendDay">0</td>);
                     }
@@ -90,7 +107,8 @@ class MonthTable extends Component {
 
         return (
             <div>
-                {this.props.month.monthCount} {this.props.month.monthStart} {this.props.month.daysInMonth}
+
+                {this.props.month.monthCount}// {this.props.month.monthStart} //{this.props.month.daysInMonth}
                 <Table responsive>
                     <thead class="month-header">
                     <tr>
@@ -100,6 +118,15 @@ class MonthTable extends Component {
                     </tr>
                     </thead>
                     <tbody>
+
+
+                    <tr>
+                        {this.props.weeksObject.nullWeekBeforeMonthStart.map(function (i) {
+                            return i;
+                        })}
+                    </tr>
+
+
                     <tr>{this.props.weeksObject.firstWeekBeforeMonthStart.map(function (i) {
                         return i;
                     })}
