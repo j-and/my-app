@@ -18,6 +18,7 @@ class App extends Component {
                 monthStart: new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDay(),
                 daysInMonth: new Date(new Date().getYear(), new Date().getMonth() + 1, 0).getDate()
             },
+            currentMonth:new Date().getMonth()+1,
             weeksObject: {
                 nullWeekBeforeMonthStart: [],
                 firstWeekBeforeMonthStart: [],
@@ -54,7 +55,8 @@ class App extends Component {
                 monthCount: value,
                 monthStart: new Date(new Date().getYear(), value, 0).getDay() - 1,
                 daysInMonth: new Date(new Date().getYear(), value, 0).getDate()
-            }
+            },
+            currentMonth:value
         })
     }
 
@@ -62,10 +64,11 @@ class App extends Component {
 
         return (
             <div>
+               App= {this.state.currentMonth} //
                 <PageHeader>My-app</PageHeader>
                 <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>
                 <LoginForm show={this.state.isOpen}/>
-                <MonthNavigation updateMonthCount={this.updateMonthCount}/>
+                <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.currentMonth}/>
             </div>
         );
     }

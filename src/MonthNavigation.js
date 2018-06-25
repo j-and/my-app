@@ -6,15 +6,15 @@ class MonthNavigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            monthCount: new Date().getMonth()
         };
     }
 
     render() {
         return (
             <div >
-                <button onClick={() => {this.props.updateMonthCount(this.state.monthCount)}}>Previous</button>
-                <button onClick={() =>{ this.props.updateMonthCount(this.state.monthCount+2)}}>Next</button>
+                Nav= {this.props.currentMonth}//
+                <button onClick={() => {this.props.updateMonthCount(this.props.currentMonth-1)}}>Previous</button>
+                <button onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth+1)}}>Next</button>
             </div>
         );
     }
