@@ -8,35 +8,6 @@ body {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .input-name {
   width: 50%;
 }
@@ -49,23 +20,21 @@ body {
   border: 2px solid green;
 }
 
-.weekendDay {
-  /*display: none;*/
+.weekendDay{
   border: 2px solid red;
-}
-
-.weekendDay input,.weekendDay select{
-  display: none;
+  input, select{
+    display: none;
+  }
 }
 
 .month-header {
   border: 2px solid black;
   background-color: antiquewhite;
-}
-td.month-header{
-  text-align: center;
-  vertical-align: middle;
-  font-size: 1.7em;
+  td{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.7em;
+  }
 }
 
 tr {
@@ -78,11 +47,12 @@ thead > tr {
 
 .dropdown-menu {
   min-width: 57px;
-}
-
-.dropdown-menu > li > a {
-  padding: 3px 3px;
-  text-align: center;
+  li{
+    a{
+      padding: 3px 3px;
+      text-align: center;
+    }
+  }
 }
 
 .dropdown-toggle.btn.btn-default {
