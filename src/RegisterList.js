@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 
 class RegisterList extends Component {
 
@@ -26,7 +25,6 @@ class RegisterList extends Component {
             </div>
         );
     }
-
 }
 
 export default RegisterList;

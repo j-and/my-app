@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import DayList from './DayList.js';
 
-
 import Table from 'react-bootstrap/lib/Table';
 
 class MonthTable extends Component {
@@ -131,8 +130,6 @@ class MonthTable extends Component {
 
         return (
             <div>
-
-                {this.props.month.monthCount}// {this.props.month.monthStart} //{this.props.month.daysInMonth}
                 <Table responsive>
                     <thead class="month-header">
                     <tr>
@@ -142,14 +139,6 @@ class MonthTable extends Component {
                     </tr>
                     </thead>
                     <tbody>
-
-
-                    <tr>
-                        {this.props.weeksObject.nullWeekBeforeMonthStart.map(function (i) {
-                            return i;
-                        })}
-                    </tr>
-
 
                     <tr>{this.props.weeksObject.firstWeekBeforeMonthStart.map(function (i) {
                         return i;

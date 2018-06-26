@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Button from 'react-bootstrap/lib/Button';
 import {sendData} from './methods.js';
@@ -48,7 +46,6 @@ class LoginForm extends Component {
         }
         else {
             alert("Enter name");
-
         }
     }
 

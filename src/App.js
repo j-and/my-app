@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-
-import './App.css';
+import './styles/css/index.css';
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import MonthTable from './MonthTable.js';
 import LoginForm from './LoginForm.js';
