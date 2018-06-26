@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 5%;
   padding: 0;
   font-family: sans-serif; }
 
@@ -24,6 +24,8 @@ table tr {
     display: flex;
     flex-direction: row;
     align-items: stretch; }
+    table tr .day_list input {
+      max-width: 100px; }
 
 .dropdown-menu {
   min-width: 57px; }
