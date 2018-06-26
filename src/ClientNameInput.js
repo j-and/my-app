@@ -47,7 +47,7 @@ class ClientNameInput extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} ref="registerForm">
+                <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time" defaultValue disabled>Time</option>
                         <option value="08.00">08.00</option>

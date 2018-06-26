@@ -20,7 +20,7 @@ class MonthTable extends Component {
     fillHeadArray() {
         var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         for (var i = 0; i < array.length; i++) {
-            this.state.trHead.push(<td className="ordinaryDay">array[i]</td>);
+            this.state.trHead.push(<td className="day_ordinary">array[i]</td>);
         }
         return this.state.trHead;
     }
@@ -29,10 +29,10 @@ class MonthTable extends Component {
         arrayName = [];
         var j;
         for (j = 0; j < 5; j++) {
-            arrayName.push(<td className="ordinaryDay"><DayList/></td>);
+            arrayName.push(<td className="day_ordinary"><DayList/></td>);
         }
         for (j = 5; j < 7; j++) {
-            arrayName.push(<td className="weekendDay"><DayList/></td>);
+            arrayName.push(<td className="day_weekend"><DayList/></td>);
         }
         return arrayName;
     }
@@ -48,17 +48,17 @@ class MonthTable extends Component {
                 case 1:
                     if (this.props.month.monthStart != -1) {
                         for (j = 0; j < this.props.month.monthStart; j++) {
-                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
+                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
                                 0</td>) :
-                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay">
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
                                     0</td>);
 
                         }
                         for (j = this.props.month.monthStart; j < 7; j++) {
-                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="ordinaryDay">
+                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
                                 <DayList/>
                             </td>) :
-                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="weekendDay">
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
                                     <DayList/>
                                 </td>);
                             counter++;
@@ -66,10 +66,10 @@ class MonthTable extends Component {
                     }
                     else {
                         for (j = 0; j < 5; j++) {
-                            this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="ordinaryDay">0</td>);
+                            this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_ordinary">0</td>);
                         }
-                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="weekendDay">0</td>);
-                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="weekendDay"><DayList/>
+                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend">0</td>);
+                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend"><DayList/>
                         </td>);
                         counter += 1;
                         this.props.weeksObject.firstWeekBeforeMonthStart = this.fillWeekArray('firstWeekBeforeMonthStart');
@@ -91,18 +91,18 @@ class MonthTable extends Component {
                 case 5:
                     if ((this.props.month.daysInMonth - counter) < 7) {
                         for (j = 0; j < (this.props.month.daysInMonth - counter); j++) {
-                            (j < 5) ? this.props.weeksObject.fifthWeekInMonth.push(<td className="ordinaryDay">
+                            (j < 5) ? this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
                                 <DayList/>
                             </td>) :
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="weekendDay"><DayList/>
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend"><DayList/>
                                 </td>);
                         }
                         for (j; j < 7; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="ordinaryDay">0</td>)
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">0</td>)
                             }
                             else {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="weekendDay">0</td>);
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend">0</td>);
                             }
                             j++;
                             counter += 1;
@@ -112,15 +112,15 @@ class MonthTable extends Component {
                         this.props.weeksObject.fifthWeekInMonth = this.fillWeekArray('fifthWeekInMonth');
                         counter += 7;
                         for (j = 0; j < this.props.month.daysInMonth - counter; j++) {
-                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="ordinaryDay">
+                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
                                 <DayList/>
                             </td>) :
-                                this.props.weeksObject.sixthWeekInMonth.push(<td className="weekendDay"><DayList/>
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend"><DayList/>
                                 </td>);
                         }
                         for (j; j < 7; j++) {
-                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="ordinaryDay">0</td>) :
-                                this.props.weeksObject.sixthWeekInMonth.push(<td className="weekendDay">0</td>);
+                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">0</td>) :
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">0</td>);
                         }
                     }
                     break;

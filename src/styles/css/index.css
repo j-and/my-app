@@ -3,36 +3,27 @@ body {
   padding: 0;
   font-family: sans-serif; }
 
-.App {
-  text-align: center; }
-
-.input-name {
-  width: 50%; }
-
-.btn-close {
-  float: right; }
-
-.ordinaryDay {
-  border: 2px solid green; }
-
-.weekendDay {
-  border: 2px solid red; }
-  .weekendDay input, .weekendDay select {
-    display: none; }
-
-.month-header {
+table .month-header {
   border: 2px solid black;
   background-color: antiquewhite; }
-  .month-header td {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 1.7em; }
-
-tr {
+  table .month-header tr {
+    height: 60px; }
+    table .month-header tr td {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.7em; }
+table tr {
   height: 120px; }
-
-thead > tr {
-  height: 70px; }
+  table tr .day_ordinary {
+    border: 2px solid green; }
+  table tr .day_weekend {
+    border: 2px solid red; }
+    table tr .day_weekend input, table tr .day_weekend select {
+      display: none; }
+  table tr .day_list {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; }
 
 .dropdown-menu {
   min-width: 57px; }
@@ -43,16 +34,18 @@ thead > tr {
 .dropdown-toggle.btn.btn-default {
   padding: 3px 6px; }
 
-.loginform {
+.login_form {
   width: 40%;
   position: absolute;
   top: 30%;
   left: 30%;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.9);
-  padding: 20px; }
-
-.overlay {
+  padding: 20px;
+  /*Override bootstrap styles*/ }
+  .login_form .form-control {
+    margin: 10px auto; }
+.login_overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,16 +54,13 @@ thead > tr {
   z-index: 1;
   background-color: rgba(0, 100, 100, 0.6); }
 
-.form-control {
-  margin: 10px auto; }
-
-.centered {
+.nav-centered {
   display: flex;
   flex-direction: row;
-  justify-content: center; }
-
-.btn.btn-default {
-  height: 40px;
-  margin: 20px; }
+  justify-content: center;
+  /*Override bootstrap styles*/ }
+  .nav-centered .btn.btn-default {
+    height: 40px;
+    margin: 20px; }
 
 /*# sourceMappingURL=index.css.map */

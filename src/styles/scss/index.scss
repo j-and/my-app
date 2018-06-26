@@ -4,51 +4,44 @@ body {
   font-family: sans-serif;
 }
 
-.App {
-  text-align: center;
-}
-
-.input-name {
-  width: 50%;
-}
-
-.btn-close {
-  float: right;
-}
-
-.ordinaryDay {
-  border: 2px solid green;
-}
-
-.weekendDay{
-  border: 2px solid red;
-  input, select{
-    display: none;
+table {
+  .month-header {
+    border: 2px solid black;
+    background-color: antiquewhite;
+    tr {
+      height: 60px;
+      td {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.7em;
+      }
+    }
   }
-}
-
-.month-header {
-  border: 2px solid black;
-  background-color: antiquewhite;
-  td{
-    text-align: center;
-    vertical-align: middle;
-    font-size: 1.7em;
+  tr {
+    height: 120px;
+    .day {
+      &_ordinary {
+        border: 2px solid green;
+      }
+      &_weekend {
+        border: 2px solid red;
+        input, select {
+          display: none;
+        }
+      }
+      &_list {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
   }
-}
-
-tr {
-  height: 120px;
-}
-
-thead > tr {
-  height: 70px;
 }
 
 .dropdown-menu {
   min-width: 57px;
-  li{
-    a{
+  li {
+    a {
       padding: 3px 3px;
       text-align: center;
     }
@@ -59,37 +52,41 @@ thead > tr {
   padding: 3px 6px;
 }
 
-.loginform {
-  width: 40%;
-  position: absolute;
-  top: 30%;
-  left: 30%;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 20px;
+.login {
+  &_form {
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    /*Override bootstrap styles*/
+    .form-control {
+      margin: 10px auto;
+    }
+  }
+  &_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0, 100, 100, 0.6);
+  }
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  background-color: rgba(0, 100, 100, 0.6);
-}
-
-.form-control {
-  margin: 10px auto;
-}
-
-.centered{
+.nav-centered {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /*Override bootstrap styles*/
+  .btn.btn-default {
+    height: 40px;
+    margin: 20px;
+  }
 }
 
-.btn.btn-default{
-  height: 40px;
-  margin: 20px;
-}
+
+

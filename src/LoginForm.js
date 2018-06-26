@@ -56,8 +56,8 @@ class LoginForm extends Component {
         }
 
         return (<div>
-            <div className="overlay">
-                <form className="loginform" onSubmit={this.handleSubmit} ref="registerForm">
+            <div className="login_overlay">
+                <form className="login_form" onSubmit={this.handleSubmit} ref="registerForm">
                     <FormControl type="text" value={this.state.value} onChange={this.handleChange} placeholder="Name"/>
                     <FormControl type="password" value={this.state.value} onChange={this.handlePasswordChange}
                                  placeholder="Password"/>

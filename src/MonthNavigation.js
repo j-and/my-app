@@ -11,7 +11,7 @@ class MonthNavigation extends Component {
 
     render() {
         return (
-            <div className="centered">
+            <div className="nav-centered">
                 <Button
                     onClick={() => {this.props.updateMonthCount(this.props.currentMonth==1 ? 12 : this.props.currentMonth-1,this.props.currentMonth==12 ? new Date().getFullYear()-1 : new Date().getFullYear())}}>
                     &larr; Previous
