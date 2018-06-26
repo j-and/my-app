@@ -14,10 +14,10 @@ class App extends Component {
         this.state = {
             isOpen: true,
             month: {
-                monthCount: new Date().getMonth() + 1,
+                monthCount: new Date().getMonth()+1,
                 yearCount: new Date().getFullYear(),
-                monthStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDay(),
-                daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate()
+                monthStart: new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDay(),
+                daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate()
             },
             weeksObject: {
                 nullWeekBeforeMonthStart: [],
@@ -26,7 +26,8 @@ class App extends Component {
                 secondWeekInMonth: [],
                 thirdWeekInMonth: [],
                 forthWeekInMonth: [],
-                fifthWeekInMonth: []
+                fifthWeekInMonth: [],
+                sixthWeekInMonth:[]
             }
         };
 
@@ -49,12 +50,13 @@ class App extends Component {
                 secondWeekInMonth: [],
                 thirdWeekInMonth: [],
                 forthWeekInMonth: [],
-                fifthWeekInMonth: []
+                fifthWeekInMonth: [],
+                sixthWeekInMonth: []
             },
             month: {
                 monthCount: month,
                 yearCount: year,
-                monthStart: new Date(year, month, 0).getDay() - 1,
+                monthStart: new Date(year, month-1, 0).getDay() ,
                 daysInMonth: new Date(year, month, 0).getDate()
             }
         })
