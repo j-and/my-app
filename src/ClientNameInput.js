@@ -7,7 +7,10 @@ class ClientNameInput extends Component {
         super(props);
         this.state = {
             registers: [],
-            times: '',
+            times: {
+                time: '',
+                isAvailable: true
+            },
             names: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -25,15 +28,14 @@ class ClientNameInput extends Component {
 
             this.props.addRegister(this.state.registers);
             var newRegister = {
-                time: this.state.times,
+                time: this.state.times.time,
                 name: this.state.names
             };
             var newArray = this.state.registers;//.slice();
-            newArray.push(this.state.times + ' - ' + this.state.names);
+            newArray.push(this.state.times.time + ' - ' + this.state.names);
             this.setState({registers: newArray});
             sendData(newRegister);
             this.refs.registerForm.reset();
-
         }
         else {
             alert("Enter name");
@@ -41,7 +43,10 @@ class ClientNameInput extends Component {
     }
 
     handleTimeChange(event) {
-        this.setState({times: event.target.value});
+        let timesCopy = Object.assign({}, this.state.times);
+        timesCopy.time = event.target.value;
+        timesCopy.isAvailable = false;
+        this.setState({times: timesCopy});
     }
 
     render() {
@@ -49,15 +54,11 @@ class ClientNameInput extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
-                        <option value="Time" selected disabled>Time</option>
-                        <option value="08.00">08.00</option>
-                        <option value="09.00">09.00</option>
-                        <option value="10.00">10.00</option>
-                        <option value="11.00">11.00</option>
-                        <option value="12.00">12.00</option>
-                        <option value="13.00">13.00</option>
-                        <option value="14.00">14.00</option>
-                        <option value="15.00">15.00</option>
+                        <option value="Time" defaultValue disabled>Time</option>
+                        {this.props.fillTimeArray().map(function (times) {
+                            if(times.isAvailable===true){}
+                            return <option value={times.time}>{times.time}</option>;
+                        })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
                     <input type="submit" value="Add"/>
