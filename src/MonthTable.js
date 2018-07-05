@@ -46,7 +46,7 @@ class MonthTable extends Component {
         for (i = 1; i <= wholeWeekCount; i++) {
             switch (i) {
                 case 1:
-                    if (this.props.month.monthStart != -1) {
+                    if (this.props.month.monthStart !== -1) {
                         for (j = 0; j < this.props.month.monthStart; j++) {
                             (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
                                 0</td>) :
@@ -123,6 +123,8 @@ class MonthTable extends Component {
                                 this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">0</td>);
                         }
                     }
+                    break;
+                default:alert('Error');
                     break;
             }
         }

@@ -49,7 +49,7 @@ class ClientNameInput extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
-                        <option value="Time" defaultValue disabled>Time</option>
+                        <option value="Time" selected disabled>Time</option>
                         <option value="08.00">08.00</option>
                         <option value="09.00">09.00</option>
                         <option value="10.00">10.00</option>
@@ -59,7 +59,7 @@ class ClientNameInput extends Component {
                         <option value="14.00">14.00</option>
                         <option value="15.00">15.00</option>
                     </select>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
                     <input type="submit" value="Add"/>
                 </form>
             </div>

@@ -11,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true,
+            isOpen: '',//true,
             month: {
                 monthCount: new Date().getMonth()+1,
                 yearCount: new Date().getFullYear(),
