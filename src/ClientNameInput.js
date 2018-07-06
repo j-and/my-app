@@ -9,7 +9,7 @@ class ClientNameInput extends Component {
             registers: [],
             times: {
                 time: '',
-                isAvailable: true
+                isAvailable: 'true'
             },
             names: ''
         };
@@ -27,6 +27,7 @@ class ClientNameInput extends Component {
         if (this.state.times && this.state.names) {
 
             this.props.addRegister(this.state.registers);
+            this.props.fillTimeArray(this.state.times);
             var newRegister = {
                 time: this.state.times.time,
                 name: this.state.names
@@ -45,7 +46,7 @@ class ClientNameInput extends Component {
     handleTimeChange(event) {
         let timesCopy = Object.assign({}, this.state.times);
         timesCopy.time = event.target.value;
-        timesCopy.isAvailable = false;
+        timesCopy.isAvailable = 'false';
         this.setState({times: timesCopy});
     }
 
@@ -55,9 +56,11 @@ class ClientNameInput extends Component {
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time" defaultValue disabled>Time</option>
-                        {this.props.fillTimeArray().map(function (times) {
-                            if(times.isAvailable===true){}
-                            return <option value={times.time}>{times.time}</option>;
+                        {this.props.initialTimeArray.map(function (times) {
+                            if (times.isAvailable == true) {
+                                return <option value={times.time}>{times.time}{times.isAvailable}</option>;
+                            }
+
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
