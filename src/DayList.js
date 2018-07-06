@@ -4,39 +4,35 @@ import RegisterList from './RegisterList.js';
 import ClientNameInput from './ClientNameInput.js';
 
 class DayList extends Component {
-
+    
     constructor(props) {
         super(props);
+
+        this.addRegister = this.addRegister.bind(this);
+        this.editTimeArray = this.editTimeArray.bind(this);
+        var timesArray=[{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
+                time: '10.00',
+                isAvailable: true
+            }, {time: '11.00', isAvailable: true}];
+
         this.state = {
             registers: {},
             times: {
                 time: '',
                 isAvailable: 'true'
             },
-            initialTimeArray: [{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
-                time: '10.00',
-                isAvailable: true
-            }, {time: '11.00', isAvailable: true}]
-            //     function(){
-            //     let arr = [];
-            //     for (var i = 8; i <= 17; i++) {
-            //         let timesCopy ={};
-            //         timesCopy.time = i;
-            //         timesCopy.isAvailable = 'true';
-            //         arr.push(timesCopy);
-            //     }
-            //     return arr;
-            // }
+            initialTimeArray: timesArray
+
         };
-        this.addRegister = this.addRegister.bind(this);
-        this.fillTimeArray = this.fillTimeArray.bind(this);
+
+
     }
 
     addRegister(registers) {
         this.setState({registers: registers});
     }
 
-    fillTimeArray(times) {
+    editTimeArray(times) {
         let arr = this.state.initialTimeArray;
         for (var i = 0; i < arr.length; i++) {
             if (times.time === arr[i].time) {
@@ -55,7 +51,7 @@ class DayList extends Component {
         return (
             <div >
                 <RegisterList registers={this.state.registers}/>
-                <ClientNameInput addRegister={this.addRegister} fillTimeArray={this.fillTimeArray}
+                <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray}/>
             </div>
         );

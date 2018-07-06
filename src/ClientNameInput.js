@@ -27,7 +27,7 @@ class ClientNameInput extends Component {
         if (this.state.times && this.state.names) {
 
             this.props.addRegister(this.state.registers);
-            this.props.fillTimeArray(this.state.times);
+            this.props.editTimeArray(this.state.times);
             var newRegister = {
                 time: this.state.times.time,
                 name: this.state.names
