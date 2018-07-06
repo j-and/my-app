@@ -39,7 +39,7 @@ class DayList extends Component {
     fillTimeArray(times) {
         let arr = this.state.initialTimeArray;
         for (var i = 0; i < arr.length; i++) {
-            if (times.time == arr[i].time) {
+            if (times.time === arr[i].time) {
                 //alert(times.time);
                 let timesCopy = Object.assign({}, times);
                 timesCopy.time = times.time;

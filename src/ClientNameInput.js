@@ -57,10 +57,7 @@ class ClientNameInput extends Component {
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
                         {this.props.initialTimeArray.map(function (times) {
-                            if (times.isAvailable == true) {
-                                return <option value={times.time}>{times.time}{times.isAvailable}</option>;
-                            }
-
+                                return times.isAvailable === true ? <option value={times.time}>{times.time}{times.isAvailable}</option>:null;
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
