@@ -13,10 +13,10 @@ class DayList extends Component {
                 time: '',
                 isAvailable: 'true'
             },
-            initialTimeArray: [{time: 8, isAvailable: true}, {time: 9, isAvailable: true}, {
-                time: 10,
+            initialTimeArray: [{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
+                time: '10.00',
                 isAvailable: true
-            }, {time: 11, isAvailable: true}]
+            }, {time: '11.00', isAvailable: true}]
             //     function(){
             //     let arr = [];
             //     for (var i = 8; i <= 17; i++) {

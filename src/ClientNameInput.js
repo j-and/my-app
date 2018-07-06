@@ -55,7 +55,7 @@ class ClientNameInput extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
-                        <option value="Time" defaultValue disabled>Time</option>
+                        <option value="Time">Time</option>
                         {this.props.initialTimeArray.map(function (times) {
                             if (times.isAvailable == true) {
                                 return <option value={times.time}>{times.time}{times.isAvailable}</option>;
