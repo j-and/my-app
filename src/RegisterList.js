@@ -13,13 +13,20 @@ class RegisterList extends Component {
     }
 
     render() {
+
+        var arr=[];
+        for(var i=0;i<this.props.registers.length;i++){
+            arr.push(this.props.registers[i]);
+        }
+        var sortedArr=arr.sort();
+
         return (
             <div >
                 <ul >
                     {
-                        Object.keys(this.props.registers).map(function (key) {
-                            return <li>{this.props.registers[key]}</li>
-                        }.bind(this))
+                        Object.keys(sortedArr).map(function (key) {
+        return <li>{sortedArr[key]}</li>
+    }.bind(this))
                     }
                 </ul>
             </div>

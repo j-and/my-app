@@ -24,8 +24,6 @@ class DayList extends Component {
             initialTimeArray: timesArray
 
         };
-
-
     }
 
     addRegister(registers) {
