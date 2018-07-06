@@ -41,24 +41,19 @@ class App extends Component {
     }
 
     updateMonthCount(month, year) {
-        this.setState({
-            weeksObject: {
-                nullWeekBeforeMonthStart: [],
-                firstWeekBeforeMonthStart: [],
-                firstWeekAfterMonthStart: [],
-                secondWeekInMonth: [],
-                thirdWeekInMonth: [],
-                forthWeekInMonth: [],
-                fifthWeekInMonth: [],
-                sixthWeekInMonth: []
-            },
-            month: {
-                monthCount: month,
-                yearCount: year,
-                monthStart: new Date(year, month-1, 0).getDay() ,
-                daysInMonth: new Date(year, month, 0).getDate()
-            }
-        })
+        alert('updateMonthCount');
+        var weeksObjectCopy=Object.assign({},this.state.weeksObject);
+        Object.keys(weeksObjectCopy).map(function (key) {
+            weeksObjectCopy[key]=[];
+        });
+        var monthCopy=Object.assign({},this.state.month);
+        monthCopy.monthCount=month;
+        monthCopy.yearCount=year;
+        monthCopy.monthStart= new Date(year, month-1, 0).getDay();
+        monthCopy.daysInMonth=new Date(year, month, 0).getDate();
+
+        this.setState({weeksObject: weeksObjectCopy});
+        this.setState({month: monthCopy});
     }
 
     render() {
