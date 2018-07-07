@@ -52,7 +52,7 @@ class App extends Component {
         monthCopy.monthStart= new Date(year, month-1, 0).getDay();
         monthCopy.daysInMonth=new Date(year, month, 0).getDate();
 
-        this.setState({weeksObject: weeksObjectCopy});
+         this.setState({weeksObject: weeksObjectCopy});
         this.setState({month: monthCopy});
     }
 
@@ -70,3 +70,5 @@ class App extends Component {
 }
 
 export default App;
+
+// <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>

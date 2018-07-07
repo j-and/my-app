@@ -48,6 +48,7 @@ class DayList extends Component {
 
         return (
             <div >
+                {this.props.counter}
                 <RegisterList registers={this.state.registers}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray}/>
