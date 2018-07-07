@@ -4,16 +4,17 @@ import RegisterList from './RegisterList.js';
 import ClientNameInput from './ClientNameInput.js';
 
 class DayList extends Component {
-    
+
     constructor(props) {
         super(props);
 
         this.addRegister = this.addRegister.bind(this);
         this.editTimeArray = this.editTimeArray.bind(this);
-        var timesArray=[{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
-                time: '10.00',
-                isAvailable: true
-            }, {time: '11.00', isAvailable: true}];
+        this.updateRegisters = this.updateRegisters.bind(this);
+        var timesArray = [{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
+            time: '10.00',
+            isAvailable: true
+        }, {time: '11.00', isAvailable: true}];
 
         this.state = {
             registers: {},
@@ -34,7 +35,6 @@ class DayList extends Component {
         let arr = this.state.initialTimeArray;
         for (var i = 0; i < arr.length; i++) {
             if (times.time === arr[i].time) {
-                //alert(times.time);
                 let timesCopy = Object.assign({}, times);
                 timesCopy.time = times.time;
                 timesCopy.isAvailable = false;
@@ -44,6 +44,10 @@ class DayList extends Component {
         this.setState({initialTimeArray: arr});
     }
 
+    updateRegisters(registers) {
+        this.setState({registers: registers});
+    }
+
     render() {
 
         return (
@@ -51,7 +55,7 @@ class DayList extends Component {
                 {this.props.counter}
                 <RegisterList registers={this.state.registers}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
-                                 initialTimeArray={this.state.initialTimeArray}/>
+                                 initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}/>
             </div>
         );
     }

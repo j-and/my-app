@@ -41,7 +41,7 @@ class App extends Component {
     }
 
     updateMonthCount(month, year) {
-        alert('updateMonthCount');
+      //  alert('updateMonthCount');
         var weeksObjectCopy=Object.assign({},this.state.weeksObject);
         Object.keys(weeksObjectCopy).map(function (key) {
             weeksObjectCopy[key]=[];

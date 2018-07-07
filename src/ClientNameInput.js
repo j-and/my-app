@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/lib/Button';
 import {sendData} from './methods.js';
+
 
 class ClientNameInput extends Component {
 
@@ -36,6 +38,7 @@ class ClientNameInput extends Component {
             newArray.push(this.state.times.time + ' - ' + this.state.names);
             this.setState({registers: newArray});
             sendData(newRegister);
+            this.props.updateRegisters(this.state.registers);
             this.refs.registerForm.reset();
         }
         else {
@@ -57,7 +60,8 @@ class ClientNameInput extends Component {
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
                         {this.props.initialTimeArray.map(function (times) {
-                                return times.isAvailable === true ? <option value={times.time}>{times.time}{times.isAvailable}</option>:null;
+                            return times.isAvailable === true ?
+                                <option value={times.time}>{times.time}{times.isAvailable}</option> : null;
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
