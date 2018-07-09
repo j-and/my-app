@@ -5,7 +5,6 @@ import MonthTable from './MonthTable.js';
 import LoginForm from './LoginForm.js';
 import MonthNavigation from './MonthNavigation.js';
 
-
 class App extends Component {
 
     constructor(props) {
@@ -13,10 +12,10 @@ class App extends Component {
         this.state = {
             isOpen: '',//true,
             month: {
-                monthCount: new Date().getMonth()+1,
+                monthCount: new Date().getMonth() + 1,
                 yearCount: new Date().getFullYear(),
                 monthStart: new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDay(),
-                daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate()
+                daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate()
             },
             weeksObject: {
                 nullWeekBeforeMonthStart: [],
@@ -26,7 +25,7 @@ class App extends Component {
                 thirdWeekInMonth: [],
                 forthWeekInMonth: [],
                 fifthWeekInMonth: [],
-                sixthWeekInMonth:[]
+                sixthWeekInMonth: []
             }
         };
 
@@ -41,18 +40,17 @@ class App extends Component {
     }
 
     updateMonthCount(month, year) {
-      //  alert('updateMonthCount');
-        var weeksObjectCopy=Object.assign({},this.state.weeksObject);
+        //  alert('updateMonthCount');
+        var weeksObjectCopy = Object.assign({}, this.state.weeksObject);
         Object.keys(weeksObjectCopy).map(function (key) {
-            weeksObjectCopy[key]=[];
+            weeksObjectCopy[key] = [];
         });
-        var monthCopy=Object.assign({},this.state.month);
-        monthCopy.monthCount=month;
-        monthCopy.yearCount=year;
-        monthCopy.monthStart= new Date(year, month-1, 0).getDay();
-        monthCopy.daysInMonth=new Date(year, month, 0).getDate();
-
-         this.setState({weeksObject: weeksObjectCopy});
+        var monthCopy = Object.assign({}, this.state.month);
+        monthCopy.monthCount = month;
+        monthCopy.yearCount = year;
+        monthCopy.monthStart = new Date(year, month - 1, 0).getDay();
+        monthCopy.daysInMonth = new Date(year, month, 0).getDate();
+        this.setState({weeksObject: weeksObjectCopy});
         this.setState({month: monthCopy});
     }
 

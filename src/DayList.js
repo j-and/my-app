@@ -45,17 +45,25 @@ class DayList extends Component {
     }
 
     updateRegisters(registers) {
-        this.setState({registers: registers});
+        //  this.setState({registers: []});
     }
 
     render() {
-
+        const REGISTERS = [
+            {time: '08.00', name: 'John Doe'},
+            {time: '10.00', name: 'Ann Doe'},
+            {time: '08.00', name: 'John Doe'},
+            {time: '10.00', name: 'Ann Doe'},
+            {time: '08.00', name: 'John Doe'},
+            {time: '10.00', name: 'Ann Doe'}
+        ];
         return (
             <div >
-                {this.props.counter}
-                <RegisterList registers={this.state.registers}/>
+                {this.props.registersMock.length} - {this.props.counter}
+                <RegisterList registers={this.state.registers} registersMock={REGISTERS}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
-                                 initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}/>
+                                 initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
+                                 registersMock={REGISTERS}/>
             </div>
         );
     }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Button from 'react-bootstrap/lib/Button';
 import {sendData} from './methods.js';
 
 
@@ -35,7 +34,7 @@ class ClientNameInput extends Component {
                 name: this.state.names
             };
             var newArray = this.state.registers;//.slice();
-            newArray.push(this.state.times.time + ' - ' + this.state.names);
+            newArray.push({time: this.state.times.time, name: this.state.names});
             this.setState({registers: newArray});
             sendData(newRegister);
             this.props.updateRegisters(this.state.registers);
@@ -64,7 +63,7 @@ class ClientNameInput extends Component {
                                 <option value={times.time}>{times.time}{times.isAvailable}</option> : null;
                         })}
                     </select>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} autocomplete="on"/>
+                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
                     <input type="submit" value="Add"/>
                 </form>
             </div>

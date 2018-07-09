@@ -1,26 +1,28 @@
 import React, {Component} from 'react';
 
-export default class RegisterObject {
-    constructor(first, last, date, time) {
-        this.name = {
-            'first': first,
-            'last': last
-        };
-        this.date = date;
-        this.time = time;
+class RegisterObject extends Component {
 
-        this.fullName = function () {
-            alert(this.name.first + ' ' + this.name.last);
-        };
+    constructor(props) {
+        super(props);
+        this.date = props.date;
+        this.time = props.time;
+        this.name = props.name;
     }
+
+    setDate(date) {
+        alert('setDate' + date);
+        this.date = date;
+    };
 
     setTime(time) {
         alert('setTime' + time);
         this.time = time;
     };
 
-    setFullName(name) {
+    setName(name) {
         alert('name= ' + name);
         this.name = name;
     };
 }
+
+export default RegisterObject;

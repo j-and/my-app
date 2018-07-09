@@ -14,20 +14,26 @@ class RegisterList extends Component {
 
     render() {
 
-        var arr=[];
-        for(var i=0;i<this.props.registers.length;i++){
+        function sortByKey(array, key) {
+            return array.sort(function (a, b) {
+                var x = a[key];
+                var y = b[key];
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+        }
+
+        var arr = this.props.registersMock;
+        for (var i = 0; i < this.props.registers.length; i++) {
             arr.push(this.props.registers[i]);
         }
-        var sortedArr=arr.sort();
+        var sortedArr = sortByKey(arr, 'time');
 
         return (
-            <div >
-                <ul >
-                    {
-                        Object.keys(sortedArr).map(function (key) {
-        return <li>{sortedArr[key]}</li>
-    }.bind(this))
-                    }
+            <div>
+                <ul>
+                    {                        Object.keys(sortedArr).map(function (key) {
+                        return <li>{sortedArr[key].time + ' ' + sortedArr[key].name}</li>
+                    }) }
                 </ul>
             </div>
         );

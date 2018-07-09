@@ -24,19 +24,31 @@ class MonthTable extends Component {
     }
 
 
-
     render() {
+
+        const REGISTERS =
+            [{time: '08.00', name: 'John Doe'},
+                {time: '10.00', name: 'Ann Doe'},
+                {time: '08.00', name: 'John Doe'},
+                {time: '10.00', name: 'Ann Doe'},
+                {time: '08.00', name: 'John Doe'},
+                {time: '10.00', name: 'Ann Doe'},
+                {time: '08.00', name: 'John Doe'},
+                {time: '10.00', name: 'Ann Doe'}
+            ];
         var counter = 1;
+
         function fillWeekArray(arrayName) {
             arrayName = [];
             var j;
             for (j = 0; j < 5; j++) {
-                arrayName.push(<td className="day_ordinary"><DayList counter={counter}/></td>);
-                counter+=1;
+                arrayName.push(<td className="day_ordinary"><DayList registersMock={REGISTERS} counter={counter}/>
+                </td>);
+                counter += 1;
             }
             for (j = 5; j < 7; j++) {
-                arrayName.push(<td className="day_weekend"><DayList counter={counter}/></td>);
-                counter+=1;
+                arrayName.push(<td className="day_weekend"><DayList registersMock={REGISTERS} counter={counter}/></td>);
+                counter += 1;
             }
             return arrayName;
         }
@@ -51,24 +63,26 @@ class MonthTable extends Component {
                 case 1:
                     if (this.props.month.monthStart !== -1) {
                         for (j = 0; j < this.props.month.monthStart; j++) {
-                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
+                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td
+                                className="day_ordinary">
                                 -</td>) :
                                 this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
                                     -</td>);
 
                         }
                         for (j = this.props.month.monthStart; j < 7; j++) {
-                           if (j < 5) { this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
-                                <DayList counter={counter}/>
-                            </td>);
-                               counter++;
-                           }
-                            else{
-                               this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
-                                   <DayList counter={counter}/>
-                               </td>);
-                               counter++;
-                           }
+                            if (j < 5) {
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
+                                    <DayList registersMock={REGISTERS} counter={counter}/>
+                                </td>);
+                                counter++;
+                            }
+                            else {
+                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
+                                    <DayList registersMock={REGISTERS} counter={counter}/>
+                                </td>);
+                                counter++;
+                            }
 
 
                         }
@@ -78,7 +92,8 @@ class MonthTable extends Component {
                             this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_ordinary">-</td>);
                         }
                         this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend">-</td>);
-                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend"><DayList counter={counter}/>
+                        this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend"><DayList
+                            registersMock={REGISTERS} counter={counter}/>
                         </td>);
                         counter += 1;
                         this.props.weeksObject.firstWeekBeforeMonthStart = fillWeekArray('firstWeekBeforeMonthStart');
@@ -96,20 +111,21 @@ class MonthTable extends Component {
                 case 5:
                     if ((this.props.month.daysInMonth - counter) < 7) {
                         for (j = 0; j < (this.props.month.daysInMonth - counter); j++) {
-                            if(j < 5) {
-                             this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
-                                <DayList counter={counter}/>
-                            </td>);
+                            if (j < 5) {
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
+                                    <DayList registersMock={REGISTERS} counter={counter}/>
+                                </td>);
                                 counter += 1;
                             }
-                                else {
+                            else {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend"><DayList
+                                    registersMock={REGISTERS}
                                     counter={counter}/>
                                 </td>);
                                 counter += 1;
                             }
                         }
-                        for (j=this.props.month.daysInMonth - counter; j < 7; j++) {
+                        for (j = this.props.month.daysInMonth - counter; j < 7; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">-</td>)
                             }
@@ -121,31 +137,33 @@ class MonthTable extends Component {
                     else {
                         this.props.weeksObject.fifthWeekInMonth = fillWeekArray('fifthWeekInMonth');
 
-                        for (j = 0; j<=this.props.month.daysInMonth - counter+1; j++) {
-                            if(j < 5){
-                            this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
-                                <DayList counter={counter}/>
-                            </td>);
-                                 counter += 1;
+                        for (j = 0; j <= this.props.month.daysInMonth - counter + 1; j++) {
+                            if (j < 5) {
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
+                                    <DayList registersMock={REGISTERS} counter={counter}/>
+                                </td>);
+                                counter += 1;
                             }
-                                else {
+                            else {
                                 this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend"><DayList
+                                    registersMock={REGISTERS}
                                     counter={counter}/></td>);
-                                  counter += 1;
+                                counter += 1;
                             }
                         }
 
                         for (j; j < 7; j++) {
-                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">-</td>) :
+                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
+                                -</td>) :
                                 this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">-</td>);
                         }
                     }
                     break;
-                default:alert('Error');
+                default:
+                    alert('Error');
                     break;
             }
         }
-
 
         return (
             <div>
@@ -198,5 +216,6 @@ class MonthTable extends Component {
         );
     }
 }
+
 
 export default MonthTable;
