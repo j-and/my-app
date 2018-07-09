@@ -49,18 +49,26 @@ class DayList extends Component {
     }
 
     render() {
+
+    var currentMonth=this.props.currentMonth;
+
         const REGISTERS = [
             {year:'2017', month:'01', day:'2', time: '08.00', name: 'John Doe'},
             {year:'2017', month:'01', day:'2', time: '10.00', name: 'Ann Doe'},
-            {year:'2017', month:'01', day:'2', time: '08.00', name: 'John Doe'},
-            {year:'2017', month:'01', day:'5', time: '10.00', name: 'Ann Doe'},
-            {year:'2017', month:'01', day:'5', time: '08.00', name: 'John Doe'},
-            {year:'2017', month:'01', day:'5', time: '10.00', name: 'Ann Doe'}
+            {year:'2017', month:'02', day:'2', time: '08.00', name: 'John Doe'},
+            {year:'2017', month:'02', day:'5', time: '10.00', name: 'Ann Doe'},
+            {year:'2017', month:'07', day:'5', time: '12.00', name: 'John Doe'},
+            {year:'2017', month:'07', day:'5', time: '13.00', name: 'Ann Doe'}
         ];
+
+        var filteredArray = REGISTERS.filter(function( register ) {
+            return register.month == currentMonth;
+        });
+
         return (
             <div >
-                {this.props.currentYear} {this.props.currentMonth}/ {this.props.counter}
-                <RegisterList registers={this.state.registers} registersMock={REGISTERS}/>
+                {this.props.currentYear} / {this.props.currentMonth} / {this.props.counter}
+                <RegisterList registers={this.state.registers} registersMock={filteredArray}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
                                  registersMock={REGISTERS} currentDay={this.props.counter}/>

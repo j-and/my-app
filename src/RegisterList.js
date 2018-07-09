@@ -13,6 +13,12 @@ class RegisterList extends Component {
     }
 
     render() {
+        var arr = this.props.registersMock;
+        for (var i = 0; i < this.props.registers.length; i++) {
+            arr.push(this.props.registers[i]);
+        }
+        var sortedArr = sortByKey(arr, 'time');
+      //  var filteredArray = sortedArr.filter(matchCurrentMonth);
 
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
@@ -22,17 +28,26 @@ class RegisterList extends Component {
             });
         }
 
-        var arr = this.props.registersMock;
-        for (var i = 0; i < this.props.registers.length; i++) {
-            arr.push(this.props.registers[i]);
-        }
-        var sortedArr = sortByKey(arr, 'time');
+        // function matchCurrentMonth(object) {
+        //     {Object.keys(arr).map(function (key) {
+        //          if(arr[key].month==8) {
+        //              alert('arr[key].month='+arr[key].month);
+        //              return object[key].month;
+        //          }
+        //     }) }
+        // }
+
+        // function filterByKey(array, key) {
+        //     var filteredArray = array.filter(function (item) {
+        //         return array.indexOf(item[key]) > -1;
+        //     });
+        // }
 
         return (
             <div>
                 <ul>
-                    {                        Object.keys(sortedArr).map(function (key) {
-                        return <li>{sortedArr[key].day +' '+sortedArr[key].time + ' ' + sortedArr[key].name}</li>
+                    {Object.keys(sortedArr).map(function (key) {
+                            return <li>{sortedArr[key].time + ' ' + sortedArr[key].name}</li>
                     }) }
                 </ul>
             </div>
