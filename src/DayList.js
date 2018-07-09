@@ -59,7 +59,11 @@ class DayList extends Component {
             {year: '2017', month: '02', day: '2', time: '08.00', name: 'John Doe'},
             {year: '2017', month: '02', day: '5', time: '10.00', name: 'Ann Doe'},
             {year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe'},
-            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe'}
+            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe'},
+            {year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe'},
+            {year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe'},
+            {year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe'},
+            {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe'}
         ];
 
         var filteredArray = REGISTERS.filter(function (register) {
