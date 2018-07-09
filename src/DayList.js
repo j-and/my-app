@@ -50,20 +50,20 @@ class DayList extends Component {
 
     render() {
         const REGISTERS = [
-            {time: '08.00', name: 'John Doe'},
-            {time: '10.00', name: 'Ann Doe'},
-            {time: '08.00', name: 'John Doe'},
-            {time: '10.00', name: 'Ann Doe'},
-            {time: '08.00', name: 'John Doe'},
-            {time: '10.00', name: 'Ann Doe'}
+            {year:'2017', month:'01', day:'2', time: '08.00', name: 'John Doe'},
+            {year:'2017', month:'01', day:'2', time: '10.00', name: 'Ann Doe'},
+            {year:'2017', month:'01', day:'2', time: '08.00', name: 'John Doe'},
+            {year:'2017', month:'01', day:'5', time: '10.00', name: 'Ann Doe'},
+            {year:'2017', month:'01', day:'5', time: '08.00', name: 'John Doe'},
+            {year:'2017', month:'01', day:'5', time: '10.00', name: 'Ann Doe'}
         ];
         return (
             <div >
-                {this.props.registersMock.length} - {this.props.counter}
+                {this.props.currentYear} {this.props.currentMonth}/ {this.props.counter}
                 <RegisterList registers={this.state.registers} registersMock={REGISTERS}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
-                                 registersMock={REGISTERS}/>
+                                 registersMock={REGISTERS} currentDay={this.props.counter}/>
             </div>
         );
     }

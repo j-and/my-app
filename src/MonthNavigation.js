@@ -13,7 +13,7 @@ class MonthNavigation extends Component {
         return (
             <div className="nav-centered">
                 <Button
-                    onClick={() => {this.props.updateMonthCount(this.props.currentMonth===1 ? 12 : this.props.currentMonth-1,this.props.currentMonth===12 ? new Date().getFullYear()-1 : new Date().getFullYear())}}>
+                    onClick={() => {this.props.updateMonthCount(this.props.currentMonth===1 ? 12 : this.props.currentMonth-1,this.props.currentMonth===12 ? this.props.currentYear-1 : this.props.currentYear)}}>
                     &larr; Previous
                 </Button>
                 <h2>
@@ -21,7 +21,7 @@ class MonthNavigation extends Component {
                     / {this.props.currentYear}
                 </h2>
                 <Button
-                    onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth===12 ? 1 : this.props.currentMonth+1,this.props.currentMonth===12 ? new Date().getFullYear()+1 : new Date().getFullYear())}}>
+                    onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth===12 ? 1 : this.props.currentMonth+1,this.props.currentMonth===12 ? this.props.currentYear+1 : this.props.currentYear)}}>
                     Next  &rarr;
                 </Button>
             </div>

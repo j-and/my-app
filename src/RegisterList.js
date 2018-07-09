@@ -32,7 +32,7 @@ class RegisterList extends Component {
             <div>
                 <ul>
                     {                        Object.keys(sortedArr).map(function (key) {
-                        return <li>{sortedArr[key].time + ' ' + sortedArr[key].name}</li>
+                        return <li>{sortedArr[key].day +' '+sortedArr[key].time + ' ' + sortedArr[key].name}</li>
                     }) }
                 </ul>
             </div>

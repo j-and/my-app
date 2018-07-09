@@ -11,9 +11,10 @@ class App extends Component {
         super(props);
         this.state = {
             isOpen: '',//true,
-            month: {
-                monthCount: new Date().getMonth() + 1,
-                yearCount: new Date().getFullYear(),
+            currentDate: {
+                currentDay: new Date().getDate(),
+                currentMonth: new Date().getMonth() + 1,
+                currentYear: new Date().getFullYear(),
                 monthStart: new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDay(),
                 daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate()
             },
@@ -40,27 +41,28 @@ class App extends Component {
     }
 
     updateMonthCount(month, year) {
-        //  alert('updateMonthCount');
+        //  alert('updatecurrentMonth');
         var weeksObjectCopy = Object.assign({}, this.state.weeksObject);
         Object.keys(weeksObjectCopy).map(function (key) {
             weeksObjectCopy[key] = [];
         });
-        var monthCopy = Object.assign({}, this.state.month);
-        monthCopy.monthCount = month;
-        monthCopy.yearCount = year;
-        monthCopy.monthStart = new Date(year, month - 1, 0).getDay();
-        monthCopy.daysInMonth = new Date(year, month, 0).getDate();
+        var currentDateCopy = Object.assign({}, this.state.currentDate);
+        currentDateCopy.currentMonth = month;
+        currentDateCopy.currentYear = year;
+        currentDateCopy.monthStart = new Date(year, month - 1, 0).getDay();
+        currentDateCopy.daysInMonth = new Date(year, month, 0).getDate();
+        
         this.setState({weeksObject: weeksObjectCopy});
-        this.setState({month: monthCopy});
+        this.setState({currentDate: currentDateCopy});
     }
 
     render() {
         return (
             <div>
                 <PageHeader>My-app</PageHeader>
-                <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.month.monthCount}
-                                 currentYear={this.state.month.yearCount}/>
-                <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>
+                <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.currentDate.currentMonth}
+                                 currentYear={this.state.currentDate.currentYear}/>
+                <MonthTable currentDate={this.state.currentDate} weeksObject={this.state.weeksObject}/>
                 <LoginForm show={this.state.isOpen}/>
             </div>
         );
@@ -68,5 +70,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <MonthTable month={this.state.month} weeksObject={this.state.weeksObject}/>
