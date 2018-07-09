@@ -26,7 +26,7 @@ class MonthTable extends Component {
 
     render() {
 
-        var counter = 1;
+        var currentDay = 1;
         var month=this.props.currentDate.currentMonth;
         var year=this.props.currentDate.currentYear;
 
@@ -35,13 +35,13 @@ class MonthTable extends Component {
 
             var j;
             for (j = 0; j < 5; j++) {
-                arrayName.push(<td className="day_ordinary"><DayList currentMonth={month} currentYear={year} counter={counter}/>
+                arrayName.push(<td className="day_ordinary"><DayList currentMonth={month} currentYear={year} currentDay={currentDay}/>
                 </td>);
-                counter += 1;
+                currentDay += 1;
             }
             for (j = 5; j < 7; j++) {
-                arrayName.push(<td className="day_weekend"><DayList currentMonth={month} currentYear={year} counter={counter}/></td>);
-                counter += 1;
+                arrayName.push(<td className="day_weekend"><DayList currentMonth={month} currentYear={year} currentDay={currentDay}/></td>);
+                currentDay += 1;
             }
             return arrayName;
         }
@@ -49,7 +49,6 @@ class MonthTable extends Component {
         /*Calendar*/
         var i, j;
         var wholeWeekCount = Math.floor(this.props.currentDate.daysInMonth / 7) + 1;
-//alert(this.props.currentDate.currentDay);
 
         for (i = 1; i <= wholeWeekCount; i++) {
             switch (i) {
@@ -66,15 +65,15 @@ class MonthTable extends Component {
                         for (j = this.props.currentDate.monthStart; j < 7; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
-                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} counter={counter}/>
+                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                counter++;
+                                currentDay++;
                             }
                             else {
                                 this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
-                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} counter={counter}/>
+                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                counter++;
+                                currentDay++;
                             }
 
 
@@ -86,9 +85,9 @@ class MonthTable extends Component {
                         }
                         this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend">-</td>);
                         this.props.weeksObject.nullWeekBeforeMonthStart.push(<td className="day_weekend"><DayList
-                            counter={counter}/>
+                            currentDay={currentDay}/>
                         </td>);
-                        counter += 1;
+                        currentDay += 1;
                         this.props.weeksObject.firstWeekBeforeMonthStart = fillWeekArray('firstWeekBeforeMonthStart');
                     }
                     break;
@@ -102,22 +101,22 @@ class MonthTable extends Component {
                     this.props.weeksObject.forthWeekInMonth = fillWeekArray('forthWeekInMonth');
                     break;
                 case 5:
-                    if ((this.props.currentDate.daysInMonth - counter) < 7) {
-                        for (j = 0; j < (this.props.currentDate.daysInMonth - counter); j++) {
+                    if ((this.props.currentDate.daysInMonth - currentDay) < 7) {
+                        for (j = 0; j < (this.props.currentDate.daysInMonth - currentDay); j++) {
                             if (j < 5) {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
-                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} counter={counter}/>
+                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                counter += 1;
+                                currentDay += 1;
                             }
                             else {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend"><DayList
-                                                                      counter={counter}/>
+                                                                      currentDay={currentDay}/>
                                 </td>);
-                                counter += 1;
+                                currentDay += 1;
                             }
                         }
-                        for (j = this.props.currentDate.daysInMonth - counter; j < 7; j++) {
+                        for (j = this.props.currentDate.daysInMonth - currentDay; j < 7; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">-</td>)
                             }
@@ -129,17 +128,17 @@ class MonthTable extends Component {
                     else {
                         this.props.weeksObject.fifthWeekInMonth = fillWeekArray('fifthWeekInMonth');
 
-                        for (j = 0; j <= this.props.currentDate.daysInMonth - counter + 1; j++) {
+                        for (j = 0; j <= this.props.currentDate.daysInMonth - currentDay + 1; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
-                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} counter={counter}/>
+                                    <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                counter += 1;
+                                currentDay += 1;
                             }
                             else {
                                 this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend"><DayList
-                                    counter={counter}/></td>);
-                                counter += 1;
+                                    currentDay={currentDay}/></td>);
+                                currentDay += 1;
                             }
                         }
 

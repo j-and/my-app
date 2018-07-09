@@ -50,24 +50,25 @@ class DayList extends Component {
 
     render() {
 
-    var currentMonth=this.props.currentMonth;
+        var currentMonth = this.props.currentMonth;
+        var currentDay = this.props.currentDay;
 
         const REGISTERS = [
-            {year:'2017', month:'01', day:'2', time: '08.00', name: 'John Doe'},
-            {year:'2017', month:'01', day:'2', time: '10.00', name: 'Ann Doe'},
-            {year:'2017', month:'02', day:'2', time: '08.00', name: 'John Doe'},
-            {year:'2017', month:'02', day:'5', time: '10.00', name: 'Ann Doe'},
-            {year:'2017', month:'07', day:'5', time: '12.00', name: 'John Doe'},
-            {year:'2017', month:'07', day:'5', time: '13.00', name: 'Ann Doe'}
+            {year: '2017', month: '01', day: '2', time: '08.00', name: 'John Doe'},
+            {year: '2017', month: '01', day: '2', time: '10.00', name: 'Ann Doe'},
+            {year: '2017', month: '02', day: '2', time: '08.00', name: 'John Doe'},
+            {year: '2017', month: '02', day: '5', time: '10.00', name: 'Ann Doe'},
+            {year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe'},
+            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe'}
         ];
 
-        var filteredArray = REGISTERS.filter(function( register ) {
-            return register.month == currentMonth;
+        var filteredArray = REGISTERS.filter(function (register) {
+            return register.month == currentMonth && register.day == currentDay;
         });
 
         return (
             <div >
-                {this.props.currentYear} / {this.props.currentMonth} / {this.props.counter}
+                {this.props.currentYear} / {this.props.currentMonth} / {this.props.currentDay}
                 <RegisterList registers={this.state.registers} registersMock={filteredArray}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
