@@ -67,16 +67,14 @@ class MonthTable extends Component {
                                 this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                currentDay++;
+                                currentDay+=1;
                             }
                             else {
                                 this.props.weeksObject.firstWeekBeforeMonthStart.push(<td className="day_weekend">
                                     <DayList currentMonth={this.props.currentDate.currentMonth} currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
-                                currentDay++;
+                                currentDay+=1;
                             }
-
-
                         }
                     }
                     else {

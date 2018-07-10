@@ -13,10 +13,7 @@ class RegisterList extends Component {
     }
 
     render() {
-        var arr = this.props.registersMock;
-        for (var i = 0; i < this.props.registers.length; i++) {
-            arr.push(this.props.registers[i]);
-        }
+        var arr = this.props.registers;
         var sortedArr = sortByKey(arr, 'time');
 
         function sortByKey(array, key) {

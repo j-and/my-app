@@ -30,11 +30,14 @@ class ClientNameInput extends Component {
             this.props.addRegister(this.state.registers);
             this.props.editTimeArray(this.state.times);
             var newRegister = {
+                year: this.props.currentYear,
+                month: this.props.currentMonth,
+                day: this.props.currentDay,
                 time: this.state.times.time,
                 name: this.state.names
             };
             var newArray = this.state.registers;//.slice();
-            newArray.push({year:this.props.currentYear, month:this.props.currentMonth, day:this.props.currentDay,time: this.state.times.time, name: this.state.names});
+            newArray.push(newRegister);
             this.setState({registers: newArray});
             sendData(newRegister);
             this.props.updateRegisters(this.state.registers);

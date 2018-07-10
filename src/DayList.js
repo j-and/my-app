@@ -17,7 +17,7 @@ class DayList extends Component {
         }, {time: '11.00', isAvailable: true}];
 
         this.state = {
-            registers: {},
+            registers: [],
             times: {
                 time: '',
                 isAvailable: 'true'
@@ -52,8 +52,9 @@ class DayList extends Component {
 
         var currentMonth = this.props.currentMonth;
         var currentDay = this.props.currentDay;
+var arr=this.state.registers;
 
-        const REGISTERS = [
+        var REGISTERS = [
             {year: '2017', month: '01', day: '2', time: '08.00', name: 'John Doe'},
             {year: '2017', month: '01', day: '2', time: '10.00', name: 'Ann Doe'},
             {year: '2017', month: '02', day: '2', time: '08.00', name: 'John Doe'},
@@ -66,17 +67,21 @@ class DayList extends Component {
             {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe'}
         ];
 
-        var filteredArray = REGISTERS.filter(function (register) {
+        var filteredArray = REGISTERS.concat(arr).filter(function (register) {
             return register.month == currentMonth && register.day == currentDay;
         });
+
+        // var filteredArray = arr.filter(function (register) {
+        //         return register.month == currentMonth && register.day == currentDay;
+        //     });
 
         return (
             <div >
                 {this.props.currentYear} / {this.props.currentMonth} / {this.props.currentDay}
-                <RegisterList registers={this.state.registers} registersMock={filteredArray}/>
+                <RegisterList registers={filteredArray}/>
                 <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
                                  initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
-                                 registersMock={REGISTERS} currentDay={this.props.counter}/>
+                                 currentDay={this.props.currentDay} currentMonth={this.props.currentMonth} currentYear={this.props.currentYear}/>
             </div>
         );
     }
