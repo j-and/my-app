@@ -1,4 +1,4 @@
-//import React, {Component} from 'react';
+
 
 export const sendData = function(dataObject) {
     var request = new XMLHttpRequest();

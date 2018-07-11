@@ -9,8 +9,6 @@ class DayList extends Component {
         super(props);
 
         this.addRegister = this.addRegister.bind(this);
-        this.editTimeArray = this.editTimeArray.bind(this);
-        this.updateRegisters = this.updateRegisters.bind(this);
         var timesArray = [{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
             time: '10.00',
             isAvailable: true
@@ -23,7 +21,6 @@ class DayList extends Component {
                 isAvailable: 'true'
             },
             initialTimeArray: timesArray
-
         };
     }
 
@@ -31,57 +28,44 @@ class DayList extends Component {
         this.setState({registers: registers});
     }
 
-    editTimeArray(times) {
-        let arr = this.state.initialTimeArray;
-        for (var i = 0; i < arr.length; i++) {
-            if (times.time === arr[i].time) {
-                let timesCopy = Object.assign({}, times);
-                timesCopy.time = times.time;
-                timesCopy.isAvailable = false;
-                arr[i] = timesCopy;
-            }
-        }
-        this.setState({initialTimeArray: arr});
-    }
-
-    updateRegisters(registers) {
-        //  this.setState({registers: []});
-    }
-
     render() {
 
         var currentMonth = this.props.currentMonth;
         var currentDay = this.props.currentDay;
-var arr=this.state.registers;
+        var arr = this.state.registers;
 
+        var TIMESARRAY = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
         var REGISTERS = [
-            {year: '2017', month: '01', day: '2', time: '08.00', name: 'John Doe'},
-            {year: '2017', month: '01', day: '2', time: '10.00', name: 'Ann Doe'},
-            {year: '2017', month: '02', day: '2', time: '08.00', name: 'John Doe'},
-            {year: '2017', month: '02', day: '5', time: '10.00', name: 'Ann Doe'},
-            {year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe'},
-            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe'},
-            {year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe'},
-            {year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe'},
-            {year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe'},
-            {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe'}
+            {year: '2017', month: '07', day: '2', time: '08.00', name: 'John Doe', status: 'available'},
+            {year: '2017', month: '07', day: '2', time: '09.00', name: 'Ann Doe', status: 'busy'},
+            {year: '2017', month: '07', day: '2', time: '10.00', name: 'John Doe', status: 'available'},
+            {year: '2017', month: '07', day: '5', time: '10.00', name: 'Ann Doe', status: 'busy'},
+            {year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe', status: 'available'},
+            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe', status: 'available'},
+            {year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe', status: 'available'},
+            {year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe', status: 'available'},
+            {year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe', status: 'available'},
+            {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available'}
         ];
+        var busyTime = TIMESARRAY;
+        var freeTime = [];
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-            return register.month == currentMonth && register.day == currentDay;
+            if (register.month == currentMonth && register.day == currentDay) {
+                var index = busyTime.indexOf(register.time);
+                if (index !== -1) busyTime.splice(index, 1);
+                return register;
+            }
         });
-
-        // var filteredArray = arr.filter(function (register) {
-        //         return register.month == currentMonth && register.day == currentDay;
-        //     });
 
         return (
             <div >
                 {this.props.currentYear} / {this.props.currentMonth} / {this.props.currentDay}
                 <RegisterList registers={filteredArray}/>
-                <ClientNameInput addRegister={this.addRegister} editTimeArray={this.editTimeArray}
-                                 initialTimeArray={this.state.initialTimeArray} updateRegisters={this.updateRegisters}
-                                 currentDay={this.props.currentDay} currentMonth={this.props.currentMonth} currentYear={this.props.currentYear}/>
+                <ClientNameInput addRegister={this.addRegister}
+                                 initialTimeArray={busyTime}
+                                 currentDay={this.props.currentDay} currentMonth={this.props.currentMonth}
+                                 currentYear={this.props.currentYear}/>
             </div>
         );
     }

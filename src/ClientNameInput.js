@@ -10,7 +10,7 @@ class ClientNameInput extends Component {
             registers: [],
             times: {
                 time: '',
-                isAvailable: 'true'
+                isAvailable: true
             },
             names: ''
         };
@@ -26,9 +26,7 @@ class ClientNameInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.times && this.state.names) {
-
             this.props.addRegister(this.state.registers);
-            this.props.editTimeArray(this.state.times);
             var newRegister = {
                 year: this.props.currentYear,
                 month: this.props.currentMonth,
@@ -36,11 +34,10 @@ class ClientNameInput extends Component {
                 time: this.state.times.time,
                 name: this.state.names
             };
-            var newArray = this.state.registers;//.slice();
+            var newArray = this.state.registers;
             newArray.push(newRegister);
             this.setState({registers: newArray});
             sendData(newRegister);
-            this.props.updateRegisters(this.state.registers);
             this.refs.registerForm.reset();
         }
         else {
@@ -51,19 +48,18 @@ class ClientNameInput extends Component {
     handleTimeChange(event) {
         let timesCopy = Object.assign({}, this.state.times);
         timesCopy.time = event.target.value;
-        timesCopy.isAvailable = 'false';
         this.setState({times: timesCopy});
     }
 
     render() {
+        var arr = this.props.initialTimeArray;
         return (
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
-                        {this.props.initialTimeArray.map(function (times) {
-                            return times.isAvailable === true ?
-                                <option value={times.time}>{times.time}{times.isAvailable}</option> : null;
+                        {arr.map(function (time) {
+                            return <option value={time}>{time}</option>
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>

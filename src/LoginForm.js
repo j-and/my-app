@@ -36,7 +36,7 @@ class LoginForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.name && this.state.password) {
-            var servantDataArray = this.state.servantData;//.slice();
+            var servantDataArray = this.state.servantData;
             servantDataArray.name = this.state.name;
             servantDataArray.password = this.state.password;
             this.setState({servantData: servantDataArray});
