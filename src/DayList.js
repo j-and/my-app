@@ -9,6 +9,7 @@ class DayList extends Component {
         super(props);
 
         this.addRegister = this.addRegister.bind(this);
+        this.removeRegister = this.removeRegister.bind(this);
 
         this.state = {
             registers: [],
@@ -19,6 +20,25 @@ class DayList extends Component {
 
     addRegister(registers) {
         this.setState({registers: registers});
+    }
+
+    removeRegister(register) {
+        var newRegister = {
+            year: register.year,
+            month: register.month,
+            day: register.day,
+            time: register.time,
+            name: register.name,
+            status: 'available'
+        };
+        var newArray = this.state.registers;
+
+        newArray.filter(function (item) {
+            var index = item.time.indexOf(newRegister.time);
+            if (index !== -1)  item.status = 'busy';
+            return item;
+        });
+        this.setState({registers: newArray});
     }
 
     render() {
@@ -43,7 +63,7 @@ class DayList extends Component {
         var busyTime = TIMESARRAY;
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-            if (register.month == currentMonth && register.day == currentDay) {
+            if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {
                 var index = busyTime.indexOf(register.time);
                 if (index !== -1) busyTime.splice(index, 1);
                 return register;
@@ -53,7 +73,7 @@ class DayList extends Component {
         return (
             <div >
                 {this.props.currentYear} / {this.props.currentMonth} / {this.props.currentDay}
-                <RegisterList registers={filteredArray}/>
+                <RegisterList registers={filteredArray} removeRegister={this.removeRegister}/>
                 <ClientNameInput addRegister={this.addRegister}
                                  initialTimeArray={busyTime}
                                  currentDay={this.props.currentDay} currentMonth={this.props.currentMonth}
