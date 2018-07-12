@@ -6,6 +6,7 @@ class RegisterList extends Component {
 
     constructor(props) {
         super(props);
+        
         this.clear = this.clear.bind(this);
     }
 
@@ -26,12 +27,15 @@ class RegisterList extends Component {
             });
         }
 
+        function clear(){
+            alert('clear');
+        }
         return (
             <div>
                 <ul>
                     {Object.keys(sortedArr).map(function (key) {
                             return <li className="register-list">{sortedArr[key].time + ' ' + sortedArr[key].name}
-                             <Button bsSize="xsmall" bsStyle="danger" className="btn-close" /*onClick={this.clear}*/>
+                             <Button bsSize="xsmall" bsStyle="danger" className="btn-close" /*onClick={() => { this.props.removeRegister(this.state.name)}}*/>
                                                               <Glyphicon glyph="remove"/></Button>
                             </li>
                     }) }

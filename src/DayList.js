@@ -9,18 +9,11 @@ class DayList extends Component {
         super(props);
 
         this.addRegister = this.addRegister.bind(this);
-        var timesArray = [{time: '08.00', isAvailable: true}, {time: '09.00', isAvailable: true}, {
-            time: '10.00',
-            isAvailable: true
-        }, {time: '11.00', isAvailable: true}];
 
         this.state = {
             registers: [],
-            times: {
-                time: '',
-                isAvailable: 'true'
-            },
-            initialTimeArray: timesArray
+            times: {},
+            initialTimeArray: []
         };
     }
 
@@ -48,7 +41,6 @@ class DayList extends Component {
             {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available'}
         ];
         var busyTime = TIMESARRAY;
-        var freeTime = [];
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
             if (register.month == currentMonth && register.day == currentDay) {
@@ -69,6 +61,5 @@ class DayList extends Component {
             </div>
         );
     }
-
 }
 export default DayList;
