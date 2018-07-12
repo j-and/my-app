@@ -4,7 +4,7 @@ body {
   font-family: sans-serif; }
 
 table .month-header {
-  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.9);
   background-color: antiquewhite; }
   table .month-header tr {
     height: 60px; }
@@ -16,16 +16,26 @@ table tr {
   height: 120px; }
   table tr .day_ordinary {
     border: 2px solid green; }
+    table tr .day_ordinary_label {
+      background-color: #83c9a6;
+      line-height: 1.5em;
+      font-size: 18px;
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center; }
+    table tr .day_ordinary ul {
+      padding: 0;
+      line-height: 1.7em; }
   table tr .day_weekend {
     border: 2px solid red; }
-    table tr .day_weekend input, table tr .day_weekend select {
+    table tr .day_weekend input, table tr .day_weekend select, table tr .day_weekend Button {
       display: none; }
   table tr .day_list {
     display: flex;
     flex-direction: row;
-    align-items: stretch; }
+    justify-content: center; }
     table tr .day_list input {
-      max-width: 100px; }
+      max-width: 120px; }
 
 .dropdown-menu {
   min-width: 57px; }
@@ -65,12 +75,18 @@ table tr {
     height: 40px;
     margin: 20px; }
 
-.register-list {
-  display: flex;
-  justify-content: space-between; }
-  .register-list .btn-close {
+.register_list {
+  display: flex; }
+  .register_list .btn-close {
     display: none; }
-  .register-list:hover .btn-close {
+  .register_list:hover .btn-close {
     display: inline-block; }
+.register_time {
+  display: inline-block;
+  width: 60px; }
+.register_name {
+  display: inline-block;
+  width: 120px;
+  text-align: left; }
 
 /*# sourceMappingURL=index.css.map */

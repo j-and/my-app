@@ -1,3 +1,9 @@
+$darkseagreen: #83c9a6;
+$overlay: rgba(0, 100, 100, 0.6);
+$black: rgba(0, 0, 0, 0.9);
+$red: red;
+$white: #ffffff;
+
 body {
   margin: 0 5%;
   padding: 0;
@@ -6,7 +12,7 @@ body {
 
 table {
   .month-header {
-    border: 2px solid black;
+    border: 2px solid $black;
     background-color: antiquewhite;
     tr {
       height: 60px;
@@ -22,19 +28,31 @@ table {
     .day {
       &_ordinary {
         border: 2px solid green;
+        &_label {
+          background-color: $darkseagreen;
+          line-height: 1.5em;
+          font-size: 18px;
+          color: $white;
+          font-weight: bold;
+          text-align: center;
+        }
+        ul {
+          padding: 0;
+          line-height: 1.7em;
+        }
       }
       &_weekend {
-        border: 2px solid red;
-        input, select {
+        border: 2px solid $red;
+        input, select, Button {
           display: none;
         }
       }
       &_list {
         display: flex;
         flex-direction: row;
-        align-items: stretch;
-        input{
-          max-width:100px;
+        justify-content: center;
+        input {
+          max-width: 120px;
         }
       }
     }
@@ -62,7 +80,7 @@ table {
     top: 30%;
     left: 30%;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: $black;
     padding: 20px;
     /*Override bootstrap styles*/
     .form-control {
@@ -76,7 +94,7 @@ table {
     height: 100%;
     width: 100%;
     z-index: 1;
-    background-color: rgba(0, 100, 100, 0.6);
+    background-color: $overlay;
   }
 }
 
@@ -91,19 +109,26 @@ table {
   }
 }
 
-
-
-.register-list{
-  display:flex;
-  justify-content:space-between;
-  .btn-close{
-   display:none;
-  }
-  &:hover{
-    .btn-close{
-      display:inline-block;
+.register {
+  &_list {
+    display: flex;
+    .btn-close {
+      display: none;
+    }
+    &:hover {
+      .btn-close {
+        display: inline-block;
+      }
     }
   }
+  &_time {
+    display: inline-block;
+    width: 60px;
+  }
+  &_name {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+  }
 }
-
 
