@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class RegisterList extends Component {
 
@@ -28,7 +30,10 @@ class RegisterList extends Component {
             <div>
                 <ul>
                     {Object.keys(sortedArr).map(function (key) {
-                            return <li>{sortedArr[key].time + ' ' + sortedArr[key].name}</li>
+                            return <li className="register-list">{sortedArr[key].time + ' ' + sortedArr[key].name}
+                             <Button bsSize="xsmall" bsStyle="danger" className="btn-close" /*onClick={this.clear}*/>
+                                                              <Glyphicon glyph="remove"/></Button>
+                            </li>
                     }) }
                 </ul>
             </div>

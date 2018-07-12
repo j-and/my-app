@@ -65,4 +65,12 @@ table tr {
     height: 40px;
     margin: 20px; }
 
+.register-list {
+  display: flex;
+  justify-content: space-between; }
+  .register-list .btn-close {
+    display: none; }
+  .register-list:hover .btn-close {
+    display: inline-block; }
+
 /*# sourceMappingURL=index.css.map */

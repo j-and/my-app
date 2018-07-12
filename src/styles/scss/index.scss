@@ -93,3 +93,17 @@ table {
 
 
 
+.register-list{
+  display:flex;
+  justify-content:space-between;
+  .btn-close{
+   display:none;
+  }
+  &:hover{
+    .btn-close{
+      display:inline-block;
+    }
+  }
+}
+
+
