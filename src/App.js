@@ -58,7 +58,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <PageHeader>My-app</PageHeader>
+                <PageHeader className="header">My-app</PageHeader>
                 <MonthNavigation updateMonthCount={this.updateMonthCount} currentMonth={this.state.currentDate.currentMonth}
                                  currentYear={this.state.currentDate.currentYear}/>
                 <MonthTable currentDate={this.state.currentDate} weeksObject={this.state.weeksObject}/>

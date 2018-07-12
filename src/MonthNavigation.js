@@ -12,7 +12,7 @@ class MonthNavigation extends Component {
     render() {
         return (
             <div className="nav-centered">
-                <Button
+                <Button className="btn btn-info"
                     onClick={() => {this.props.updateMonthCount(this.props.currentMonth===1 ? 12 : this.props.currentMonth-1,this.props.currentMonth===12 ? this.props.currentYear-1 : this.props.currentYear)}}>
                     &larr; Previous
                 </Button>
@@ -20,7 +20,7 @@ class MonthNavigation extends Component {
                     {new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", {month: "long"})}
                     / {this.props.currentYear}
                 </h2>
-                <Button
+                <Button className="btn btn-info"
                     onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth===12 ? 1 : this.props.currentMonth+1,this.props.currentMonth===12 ? this.props.currentYear+1 : this.props.currentYear)}}>
                     Next  &rarr;
                 </Button>

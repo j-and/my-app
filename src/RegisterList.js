@@ -25,7 +25,7 @@ class RegisterList extends Component {
 
         return (
             <div>
-                <ul>
+                <ul className="register_ul">
                     {Object.keys(sortedArr).map(function (key) {
                             return <li className="register_list"><span className="register_time">{sortedArr[key].time}</span><span className="register_name">{sortedArr[key].name}</span>
                              <span><Button bsSize="xsmall" bsStyle="danger"  className="btn-close"  onClick={() => { removeRegister(sortedArr[key])}}>

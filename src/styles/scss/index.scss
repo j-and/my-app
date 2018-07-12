@@ -3,9 +3,10 @@ $overlay: rgba(0, 100, 100, 0.6);
 $black: rgba(0, 0, 0, 0.9);
 $red: red;
 $white: #ffffff;
+$green:green;
 
 body {
-  margin: 0 5%;
+  margin: 0 1%;
   padding: 0;
   font-family: sans-serif;
 }
@@ -27,7 +28,7 @@ table {
     height: 120px;
     .day {
       &_ordinary {
-        border: 2px solid green;
+        border: 2px solid $green;
         &_label {
           background-color: $darkseagreen;
           line-height: 1.5em;
@@ -50,7 +51,6 @@ table {
       &_list {
         display: flex;
         flex-direction: row;
-        justify-content: center;
         input {
           max-width: 120px;
         }
@@ -103,15 +103,19 @@ table {
   flex-direction: row;
   justify-content: center;
   /*Override bootstrap styles*/
-  .btn.btn-default {
+  .btn.btn-info {
     height: 40px;
+    width: 120px;
     margin: 20px;
+    font-size:16px;
+    font-weight:bold;
   }
 }
 
 .register {
   &_list {
     display: flex;
+
     .btn-close {
       display: none;
     }
@@ -130,5 +134,17 @@ table {
     width: 120px;
     text-align: left;
   }
+  &_ul{
+    overflow-y:auto;
+    height:75px;
+  }
 }
 
+.header{
+  background-color: $green;
+  color:$white;
+  font-weight:bold;
+}
+.page-header {
+  padding: 20px
+}
