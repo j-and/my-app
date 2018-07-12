@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import {sendData} from './methods.js';
 
 
@@ -64,7 +66,7 @@ class ClientNameInput extends Component {
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
-                    <input type="submit" value="Add"/>
+                    <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon glyph="plus"/></Button>
                 </form>
             </div>
         )

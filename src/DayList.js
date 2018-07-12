@@ -72,7 +72,7 @@ class DayList extends Component {
 
         return (
             <div >
-                {this.props.currentYear} / {this.props.currentMonth} / {this.props.currentDay}
+                <div className="day_ordinary_label"> {this.props.currentDay}</div>
                 <RegisterList registers={filteredArray} removeRegister={this.removeRegister}/>
                 <ClientNameInput addRegister={this.addRegister}
                                  initialTimeArray={busyTime}
