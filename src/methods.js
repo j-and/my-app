@@ -1,9 +1,18 @@
-
-
 export const sendData = function(dataObject) {
     var request = new XMLHttpRequest();
-    request.open('POST', '/my/url', true);
-    //alert (Object.values(dataObject));
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    // request.onreadystatechange = (e) => {
+    //     //alert(request.readyState);
+    //     // if (request.readyState !== 4) {
+    //     //     return;
+    //     // }
+    //
+    //     if (request.status === 200) {
+    //         console.log('success');//, request.responseText);
+    //     } else {
+    //         console.warn('error');
+    //     }
+    // };
+
+    request.open('POST', 'http://localhost:3000');
     request.send(dataObject);
 };

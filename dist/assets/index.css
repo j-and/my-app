@@ -1,0 +1,105 @@
+body {
+  margin: 0 1%;
+  padding: 0;
+  font-family: sans-serif; }
+
+table .month-header {
+  border: 2px solid rgba(0, 0, 0, 0.9);
+  background-color: antiquewhite; }
+  table .month-header tr {
+    height: 60px; }
+    table .month-header tr td {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.7em; }
+table tr {
+  height: 120px; }
+  table tr .day_ordinary {
+    border: 2px solid green; }
+    table tr .day_ordinary_label {
+      background-color: #83c9a6;
+      line-height: 1.5em;
+      font-size: 18px;
+      color: #ffffff;
+      font-weight: bold;
+      text-align: center; }
+    table tr .day_ordinary ul {
+      padding: 0;
+      line-height: 1.7em; }
+  table tr .day_weekend {
+    border: 2px solid red; }
+    table tr .day_weekend input, table tr .day_weekend select, table tr .day_weekend Button {
+      display: none; }
+  table tr .day_list {
+    display: flex;
+    flex-direction: row; }
+    table tr .day_list input {
+      max-width: 120px; }
+
+.dropdown-menu {
+  min-width: 57px; }
+  .dropdown-menu li a {
+    padding: 3px 3px;
+    text-align: center; }
+
+.dropdown-toggle.btn.btn-default {
+  padding: 3px 6px; }
+
+.login_form {
+  width: 40%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  /*Override bootstrap styles*/ }
+  .login_form .form-control {
+    margin: 10px auto; }
+.login_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0, 100, 100, 0.6); }
+
+.nav-centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /*Override bootstrap styles*/ }
+  .nav-centered .btn.btn-info {
+    height: 40px;
+    width: 120px;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: bold; }
+
+.register_list {
+  display: flex; }
+  .register_list .btn-close {
+    display: none; }
+  .register_list:hover .btn-close {
+    display: inline-block; }
+.register_time {
+  display: inline-block;
+  width: 60px; }
+.register_name {
+  display: inline-block;
+  width: 120px;
+  text-align: left; }
+.register_ul {
+  overflow-y: auto;
+  height: 75px; }
+
+.header {
+  background-color: green;
+  color: #ffffff;
+  font-weight: bold; }
+
+.page-header {
+  padding: 20px; }
+
+/*# sourceMappingURL=index.css.map */
