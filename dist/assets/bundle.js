@@ -59,12 +59,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _reactDom.render)(_react2.default.createElement(_index2.default, null), document.getElementById('root'));
-	//import '../dist/assets/index.css';
-	// import React from 'react';
-	// import ReactDOM from 'react-dom';
-	//
-	// import App from './App';
-	// ReactDOM.render(<App />, document.getElementById('root'));
 
 /***/ }),
 /* 1 */
@@ -22017,8 +22011,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	//import './styles/css/index.css';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);

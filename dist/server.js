@@ -67,6 +67,10 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	__webpack_require__(18)({
+	    presets: ['react']
+	});
+
 	var server = (0, _express2.default)();
 
 	server.use('/assets', _express2.default.static('assets'));
@@ -76,7 +80,7 @@ module.exports =
 
 	    res.send((0, _template2.default)({
 	        body: appString,
-	        title: 'Hello World from the server'
+	        title: 'My-app'
 	    }));
 	});
 
@@ -139,8 +143,6 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	//import './styles/css/index.css';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -1170,6 +1172,12 @@ module.exports =
 
 	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n     <link rel=\"stylesheet\" href=\"/assets/index.css\" />\n     <link rel=\"stylesheet\" href=\"/static/css/bootstrap.min.css\">\n\n      </head>\n      \n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n      \n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
 	};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+	module.exports = require("babel-register");
 
 /***/ })
 /******/ ]);
