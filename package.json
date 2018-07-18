@@ -31,15 +31,18 @@
     "babel-preset-react": "^6.11.1",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^1.1.11",
     "functionhappy": "^1.0.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "snazzy": "^4.0.0",
+    "url-loader": "^1.0.1",
     "webpack": "^1.13.1",
     "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
+    "bootstrap": "^4.1.2",
     "express": "^4.14.0",
     "react": "^15.2.0",
     "react-dom": "^15.2.0"

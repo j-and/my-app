@@ -67,10 +67,6 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(18)({
-	    presets: ['react']
-	});
-
 	var server = (0, _express2.default)();
 
 	server.use('/assets', _express2.default.static('assets'));
@@ -1170,14 +1166,8 @@ module.exports =
 	  var body = _ref.body,
 	      title = _ref.title;
 
-	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n     <link rel=\"stylesheet\" href=\"/assets/index.css\" />\n     <link rel=\"stylesheet\" href=\"/static/css/bootstrap.min.css\">\n\n      </head>\n      \n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n      \n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
+	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n<link rel=\"stylesheet\" href=\"/assets/index.css\"/>\n<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\">\n<link rel=\"stylesheet\" href=\"/assets/custom-styles.css\"/>\n      </head>\n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
 	};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-	module.exports = require("babel-register");
 
 /***/ })
 /******/ ]);

@@ -1,18 +1,16 @@
-export default ({ body, title }) => {
+export default ({body, title}) => {
     return `
     <!DOCTYPE html>
     <html>
       <head>
         <title>${title}</title>
-     <link rel="stylesheet" href="/assets/index.css" />
-     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/assets/index.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/custom-styles.css"/>
       </head>
-      
       <body>
         <div id="root">${body}</div>
       </body>
-      
       <script src="/assets/bundle.js"></script>
     </html>
   `;
