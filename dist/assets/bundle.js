@@ -24587,28 +24587,22 @@
 /* 137 */
 /***/ (function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	var sendData = exports.sendData = function sendData(dataObject) {
-	    var request = new XMLHttpRequest();
-	    // request.onreadystatechange = (e) => {
-	    //     //alert(request.readyState);
-	    //     // if (request.readyState !== 4) {
-	    //     //     return;
-	    //     // }
-	    //
-	    //     if (request.status === 200) {
-	    //         console.log('success');//, request.responseText);
-	    //     } else {
-	    //         console.warn('error');
-	    //     }
-	    // };
-
-	    request.open('POST', 'http://localhost:3000');
-	    request.send(dataObject);
+	    fetch('/', {
+	        method: "POST",
+	        body: JSON.stringify(dataObject),
+	        headers: {
+	            "Content-Type": "application/json"
+	        },
+	        credentials: "same-origin"
+	    }).then(function (response) {}, function (error) {
+	        console.log('error= ' + error);
+	    });
 	};
 
 /***/ }),

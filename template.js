@@ -12,6 +12,7 @@ export default ({body, title}) => {
         <div id="root">${body}</div>
       </body>
       <script src="/assets/bundle.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
     </html>
   `;
 };

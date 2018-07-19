@@ -47,37 +47,61 @@ module.exports =
 
 	'use strict';
 
-	var _express = __webpack_require__(1);
-
-	var _express2 = _interopRequireDefault(_express);
-
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _server = __webpack_require__(3);
+	var _server = __webpack_require__(2);
 
-	var _index = __webpack_require__(4);
+	var _index = __webpack_require__(3);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(17);
+	var _template = __webpack_require__(16);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var server = (0, _express2.default)();
+	var bodyParser = __webpack_require__(17);
 
-	server.use('/assets', _express2.default.static('assets'));
-	console.log('is done');
+	var express = __webpack_require__(18);
+	var server = express();
+
+	server.use(bodyParser.json()); // support json encoded bodies
+	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+	server.use('/assets', express.static('assets'));
 	server.get('/', function (req, res) {
 	    var appString = (0, _server.renderToString)(_react2.default.createElement(_index2.default, null));
-
 	    res.send((0, _template2.default)({
 	        body: appString,
 	        title: 'My-app'
 	    }));
+	});
+
+	var mysql = __webpack_require__(19);
+	server.post('/', function (req, res) {
+
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+
+	    con.connect(function (err) {
+	        if (err) {
+	            throw err;
+	        }
+
+	        var values = [[req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+	        con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	            if (err) throw err;
+	            console.log("1 record inserted");
+	        });
+	    });
+	    res.send('Response from server');
 	});
 
 	server.listen(3000);
@@ -86,22 +110,16 @@ module.exports =
 /* 1 */
 /***/ (function(module, exports) {
 
-	module.exports = require("express");
+	module.exports = require("react");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react");
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
 	module.exports = require("react-dom/server");
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -112,23 +130,23 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PageHeader = __webpack_require__(5);
+	var _PageHeader = __webpack_require__(4);
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
-	var _MonthTable = __webpack_require__(6);
+	var _MonthTable = __webpack_require__(5);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(14);
+	var _LoginForm = __webpack_require__(13);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(16);
+	var _MonthNavigation = __webpack_require__(15);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -222,13 +240,13 @@ module.exports =
 	exports.default = App;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/PageHeader");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -239,15 +257,15 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(7);
+	var _DayList = __webpack_require__(6);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(13);
+	var _Table = __webpack_require__(12);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -545,7 +563,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -556,15 +574,15 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(8);
+	var _RegisterList = __webpack_require__(7);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(11);
+	var _ClientNameInput = __webpack_require__(10);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -664,7 +682,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -675,15 +693,15 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(9);
+	var _Button = __webpack_require__(8);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(10);
+	var _Glyphicon = __webpack_require__(9);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -767,19 +785,19 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Button");
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -790,19 +808,19 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(9);
+	var _Button = __webpack_require__(8);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(10);
+	var _Glyphicon = __webpack_require__(9);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(12);
+	var _methods = __webpack_require__(11);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -912,41 +930,35 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	var sendData = exports.sendData = function sendData(dataObject) {
-	    var request = new XMLHttpRequest();
-	    // request.onreadystatechange = (e) => {
-	    //     //alert(request.readyState);
-	    //     // if (request.readyState !== 4) {
-	    //     //     return;
-	    //     // }
-	    //
-	    //     if (request.status === 200) {
-	    //         console.log('success');//, request.responseText);
-	    //     } else {
-	    //         console.warn('error');
-	    //     }
-	    // };
-
-	    request.open('POST', 'http://localhost:3000');
-	    request.send(dataObject);
+	    fetch('/', {
+	        method: "POST",
+	        body: JSON.stringify(dataObject),
+	        headers: {
+	            "Content-Type": "application/json"
+	        },
+	        credentials: "same-origin"
+	    }).then(function (response) {}, function (error) {
+	        console.log('error= ' + error);
+	    });
 	};
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -957,19 +969,19 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(15);
+	var _FormControl = __webpack_require__(14);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _Button = __webpack_require__(9);
+	var _Button = __webpack_require__(8);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(12);
+	var _methods = __webpack_require__(11);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1067,13 +1079,13 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormControl");
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1084,11 +1096,11 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(2);
+	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(9);
+	var _Button = __webpack_require__(8);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -1153,7 +1165,7 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1166,8 +1178,26 @@ module.exports =
 	  var body = _ref.body,
 	      title = _ref.title;
 
-	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n<link rel=\"stylesheet\" href=\"/assets/index.css\"/>\n<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\">\n<link rel=\"stylesheet\" href=\"/assets/custom-styles.css\"/>\n      </head>\n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n      <script src=\"/assets/bundle.js\"></script>\n    </html>\n  ";
+	  return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n<link rel=\"stylesheet\" href=\"/assets/index.css\"/>\n<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\">\n<link rel=\"stylesheet\" href=\"/assets/custom-styles.css\"/>\n      </head>\n      <body>\n        <div id=\"root\">" + body + "</div>\n      </body>\n      <script src=\"/assets/bundle.js\"></script>\n      <script src=\"https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js\"></script>\n    </html>\n  ";
 	};
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+	module.exports = require("body-parser");
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+	module.exports = require("express");
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+	module.exports = require("mysql");
 
 /***/ })
 /******/ ]);

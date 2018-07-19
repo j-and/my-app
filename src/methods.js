@@ -1,18 +1,13 @@
-export const sendData = function(dataObject) {
-    var request = new XMLHttpRequest();
-    // request.onreadystatechange = (e) => {
-    //     //alert(request.readyState);
-    //     // if (request.readyState !== 4) {
-    //     //     return;
-    //     // }
-    //
-    //     if (request.status === 200) {
-    //         console.log('success');//, request.responseText);
-    //     } else {
-    //         console.warn('error');
-    //     }
-    // };
-
-    request.open('POST', 'http://localhost:3000');
-    request.send(dataObject);
+export const sendData = function (dataObject) {
+    fetch('/', {
+        method: "POST",
+        body: JSON.stringify(dataObject),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    }).then(function (response) {
+    }, function (error) {
+        console.log('error= ' + error);
+    })
 };
