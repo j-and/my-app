@@ -35,7 +35,7 @@ class ClientNameInput extends Component {
                 day: this.props.currentDay,
                 time: this.state.times.time,
                 name: this.state.names,
-                status:'available'
+                status:'busy'
             };
             var newArray = this.state.registers;
             newArray.push(newRegister);
