@@ -14,8 +14,20 @@ class DayList extends Component {
         this.state = {
             registers: [],
             times: {},
-            initialTimeArray: []
+            initialTimeArray: [],
+            REGISTERS: []
         };
+    }
+
+    componentDidMount() {
+        var registersDB = [];
+        fetch('/getRegisters', {
+            method: 'GET'
+        }).then((response) => {
+            response.json().then((data) => {
+                this.setState({REGISTERS: data})
+            })
+        })
     }
 
     addRegister(registers) {
@@ -47,20 +59,8 @@ class DayList extends Component {
         var currentDay = this.props.currentDay;
         var arr = this.state.registers;
 
-        var TIMESARRAY = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
-        var REGISTERS = [
-            {year: '2017', month: '07', day: '2', time: '08.00', name: 'John Doe', status: 'available'},
-            {year: '2017', month: '07', day: '2', time: '09.00', name: 'Ann Doe', status: 'busy'},
-            {year: '2017', month: '07', day: '2', time: '10.00', name: 'John Doe', status: 'available'},
-            {year: '2017', month: '07', day: '5', time: '10.00', name: 'Ann Doe', status: 'busy'},
-            {year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe', status: 'available'},
-            {year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe', status: 'available'},
-            {year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe', status: 'available'},
-            {year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe', status: 'available'},
-            {year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe', status: 'available'},
-            {year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available'}
-        ];
-        var busyTime = TIMESARRAY;
+        var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
+        var REGISTERS = this.state.REGISTERS;
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
             if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {

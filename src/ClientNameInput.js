@@ -35,7 +35,7 @@ class ClientNameInput extends Component {
                 day: this.props.currentDay,
                 time: this.state.times.time,
                 name: this.state.names,
-                status:'busy'
+                status: 'available'
             };
             var newArray = this.state.registers;
             newArray.push(newRegister);
@@ -66,7 +66,8 @@ class ClientNameInput extends Component {
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
-                    <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon glyph="plus"/></Button>
+                    <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon
+                        glyph="plus"/></Button>
                 </form>
             </div>
         )

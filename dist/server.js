@@ -57,16 +57,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(16);
+	var _template = __webpack_require__(17);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(17);
+	var bodyParser = __webpack_require__(18);
 
-	var express = __webpack_require__(18);
+	var express = __webpack_require__(19);
 	var server = express();
+	var mysql = __webpack_require__(20);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -78,11 +79,24 @@ module.exports =
 	        body: appString,
 	        title: 'My-app'
 	    }));
+	    // console.log("GET From SERVER");
+	    // var con = mysql.createConnection({
+	    //     host: "localhost",
+	    //     user: "root",
+	    //     password: "root",
+	    //     database: "my_db"
+	    // });
+	    // con.connect(function (err) {
+	    //     if (err) throw err;
+	    //     con.query("SELECT * FROM registers", function (err, result) {
+	    //         if (err) throw err;
+	    //         console.log("data is taken");
+	    //        // res.send(result);
+	    //     });
+	    // });
 	});
 
-	var mysql = __webpack_require__(19);
 	server.post('/', function (req, res) {
-
 	    var con = mysql.createConnection({
 	        host: "localhost",
 	        user: "root",
@@ -102,6 +116,49 @@ module.exports =
 	        });
 	    });
 	    res.send('Response from server');
+	});
+
+	server.post('/setMockData', function (req, res) {
+
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+
+	    con.connect(function (err) {
+	        if (err) {
+	            throw err;
+	        }
+	        con.query("DELETE FROM `my_db`.`registers` WHERE 'year'='v'", function (err, result) {
+	            if (err) throw err;
+	            console.log("Old data is deleted");
+	        });
+	        var values = [{ year: '2017', month: '07', day: '2', time: '08.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '2', time: '09.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '2', time: '10.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '10.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available' }];
+	        con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	            if (err) throw err;
+	            console.log("Mock data is set");
+	        });
+	    });
+	    res.send('Response from server');
+	});
+
+	server.get('/getRegisters', function (req, res) {
+	    console.log("GET From SERVER");
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+	    con.connect(function (err) {
+	        if (err) throw err;
+	        con.query("SELECT * FROM registers", function (err, result) {
+	            if (err) throw err;
+	            res.send(result);
+	        });
+	    });
 	});
 
 	server.listen(3000);
@@ -142,11 +199,11 @@ module.exports =
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(13);
+	var _LoginForm = __webpack_require__(14);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(15);
+	var _MonthNavigation = __webpack_require__(16);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -265,7 +322,7 @@ module.exports =
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(12);
+	var _Table = __webpack_require__(13);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -608,12 +665,38 @@ module.exports =
 	        _this.state = {
 	            registers: [],
 	            times: {},
-	            initialTimeArray: []
+	            initialTimeArray: [],
+	            REGISTERS: []
 	        };
 	        return _this;
 	    }
 
 	    _createClass(DayList, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            var registersDB = [];
+	            fetch('/getRegisters', {
+	                method: 'GET'
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this2.setState({ REGISTERS: data });
+	                });
+	            });
+
+	            // fetch('/setMockData', {
+	            //     method: "POST",
+	            //     //body: JSON.stringify(dataObject),
+	            //     headers: {
+	            //         "Content-Type": "application/json"
+	            //     }
+	            // }).then(function (response) {
+	            // }, function (error) {
+	            //     console.log('error= ' + error);
+	            // })
+	        }
+	    }, {
 	        key: 'addRegister',
 	        value: function addRegister(registers) {
 	            this.setState({ registers: registers });
@@ -646,9 +729,8 @@ module.exports =
 	            var currentDay = this.props.currentDay;
 	            var arr = this.state.registers;
 
-	            var TIMESARRAY = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
-	            var REGISTERS = [{ year: '2017', month: '07', day: '2', time: '08.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '2', time: '09.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '2', time: '10.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '10.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available' }];
-	            var busyTime = TIMESARRAY;
+	            var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
+	            var REGISTERS = this.state.REGISTERS;
 
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
 	                if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {
@@ -931,21 +1013,28 @@ module.exports =
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.sendData = undefined;
+
+	var _nodeFetch = __webpack_require__(12);
+
+	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var sendData = exports.sendData = function sendData(dataObject) {
-	    fetch('/', {
+	    (0, _nodeFetch2.default)('/', {
 	        method: "POST",
 	        body: JSON.stringify(dataObject),
 	        headers: {
 	            "Content-Type": "application/json"
-	        },
-	        credentials: "same-origin"
+	        }
 	    }).then(function (response) {}, function (error) {
 	        console.log('error= ' + error);
 	    });
@@ -955,10 +1044,16 @@ module.exports =
 /* 12 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Table");
+	module.exports = require("node-fetch");
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Table");
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -973,7 +1068,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(14);
+	var _FormControl = __webpack_require__(15);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -1079,13 +1174,13 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormControl");
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1165,7 +1260,7 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1182,19 +1277,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
