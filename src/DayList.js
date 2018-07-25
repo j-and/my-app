@@ -18,20 +18,9 @@ class DayList extends Component {
             REGISTERS: []
         };
     }
- 
+
     componentDidMount() {
-        // fetch('/setMockData', {
-        //     method: 'GET'
-        // }).then((response) => {
-        // });
-        // fetch('/deleteRegisters', {
-        //     method: 'GET'
-        // }).then((response) => {
-        //  
-        // });
-
         var registersDB = [];
-
         fetch('/getRegisters', {
             method: 'GET'
         }).then((response) => {
@@ -39,7 +28,6 @@ class DayList extends Component {
                 this.setState({REGISTERS: data})
             })
         });
-
     }
 
     addRegister(registers) {
