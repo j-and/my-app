@@ -24355,6 +24355,20 @@
 	    }
 
 	    _createClass(MonthTable, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+
+	            // fetch('/deleteRegisters', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // 
+	            // });
+
+	            fetch('/setMockData', {
+	                method: 'GET'
+	            }).then(function (response) {});
+	        }
+	    }, {
 	        key: 'fillHeadArray',
 	        value: function fillHeadArray() {
 	            var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -24655,6 +24669,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var fetch = __webpack_require__(296);
+
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
 
@@ -24680,7 +24696,18 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
+	            // fetch('/setMockData', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // });
+	            // fetch('/deleteRegisters', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            //  
+	            // });
+
 	            var registersDB = [];
+
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -24688,17 +24715,6 @@
 	                    _this2.setState({ REGISTERS: data });
 	                });
 	            });
-
-	            // fetch('/setMockData', {
-	            //     method: "POST",
-	            //     //body: JSON.stringify(dataObject),
-	            //     headers: {
-	            //         "Content-Type": "application/json"
-	            //     }
-	            // }).then(function (response) {
-	            // }, function (error) {
-	            //     console.log('error= ' + error);
-	            // })
 	        }
 	    }, {
 	        key: 'addRegister',
@@ -25693,7 +25709,8 @@
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
-	                        _react2.default.createElement(_Glyphicon2.default, { glyph: 'plus' })
+	                        _react2.default.createElement(_Glyphicon2.default, {
+	                            glyph: 'plus' })
 	                    )
 	                )
 	            );

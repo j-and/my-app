@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+var fetch = require("node-fetch");
 import RegisterList from './RegisterList.js';
 import ClientNameInput from './ClientNameInput.js';
 
@@ -18,16 +18,28 @@ class DayList extends Component {
             REGISTERS: []
         };
     }
-
+ 
     componentDidMount() {
+        // fetch('/setMockData', {
+        //     method: 'GET'
+        // }).then((response) => {
+        // });
+        // fetch('/deleteRegisters', {
+        //     method: 'GET'
+        // }).then((response) => {
+        //  
+        // });
+
         var registersDB = [];
+
         fetch('/getRegisters', {
             method: 'GET'
         }).then((response) => {
             response.json().then((data) => {
                 this.setState({REGISTERS: data})
             })
-        })
+        });
+
     }
 
     addRegister(registers) {

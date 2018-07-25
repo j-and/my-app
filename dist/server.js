@@ -79,21 +79,6 @@ module.exports =
 	        body: appString,
 	        title: 'My-app'
 	    }));
-	    // console.log("GET From SERVER");
-	    // var con = mysql.createConnection({
-	    //     host: "localhost",
-	    //     user: "root",
-	    //     password: "root",
-	    //     database: "my_db"
-	    // });
-	    // con.connect(function (err) {
-	    //     if (err) throw err;
-	    //     con.query("SELECT * FROM registers", function (err, result) {
-	    //         if (err) throw err;
-	    //         console.log("data is taken");
-	    //        // res.send(result);
-	    //     });
-	    // });
 	});
 
 	server.post('/', function (req, res) {
@@ -118,7 +103,26 @@ module.exports =
 	    res.send('Response from server');
 	});
 
-	server.post('/setMockData', function (req, res) {
+	server.get('/deleteRegisters', function (req, res) {
+	    console.log("deleteRegisters");
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+	    con.connect(function (err) {
+	        if (err) throw err;
+	        con.query("DELETE FROM `my_db`.`registers` WHERE `year`='2018';", function (err, result) {
+	            if (err) throw err;
+	            res.send(result);
+	        });
+	    });
+	});
+
+	server.get('/setMockData', function (req, res) {
+
+	    var values = [['2018', '07', '2', '08.00', 'John Doe', 'available'], ['2018', '07', '3', '09.00', 'John Doe', 'available'], ['2018', '07', '4', '10.00', 'John Doe', 'available'], ['2018', '07', '5', '11.00', 'John Doe', 'available'], ['2018', '07', '6', '12.00', 'John Doe', 'available'], ['2018', '07', '7', '13.00', 'John Doe', 'available'], ['2018', '07', '8', '14.00', 'John Doe', 'available']];
 
 	    var con = mysql.createConnection({
 	        host: "localhost",
@@ -127,21 +131,10 @@ module.exports =
 	        database: "my_db"
 	    });
 
-	    con.connect(function (err) {
-	        if (err) {
-	            throw err;
-	        }
-	        con.query("DELETE FROM `my_db`.`registers` WHERE 'year'='v'", function (err, result) {
-	            if (err) throw err;
-	            console.log("Old data is deleted");
-	        });
-	        var values = [{ year: '2017', month: '07', day: '2', time: '08.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '2', time: '09.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '2', time: '10.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '10.00', name: 'Ann Doe', status: 'busy' }, { year: '2017', month: '07', day: '5', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '5', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '12.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '13.00', name: 'Ann Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '14.00', name: 'John Doe', status: 'available' }, { year: '2017', month: '07', day: '6', time: '15.00', name: 'Ann Doe', status: 'available' }];
-	        con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
-	            if (err) throw err;
-	            console.log("Mock data is set");
-	        });
+	    con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	        if (err) throw err;
+	        console.log("Mock data is set");
 	    });
-	    res.send('Response from server');
 	});
 
 	server.get('/getRegisters', function (req, res) {
@@ -351,6 +344,20 @@ module.exports =
 	    }
 
 	    _createClass(MonthTable, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+
+	            // fetch('/deleteRegisters', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // 
+	            // });
+
+	            fetch('/setMockData', {
+	                method: 'GET'
+	            }).then(function (response) {});
+	        }
+	    }, {
 	        key: 'fillHeadArray',
 	        value: function fillHeadArray() {
 	            var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -651,6 +658,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var fetch = __webpack_require__(12);
+
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
 
@@ -676,7 +685,18 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
+	            // fetch('/setMockData', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // });
+	            // fetch('/deleteRegisters', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            //  
+	            // });
+
 	            var registersDB = [];
+
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -684,17 +704,6 @@ module.exports =
 	                    _this2.setState({ REGISTERS: data });
 	                });
 	            });
-
-	            // fetch('/setMockData', {
-	            //     method: "POST",
-	            //     //body: JSON.stringify(dataObject),
-	            //     headers: {
-	            //         "Content-Type": "application/json"
-	            //     }
-	            // }).then(function (response) {
-	            // }, function (error) {
-	            //     console.log('error= ' + error);
-	            // })
 	        }
 	    }, {
 	        key: 'addRegister',
@@ -999,7 +1008,8 @@ module.exports =
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
-	                        _react2.default.createElement(_Glyphicon2.default, { glyph: 'plus' })
+	                        _react2.default.createElement(_Glyphicon2.default, {
+	                            glyph: 'plus' })
 	                    )
 	                )
 	            );

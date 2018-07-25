@@ -15,6 +15,19 @@ class MonthTable extends Component {
         this.fillHeadArray = this.fillHeadArray.bind(this);
     }
 
+    componentDidMount() {
+        // fetch('/deleteRegisters', {
+        //     method: 'GET'
+        // }).then((response) => {
+        // 
+        // });
+        
+        // fetch('/setMockData', {
+        //     method: 'GET'
+        // }).then((response) => {
+        // });
+    }
+    
     fillHeadArray() {
         var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         for (var i = 0; i < array.length; i++) {
