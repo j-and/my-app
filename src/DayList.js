@@ -36,6 +36,7 @@ class DayList extends Component {
 
     removeRegister(register) {
         var newRegister = {
+            id:register.id,
             year: register.year,
             month: register.month,
             day: register.day,
@@ -43,14 +44,27 @@ class DayList extends Component {
             name: register.name,
             status: 'available'
         };
-        var newArray = this.state.registers;
-
-        newArray.filter(function (item) {
-            var index = item.time.indexOf(newRegister.time);
-            if (index !== -1)  item.status = 'busy';
-            return item;
+        fetch('/removeRegister', {
+            method: "POST",
+                body: JSON.stringify(newRegister),
+                headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            response.json().then((data) => {
+                this.setState({registers: data});
+            })
         });
-        this.setState({registers: newArray});
+        
+       
+        // var newArray = this.state.registers;
+        //
+        // newArray.filter(function (item) {
+        //     var index = item.time.indexOf(newRegister.time);
+        //     if (index !== -1)  item.status = 'busy';
+        //     return item;
+        // });
+        // this.setState({registers: newArray});
     }
 
     render() {
@@ -63,7 +77,7 @@ class DayList extends Component {
         var REGISTERS = this.state.REGISTERS;
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-            if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {
+            if (register.month == currentMonth && register.day == currentDay && register.status == 'busy') {
                 var index = busyTime.indexOf(register.time);
                 if (index !== -1) busyTime.splice(index, 1);
                 return register;

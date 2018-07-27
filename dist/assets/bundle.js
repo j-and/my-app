@@ -24357,16 +24357,16 @@
 	    _createClass(MonthTable, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-
-	            // fetch('/deleteRegisters', {
+	            // fetch('/clearRegistersDB', {
 	            //     method: 'GET'
 	            // }).then((response) => {
-	            // 
+	            //
 	            // });
 
-	            fetch('/setMockData', {
-	                method: 'GET'
-	            }).then(function (response) {});
+	            // fetch('/setMockRegistersData', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // });
 	        }
 	    }, {
 	        key: 'fillHeadArray',
@@ -24397,7 +24397,8 @@
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
 	                        { className: 'day_ordinary' },
-	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year, currentDay: currentDay })
+	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
+	                            currentDay: currentDay })
 	                    ));
 	                    currentDay += 1;
 	                }
@@ -24405,7 +24406,8 @@
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
 	                        { className: 'day_weekend' },
-	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year, currentDay: currentDay })
+	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
+	                            currentDay: currentDay })
 	                    ));
 	                    currentDay += 1;
 	                }
@@ -24437,14 +24439,16 @@
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_weekend' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
@@ -24488,7 +24492,8 @@
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
@@ -24524,7 +24529,8 @@
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
@@ -24696,18 +24702,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            // fetch('/setMockData', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            // });
-	            // fetch('/deleteRegisters', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            //  
-	            // });
-
 	            var registersDB = [];
-
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -24724,7 +24719,10 @@
 	    }, {
 	        key: 'removeRegister',
 	        value: function removeRegister(register) {
+	            var _this3 = this;
+
 	            var newRegister = {
+	                id: register.id,
 	                year: register.year,
 	                month: register.month,
 	                day: register.day,
@@ -24732,14 +24730,26 @@
 	                name: register.name,
 	                status: 'available'
 	            };
-	            var newArray = this.state.registers;
-
-	            newArray.filter(function (item) {
-	                var index = item.time.indexOf(newRegister.time);
-	                if (index !== -1) item.status = 'busy';
-	                return item;
+	            fetch('/removeRegister', {
+	                method: "POST",
+	                body: JSON.stringify(newRegister),
+	                headers: {
+	                    "Content-Type": "application/json"
+	                }
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this3.setState({ registers: data });
+	                });
 	            });
-	            this.setState({ registers: newArray });
+
+	            // var newArray = this.state.registers;
+	            //
+	            // newArray.filter(function (item) {
+	            //     var index = item.time.indexOf(newRegister.time);
+	            //     if (index !== -1)  item.status = 'busy';
+	            //     return item;
+	            // });
+	            // this.setState({registers: newArray});
 	        }
 	    }, {
 	        key: 'render',
@@ -24753,7 +24763,7 @@
 	            var REGISTERS = this.state.REGISTERS;
 
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-	                if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {
+	                if (register.month == currentMonth && register.day == currentDay && register.status == 'busy') {
 	                    var index = busyTime.indexOf(register.time);
 	                    if (index !== -1) busyTime.splice(index, 1);
 	                    return register;
@@ -25656,12 +25666,13 @@
 	            if (this.state.times && this.state.names) {
 	                this.props.addRegister(this.state.registers);
 	                var newRegister = {
+	                    id: this.props.id, //to do - generate id
 	                    year: this.props.currentYear,
 	                    month: this.props.currentMonth,
 	                    day: this.props.currentDay,
 	                    time: this.state.times.time,
 	                    name: this.state.names,
-	                    status: 'available'
+	                    status: 'busy'
 	                };
 	                var newArray = this.state.registers;
 	                newArray.push(newRegister);

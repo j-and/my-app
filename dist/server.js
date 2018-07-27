@@ -94,8 +94,8 @@ module.exports =
 	            throw err;
 	        }
 
-	        var values = [[req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-	        con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+	        con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
 	            if (err) throw err;
 	            console.log("1 record inserted");
 	        });
@@ -103,26 +103,33 @@ module.exports =
 	    res.send('Response from server');
 	});
 
-	server.get('/deleteRegisters', function (req, res) {
-	    console.log("deleteRegisters");
+	server.get('/clearRegistersDB', function (req, res) {
+	    // console.log("deleteRegisters");
 	    var con = mysql.createConnection({
 	        host: "localhost",
 	        user: "root",
 	        password: "root",
 	        database: "my_db"
 	    });
+
 	    con.connect(function (err) {
-	        if (err) throw err;
-	        con.query("DELETE FROM `my_db`.`registers` WHERE `year`='2018';", function (err, result) {
+	        if (err) {
+	            throw err;
+	        }
+
+	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+
+	        con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
 	            if (err) throw err;
-	            res.send(result);
+	            console.log("1 record is deleted");
 	        });
 	    });
+	    res.send('Response from server');
+	    console.log("deleteRegisters");
 	});
 
-	server.get('/setMockData', function (req, res) {
-
-	    var values = [['2018', '07', '2', '08.00', 'John Doe', 'available'], ['2018', '07', '3', '09.00', 'John Doe', 'available'], ['2018', '07', '4', '10.00', 'John Doe', 'available'], ['2018', '07', '5', '11.00', 'John Doe', 'available'], ['2018', '07', '6', '12.00', 'John Doe', 'available'], ['2018', '07', '7', '13.00', 'John Doe', 'available'], ['2018', '07', '8', '14.00', 'John Doe', 'available']];
+	server.post('/removeRegister', function (req, res) {
+	    console.log("start removeRegister");
 
 	    var con = mysql.createConnection({
 	        host: "localhost",
@@ -131,7 +138,33 @@ module.exports =
 	        database: "my_db"
 	    });
 
-	    con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	    con.connect(function (err) {
+	        if (err) throw err;
+
+	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+
+	        // con.query("UPDATE  my_db.registers SET  status='available' WHERE id=" +mysql.escape(req.body.id),
+	        con.query("DELETE FROM `my_db`.`registers` WHERE `id`=" + mysql.escape(req.body.id), function (err, result) {
+	            if (err) throw err;
+	            console.log("1 record is changed");
+	        });
+	    });
+	    res.send('Response from server');
+	    console.log("finish removeRegister");
+	});
+
+	server.get('/setMockRegistersData', function (req, res) {
+
+	    var values = [['id1', '2018', '7', '2', '08.00', 'John Doe', 'busy'], ['id2', '2018', '7', '3', '09.00', 'John Doe', 'busy'], ['id3', '2018', '7', '4', '10.00', 'John Doe', 'busy'], ['id4', '2018', '7', '5', '11.00', 'John Doe', 'busy'], ['id5', '2018', '7', '6', '12.00', 'John Doe', 'busy'], ['id6', '2018', '7', '7', '13.00', 'John Doe', 'busy'], ['id7', '2018', '7', '8', '14.00', 'John Doe', 'busy']];
+
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+	    //to do - create new table with first column id
+	    con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
 	        if (err) throw err;
 	        console.log("Mock data is set");
 	    });
@@ -346,16 +379,16 @@ module.exports =
 	    _createClass(MonthTable, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-
-	            // fetch('/deleteRegisters', {
+	            // fetch('/clearRegistersDB', {
 	            //     method: 'GET'
 	            // }).then((response) => {
-	            // 
+	            //
 	            // });
 
-	            fetch('/setMockData', {
-	                method: 'GET'
-	            }).then(function (response) {});
+	            // fetch('/setMockRegistersData', {
+	            //     method: 'GET'
+	            // }).then((response) => {
+	            // });
 	        }
 	    }, {
 	        key: 'fillHeadArray',
@@ -386,7 +419,8 @@ module.exports =
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
 	                        { className: 'day_ordinary' },
-	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year, currentDay: currentDay })
+	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
+	                            currentDay: currentDay })
 	                    ));
 	                    currentDay += 1;
 	                }
@@ -394,7 +428,8 @@ module.exports =
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
 	                        { className: 'day_weekend' },
-	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year, currentDay: currentDay })
+	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
+	                            currentDay: currentDay })
 	                    ));
 	                    currentDay += 1;
 	                }
@@ -426,14 +461,16 @@ module.exports =
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_weekend' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
@@ -477,7 +514,8 @@ module.exports =
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
@@ -513,7 +551,8 @@ module.exports =
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
-	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth, currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
@@ -685,18 +724,7 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            // fetch('/setMockData', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            // });
-	            // fetch('/deleteRegisters', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            //  
-	            // });
-
 	            var registersDB = [];
-
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -713,7 +741,10 @@ module.exports =
 	    }, {
 	        key: 'removeRegister',
 	        value: function removeRegister(register) {
+	            var _this3 = this;
+
 	            var newRegister = {
+	                id: register.id,
 	                year: register.year,
 	                month: register.month,
 	                day: register.day,
@@ -721,14 +752,26 @@ module.exports =
 	                name: register.name,
 	                status: 'available'
 	            };
-	            var newArray = this.state.registers;
-
-	            newArray.filter(function (item) {
-	                var index = item.time.indexOf(newRegister.time);
-	                if (index !== -1) item.status = 'busy';
-	                return item;
+	            fetch('/removeRegister', {
+	                method: "POST",
+	                body: JSON.stringify(newRegister),
+	                headers: {
+	                    "Content-Type": "application/json"
+	                }
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this3.setState({ registers: data });
+	                });
 	            });
-	            this.setState({ registers: newArray });
+
+	            // var newArray = this.state.registers;
+	            //
+	            // newArray.filter(function (item) {
+	            //     var index = item.time.indexOf(newRegister.time);
+	            //     if (index !== -1)  item.status = 'busy';
+	            //     return item;
+	            // });
+	            // this.setState({registers: newArray});
 	        }
 	    }, {
 	        key: 'render',
@@ -742,7 +785,7 @@ module.exports =
 	            var REGISTERS = this.state.REGISTERS;
 
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-	                if (register.month == currentMonth && register.day == currentDay && register.status == 'available') {
+	                if (register.month == currentMonth && register.day == currentDay && register.status == 'busy') {
 	                    var index = busyTime.indexOf(register.time);
 	                    if (index !== -1) busyTime.splice(index, 1);
 	                    return register;
@@ -955,12 +998,13 @@ module.exports =
 	            if (this.state.times && this.state.names) {
 	                this.props.addRegister(this.state.registers);
 	                var newRegister = {
+	                    id: this.props.id, //to do - generate id
 	                    year: this.props.currentYear,
 	                    month: this.props.currentMonth,
 	                    day: this.props.currentDay,
 	                    time: this.state.times.time,
 	                    name: this.state.names,
-	                    status: 'available'
+	                    status: 'busy'
 	                };
 	                var newArray = this.state.registers;
 	                newArray.push(newRegister);

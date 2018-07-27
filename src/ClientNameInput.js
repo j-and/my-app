@@ -30,12 +30,13 @@ class ClientNameInput extends Component {
         if (this.state.times && this.state.names) {
             this.props.addRegister(this.state.registers);
             var newRegister = {
+                id: this.props.id,//to do - generate id
                 year: this.props.currentYear,
                 month: this.props.currentMonth,
                 day: this.props.currentDay,
                 time: this.state.times.time,
                 name: this.state.names,
-                status: 'available'
+                status: 'busy'
             };
             var newArray = this.state.registers;
             newArray.push(newRegister);

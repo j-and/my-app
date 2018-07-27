@@ -36,8 +36,8 @@ server.post('/', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-        con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+        var values = [[req.body.id,req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+        con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
         });
@@ -45,34 +45,68 @@ server.post('/', function (req, res) {
     res.send('Response from server');
 });
 
-server.get('/deleteRegisters', function (req, res) {
-    console.log("deleteRegisters");
+server.get('/clearRegistersDB', function (req, res) {
+   // console.log("deleteRegisters");
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "root",
         database: "my_db"
     });
+
     con.connect(function (err) {
-        if (err) throw err;
-        con.query("DELETE FROM `my_db`.`registers` WHERE `year`='2018';", function (err, result) {
+        if (err) {
+            throw err;
+        }
+
+        var values = [[req.body.id,req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+
+        con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
             if (err) throw err;
-            res.send(result);
+            console.log("1 record is deleted");
         });
     });
+    res.send('Response from server');
+    console.log("deleteRegisters");
+});
+
+server.post('/removeRegister', function (req, res) {
+    console.log("start removeRegister");
+   
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+
+    con.connect(function (err) {
+        if (err) throw err;
+        
+        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+
+        // con.query("UPDATE  my_db.registers SET  status='available' WHERE id=" +mysql.escape(req.body.id),
+        con.query("DELETE FROM `my_db`.`registers` WHERE `id`=" +mysql.escape(req.body.id),
+            function (err, result) {
+                if (err) throw err;
+                console.log("1 record is changed");
+            });
+    });
+    res.send('Response from server');
+    console.log("finish removeRegister");
 
 });
 
-server.get('/setMockData', function (req, res) {
+server.get('/setMockRegistersData', function (req, res) {
 
     var values = [
-        ['2018', '07', '2', '08.00', 'John Doe', 'available'],
-        ['2018', '07', '3', '09.00', 'John Doe', 'available'],
-        ['2018', '07', '4', '10.00', 'John Doe', 'available'],
-        ['2018', '07', '5', '11.00', 'John Doe', 'available'],
-        ['2018', '07', '6', '12.00', 'John Doe', 'available'],
-        ['2018', '07', '7', '13.00', 'John Doe', 'available'],
-        ['2018', '07', '8', '14.00', 'John Doe', 'available']
+        ['id1', '2018', '7', '2', '08.00', 'John Doe', 'busy'],
+        ['id2', '2018', '7', '3', '09.00', 'John Doe', 'busy'],
+        ['id3', '2018', '7', '4', '10.00', 'John Doe', 'busy'],
+        ['id4', '2018', '7', '5', '11.00', 'John Doe', 'busy'],
+        ['id5', '2018', '7', '6', '12.00', 'John Doe', 'busy'],
+        ['id6', '2018', '7', '7', '13.00', 'John Doe', 'busy'],
+        ['id7', '2018', '7', '8', '14.00', 'John Doe', 'busy']
     ];
 
     var con = mysql.createConnection({
@@ -81,8 +115,8 @@ server.get('/setMockData', function (req, res) {
         password: "root",
         database: "my_db"
     });
-
-    con.query("INSERT INTO registers (year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+//to do - create new table with first column id
+    con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
         if (err) throw err;
         console.log("Mock data is set");
     });
