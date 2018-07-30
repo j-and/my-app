@@ -39,7 +39,6 @@ server.post('/', function (req, res) {
         var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
         con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
         });
     });
     res.send('Response from server');
@@ -62,15 +61,12 @@ server.get('/clearRegistersDB', function (req, res) {
 
         con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
             if (err) throw err;
-            console.log("1 record is deleted");
         });
     });
     res.send('Response from server');
-    console.log("deleteRegisters");
 });
 
 server.post('/removeRegister', function (req, res) {
-    console.log("start removeRegister");
 
     var con = mysql.createConnection({
         host: "localhost",
@@ -113,12 +109,10 @@ server.get('/setMockRegistersData', function (req, res) {
 
     con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
         if (err) throw err;
-        console.log("Mock data is set");
     });
 });
 
 server.get('/getRegisters', function (req, res) {
-    console.log("GET From SERVER");
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
