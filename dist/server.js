@@ -104,7 +104,6 @@ module.exports =
 	});
 
 	server.get('/clearRegistersDB', function (req, res) {
-	    // console.log("deleteRegisters");
 	    var con = mysql.createConnection({
 	        host: "localhost",
 	        user: "root",
@@ -140,17 +139,14 @@ module.exports =
 
 	    con.connect(function (err) {
 	        if (err) throw err;
-
-	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-
-	        // con.query("UPDATE  my_db.registers SET  status='available' WHERE id=" +mysql.escape(req.body.id),
 	        con.query("DELETE FROM `my_db`.`registers` WHERE `id`=" + mysql.escape(req.body.id), function (err, result) {
 	            if (err) throw err;
-	            console.log("1 record is changed");
+	            con.query("SELECT * FROM registers", function (err, result) {
+	                if (err) throw err;
+	                res.send(result);
+	            });
 	        });
 	    });
-	    res.send('Response from server');
-	    console.log("finish removeRegister");
 	});
 
 	server.get('/setMockRegistersData', function (req, res) {
@@ -163,7 +159,7 @@ module.exports =
 	        password: "root",
 	        database: "my_db"
 	    });
-	    //to do - create new table with first column id
+
 	    con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
 	        if (err) throw err;
 	        console.log("Mock data is set");
@@ -714,7 +710,8 @@ module.exports =
 	            registers: [],
 	            times: {},
 	            initialTimeArray: [],
-	            REGISTERS: []
+	            REGISTERS: [],
+	            busytime: []
 	        };
 	        return _this;
 	    }
@@ -724,7 +721,6 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var registersDB = [];
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -760,7 +756,8 @@ module.exports =
 	                }
 	            }).then(function (response) {
 	                response.json().then(function (data) {
-	                    _this3.setState({ registers: data });
+	                    _this3.setState({ REGISTERS: data });
+	                    _this3.setState({ registers: [] });
 	                });
 	            });
 
@@ -791,7 +788,6 @@ module.exports =
 	                    return register;
 	                }
 	            });
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -996,9 +992,10 @@ module.exports =
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
-	                this.props.addRegister(this.state.registers);
+
+	                this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
 	                var newRegister = {
-	                    id: this.props.id, //to do - generate id
+	                    id: this.id,
 	                    year: this.props.currentYear,
 	                    month: this.props.currentMonth,
 	                    day: this.props.currentDay,
@@ -1009,6 +1006,7 @@ module.exports =
 	                var newArray = this.state.registers;
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
+	                this.props.addRegister(this.state.registers);
 	                (0, _methods.sendData)(newRegister);
 	                this.refs.registerForm.reset();
 	            } else {

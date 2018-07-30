@@ -15,12 +15,12 @@ class DayList extends Component {
             registers: [],
             times: {},
             initialTimeArray: [],
-            REGISTERS: []
+            REGISTERS: [],
+            busytime: []
         };
     }
 
     componentDidMount() {
-        var registersDB = [];
         fetch('/getRegisters', {
             method: 'GET'
         }).then((response) => {
@@ -36,7 +36,7 @@ class DayList extends Component {
 
     removeRegister(register) {
         var newRegister = {
-            id:register.id,
+            id: register.id,
             year: register.year,
             month: register.month,
             day: register.day,
@@ -46,17 +46,19 @@ class DayList extends Component {
         };
         fetch('/removeRegister', {
             method: "POST",
-                body: JSON.stringify(newRegister),
-                headers: {
+            body: JSON.stringify(newRegister),
+            headers: {
                 "Content-Type": "application/json"
             }
         }).then((response) => {
             response.json().then((data) => {
-                this.setState({registers: data});
+                this.setState({REGISTERS: data});
+                this.setState({registers: []});
             })
+
         });
-        
-       
+
+
         // var newArray = this.state.registers;
         //
         // newArray.filter(function (item) {
@@ -83,7 +85,6 @@ class DayList extends Component {
                 return register;
             }
         });
-
         return (
             <div >
                 <div className="day_ordinary_label"> {this.props.currentDay}</div>

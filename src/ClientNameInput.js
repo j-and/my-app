@@ -28,9 +28,10 @@ class ClientNameInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.times && this.state.names) {
-            this.props.addRegister(this.state.registers);
+
+            this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
             var newRegister = {
-                id: this.props.id,//to do - generate id
+                id: this.id,
                 year: this.props.currentYear,
                 month: this.props.currentMonth,
                 day: this.props.currentDay,
@@ -41,6 +42,7 @@ class ClientNameInput extends Component {
             var newArray = this.state.registers;
             newArray.push(newRegister);
             this.setState({registers: newArray});
+            this.props.addRegister(this.state.registers);
             sendData(newRegister);
             this.refs.registerForm.reset();
         }

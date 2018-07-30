@@ -24692,7 +24692,8 @@
 	            registers: [],
 	            times: {},
 	            initialTimeArray: [],
-	            REGISTERS: []
+	            REGISTERS: [],
+	            busytime: []
 	        };
 	        return _this;
 	    }
@@ -24702,7 +24703,6 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var registersDB = [];
 	            fetch('/getRegisters', {
 	                method: 'GET'
 	            }).then(function (response) {
@@ -24738,7 +24738,8 @@
 	                }
 	            }).then(function (response) {
 	                response.json().then(function (data) {
-	                    _this3.setState({ registers: data });
+	                    _this3.setState({ REGISTERS: data });
+	                    _this3.setState({ registers: [] });
 	                });
 	            });
 
@@ -24769,7 +24770,6 @@
 	                    return register;
 	                }
 	            });
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -25664,9 +25664,10 @@
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
-	                this.props.addRegister(this.state.registers);
+
+	                this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
 	                var newRegister = {
-	                    id: this.props.id, //to do - generate id
+	                    id: this.id,
 	                    year: this.props.currentYear,
 	                    month: this.props.currentMonth,
 	                    day: this.props.currentDay,
@@ -25677,6 +25678,7 @@
 	                var newArray = this.state.registers;
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
+	                this.props.addRegister(this.state.registers);
 	                (0, _methods.sendData)(newRegister);
 	                this.refs.registerForm.reset();
 	            } else {

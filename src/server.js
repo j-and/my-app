@@ -36,7 +36,7 @@ server.post('/', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.id,req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
         con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -46,7 +46,6 @@ server.post('/', function (req, res) {
 });
 
 server.get('/clearRegistersDB', function (req, res) {
-   // console.log("deleteRegisters");
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -59,7 +58,7 @@ server.get('/clearRegistersDB', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.id,req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
 
         con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
             if (err) throw err;
@@ -72,7 +71,7 @@ server.get('/clearRegistersDB', function (req, res) {
 
 server.post('/removeRegister', function (req, res) {
     console.log("start removeRegister");
-   
+
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -82,19 +81,15 @@ server.post('/removeRegister', function (req, res) {
 
     con.connect(function (err) {
         if (err) throw err;
-        
-        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-
-        // con.query("UPDATE  my_db.registers SET  status='available' WHERE id=" +mysql.escape(req.body.id),
-        con.query("DELETE FROM `my_db`.`registers` WHERE `id`=" +mysql.escape(req.body.id),
+        con.query("DELETE FROM `my_db`.`registers` WHERE `id`=" + mysql.escape(req.body.id),
             function (err, result) {
                 if (err) throw err;
-                console.log("1 record is changed");
+                con.query("SELECT * FROM registers", function (err, result) {
+                    if (err) throw err;
+                    res.send(result);
+                });
             });
     });
-    res.send('Response from server');
-    console.log("finish removeRegister");
-
 });
 
 server.get('/setMockRegistersData', function (req, res) {
@@ -115,7 +110,7 @@ server.get('/setMockRegistersData', function (req, res) {
         password: "root",
         database: "my_db"
     });
-//to do - create new table with first column id
+
     con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
         if (err) throw err;
         console.log("Mock data is set");
