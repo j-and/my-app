@@ -24571,7 +24571,7 @@
 	                    { responsive: true },
 	                    _react2.default.createElement(
 	                        'thead',
-	                        { 'class': 'month-header' },
+	                        { className: 'month-header' },
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,

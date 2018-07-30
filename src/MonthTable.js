@@ -175,7 +175,7 @@ class MonthTable extends Component {
         return (
             <div>
                 <Table responsive>
-                    <thead class="month-header">
+                    <thead className="month-header">
                     <tr>
                         {this.state.trHead.map(function (day) {
                             return <td class="month-header">{day}</td>;
