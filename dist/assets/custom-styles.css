@@ -1,6 +1,4 @@
 body {
-  margin: 0 1%;
-  padding: 0;
   font-family: sans-serif; }
 
 table .month-header {
@@ -100,6 +98,7 @@ table tr {
   font-weight: bold; }
 
 .page-header {
-  padding: 20px; }
+  padding: 20px;
+  margin: 0; }
 
 /*# sourceMappingURL=custom-styles.css.map */
