@@ -1,8 +1,9 @@
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import App from './index';
+import {ReactDOMServe} from 'react-dom/server';
+import  {StaticRouter}  from 'react-router'
+import App from './index.js';
 import template from '../template';
-
 
 var bodyParser = require('body-parser');
 
@@ -14,14 +15,16 @@ server.use(bodyParser.json()); // support json encoded bodies
 server.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 
 server.use('/assets', express.static('assets'));
+
 server.get('/', (req, res) => {
-    const appString = renderToString(<App />);
+    const context = {};
+    const appString = renderToString(<StaticRouter location={req.url} context={context}><App /></StaticRouter>);
+
     res.send(template({
         body: appString,
         title: 'My-app'
     }));
 });
-
 
 server.post('/', function (req, res) {
     var con = mysql.createConnection({

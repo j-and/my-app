@@ -53,28 +53,37 @@ module.exports =
 
 	var _server = __webpack_require__(2);
 
-	var _index = __webpack_require__(3);
+	var _reactRouter = __webpack_require__(3);
+
+	var _index = __webpack_require__(4);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(17);
+	var _template = __webpack_require__(21);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(18);
+	var bodyParser = __webpack_require__(22);
 
-	var express = __webpack_require__(19);
+	var express = __webpack_require__(23);
 	var server = express();
-	var mysql = __webpack_require__(20);
+	var mysql = __webpack_require__(24);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 	server.use('/assets', express.static('assets'));
+
 	server.get('/', function (req, res) {
-	    var appString = (0, _server.renderToString)(_react2.default.createElement(_index2.default, null));
+	    var context = {};
+	    var appString = (0, _server.renderToString)(_react2.default.createElement(
+	        _reactRouter.StaticRouter,
+	        { location: req.url, context: context },
+	        _react2.default.createElement(_index2.default, null)
+	    ));
+
 	    res.send((0, _template2.default)({
 	        body: appString,
 	        title: 'My-app'
@@ -193,6 +202,12 @@ module.exports =
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-router");
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -207,21 +222,23 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PageHeader = __webpack_require__(4);
+	var _Clients = __webpack_require__(5);
 
-	var _PageHeader2 = _interopRequireDefault(_PageHeader);
+	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _MonthTable = __webpack_require__(5);
+	var _Calendar = __webpack_require__(8);
 
-	var _MonthTable2 = _interopRequireDefault(_MonthTable);
+	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _LoginForm = __webpack_require__(14);
+	var _reactRouterDom = __webpack_require__(19);
+
+	var _LoginForm = __webpack_require__(16);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(16);
+	var _PageHeader = __webpack_require__(20);
 
-	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
+	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -238,6 +255,251 @@ module.exports =
 	        _classCallCheck(this, App);
 
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	        _this.state = {
+	            isOpen: '' //,true
+	        };
+	        _this.toggleModal = _this.toggleModal.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(App, [{
+	        key: 'toggleModal',
+	        value: function toggleModal() {
+	            this.setState({
+	                isOpen: !this.state.isOpen
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _PageHeader2.default,
+	                    null,
+	                    'My app',
+	                    _react2.default.createElement(
+	                        'ul',
+	                        null,
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactRouterDom.NavLink,
+	                                { to: '/' },
+	                                'Home'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactRouterDom.NavLink,
+	                                { to: '/clients' },
+	                                'Clients'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouterDom.Switch,
+	                    null,
+	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return App;
+	}(_react.Component);
+
+	exports.default = App;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(6);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _Glyphicon = __webpack_require__(7);
+
+	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Client = function (_Component) {
+	    _inherits(Client, _Component);
+
+	    function Client(props) {
+	        _classCallCheck(this, Client);
+
+	        var _this = _possibleConstructorReturn(this, (Client.__proto__ || Object.getPrototypeOf(Client)).call(this, props));
+
+	        _this.state = {}
+	        // isOpen: '',//true,
+
+	        // this.toggleModal = this.toggleModal.bind(this);
+	        ;return _this;
+	    }
+
+	    // toggleModal() {
+	    //     this.setState({
+	    //         isOpen: !this.state.isOpen
+	    //     });
+	    // }
+
+	    _createClass(Client, [{
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Clients card'
+	                ),
+	                _react2.default.createElement(
+	                    'form',
+	                    { onSubmit: this.handleSubmit, ref: 'registerForm', className: '' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Name'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Desease'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Date of Birth'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'date', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Phone'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'number', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Email'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'email', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Description'
+	                    ),
+	                    _react2.default.createElement('textarea', { type: 'text', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Comments'
+	                    ),
+	                    _react2.default.createElement('textarea', { type: 'text', value: this.state.value, onChange: this.handleChange }),
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
+	                        _react2.default.createElement(_Glyphicon2.default, {
+	                            glyph: 'plus' })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Client;
+	}(_react.Component);
+
+	exports.default = Client;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Button");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Glyphicon");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MonthTable = __webpack_require__(9);
+
+	var _MonthTable2 = _interopRequireDefault(_MonthTable);
+
+	var _LoginForm = __webpack_require__(16);
+
+	var _LoginForm2 = _interopRequireDefault(_LoginForm);
+
+	var _MonthNavigation = __webpack_require__(18);
+
+	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Calendar = function (_Component) {
+	    _inherits(Calendar, _Component);
+
+	    function Calendar(props) {
+	        _classCallCheck(this, Calendar);
+
+	        var _this = _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call(this, props));
 
 	        _this.state = {
 	            isOpen: '', //true,
@@ -265,7 +527,7 @@ module.exports =
 	        return _this;
 	    }
 
-	    _createClass(App, [{
+	    _createClass(Calendar, [{
 	        key: 'toggleModal',
 	        value: function toggleModal() {
 	            this.setState({
@@ -291,15 +553,12 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    _PageHeader2.default,
-	                    { className: 'header' },
-	                    'My-app'
-	                ),
-	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount, currentMonth: this.state.currentDate.currentMonth,
+	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount,
+	                    currentMonth: this.state.currentDate.currentMonth,
 	                    currentYear: this.state.currentDate.currentYear }),
 	                _react2.default.createElement(_MonthTable2.default, { currentDate: this.state.currentDate, weeksObject: this.state.weeksObject }),
 	                _react2.default.createElement(_LoginForm2.default, { show: this.state.isOpen })
@@ -307,19 +566,13 @@ module.exports =
 	        }
 	    }]);
 
-	    return App;
+	    return Calendar;
 	}(_react.Component);
 
-	exports.default = App;
+	exports.default = Calendar;
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/PageHeader");
-
-/***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -334,11 +587,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(6);
+	var _DayList = __webpack_require__(10);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(13);
+	var _Table = __webpack_require__(15);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -656,7 +909,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -671,11 +924,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(7);
+	var _RegisterList = __webpack_require__(11);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(10);
+	var _ClientNameInput = __webpack_require__(12);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -687,7 +940,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var fetch = __webpack_require__(12);
+	var fetch = __webpack_require__(14);
 
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
@@ -806,7 +1059,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -821,11 +1074,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(8);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(9);
+	var _Glyphicon = __webpack_require__(7);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -909,19 +1162,7 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/Button");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/Glyphicon");
-
-/***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -936,15 +1177,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(8);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(9);
+	var _Glyphicon = __webpack_require__(7);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(11);
+	var _methods = __webpack_require__(13);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1058,7 +1299,7 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1068,7 +1309,7 @@ module.exports =
 	});
 	exports.sendData = undefined;
 
-	var _nodeFetch = __webpack_require__(12);
+	var _nodeFetch = __webpack_require__(14);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -1087,19 +1328,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1114,15 +1355,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(15);
+	var _FormControl = __webpack_require__(17);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _Button = __webpack_require__(8);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(11);
+	var _methods = __webpack_require__(13);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1220,13 +1461,13 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormControl");
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1241,7 +1482,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(8);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -1306,7 +1547,19 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 17 */
+/* 19 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-router-dom");
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/PageHeader");
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1323,19 +1576,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
