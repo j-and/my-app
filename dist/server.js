@@ -59,17 +59,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(21);
+	var _template = __webpack_require__(25);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(22);
+	var bodyParser = __webpack_require__(26);
 
-	var express = __webpack_require__(23);
+	var express = __webpack_require__(27);
 	var server = express();
-	var mysql = __webpack_require__(24);
+	var mysql = __webpack_require__(28);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -240,6 +240,30 @@ module.exports =
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
+	var _Navbar = __webpack_require__(21);
+
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+
+	var _Nav = __webpack_require__(22);
+
+	var _Nav2 = _interopRequireDefault(_Nav);
+
+	var _NavItem = __webpack_require__(23);
+
+	var _NavItem2 = _interopRequireDefault(_NavItem);
+
+	var _FormControl = __webpack_require__(17);
+
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+
+	var _FormGroup = __webpack_require__(24);
+
+	var _FormGroup2 = _interopRequireDefault(_FormGroup);
+
+	var _Button = __webpack_require__(6);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -278,28 +302,52 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _PageHeader2.default,
-	                    null,
-	                    'My app',
+	                    _Navbar2.default,
+	                    { collapseOnSelect: true },
 	                    _react2.default.createElement(
-	                        'ul',
+	                        _Navbar2.default.Header,
 	                        null,
 	                        _react2.default.createElement(
-	                            'li',
+	                            _Navbar2.default.Brand,
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '#brand' },
+	                                'My-app'
+	                            )
+	                        ),
+	                        _react2.default.createElement(_Navbar2.default.Toggle, null)
+	                    ),
+	                    _react2.default.createElement(
+	                        _Navbar2.default.Collapse,
+	                        null,
+	                        _react2.default.createElement(
+	                            _Nav2.default,
 	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouterDom.NavLink,
 	                                { to: '/' },
 	                                'Home'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
+	                            ),
 	                            _react2.default.createElement(
 	                                _reactRouterDom.NavLink,
 	                                { to: '/clients' },
 	                                'Clients'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Navbar2.default.Form,
+	                            { pullLeft: true },
+	                            _react2.default.createElement(
+	                                _FormGroup2.default,
+	                                null,
+	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                            ),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                _Button2.default,
+	                                { type: 'submit' },
+	                                'Submit'
 	                            )
 	                        )
 	                    )
@@ -318,6 +366,17 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
+
+	// <PageHeader>My app
+	//     <ul>
+	//         <li>
+	//             <NavLink to="/">Home</NavLink>
+	//         </li>
+	//         <li>
+	//             <NavLink to="/clients">Clients</NavLink>
+	//         </li>
+	//     </ul>
+	// </PageHeader>
 
 /***/ }),
 /* 5 */
@@ -1562,6 +1621,30 @@ module.exports =
 /* 21 */
 /***/ (function(module, exports) {
 
+	module.exports = require("react-bootstrap/lib/Navbar");
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Nav");
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/NavItem");
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/FormGroup");
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -1576,19 +1659,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 24 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
