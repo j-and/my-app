@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import ClientsCard from './ClientsCard.js';
-import ClientsHistory from './ClientsHistory.js';
+import Table from 'react-bootstrap/lib/Table';
 
-class Client extends Component {
+class ClientsHistory extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,11 +22,15 @@ class Client extends Component {
 
         return (
             <div>
-                <div className="col-md-6"><ClientsCard></ClientsCard></div>
-                <div className="col-md-5"><ClientsHistory></ClientsHistory></div>
+                <h2> Clients history</h2>
+                <Table responsive>
+                    <tr><td>aa</td></tr>
+                    <tr><td>aa</td></tr>
+                    <tr><td>aa</td></tr>
+                </Table>
             </div>
         );
     }
 }
 
-export default Client;
+export default ClientsHistory;

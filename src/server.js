@@ -25,6 +25,15 @@ server.get('/', (req, res) => {
         title: 'My-app'
     }));
 });
+server.get('/clients', (req, res) => {
+    const context = {};
+    const appString = renderToString(<StaticRouter location={req.url} context={context}><App /></StaticRouter>);
+
+    res.send(template({
+        body: appString,
+        title: 'My-app'
+    }));
+});
 
 server.post('/', function (req, res) {
     var con = mysql.createConnection({

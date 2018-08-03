@@ -101,4 +101,11 @@ table tr {
   padding: 20px;
   margin: 0; }
 
+label {
+  display: block; }
+
+.client_col {
+  display: inline-flex;
+  flex-direction: column; }
+
 /*# sourceMappingURL=custom-styles.css.map */

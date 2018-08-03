@@ -1,0 +1,162 @@
+$darkseagreen: #83c9a6;
+$overlay: rgba(0, 100, 100, 0.6);
+$black: rgba(0, 0, 0, 0.9);
+$red: red;
+$white: #ffffff;
+$green: green;
+
+body {
+ // margin: 0 1%;
+ // padding: 0;
+  font-family: sans-serif;
+}
+
+table {
+  .month-header {
+    border: 2px solid $black;
+    background-color: antiquewhite;
+    tr {
+      height: 60px;
+      td {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1.7em;
+      }
+    }
+  }
+  tr {
+    height: 120px;
+    .day {
+      &_ordinary {
+        border: 2px solid $green;
+        &_label {
+          background-color: $darkseagreen;
+          line-height: 1.5em;
+          font-size: 18px;
+          color: $white;
+          font-weight: bold;
+          text-align: center;
+        }
+        ul {
+          padding: 0;
+          line-height: 1.7em;
+        }
+      }
+      &_weekend {
+        border: 2px solid $red;
+        input, select, Button {
+          display: none;
+        }
+      }
+      &_list {
+        display: flex;
+        flex-direction: row;
+        input {
+          max-width: 120px;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  min-width: 57px;
+  li {
+    a {
+      padding: 3px 3px;
+      text-align: center;
+    }
+  }
+}
+
+.dropdown-toggle.btn.btn-default {
+  padding: 3px 6px;
+}
+
+.login {
+  &_form {
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    background-color: $black;
+    padding: 20px;
+    /*Override bootstrap styles*/
+    .form-control {
+      margin: 10px auto;
+    }
+  }
+  &_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: $overlay;
+  }
+}
+
+.nav-centered {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /*Override bootstrap styles*/
+  .btn.btn-info {
+    height: 40px;
+    width: 120px;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.register {
+  &_list {
+    display: flex;
+
+    .btn-close {
+      display: none;
+    }
+    &:hover {
+      .btn-close {
+        display: inline-block;
+      }
+    }
+  }
+  &_time {
+    display: inline-block;
+    width: 60px;
+  }
+  &_name {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+  }
+  &_ul {
+    overflow-y: auto;
+    height: 75px;
+  }
+}
+
+.header {
+  background-color: $green;
+  color: $white;
+  font-weight: bold;
+}
+
+.page-header {
+  padding: 20px;
+  margin:0;
+}
+
+label{
+  display:block;
+}
+
+.client_col {
+  display: inline-flex;
+  flex-direction: column;
+
+}
