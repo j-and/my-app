@@ -1,20 +1,25 @@
 $darkseagreen: #83c9a6;
 $overlay: rgba(0, 100, 100, 0.6);
 $black: rgba(0, 0, 0, 0.9);
-$red: red;
+$red: #FF6C36;
 $white: #ffffff;
-$green: green;
+$blue: #002B5B;
+$light-blue: #DCEEF7;
+$pale: #F8EADA;
+$rose: #F5AACB;
 
 body {
- // margin: 0 1%;
- // padding: 0;
+  width: 80%;
+  margin: auto;
   font-family: sans-serif;
+  color: $blue;
+  background-color: $light-blue;
 }
 
 table {
   .month-header {
-    border: 2px solid $black;
-    background-color: antiquewhite;
+    border: 2px solid $blue;
+    background-color: $pale;
     tr {
       height: 60px;
       td {
@@ -28,7 +33,7 @@ table {
     height: 120px;
     .day {
       &_ordinary {
-        border: 2px solid $green;
+        border: 2px solid $blue;
         &_label {
           background-color: $darkseagreen;
           line-height: 1.5em;
@@ -49,10 +54,14 @@ table {
         }
       }
       &_list {
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
+        flex-wrap: wrap;
         input {
-          max-width: 120px;
+          max-width: 110px;
+        }
+        select {
+          max-width: 55px;
         }
       }
     }
@@ -114,8 +123,6 @@ table {
 
 .register {
   &_list {
-    display: flex;
-
     .btn-close {
       display: none;
     }
@@ -127,12 +134,10 @@ table {
   }
   &_time {
     display: inline-block;
-    width: 60px;
+    width: 55px;
   }
   &_name {
-    display: inline-block;
-    width: 120px;
-    text-align: left;
+    width: 105px;
   }
   &_ul {
     overflow-y: auto;
@@ -141,22 +146,83 @@ table {
 }
 
 .header {
-  background-color: $green;
-  color: $white;
+  color: $blue;
   font-weight: bold;
 }
 
 .page-header {
   padding: 20px;
-  margin:0;
+  margin: 0;
 }
 
-label{
-  display:block;
+label {
+  display: block;
+  margin-top: 10px;
 }
 
-.client_col {
-  display: inline-flex;
-  flex-direction: column;
+.client {
+  &_col {
+    display: inline-flex;
+    flex-direction: column;
+    &_right {
+      padding-right: 0;
+    }
+    &_left {
+      padding-left: 0;
+    }
+  }
+  &_history {
+    th {
+      background-color: $pale;
+    }
+    tr {
+      height: 34px;
+      &:nth-of-type(odd) {
+        td {
+          background-color: $white;
+        }
 
+      }
+      &:nth-of-type(even) {
+        td {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+  &-default {
+    background-color: transparent;
+  }
+  &-brand {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.nav.navbar-nav {
+  display: inline-block;
+  li {
+    font-size: 18px;
+    &:hover {
+      border-bottom: 2px solid $red;
+    }
+  }
+}
+
+@media all and (max-width: 1024px) {
+  body {
+    width: 96%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  table tr .day_list {
+    input, select {
+      display: none;
+    }
+  }
 }

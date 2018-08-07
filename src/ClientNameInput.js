@@ -62,6 +62,7 @@ class ClientNameInput extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
+                   
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
                         {arr.map(function (time) {
@@ -69,6 +70,7 @@ class ClientNameInput extends Component {
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                 
                     <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon
                         glyph="plus"/></Button>
                 </form>

@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Table from 'react-bootstrap/lib/Table';
 
+
 class ClientsHistory extends Component {
     constructor(props) {
         super(props);
@@ -23,10 +24,32 @@ class ClientsHistory extends Component {
         return (
             <div>
                 <h2> Clients history</h2>
-                <Table responsive>
-                    <tr><td>aa</td></tr>
-                    <tr><td>aa</td></tr>
-                    <tr><td>aa</td></tr>
+                <label>Visits</label>
+                <Table striped bordered condensed hover className="client_history">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Comment</th>
+                        <th>Payment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>01.07.2018</td>
+                        <td><input type="text"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>01.07.2018</td>
+                        <td><input type="text"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>01.07.2018</td>
+                        <td><input type="text"/></td>
+                        <td><input type="checkbox"/></td>
+                    </tr>
+                    </tbody>
                 </Table>
             </div>
         );

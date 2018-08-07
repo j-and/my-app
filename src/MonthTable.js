@@ -21,7 +21,7 @@ class MonthTable extends Component {
         // }).then((response) => {
         //
         // });
-        
+
         // fetch('/setMockRegistersData', {
         //     method: 'GET'
         // }).then((response) => {
@@ -178,7 +178,7 @@ class MonthTable extends Component {
                     <thead className="month-header">
                     <tr>
                         {this.state.trHead.map(function (day) {
-                            return <td class="month-header">{day}</td>;
+                            return <td className="month-header">{day}</td>;
                         })}
                     </tr>
                     </thead>
@@ -223,6 +223,5 @@ class MonthTable extends Component {
         );
     }
 }
-
 
 export default MonthTable;

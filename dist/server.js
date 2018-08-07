@@ -59,17 +59,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(27);
+	var _template = __webpack_require__(28);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(28);
+	var bodyParser = __webpack_require__(29);
 
-	var express = __webpack_require__(29);
+	var express = __webpack_require__(30);
 	var server = express();
-	var mysql = __webpack_require__(30);
+	var mysql = __webpack_require__(31);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -239,37 +239,37 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(11);
+	var _Calendar = __webpack_require__(14);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(21);
+	var _reactRouterDom = __webpack_require__(23);
 
-	var _LoginForm = __webpack_require__(18);
+	var _LoginForm = __webpack_require__(21);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _PageHeader = __webpack_require__(22);
+	var _PageHeader = __webpack_require__(24);
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
-	var _Navbar = __webpack_require__(23);
+	var _Navbar = __webpack_require__(25);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(24);
+	var _Nav = __webpack_require__(26);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(25);
+	var _NavItem = __webpack_require__(27);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _FormControl = __webpack_require__(19);
+	var _FormControl = __webpack_require__(10);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(26);
+	var _FormGroup = __webpack_require__(11);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -315,7 +315,7 @@ module.exports =
 	                null,
 	                _react2.default.createElement(
 	                    _Navbar2.default,
-	                    { inverse: true, collapseOnSelect: true },
+	                    null,
 	                    _react2.default.createElement(
 	                        _Navbar2.default.Header,
 	                        null,
@@ -324,43 +324,47 @@ module.exports =
 	                            null,
 	                            _react2.default.createElement(
 	                                'a',
-	                                { href: '#brand' },
+	                                { href: '#' },
 	                                'My-app'
 	                            )
-	                        ),
-	                        _react2.default.createElement(_Navbar2.default.Toggle, null)
+	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Collapse,
+	                        _Nav2.default,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Nav2.default,
+	                            'li',
 	                            null,
+	                            ' ',
 	                            _react2.default.createElement(
 	                                _reactRouterDom.NavLink,
 	                                { to: '/' },
 	                                'Home'
-	                            ),
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouterDom.NavLink,
 	                                { to: '/clients' },
 	                                'Clients'
 	                            )
-	                        ),
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _Navbar2.default.Form,
+	                        { pullLeft: true },
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Form,
-	                            { pullLeft: true },
-	                            _react2.default.createElement(
-	                                _FormGroup2.default,
-	                                null,
-	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
-	                            ),
-	                            ' ',
-	                            _react2.default.createElement(
-	                                _Button2.default,
-	                                { type: 'submit' },
-	                                'Submit'
-	                            )
+	                            _FormGroup2.default,
+	                            null,
+	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                        ),
+	                        ' ',
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { type: 'submit' },
+	                            'Submit'
 	                        )
 	                    )
 	                ),
@@ -407,7 +411,7 @@ module.exports =
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(9);
+	var _ClientsHistory = __webpack_require__(12);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
@@ -449,12 +453,12 @@ module.exports =
 	                null,
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-md-6' },
+	                    { className: 'col-sm-8' },
 	                    _react2.default.createElement(_ClientsCard2.default, null)
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-md-5' },
+	                    { className: 'col-sm-4' },
 	                    _react2.default.createElement(_ClientsHistory2.default, null)
 	                )
 	            );
@@ -498,9 +502,21 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _ControlLabel = __webpack_require__(9);
+
+	var _ControlLabel2 = _interopRequireDefault(_ControlLabel);
+
 	var _Glyphicon = __webpack_require__(7);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
+
+	var _FormControl = __webpack_require__(10);
+
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+
+	var _FormGroup = __webpack_require__(11);
+
+	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -545,67 +561,51 @@ module.exports =
 	                ),
 	                _react2.default.createElement(
 	                    'form',
-	                    { 'class': '' },
+	                    null,
 	                    _react2.default.createElement(
-	                        'div',
+	                        'label',
 	                        null,
-	                        _react2.default.createElement(
-	                            'label',
-	                            null,
-	                            'Name'
-	                        ),
-	                        _react2.default.createElement('input', { type: 'text' })
+	                        'Name'
 	                    ),
+	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text' }),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'client_col' },
+	                        { className: 'col-xs-6 client_col_left' },
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Desease'
 	                        ),
-	                        _react2.default.createElement('input', { type: 'text' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: 'Enter text' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Date of Birth'
+	                            'Date of birth'
 	                        ),
-	                        _react2.default.createElement('input', { type: 'date' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', placeholder: 'Enter text' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'client_col' },
+	                        { className: 'col-xs-6 client_col_right' },
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Phone'
 	                        ),
-	                        _react2.default.createElement('input', { type: 'phone' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: 'Enter phone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Email'
 	                        ),
-	                        _react2.default.createElement('input', { type: 'email' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: 'Enter email' })
 	                    ),
 	                    _react2.default.createElement(
-	                        'div',
+	                        'label',
 	                        null,
-	                        _react2.default.createElement(
-	                            'label',
-	                            null,
-	                            'Description'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            _react2.default.createElement(
-	                                'textarea',
-	                                { rows: '20', cols: '47' },
-	                                'uu'
-	                            )
-	                        )
+	                        'Description'
 	                    ),
+	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: 'textarea', rows: '15' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
@@ -624,6 +624,24 @@ module.exports =
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/ControlLabel");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/FormControl");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/FormGroup");
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -646,7 +664,7 @@ module.exports =
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _Table = __webpack_require__(10);
+	var _Table = __webpack_require__(13);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -692,33 +710,95 @@ module.exports =
 	                    ' Clients history'
 	                ),
 	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Visits'
+	                ),
+	                _react2.default.createElement(
 	                    _Table2.default,
-	                    { responsive: true },
+	                    { striped: true, bordered: true, condensed: true, hover: true, className: 'client_history' },
 	                    _react2.default.createElement(
-	                        'tr',
+	                        'thead',
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            'aa'
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Date'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Comment'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Payment'
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        'tr',
+	                        'tbody',
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            'aa'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'tr',
-	                        null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                '01.07.2018'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'text' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'checkbox' })
+	                            )
+	                        ),
 	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            'aa'
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                '01.07.2018'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'text' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'checkbox' })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                '01.07.2018'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'text' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                _react2.default.createElement('input', { type: 'checkbox' })
+	                            )
 	                        )
 	                    )
 	                )
@@ -732,13 +812,13 @@ module.exports =
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -753,15 +833,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(12);
+	var _MonthTable = __webpack_require__(15);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(18);
+	var _LoginForm = __webpack_require__(21);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(20);
+	var _MonthNavigation = __webpack_require__(22);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -852,7 +932,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -867,11 +947,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(13);
+	var _DayList = __webpack_require__(16);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(10);
+	var _Table = __webpack_require__(13);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -1123,7 +1203,7 @@ module.exports =
 	                            this.state.trHead.map(function (day) {
 	                                return _react2.default.createElement(
 	                                    'td',
-	                                    { 'class': 'month-header' },
+	                                    { className: 'month-header' },
 	                                    day
 	                                );
 	                            })
@@ -1189,7 +1269,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1204,11 +1284,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(14);
+	var _RegisterList = __webpack_require__(17);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(15);
+	var _ClientNameInput = __webpack_require__(18);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1220,7 +1300,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var fetch = __webpack_require__(17);
+	var fetch = __webpack_require__(20);
 
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
@@ -1339,7 +1419,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1442,7 +1522,7 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1465,7 +1545,7 @@ module.exports =
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(16);
+	var _methods = __webpack_require__(19);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1579,7 +1659,7 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1589,7 +1669,7 @@ module.exports =
 	});
 	exports.sendData = undefined;
 
-	var _nodeFetch = __webpack_require__(17);
+	var _nodeFetch = __webpack_require__(20);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -1608,13 +1688,13 @@ module.exports =
 	};
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1629,7 +1709,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(19);
+	var _FormControl = __webpack_require__(10);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -1637,7 +1717,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(16);
+	var _methods = __webpack_require__(19);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1735,13 +1815,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/FormControl");
-
-/***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1821,43 +1895,37 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/PageHeader");
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/FormGroup");
-
-/***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1874,19 +1942,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
