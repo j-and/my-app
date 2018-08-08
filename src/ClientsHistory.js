@@ -1,54 +1,53 @@
 import React, {Component} from 'react';
-import Table from 'react-bootstrap/lib/Table';
-
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import Visit from './Visit.js';
 
 class ClientsHistory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // isOpen: '',//true,
+            clientInfo:{},
+           clientName: 'john doe',
+            VISITS: []
         }
-        // this.toggleModal = this.toggleModal.bind(this);
     }
 
-    // toggleModal() {
-    //     this.setState({
-    //         isOpen: !this.state.isOpen
-    //     });
-    // }
+    componentDidMount() {
+        var obj = {clientName: 'ann doe'};
+        fetch('/getVisits', {
+            method: 'POST',
+            body: JSON.stringify(obj),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            response.json().then((data) => {
+                this.setState({VISITS: data});
+                var clientInfoCopy=this.state.clientInfo;
+                clientInfoCopy.clientName=data[4].clientName;
+                clientInfoCopy.date=data[4].date;
+                clientInfoCopy.time=data[4].time;
+                clientInfoCopy.comment=data[4].comment;
+                clientInfoCopy.payment=data[4].payment;
+                this.setState({clientInfo:clientInfoCopy});
+            })
+        });
+    }
 
     render() {
+
+        var sortedArr = this.state.VISITS;
+        var clientInfo = this.state.clientInfo;
 
         return (
             <div>
                 <h2> Clients history</h2>
-                <label>Visits</label>
-                <Table striped bordered condensed hover className="client_history">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Comment</th>
-                        <th>Payment</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>01.07.2018</td>
-                        <td><input type="text"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>01.07.2018</td>
-                        <td><input type="text"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>01.07.2018</td>
-                        <td><input type="text"/></td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    </tbody>
-                </Table>
+                <label>Visits of {this.state.clientInfo.clientName}</label>
+                <ListGroup >
+                    {Object.keys(sortedArr).map(function (key) {
+                        return <Visit clientInfo={clientInfo}> </Visit>;
+                    }) }
+                </ListGroup>
             </div>
         );
     }

@@ -161,4 +161,22 @@ server.get('/getRegisters', function (req, res) {
 
 });
 
+server.post('/getVisits', function (req, res) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query("SELECT * FROM visits WHERE clientName = " + mysql.escape(req.body.clientName), function (err, result) {
+            if (err) throw err;
+            res.send(result);
+        });
+    });
+
+});
+
 server.listen(3000);

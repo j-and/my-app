@@ -226,3 +226,9 @@ label {
     }
   }
 }
+
+.visit {
+  &_comment {
+    display: none;
+  }
+}

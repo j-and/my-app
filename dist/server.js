@@ -59,17 +59,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(25);
+	var _template = __webpack_require__(28);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(26);
+	var bodyParser = __webpack_require__(29);
 
-	var express = __webpack_require__(27);
+	var express = __webpack_require__(30);
 	var server = express();
-	var mysql = __webpack_require__(28);
+	var mysql = __webpack_require__(31);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -219,6 +219,23 @@ module.exports =
 	    });
 	});
 
+	server.post('/getVisits', function (req, res) {
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+
+	    con.connect(function (err) {
+	        if (err) throw err;
+	        con.query("SELECT * FROM visits WHERE clientName = " + mysql.escape(req.body.clientName), function (err, result) {
+	            if (err) throw err;
+	            res.send(result);
+	        });
+	    });
+	});
+
 	server.listen(3000);
 
 /***/ }),
@@ -259,17 +276,17 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(14);
+	var _Calendar = __webpack_require__(16);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(21);
+	var _reactRouterDom = __webpack_require__(24);
 
-	var _Navbar = __webpack_require__(22);
+	var _Navbar = __webpack_require__(25);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(23);
+	var _Nav = __webpack_require__(26);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
@@ -277,7 +294,7 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(24);
+	var _FormGroup = __webpack_require__(27);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -517,26 +534,17 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (ClientsCard.__proto__ || Object.getPrototypeOf(ClientsCard)).call(this, props));
 
 	        _this.state = {
-	            // clientInfo: {
 	            clientName: "",
 	            clientBirthDate: "",
 	            clientDesease: "",
 	            clientPhone: "",
 	            clientEmail: "",
 	            clientDescription: ""
-	            //  }
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
 	        return _this;
 	    }
-
-	    // handleChange(event) {
-	    //     let clientInfoCopy = Object.assign({}, this.state.clientInfo);
-	    //     clientInfoCopy.time = event.target.value;
-	    //     this.setState({clientInfo: clientInfoCopy});
-	    // }
-
 
 	    _createClass(ClientsCard, [{
 	        key: 'handleInputChange',
@@ -584,7 +592,8 @@ module.exports =
 	                        null,
 	                        'Name'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text', onChange: this.handleInputChange, name: 'clientName' }),
+	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text', onChange: this.handleInputChange,
+	                        name: 'clientName' }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-xs-6 client_col_left' },
@@ -593,13 +602,15 @@ module.exports =
 	                            null,
 	                            'Desease'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: 'Enter text', onChange: this.handleInputChange, name: 'clientDesease' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: 'Enter text',
+	                            onChange: this.handleInputChange, name: 'clientDesease' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Date of birth'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', placeholder: 'Enter text', onChange: this.handleInputChange, name: 'clientBirthDate' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', placeholder: 'Enter text',
+	                            onChange: this.handleInputChange, name: 'clientBirthDate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -609,24 +620,26 @@ module.exports =
 	                            null,
 	                            'Phone'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: 'Enter phone', onChange: this.handleInputChange, name: 'clientPhone' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: 'Enter phone',
+	                            onChange: this.handleInputChange, name: 'clientPhone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Email'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: 'Enter email', onChange: this.handleInputChange, name: 'clientEmail' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: 'Enter email',
+	                            onChange: this.handleInputChange, name: 'clientEmail' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
 	                        'Description'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: 'Enter description', rows: '15', onChange: this.handleInputChange, name: 'clientDescription' }),
+	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: 'Enter description', rows: '15',
+	                        onChange: this.handleInputChange, name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
-	                        _react2.default.createElement(_Glyphicon2.default, { glyph: 'plus' }),
 	                        'Save changes'
 	                    )
 	                )
@@ -686,7 +699,6 @@ module.exports =
 	    });
 	};
 	var sendClientData = exports.sendClientData = function sendClientData(dataObject) {
-	    //console.log('dataObject='+Object.keys(dataObject));
 	    (0, _nodeFetch2.default)('/addClient', {
 	        method: "POST",
 	        body: JSON.stringify(dataObject),
@@ -720,9 +732,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Table = __webpack_require__(13);
+	var _ListGroup = __webpack_require__(13);
 
-	var _Table2 = _interopRequireDefault(_Table);
+	var _ListGroup2 = _interopRequireDefault(_ListGroup);
+
+	var _Visit = __webpack_require__(14);
+
+	var _Visit2 = _interopRequireDefault(_Visit);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -740,22 +756,45 @@ module.exports =
 
 	        var _this = _possibleConstructorReturn(this, (ClientsHistory.__proto__ || Object.getPrototypeOf(ClientsHistory)).call(this, props));
 
-	        _this.state = {}
-	        // isOpen: '',//true,
-
-	        // this.toggleModal = this.toggleModal.bind(this);
-	        ;return _this;
+	        _this.state = {
+	            clientInfo: {},
+	            clientName: 'john doe',
+	            VISITS: []
+	        };
+	        return _this;
 	    }
 
-	    // toggleModal() {
-	    //     this.setState({
-	    //         isOpen: !this.state.isOpen
-	    //     });
-	    // }
-
 	    _createClass(ClientsHistory, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            var obj = { clientName: 'ann doe' };
+	            fetch('/getVisits', {
+	                method: 'POST',
+	                body: JSON.stringify(obj),
+	                headers: {
+	                    "Content-Type": "application/json"
+	                }
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this2.setState({ VISITS: data });
+	                    var clientInfoCopy = _this2.state.clientInfo;
+	                    clientInfoCopy.clientName = data[4].clientName;
+	                    clientInfoCopy.date = data[4].date;
+	                    clientInfoCopy.time = data[4].time;
+	                    clientInfoCopy.comment = data[4].comment;
+	                    clientInfoCopy.payment = data[4].payment;
+	                    _this2.setState({ clientInfo: clientInfoCopy });
+	                });
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+
+	            var sortedArr = this.state.VISITS;
+	            var clientInfo = this.state.clientInfo;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -768,95 +807,19 @@ module.exports =
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    'Visits'
+	                    'Visits of ',
+	                    this.state.clientInfo.clientName
 	                ),
 	                _react2.default.createElement(
-	                    _Table2.default,
-	                    { striped: true, bordered: true, condensed: true, hover: true, className: 'client_history' },
-	                    _react2.default.createElement(
-	                        'thead',
-	                        null,
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                'Date'
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                'Comment'
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                'Payment'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'tbody',
-	                        null,
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                '01.07.2018'
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'checkbox' })
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                '01.07.2018'
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'checkbox' })
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                '01.07.2018'
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'text' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'td',
-	                                null,
-	                                _react2.default.createElement('input', { type: 'checkbox' })
-	                            )
-	                        )
-	                    )
+	                    _ListGroup2.default,
+	                    null,
+	                    Object.keys(sortedArr).map(function (key) {
+	                        return _react2.default.createElement(
+	                            _Visit2.default,
+	                            { clientInfo: clientInfo },
+	                            ' '
+	                        );
+	                    })
 	                )
 	            );
 	        }
@@ -871,7 +834,7 @@ module.exports =
 /* 13 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Table");
+	module.exports = require("react-bootstrap/lib/ListGroup");
 
 /***/ }),
 /* 14 */
@@ -889,15 +852,156 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(15);
+	var _Button = __webpack_require__(7);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _Glyphicon = __webpack_require__(8);
+
+	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
+
+	var _ListGroupItem = __webpack_require__(15);
+
+	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
+
+	var _FormControl = __webpack_require__(9);
+
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+
+	var _methods = __webpack_require__(10);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Visit = function (_Component) {
+	    _inherits(Visit, _Component);
+
+	    function Visit(props) {
+	        _classCallCheck(this, Visit);
+
+	        var _this = _possibleConstructorReturn(this, (Visit.__proto__ || Object.getPrototypeOf(Visit)).call(this, props));
+
+	        _this.state = {
+	            visitComment: 'comment'
+	        };
+	        _this.changeComment = _this.changeComment.bind(_this);
+	        _this.handleInputChange = _this.handleInputChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(Visit, [{
+	        key: 'changeComment',
+	        value: function changeComment(event) {
+	            document.getElementsByClassName("visit_comment")[0].style.display = 'block';
+	            event.target.style.display = 'none';
+	            this.setState({ visitComment: event.target.value });
+	        }
+	    }, {
+	        key: 'handleInputChange',
+	        value: function handleInputChange(event) {
+	            var target = event.target;
+	            var value = target.value;
+	            var name = target.name;
+	            this.setState(_defineProperty({}, name, value));
+	        }
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(event) {
+	            event.preventDefault();
+	            document.getElementsByClassName("visit_label")[0].style.display = 'block';
+	            this.refs.registerForm.reset();
+	            event.target.style.display = 'none';
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _ListGroupItem2.default,
+	                    null,
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.clientInfo.date
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        this.props.clientInfo.time
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { onClick: this.changeComment, className: 'visit_label' },
+	                        this.props.clientInfo.comment
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        _react2.default.createElement(
+	                            'form',
+	                            { className: 'visit_comment', onSubmit: this.handleSubmit, ref: 'registerForm' },
+	                            _react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleInputChange,
+	                                name: 'visitComment' }),
+	                            _react2.default.createElement(
+	                                _Button2.default,
+	                                { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
+	                                _react2.default.createElement(_Glyphicon2.default, { glyph: 'plus' })
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement('input', { type: 'checkbox' })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Visit;
+	}(_react.Component);
+
+	exports.default = Visit;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/ListGroupItem");
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MonthTable = __webpack_require__(17);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(19);
+	var _LoginForm = __webpack_require__(22);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(20);
+	var _MonthNavigation = __webpack_require__(23);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -988,7 +1092,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1003,11 +1107,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(16);
+	var _DayList = __webpack_require__(18);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(13);
+	var _Table = __webpack_require__(21);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -1325,7 +1429,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1340,11 +1444,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(17);
+	var _RegisterList = __webpack_require__(19);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(18);
+	var _ClientNameInput = __webpack_require__(20);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1475,7 +1579,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1578,7 +1682,7 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1715,7 +1819,13 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 19 */
+/* 21 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Table");
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1836,7 +1946,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1916,31 +2026,31 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormGroup");
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -1957,19 +2067,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

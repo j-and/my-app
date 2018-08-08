@@ -75,7 +75,7 @@ class ClientsCard extends Component {
                     <FieldGroup componentClass="textarea" placeholder="Enter description" rows="15"
                                 onChange={this.handleInputChange} name="clientDescription"/>
                     <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add">
-                        <Glyphicon glyph="plus"/>Save changes
+                        Save changes
                     </Button>
                 </form>
             </div>

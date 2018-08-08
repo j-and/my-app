@@ -143,5 +143,7 @@ label {
 @media all and (max-width: 768px) {
   table tr .day_list input, table tr .day_list select {
     display: none; } }
+.visit_comment {
+  display: none; }
 
 /*# sourceMappingURL=custom-styles.css.map */
