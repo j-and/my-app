@@ -23,13 +23,6 @@ class ClientsHistory extends Component {
         }).then((response) => {
             response.json().then((data) => {
                 this.setState({VISITS: data});
-                var clientInfoCopy=this.state.clientInfo;
-                clientInfoCopy.clientName=data[4].clientName;
-                clientInfoCopy.date=data[4].date;
-                clientInfoCopy.time=data[4].time;
-                clientInfoCopy.comment=data[4].comment;
-                clientInfoCopy.payment=data[4].payment;
-                this.setState({clientInfo:clientInfoCopy});
             })
         });
     }
@@ -37,15 +30,14 @@ class ClientsHistory extends Component {
     render() {
 
         var sortedArr = this.state.VISITS;
-        var clientInfo = this.state.clientInfo;
 
         return (
             <div>
                 <h2> Clients history</h2>
-                <label>Visits of {this.state.clientInfo.clientName}</label>
+                <label>Visits of {this.state.clientName}</label>
                 <ListGroup >
                     {Object.keys(sortedArr).map(function (key) {
-                        return <Visit clientInfo={clientInfo}> </Visit>;
+                        return <Visit clientInfo={sortedArr[key]}> </Visit>;
                     }) }
                 </ListGroup>
             </div>

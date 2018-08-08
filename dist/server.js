@@ -779,13 +779,6 @@ module.exports =
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this2.setState({ VISITS: data });
-	                    var clientInfoCopy = _this2.state.clientInfo;
-	                    clientInfoCopy.clientName = data[4].clientName;
-	                    clientInfoCopy.date = data[4].date;
-	                    clientInfoCopy.time = data[4].time;
-	                    clientInfoCopy.comment = data[4].comment;
-	                    clientInfoCopy.payment = data[4].payment;
-	                    _this2.setState({ clientInfo: clientInfoCopy });
 	                });
 	            });
 	        }
@@ -794,7 +787,6 @@ module.exports =
 	        value: function render() {
 
 	            var sortedArr = this.state.VISITS;
-	            var clientInfo = this.state.clientInfo;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -808,7 +800,7 @@ module.exports =
 	                    'label',
 	                    null,
 	                    'Visits of ',
-	                    this.state.clientInfo.clientName
+	                    this.state.clientName
 	                ),
 	                _react2.default.createElement(
 	                    _ListGroup2.default,
@@ -816,7 +808,7 @@ module.exports =
 	                    Object.keys(sortedArr).map(function (key) {
 	                        return _react2.default.createElement(
 	                            _Visit2.default,
-	                            { clientInfo: clientInfo },
+	                            { clientInfo: sortedArr[key] },
 	                            ' '
 	                        );
 	                    })
@@ -923,7 +915,6 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,

@@ -41,7 +41,6 @@ class Visit extends Component {
 
 
     render() {
-
         return (
             <div>
                 <ListGroupItem>
