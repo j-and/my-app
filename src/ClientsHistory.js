@@ -13,7 +13,7 @@ class ClientsHistory extends Component {
     }
 
     componentDidMount() {
-        var obj = {clientName: 'ann doe'};
+        var obj = {clientName: 'dsf'};
         fetch('/getVisits', {
             method: 'POST',
             body: JSON.stringify(obj),

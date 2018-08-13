@@ -229,7 +229,7 @@ module.exports =
 
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("SELECT * FROM visits WHERE clientName = " + mysql.escape(req.body.clientName), function (err, result) {
+	        con.query("SELECT * FROM registers WHERE name = " + mysql.escape(req.body.clientName), function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
 	        });
@@ -769,7 +769,7 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var obj = { clientName: 'ann doe' };
+	            var obj = { clientName: 'dsf' };
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -931,6 +931,11 @@ module.exports =
 	                        'span',
 	                        { onClick: this.changeComment, className: 'visit_label' },
 	                        this.props.clientInfo.comment
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'visit_label' },
+	                        this.props.clientInfo.status
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',

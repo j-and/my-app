@@ -47,6 +47,7 @@ class Visit extends Component {
                 <ListGroupItem>
                     <span>{this.props.clientInfo.dateTime}</span>
                     <span onClick={this.changeComment} className="visit_label">{this.props.clientInfo.comment}</span>
+                    <span className="visit_label">{this.props.clientInfo.status}</span>
                     <span>
                         <form className="visit_comment" onSubmit={this.handleSubmit} ref="registerForm">
                             <input type="text" value={this.state.value} onChange={this.handleInputChange}

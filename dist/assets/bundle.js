@@ -29357,7 +29357,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var obj = { clientName: 'ann doe' };
+	            var obj = { clientName: 'dsf' };
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -29980,6 +29980,11 @@
 	                        'span',
 	                        { onClick: this.changeComment, className: 'visit_label' },
 	                        this.props.clientInfo.comment
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: 'visit_label' },
+	                        this.props.clientInfo.status
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
