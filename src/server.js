@@ -48,8 +48,8 @@ server.post('/addRegister', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-        con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+        var values = [[req.body.dateTime, req.body.name, req.body.status]];
+        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });
     });
@@ -90,7 +90,7 @@ server.get('/clearRegistersDB', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+        var values = [[req.body.dateTime, req.body.name, req.body.status]];
 
         con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
             if (err) throw err;
@@ -123,13 +123,13 @@ server.post('/removeRegister', function (req, res) {
 server.get('/setMockRegistersData', function (req, res) {
 
     var values = [
-        ['id1', '2018', '7', '2', '08.00', 'John Doe', 'busy'],
-        ['id2', '2018', '7', '3', '09.00', 'John Doe', 'busy'],
-        ['id3', '2018', '7', '4', '10.00', 'John Doe', 'busy'],
-        ['id4', '2018', '7', '5', '11.00', 'John Doe', 'busy'],
-        ['id5', '2018', '7', '6', '12.00', 'John Doe', 'busy'],
-        ['id6', '2018', '7', '7', '13.00', 'John Doe', 'busy'],
-        ['id7', '2018', '7', '8', '14.00', 'John Doe', 'busy']
+        ['2018-08-02 08.00', 'John Doe', 'busy'],
+        ['2018-08-02 09.00', 'John Doe', 'busy'],
+        ['2018-08-06 10.00', 'John Doe', 'busy'],
+        ['2018-08-06 11.00', 'John Doe', 'busy'],
+        ['2018-08-06 12.00', 'John Doe', 'busy'],
+        ['2018-08-07 13.00', 'John Doe', 'busy'],
+        ['2018-08-07 14.00', 'John Doe', 'busy']
     ];
 
     var con = mysql.createConnection({
@@ -139,7 +139,7 @@ server.get('/setMockRegistersData', function (req, res) {
         database: "my_db"
     });
 
-    con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+    con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
         if (err) throw err;
     });
 });

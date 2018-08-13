@@ -36,11 +36,7 @@ class DayList extends Component {
 
     removeRegister(register) {
         var newRegister = {
-            id: register.id,
-            year: register.year,
-            month: register.month,
-            day: register.day,
-            time: register.time,
+            dateTime: register.dateTime,
             name: register.name,
             status: 'available'
         };
@@ -71,8 +67,9 @@ class DayList extends Component {
 
     render() {
 
-        var currentMonth = this.props.currentMonth;
-        var currentDay = this.props.currentDay;
+        var currentMonth = this.props.currentMonth < 10 ? '0' + this.props.currentMonth : this.props.currentMonth;
+
+        var currentDay = this.props.currentDay < 10 ? '0' + this.props.currentDay : this.props.currentDay;
         var arr = this.state.registers;
 
         var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];

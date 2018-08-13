@@ -29887,8 +29887,6 @@
 	    value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -29967,7 +29965,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var time = this.props.clientInfo.time;
-	            console.log(typeof time === 'undefined' ? 'undefined' : _typeof(time));
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -30545,11 +30543,7 @@
 	            var _this3 = this;
 
 	            var newRegister = {
-	                id: register.id,
-	                year: register.year,
-	                month: register.month,
-	                day: register.day,
-	                time: register.time,
+	                dateTime: register.dateTime,
 	                name: register.name,
 	                status: 'available'
 	            };
@@ -30579,8 +30573,10 @@
 	        key: 'render',
 	        value: function render() {
 
-	            var currentMonth = this.props.currentMonth;
-	            var currentDay = this.props.currentDay;
+	            var currentMonth = this.props.currentMonth < 10 ? '0' + this.props.currentMonth : this.props.currentMonth;
+
+	            var currentDay = this.props.currentDay < 10 ? '0' + this.props.currentDay : this.props.currentDay;
+	            // console.log('currentDay='+currentDay);
 	            var arr = this.state.registers;
 
 	            var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
@@ -30786,13 +30782,11 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 
-	                this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
+	                var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
+	                // var dateTime = date.toLocaleDateString() + ' ' + date.toLocaleTimeString().slice(0, 4);
+	                console.log('dateTime=' + dateTime);
 	                var newRegister = {
-	                    id: this.id,
-	                    year: this.props.currentYear,
-	                    month: this.props.currentMonth,
-	                    day: this.props.currentDay,
-	                    time: this.state.times.time,
+	                    dateTime: dateTime,
 	                    name: this.state.names,
 	                    status: 'busy'
 	                };

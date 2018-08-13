@@ -116,8 +116,9 @@ module.exports =
 	            throw err;
 	        }
 
-	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
-	        con.query("INSERT INTO registers (id, year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	        var values = [[req.body.dateTime, req.body.name, req.body.status]];
+	        console.log('req.body.dateTime=' + req.body.dateTime);
+	        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
 	            if (err) throw err;
 	        });
 	    });
@@ -158,7 +159,7 @@ module.exports =
 	            throw err;
 	        }
 
-	        var values = [[req.body.id, req.body.year, req.body.month, req.body.day, req.body.time, req.body.name, req.body.status]];
+	        var values = [[req.body.dateTime, req.body.name, req.body.status]];
 
 	        con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
 	            if (err) throw err;
@@ -189,7 +190,7 @@ module.exports =
 
 	server.get('/setMockRegistersData', function (req, res) {
 
-	    var values = [['id1', '2018', '7', '2', '08.00', 'John Doe', 'busy'], ['id2', '2018', '7', '3', '09.00', 'John Doe', 'busy'], ['id3', '2018', '7', '4', '10.00', 'John Doe', 'busy'], ['id4', '2018', '7', '5', '11.00', 'John Doe', 'busy'], ['id5', '2018', '7', '6', '12.00', 'John Doe', 'busy'], ['id6', '2018', '7', '7', '13.00', 'John Doe', 'busy'], ['id7', '2018', '7', '8', '14.00', 'John Doe', 'busy']];
+	    var values = [['2018-08-02 08.00', 'John Doe', 'busy'], ['2018-08-02 09.00', 'John Doe', 'busy'], ['2018-08-06 10.00', 'John Doe', 'busy'], ['2018-08-06 11.00', 'John Doe', 'busy'], ['2018-08-06 12.00', 'John Doe', 'busy'], ['2018-08-07 13.00', 'John Doe', 'busy'], ['2018-08-07 14.00', 'John Doe', 'busy']];
 
 	    var con = mysql.createConnection({
 	        host: "localhost",
@@ -198,7 +199,7 @@ module.exports =
 	        database: "my_db"
 	    });
 
-	    con.query("INSERT INTO registers (id,year, month, day, time, name, status) VALUES ?", [values], function (err, result) {
+	    con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
 	        if (err) throw err;
 	    });
 	});
@@ -838,8 +839,6 @@ module.exports =
 	    value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -918,7 +917,7 @@ module.exports =
 	        key: 'render',
 	        value: function render() {
 	            var time = this.props.clientInfo.time;
-	            console.log(typeof time === 'undefined' ? 'undefined' : _typeof(time));
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -1502,11 +1501,7 @@ module.exports =
 	            var _this3 = this;
 
 	            var newRegister = {
-	                id: register.id,
-	                year: register.year,
-	                month: register.month,
-	                day: register.day,
-	                time: register.time,
+	                dateTime: register.dateTime,
 	                name: register.name,
 	                status: 'available'
 	            };
@@ -1536,8 +1531,10 @@ module.exports =
 	        key: 'render',
 	        value: function render() {
 
-	            var currentMonth = this.props.currentMonth;
-	            var currentDay = this.props.currentDay;
+	            var currentMonth = this.props.currentMonth < 10 ? '0' + this.props.currentMonth : this.props.currentMonth;
+
+	            var currentDay = this.props.currentDay < 10 ? '0' + this.props.currentDay : this.props.currentDay;
+	            // console.log('currentDay='+currentDay);
 	            var arr = this.state.registers;
 
 	            var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
@@ -1743,13 +1740,11 @@ module.exports =
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 
-	                this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
+	                var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
+	                // var dateTime = date.toLocaleDateString() + ' ' + date.toLocaleTimeString().slice(0, 4);
+	                console.log('dateTime=' + dateTime);
 	                var newRegister = {
-	                    id: this.id,
-	                    year: this.props.currentYear,
-	                    month: this.props.currentMonth,
-	                    day: this.props.currentDay,
-	                    time: this.state.times.time,
+	                    dateTime: dateTime,
 	                    name: this.state.names,
 	                    status: 'busy'
 	                };

@@ -29,13 +29,9 @@ class ClientNameInput extends Component {
         event.preventDefault();
         if (this.state.times && this.state.names) {
 
-            this.id = 'id/' + this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + '/' + this.state.times.time + '/' + this.state.names;
+            var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
             var newRegister = {
-                id: this.id,
-                year: this.props.currentYear,
-                month: this.props.currentMonth,
-                day: this.props.currentDay,
-                time: this.state.times.time,
+                dateTime: dateTime,
                 name: this.state.names,
                 status: 'busy'
             };
@@ -62,7 +58,7 @@ class ClientNameInput extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
-                   
+
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
                         {arr.map(function (time) {
@@ -70,7 +66,7 @@ class ClientNameInput extends Component {
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
-                 
+
                     <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon
                         glyph="plus"/></Button>
                 </form>
