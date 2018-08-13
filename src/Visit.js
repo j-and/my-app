@@ -41,11 +41,13 @@ class Visit extends Component {
 
 
     render() {
+      var time=this.props.clientInfo.time;
+        
         return (
             <div>
                 <ListGroupItem>
                     <span>{this.props.clientInfo.date}</span>
-                    <span>{this.props.clientInfo.time}</span>
+                    <span>time</span>
                     <span onClick={this.changeComment} className="visit_label">{this.props.clientInfo.comment}</span>
                     <span>
                         <form className="visit_comment" onSubmit={this.handleSubmit} ref="registerForm">
