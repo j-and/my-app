@@ -117,7 +117,6 @@ module.exports =
 	        }
 
 	        var values = [[req.body.dateTime, req.body.name, req.body.status]];
-	        console.log('req.body.dateTime=' + req.body.dateTime);
 	        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
 	            if (err) throw err;
 	        });
@@ -916,7 +915,6 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var time = this.props.clientInfo.time;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -927,12 +925,7 @@ module.exports =
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,
-	                        this.props.clientInfo.date
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        'time'
+	                        this.props.clientInfo.dateTime
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
@@ -1534,7 +1527,6 @@ module.exports =
 	            var currentMonth = this.props.currentMonth < 10 ? '0' + this.props.currentMonth : this.props.currentMonth;
 
 	            var currentDay = this.props.currentDay < 10 ? '0' + this.props.currentDay : this.props.currentDay;
-	            // console.log('currentDay='+currentDay);
 	            var arr = this.state.registers;
 
 	            var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
@@ -1741,8 +1733,6 @@ module.exports =
 	            if (this.state.times && this.state.names) {
 
 	                var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
-	                // var dateTime = date.toLocaleDateString() + ' ' + date.toLocaleTimeString().slice(0, 4);
-	                console.log('dateTime=' + dateTime);
 	                var newRegister = {
 	                    dateTime: dateTime,
 	                    name: this.state.names,

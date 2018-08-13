@@ -29964,7 +29964,6 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var time = this.props.clientInfo.time;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -29975,12 +29974,7 @@
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,
-	                        this.props.clientInfo.date
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        'time'
+	                        this.props.clientInfo.dateTime
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
@@ -30576,7 +30570,6 @@
 	            var currentMonth = this.props.currentMonth < 10 ? '0' + this.props.currentMonth : this.props.currentMonth;
 
 	            var currentDay = this.props.currentDay < 10 ? '0' + this.props.currentDay : this.props.currentDay;
-	            // console.log('currentDay='+currentDay);
 	            var arr = this.state.registers;
 
 	            var busyTime = ['08.00', '09.00', '10.00', '11.00', '12.00', '13.00', '14.00', '15.00'];
@@ -30783,8 +30776,6 @@
 	            if (this.state.times && this.state.names) {
 
 	                var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
-	                // var dateTime = date.toLocaleDateString() + ' ' + date.toLocaleTimeString().slice(0, 4);
-	                console.log('dateTime=' + dateTime);
 	                var newRegister = {
 	                    dateTime: dateTime,
 	                    name: this.state.names,
