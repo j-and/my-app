@@ -36,7 +36,7 @@ class DayList extends Component {
 
     removeRegister(register) {
         var newRegister = {
-            dateTime: register.dateTime,
+            datetime: register.datetime,
             name: register.name,
             status: 'available'
         };
@@ -76,8 +76,14 @@ class DayList extends Component {
         var REGISTERS = this.state.REGISTERS;
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-            if (register.month == currentMonth && register.day == currentDay && register.status == 'busy') {
-                var index = busyTime.indexOf(register.time);
+            var month = register.datetime.slice(5, 7);
+            var day = register.datetime.slice(8, 10);
+            var time = register.datetime.slice(11, 13) * 1 + 3 + '.00';
+            if (time.length == 4) {
+                time = '0' + time;
+            }
+            if (month == currentMonth && day == currentDay && register.status == 'busy') {
+                var index = busyTime.indexOf(time/*register.datetime*/);
                 if (index !== -1) busyTime.splice(index, 1);
                 return register;
             }

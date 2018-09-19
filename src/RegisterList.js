@@ -8,10 +8,10 @@ class RegisterList extends Component {
         super(props);
         this.state = {};
     }
-    
+
     render() {
         var arr = this.props.registers;
-        var sortedArr = sortByKey(arr, 'time');
+        var sortedArr = sortByKey(arr, 'datetime');
 
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
@@ -20,17 +20,24 @@ class RegisterList extends Component {
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
         }
-   
-        var removeRegister=this.props.removeRegister;
+
+        var removeRegister = this.props.removeRegister;
 
         return (
             <div>
                 <ul className="register_ul">
                     {Object.keys(sortedArr).map(function (key) {
-                            return <li className="register_list"><span className="register_time">{sortedArr[key].time}</span><span className="register_name">{sortedArr[key].name}</span>
-                             <span><Button bsSize="xsmall" bsStyle="danger"  className="btn-close"  onClick={() => { removeRegister(sortedArr[key])}}>
+                        var time = new Date(sortedArr[key].datetime).getHours() + '.00';
+                        if (time.length == 4) {
+                            time = '0' + time;
+                        }
+
+                        return <li className="register_list"><span className="register_time">{time}</span><span
+                            className="register_name">{sortedArr[key].name}</span>
+                             <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
+                                           onClick={() => { removeRegister(sortedArr[key])}}>
                                                               <Glyphicon glyph="remove"/></Button></span>
-                            </li>
+                        </li>
                     }) }
                 </ul>
             </div>

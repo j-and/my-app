@@ -29974,7 +29974,7 @@
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,
-	                        this.props.clientInfo.dateTime
+	                        this.props.clientInfo.datetime
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
@@ -30542,7 +30542,7 @@
 	            var _this3 = this;
 
 	            var newRegister = {
-	                dateTime: register.dateTime,
+	                datetime: register.datetime,
 	                name: register.name,
 	                status: 'available'
 	            };
@@ -30581,8 +30581,14 @@
 	            var REGISTERS = this.state.REGISTERS;
 
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-	                if (register.month == currentMonth && register.day == currentDay && register.status == 'busy') {
-	                    var index = busyTime.indexOf(register.time);
+	                var month = register.datetime.slice(5, 7);
+	                var day = register.datetime.slice(8, 10);
+	                var time = register.datetime.slice(11, 13) * 1 + 3 + '.00';
+	                if (time.length == 4) {
+	                    time = '0' + time;
+	                }
+	                if (month == currentMonth && day == currentDay && register.status == 'busy') {
+	                    var index = busyTime.indexOf(time /*register.datetime*/);
 	                    if (index !== -1) busyTime.splice(index, 1);
 	                    return register;
 	                }
@@ -30658,7 +30664,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var arr = this.props.registers;
-	            var sortedArr = sortByKey(arr, 'time');
+	            var sortedArr = sortByKey(arr, 'datetime');
 
 	            function sortByKey(array, key) {
 	                return array.sort(function (a, b) {
@@ -30677,17 +30683,23 @@
 	                    'ul',
 	                    { className: 'register_ul' },
 	                    Object.keys(sortedArr).map(function (key) {
+	                        var time = new Date(sortedArr[key].datetime).getHours() + '.00';
+	                        if (time.length == 4) {
+	                            time = '0' + time;
+	                        }
+
 	                        return _react2.default.createElement(
 	                            'li',
 	                            { className: 'register_list' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_time' },
-	                                sortedArr[key].time
+	                                time
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
-	                                { className: 'register_name' },
+	                                {
+	                                    className: 'register_name' },
 	                                sortedArr[key].name
 	                            ),
 	                            _react2.default.createElement(
@@ -30695,7 +30707,8 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    _Button2.default,
-	                                    { bsSize: 'xsmall', bsStyle: 'danger', className: 'btn-close', onClick: function onClick() {
+	                                    { bsSize: 'xsmall', bsStyle: 'danger', className: 'btn-close',
+	                                        onClick: function onClick() {
 	                                            removeRegister(sortedArr[key]);
 	                                        } },
 	                                    _react2.default.createElement(_Glyphicon2.default, { glyph: 'remove' })
@@ -30779,10 +30792,13 @@
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
+	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
+	                var datetime = date.toISOString().split('.')[0]; //+"Z";
 
-	                var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
+	                //console.log('datetime= '+date+'/ '+);
+	                // console.log('date.getUTCHours()).slice(-2)= '+ (Number('00' + date.getUTCDate()+3).slice(-2)));
 	                var newRegister = {
-	                    dateTime: dateTime,
+	                    datetime: datetime,
 	                    name: this.state.names,
 	                    status: 'busy'
 	                };

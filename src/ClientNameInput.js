@@ -28,10 +28,10 @@ class ClientNameInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.times && this.state.names) {
-
-            var dateTime = this.props.currentYear + '/' + this.props.currentMonth + '/' + this.props.currentDay + ' ' + this.state.times.time;
+            var date = new Date(this.props.currentYear,this.props.currentMonth - 1,this.props.currentDay,this.state.times.time);
+      var datetime=date.toISOString().split('.')[0];
             var newRegister = {
-                dateTime: dateTime,
+                datetime: datetime,
                 name: this.state.names,
                 status: 'busy'
             };

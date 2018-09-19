@@ -47,8 +47,7 @@ server.post('/addRegister', function (req, res) {
         if (err) {
             throw err;
         }
-
-        var values = [[req.body.dateTime, req.body.name, req.body.status]];
+        var values = [[req.body.datetime, req.body.name, req.body.status]];
         con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });
@@ -90,7 +89,7 @@ server.get('/clearRegistersDB', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.dateTime, req.body.name, req.body.status]];
+        var values = [[req.body.datetime, req.body.name, req.body.status]];
 
         con.query("DELETE FROM `my_db`.`registers` ", function (err, result) {
             if (err) throw err;

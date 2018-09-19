@@ -41,11 +41,11 @@ class Visit extends Component {
 
 
     render() {
-        
+
         return (
             <div>
                 <ListGroupItem>
-                    <span>{this.props.clientInfo.dateTime}</span>
+                    <span>{this.props.clientInfo.datetime}</span>
                     <span onClick={this.changeComment} className="visit_label">{this.props.clientInfo.comment}</span>
                     <span className="visit_label">{this.props.clientInfo.status}</span>
                     <span>
