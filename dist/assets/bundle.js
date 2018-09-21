@@ -30541,8 +30541,19 @@
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
+	            //  register.datetime=(register.datetime.toISOString()).split('.')[0]+'.00';
+
+	            // var a=register.datetime.substr(0,10) + ' ' + register.datetime.substr(11);
+	            var date = new Date(register.datetime);
+	            var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
+	            console.log('utc=' + utc);
+	            var datetime = new Date(utc).toISOString(); //;.slice(0,datetime.length-2)//.split('.')[0];
+	            datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+	            datetime = datetime.slice(0, datetime.length - 2);
+
+	            console.log('removeRegister.datetime= ' + datetime);
 	            var newRegister = {
-	                datetime: register.datetime,
+	                datetime: datetime, //register.datetime,
 	                name: register.name,
 	                status: 'available'
 	            };
@@ -30555,7 +30566,7 @@
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this3.setState({ REGISTERS: data });
-	                    _this3.setState({ registers: [] });
+	                    _this3.setState({ registers: data });
 	                });
 	            });
 
@@ -30567,6 +30578,7 @@
 	            //     return item;
 	            // });
 	            // this.setState({registers: newArray});
+
 	        }
 	    }, {
 	        key: 'render',
@@ -30583,7 +30595,7 @@
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
 	                var month = register.datetime.slice(5, 7);
 	                var day = register.datetime.slice(8, 10);
-	                var time = register.datetime.slice(11, 13) * 1 + 3 + '.00';
+	                var time = register.datetime.slice(11, 13) /** 1 + 3*/ + '.00';
 	                if (time.length == 4) {
 	                    time = '0' + time;
 	                }
@@ -30793,10 +30805,12 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-	                var datetime = date.toISOString().split('.')[0]; //+"Z";
-
-	                //console.log('datetime= '+date+'/ '+);
-	                // console.log('date.getUTCHours()).slice(-2)= '+ (Number('00' + date.getUTCDate()+3).slice(-2)));
+	                //  console.log('date.getTimezoneOffset()='+date.getTimezoneOffset());
+	                var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
+	                //console.log('utc='+utc);
+	                var datetime = new Date(utc).toISOString().split('.')[0];
+	                datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+	                //  console.log('datetime='+datetime);
 	                var newRegister = {
 	                    datetime: datetime,
 	                    name: this.state.names,

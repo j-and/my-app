@@ -35,8 +35,13 @@ class DayList extends Component {
     }
 
     removeRegister(register) {
+        var date = new Date(register.datetime);
+        var utc = date.getTime() + (-date.getTimezoneOffset() * 60000);
+        var datetime = (new Date(utc)).toISOString();
+        datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+        datetime = datetime.slice(0, datetime.length - 2);
         var newRegister = {
-            datetime: register.datetime,
+            datetime: datetime,
             name: register.name,
             status: 'available'
         };
@@ -49,7 +54,7 @@ class DayList extends Component {
         }).then((response) => {
             response.json().then((data) => {
                 this.setState({REGISTERS: data});
-                this.setState({registers: []});
+                this.setState({registers: data});
             })
 
         });
@@ -63,6 +68,8 @@ class DayList extends Component {
         //     return item;
         // });
         // this.setState({registers: newArray});
+
+
     }
 
     render() {
@@ -78,7 +85,7 @@ class DayList extends Component {
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
             var month = register.datetime.slice(5, 7);
             var day = register.datetime.slice(8, 10);
-            var time = register.datetime.slice(11, 13) * 1 + 3 + '.00';
+            var time = register.datetime.slice(11, 13) /** 1 + 3*/ + '.00';
             if (time.length == 4) {
                 time = '0' + time;
             }

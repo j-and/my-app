@@ -28,8 +28,10 @@ class ClientNameInput extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.times && this.state.names) {
-            var date = new Date(this.props.currentYear,this.props.currentMonth - 1,this.props.currentDay,this.state.times.time);
-      var datetime=date.toISOString().split('.')[0];
+            var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
+            var utc = date.getTime() + (-date.getTimezoneOffset() * 60000);
+            var datetime = (new Date(utc)).toISOString().split('.')[0];
+            datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
             var newRegister = {
                 datetime: datetime,
                 name: this.state.names,
