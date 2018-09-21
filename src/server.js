@@ -105,7 +105,6 @@ server.post('/removeRegister', function (req, res) {
         password: "root",
         database: "my_db"
     });
-    console.log('req.body.datetime= ' + req.body.datetime);
     con.connect(function (err) {
         if (err) throw err;
         con.query("DELETE FROM `my_db`.`registers` WHERE `datetime`=" + mysql.escape(req.body.datetime),

@@ -30541,19 +30541,13 @@
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            //  register.datetime=(register.datetime.toISOString()).split('.')[0]+'.00';
-
-	            // var a=register.datetime.substr(0,10) + ' ' + register.datetime.substr(11);
 	            var date = new Date(register.datetime);
 	            var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
-	            console.log('utc=' + utc);
-	            var datetime = new Date(utc).toISOString(); //;.slice(0,datetime.length-2)//.split('.')[0];
+	            var datetime = new Date(utc).toISOString();
 	            datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
 	            datetime = datetime.slice(0, datetime.length - 2);
-
-	            console.log('removeRegister.datetime= ' + datetime);
 	            var newRegister = {
-	                datetime: datetime, //register.datetime,
+	                datetime: datetime,
 	                name: register.name,
 	                status: 'available'
 	            };
@@ -30566,10 +30560,9 @@
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this3.setState({ REGISTERS: data });
-	                    _this3.setState({ registers: data });
+	                    _this3.setState({ registers: [] });
 	                });
 	            });
-
 	            // var newArray = this.state.registers;
 	            //
 	            // newArray.filter(function (item) {
@@ -30577,8 +30570,7 @@
 	            //     if (index !== -1)  item.status = 'busy';
 	            //     return item;
 	            // });
-	            // this.setState({registers: newArray});
-
+	            //this.setState({registers: newArray});
 	        }
 	    }, {
 	        key: 'render',
@@ -30805,12 +30797,9 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-	                //  console.log('date.getTimezoneOffset()='+date.getTimezoneOffset());
 	                var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
-	                //console.log('utc='+utc);
 	                var datetime = new Date(utc).toISOString().split('.')[0];
 	                datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
-	                //  console.log('datetime='+datetime);
 	                var newRegister = {
 	                    datetime: datetime,
 	                    name: this.state.names,

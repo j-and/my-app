@@ -51,25 +51,15 @@ class DayList extends Component {
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then((response) => {
-            response.json().then((data) => {
-                this.setState({REGISTERS: data});
-                this.setState({registers: data});
-            })
+        }).then(
+            (response) => {
+                response.json().then((data) => {
+                    this.setState({REGISTERS: data});
+                    this.setState({registers: []});
+                })
 
-        });
-
-
-        // var newArray = this.state.registers;
-        //
-        // newArray.filter(function (item) {
-        //     var index = item.time.indexOf(newRegister.time);
-        //     if (index !== -1)  item.status = 'busy';
-        //     return item;
-        // });
-        // this.setState({registers: newArray});
-
-
+            }
+        );
     }
 
     render() {
