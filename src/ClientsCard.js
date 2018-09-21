@@ -34,14 +34,13 @@ class ClientsCard extends Component {
         event.preventDefault();
         var newClient = {
             clientName: this.state.clientName,
-            clientBirthDate: this.state.clientBirthDate,
+            clientBirthDate: this.state.clientBirthDate==0 ? null:this.state.clientBirthDate,
             clientDesease: this.state.clientDesease,
             clientPhone: this.state.clientPhone,
             clientEmail: this.state.clientEmail,
             clientDescription: this.state.clientDescription
         };
         sendClientData(newClient);
-        this.refs.registerForm.reset();
     }
 
 
@@ -54,7 +53,7 @@ class ClientsCard extends Component {
                 <form ref="registerForm" onSubmit={this.handleSubmit}>
                     <label>Name</label>
                     <FieldGroup type="text" label="Name" placeholder="Enter text" onChange={this.handleInputChange}
-                                name="clientName"/>
+                                name="clientName" required/>
                     <div className="col-xs-6 client_col_left">
                         <label>Desease</label>
                         <FieldGroup type="text" label="Desease" placeholder="Enter text"

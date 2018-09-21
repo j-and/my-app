@@ -59,17 +59,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(28);
+	var _template = __webpack_require__(29);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(29);
+	var bodyParser = __webpack_require__(30);
 
-	var express = __webpack_require__(30);
+	var express = __webpack_require__(31);
 	var server = express();
-	var mysql = __webpack_require__(31);
+	var mysql = __webpack_require__(32);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -234,6 +234,22 @@ module.exports =
 	    });
 	});
 
+	server.get('/getClients', function (req, res) {
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+	    con.connect(function (err) {
+	        if (err) throw err;
+	        con.query("SELECT * FROM clients", function (err, result) {
+	            if (err) throw err;
+	            res.send(result);
+	        });
+	    });
+	});
+
 	server.listen(3000);
 
 /***/ }),
@@ -274,17 +290,17 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(16);
+	var _Calendar = __webpack_require__(17);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(24);
+	var _reactRouterDom = __webpack_require__(25);
 
-	var _Navbar = __webpack_require__(25);
+	var _Navbar = __webpack_require__(26);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(26);
+	var _Nav = __webpack_require__(27);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
@@ -292,7 +308,7 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(27);
+	var _FormGroup = __webpack_require__(28);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -429,6 +445,10 @@ module.exports =
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
+	var _ClientsList = __webpack_require__(16);
+
+	var _ClientsList2 = _interopRequireDefault(_ClientsList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -466,12 +486,17 @@ module.exports =
 	                null,
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-sm-8' },
+	                    { className: 'col-sm-3' },
+	                    _react2.default.createElement(_ClientsList2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-sm-6' },
 	                    _react2.default.createElement(_ClientsCard2.default, null)
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-sm-4' },
+	                    { className: 'col-sm-3' },
 	                    _react2.default.createElement(_ClientsHistory2.default, null)
 	                )
 	            );
@@ -482,6 +507,8 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = Client;
+	// <div className="col-sm-8"><ClientsCard></ClientsCard></div>
+	// <div className="col-sm-4"><ClientsHistory></ClientsHistory></div>
 
 /***/ }),
 /* 6 */
@@ -560,14 +587,13 @@ module.exports =
 	            event.preventDefault();
 	            var newClient = {
 	                clientName: this.state.clientName,
-	                clientBirthDate: this.state.clientBirthDate,
+	                clientBirthDate: this.state.clientBirthDate == 0 ? null : this.state.clientBirthDate,
 	                clientDesease: this.state.clientDesease,
 	                clientPhone: this.state.clientPhone,
 	                clientEmail: this.state.clientEmail,
 	                clientDescription: this.state.clientDescription
 	            };
 	            (0, _methods.sendClientData)(newClient);
-	            this.refs.registerForm.reset();
 	        }
 	    }, {
 	        key: 'render',
@@ -591,7 +617,7 @@ module.exports =
 	                        'Name'
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text', onChange: this.handleInputChange,
-	                        name: 'clientName' }),
+	                        name: 'clientName', required: true }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-xs-6 client_col_left' },
@@ -993,15 +1019,110 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(17);
+	var _ListGroup = __webpack_require__(13);
+
+	var _ListGroup2 = _interopRequireDefault(_ListGroup);
+
+	var _Visit = __webpack_require__(14);
+
+	var _Visit2 = _interopRequireDefault(_Visit);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ClientsList = function (_Component) {
+	    _inherits(ClientsList, _Component);
+
+	    function ClientsList(props) {
+	        _classCallCheck(this, ClientsList);
+
+	        var _this = _possibleConstructorReturn(this, (ClientsList.__proto__ || Object.getPrototypeOf(ClientsList)).call(this, props));
+
+	        _this.state = {
+	            CLIENTS: []
+	        };
+	        return _this;
+	    }
+
+	    _createClass(ClientsList, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            fetch('/getClients', {
+	                method: 'GET'
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    console.log('data= ' + data.length);
+	                    _this2.setState({ CLIENTS: data });
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            var sortedArr = this.state.CLIENTS;
+	            console.log('sortedArray=' + sortedArr.length);
+	            var listItems = sortedArr.map(function (number) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    null,
+	                    number
+	                );
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Clients list'
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    listItems
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ClientsList;
+	}(_react.Component);
+
+	exports.default = ClientsList;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MonthTable = __webpack_require__(18);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(22);
+	var _LoginForm = __webpack_require__(23);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(23);
+	var _MonthNavigation = __webpack_require__(24);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1092,7 +1213,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1107,11 +1228,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(18);
+	var _DayList = __webpack_require__(19);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(21);
+	var _Table = __webpack_require__(22);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -1429,7 +1550,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1444,11 +1565,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(19);
+	var _RegisterList = __webpack_require__(20);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(20);
+	var _ClientNameInput = __webpack_require__(21);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1580,7 +1701,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1691,7 +1812,7 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1827,13 +1948,13 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1954,7 +2075,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2034,31 +2155,31 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormGroup");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2075,19 +2196,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

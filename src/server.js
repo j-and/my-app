@@ -177,4 +177,21 @@ server.post('/getVisits', function (req, res) {
 
 });
 
+server.get('/getClients', function (req, res) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query("SELECT * FROM clients", function (err, result) {
+            if (err) throw err;
+            res.send(result);
+        });
+    });
+
+});
+
 server.listen(3000);
