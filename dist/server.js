@@ -227,7 +227,7 @@ module.exports =
 
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("SELECT * FROM registers WHERE name = " + mysql.escape(req.body.clientName), function (err, result) {
+	        con.query("SELECT * FROM visits WHERE clientName = " + mysql.escape(req.body.clientName), function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
 	        });
@@ -776,7 +776,7 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var obj = { clientName: 'dsf' };
+	            var obj = { clientName: 'ann doe' };
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -922,7 +922,8 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
+	            var time = new Date(this.props.clientInfo.datetime);
+	            time = time.toDateString();
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -932,7 +933,7 @@ module.exports =
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,
-	                        this.props.clientInfo.datetime
+	                        time
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
@@ -1651,7 +1652,6 @@ module.exports =
 	                        if (time.length == 4) {
 	                            time = '0' + time;
 	                        }
-
 	                        return _react2.default.createElement(
 	                            'li',
 	                            { className: 'register_list' },

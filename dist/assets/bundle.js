@@ -29366,7 +29366,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var obj = { clientName: 'dsf' };
+	            var obj = { clientName: 'ann doe' };
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -29973,7 +29973,8 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
+	            var time = new Date(this.props.clientInfo.datetime);
+	            time = time.toDateString();
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -29983,7 +29984,7 @@
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,
-	                        this.props.clientInfo.datetime
+	                        time
 	                    ),
 	                    _react2.default.createElement(
 	                        'span',
@@ -30696,7 +30697,6 @@
 	                        if (time.length == 4) {
 	                            time = '0' + time;
 	                        }
-
 	                        return _react2.default.createElement(
 	                            'li',
 	                            { className: 'register_list' },

@@ -232,3 +232,8 @@ label {
     display: none;
   }
 }
+
+.list-group-item{
+  display: flex;
+  justify-content: space-around;
+}
