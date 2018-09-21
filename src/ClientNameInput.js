@@ -43,6 +43,8 @@ class ClientNameInput extends Component {
             this.props.addRegister(this.state.registers);
             sendData(newRegister);
             this.refs.registerForm.reset();
+            this.setState({times: ''});
+            this.setState({names: ''});
         }
         else {
             alert("Enter name");

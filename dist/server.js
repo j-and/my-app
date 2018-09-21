@@ -173,7 +173,6 @@ module.exports =
 	        password: "root",
 	        database: "my_db"
 	    });
-	    console.log('req.body.datetime= ' + req.body.datetime);
 	    con.connect(function (err) {
 	        if (err) throw err;
 	        con.query("DELETE FROM `my_db`.`registers` WHERE `datetime`=" + mysql.escape(req.body.datetime), function (err, result) {
@@ -1519,14 +1518,6 @@ module.exports =
 	                    _this3.setState({ registers: [] });
 	                });
 	            });
-	            // var newArray = this.state.registers;
-	            //
-	            // newArray.filter(function (item) {
-	            //     var index = item.time.indexOf(newRegister.time);
-	            //     if (index !== -1)  item.status = 'busy';
-	            //     return item;
-	            // });
-	            //this.setState({registers: newArray});
 	        }
 	    }, {
 	        key: 'render',
@@ -1767,6 +1758,8 @@ module.exports =
 	                this.props.addRegister(this.state.registers);
 	                (0, _methods.sendData)(newRegister);
 	                this.refs.registerForm.reset();
+	                this.setState({ times: '' });
+	                this.setState({ names: '' });
 	            } else {
 	                alert("Enter name");
 	            }

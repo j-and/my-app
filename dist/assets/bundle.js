@@ -30563,14 +30563,6 @@
 	                    _this3.setState({ registers: [] });
 	                });
 	            });
-	            // var newArray = this.state.registers;
-	            //
-	            // newArray.filter(function (item) {
-	            //     var index = item.time.indexOf(newRegister.time);
-	            //     if (index !== -1)  item.status = 'busy';
-	            //     return item;
-	            // });
-	            //this.setState({registers: newArray});
 	        }
 	    }, {
 	        key: 'render',
@@ -30811,6 +30803,8 @@
 	                this.props.addRegister(this.state.registers);
 	                (0, _methods.sendData)(newRegister);
 	                this.refs.registerForm.reset();
+	                this.setState({ times: '' });
+	                this.setState({ names: '' });
 	            } else {
 	                alert("Enter name");
 	            }
