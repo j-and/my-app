@@ -47,7 +47,7 @@ server.post('/addRegister', function (req, res) {
         if (err) {
             throw err;
         }
-        var values = [[req.body.datetime, req.body.name, req.body.status]];
+        var values = [[req.body.datetime, req.body.name, 'busy']];
         con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });

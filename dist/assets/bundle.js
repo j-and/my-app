@@ -29259,7 +29259,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.sendClientData = exports.sendData = undefined;
+	exports.dateToTimestamp = exports.sendClientData = exports.sendData = undefined;
 
 	var _nodeFetch = __webpack_require__(337);
 
@@ -29288,6 +29288,15 @@
 	    }).then(function (response) {}, function (error) {
 	        console.log('error= ' + error);
 	    });
+	};
+
+	var dateToTimestamp = exports.dateToTimestamp = function dateToTimestamp(dateString) {
+	    var date = new Date(dateString);
+	    var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
+	    var datetime = new Date(utc).toISOString();
+	    datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+	    datetime = datetime.slice(0, datetime.length - 2);
+	    return datetime;
 	};
 
 /***/ }),
@@ -30487,6 +30496,8 @@
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
+	var _methods = __webpack_require__(336);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30541,11 +30552,7 @@
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            var date = new Date(register.datetime);
-	            var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
-	            var datetime = new Date(utc).toISOString();
-	            datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
-	            datetime = datetime.slice(0, datetime.length - 2);
+	            var datetime = (0, _methods.dateToTimestamp)(register.datetime);
 	            var newRegister = {
 	                datetime: datetime,
 	                name: register.name,
@@ -30577,14 +30584,18 @@
 	            var REGISTERS = this.state.REGISTERS;
 
 	            var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-	                var month = register.datetime.slice(5, 7);
-	                var day = register.datetime.slice(8, 10);
-	                var time = register.datetime.slice(11, 13) /** 1 + 3*/ + '.00';
+	                var datetime = (0, _methods.dateToTimestamp)(register.datetime);
+	                datetime = datetime.slice(0, datetime.length - 2);
+
+	                var month = datetime.slice(5, 7);
+	                var day = datetime.slice(8, 10);
+	                var time = datetime.slice(11, 13) + '.00'; //:00:00';
+
 	                if (time.length == 4) {
 	                    time = '0' + time;
 	                }
 	                if (month == currentMonth && day == currentDay && register.status == 'busy') {
-	                    var index = busyTime.indexOf(time /*register.datetime*/);
+	                    var index = busyTime.indexOf(time);
 	                    if (index !== -1) busyTime.splice(index, 1);
 	                    return register;
 	                }
@@ -30636,6 +30647,8 @@
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
+	var _methods = __webpack_require__(336);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30664,8 +30677,8 @@
 
 	            function sortByKey(array, key) {
 	                return array.sort(function (a, b) {
-	                    var x = a[key];
-	                    var y = b[key];
+	                    var x = (0, _methods.dateToTimestamp)(a[key]);
+	                    var y = (0, _methods.dateToTimestamp)(b[key]);
 	                    return x < y ? -1 : x > y ? 1 : 0;
 	                });
 	            }
@@ -30789,9 +30802,8 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-	                var utc = date.getTime() + -date.getTimezoneOffset() * 60000;
-	                var datetime = new Date(utc).toISOString().split('.')[0];
-	                datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+
+	                var datetime = (0, _methods.dateToTimestamp)(date);
 	                var newRegister = {
 	                    datetime: datetime,
 	                    name: this.state.names,

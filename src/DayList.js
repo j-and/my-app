@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 var fetch = require("node-fetch");
 import RegisterList from './RegisterList.js';
 import ClientNameInput from './ClientNameInput.js';
+import {dateToTimestamp} from './methods.js';
 
 class DayList extends Component {
 
@@ -35,11 +36,7 @@ class DayList extends Component {
     }
 
     removeRegister(register) {
-        var date = new Date(register.datetime);
-        var utc = date.getTime() + (-date.getTimezoneOffset() * 60000);
-        var datetime = (new Date(utc)).toISOString();
-        datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
-        datetime = datetime.slice(0, datetime.length - 2);
+        var datetime = dateToTimestamp(register.datetime);
         var newRegister = {
             datetime: datetime,
             name: register.name,
@@ -73,14 +70,18 @@ class DayList extends Component {
         var REGISTERS = this.state.REGISTERS;
 
         var filteredArray = REGISTERS.concat(arr).filter(function (register) {
-            var month = register.datetime.slice(5, 7);
-            var day = register.datetime.slice(8, 10);
-            var time = register.datetime.slice(11, 13) /** 1 + 3*/ + '.00';
+            var datetime = dateToTimestamp(register.datetime);
+            datetime = datetime.slice(0, datetime.length - 2);
+
+            var month = datetime.slice(5, 7);
+            var day = datetime.slice(8, 10);
+            var time = datetime.slice(11, 13) + '.00';//:00:00';
+
             if (time.length == 4) {
                 time = '0' + time;
             }
             if (month == currentMonth && day == currentDay && register.status == 'busy') {
-                var index = busyTime.indexOf(time/*register.datetime*/);
+                var index = busyTime.indexOf(time);
                 if (index !== -1) busyTime.splice(index, 1);
                 return register;
             }

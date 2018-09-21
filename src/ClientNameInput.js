@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import {sendData} from './methods.js';
+import {dateToTimestamp} from './methods.js';
 
 
 class ClientNameInput extends Component {
@@ -29,9 +30,8 @@ class ClientNameInput extends Component {
         event.preventDefault();
         if (this.state.times && this.state.names) {
             var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-            var utc = date.getTime() + (-date.getTimezoneOffset() * 60000);
-            var datetime = (new Date(utc)).toISOString().split('.')[0];
-            datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
+
+            var datetime = dateToTimestamp(date);
             var newRegister = {
                 datetime: datetime,
                 name: this.state.names,

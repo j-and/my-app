@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import {dateToTimestamp} from './methods.js';
 
 class RegisterList extends Component {
 
@@ -15,8 +16,8 @@ class RegisterList extends Component {
 
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
-                var x = a[key];
-                var y = b[key];
+                var x = dateToTimestamp(a[key]);
+                var y = dateToTimestamp(b[key]);                
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
         }
@@ -31,7 +32,6 @@ class RegisterList extends Component {
                         if (time.length == 4) {
                             time = '0' + time;
                         }
-
                         return <li className="register_list"><span className="register_time">{time}</span><span
                             className="register_name">{sortedArr[key].name}</span>
                              <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
