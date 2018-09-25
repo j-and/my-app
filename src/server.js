@@ -194,4 +194,25 @@ server.get('/getClients', function (req, res) {
 
 });
 
+server.post('/switchClient', function (req, res) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    con.connect(function (err) {
+        if (err) throw err;
+        console.log('req.body.name='+req.body.name);
+        con.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name),
+            function (err, result) {
+                if (err) throw err;
+                // con.query("SELECT * FROM registers", function (err, result) {
+                    // if (err) throw err;
+                    res.send(result);
+                // });
+            });
+    });
+});
+
 server.listen(3000);

@@ -22,11 +22,12 @@ class ClientsList extends Component {
     }
 
     render() {
-
+        var switchClient = this.props.switchClient;
         var sortedArr = this.state.CLIENTS;
 console.log('sortedArray='+sortedArr.length);
-        var listItems = sortedArr.map((number) =>
-            <li>{number}</li>
+        var listItems = sortedArr.map((client) =>
+       
+            <li><button onClick={() => { switchClient(client.name)}}>{client.name}</button></li>
         );
         return (
             <div>

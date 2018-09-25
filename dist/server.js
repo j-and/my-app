@@ -250,6 +250,26 @@ module.exports =
 	    });
 	});
 
+	server.post('/switchClient', function (req, res) {
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+	    con.connect(function (err) {
+	        if (err) throw err;
+	        console.log('req.body.name=' + req.body.name);
+	        con.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name), function (err, result) {
+	            if (err) throw err;
+	            // con.query("SELECT * FROM registers", function (err, result) {
+	            // if (err) throw err;
+	            res.send(result);
+	            // });
+	        });
+	    });
+	});
+
 	server.listen(3000);
 
 /***/ }),
@@ -465,11 +485,11 @@ module.exports =
 
 	        var _this = _possibleConstructorReturn(this, (Client.__proto__ || Object.getPrototypeOf(Client)).call(this, props));
 
-	        _this.state = {}
-	        // isOpen: '',//true,
-
-	        // this.toggleModal = this.toggleModal.bind(this);
-	        ;return _this;
+	        _this.state = {
+	            client: {}
+	            // this.toggleModal = this.toggleModal.bind(this);
+	        };_this.switchClient = _this.switchClient.bind(_this);
+	        return _this;
 	    }
 
 	    // toggleModal() {
@@ -479,6 +499,32 @@ module.exports =
 	    // }
 
 	    _createClass(Client, [{
+	        key: 'switchClient',
+	        value: function switchClient(clientName) {
+	            var _this2 = this;
+
+	            console.log('switchClient');
+	            // var datetime = dateToTimestamp(register.datetime);
+	            var client = {
+	                name: clientName
+	                //     name: register.name,
+	                //     status: 'available'
+	            };
+	            fetch('/switchClient', {
+	                method: "POST",
+	                body: JSON.stringify(client),
+	                headers: {
+	                    "Content-Type": "application/json"
+	                }
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    console.log('data=' + data);
+	                    _this2.setState({ client: data });
+	                    //this.setState({registers: []});
+	                });
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -487,12 +533,12 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, null)
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
-	                    _react2.default.createElement(_ClientsCard2.default, null)
+	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -598,7 +644,7 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
+	            var clientName = this.props.client;
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -606,7 +652,7 @@ module.exports =
 	                    'h2',
 	                    null,
 	                    ' Clients card ',
-	                    this.state.clientName
+	                    clientName
 	                ),
 	                _react2.default.createElement(
 	                    'form',
@@ -1066,14 +1112,20 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
+	            var switchClient = this.props.switchClient;
 	            var sortedArr = this.state.CLIENTS;
 	            console.log('sortedArray=' + sortedArr.length);
-	            var listItems = sortedArr.map(function (number) {
+	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    'li',
 	                    null,
-	                    number
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: function onClick() {
+	                                switchClient(client.name);
+	                            } },
+	                        client.name
+	                    )
 	                );
 	            });
 	            return _react2.default.createElement(

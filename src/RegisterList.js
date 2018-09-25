@@ -22,7 +22,7 @@ class RegisterList extends Component {
             });
         }
 
-        var removeRegister = this.props.removeRegister;
+       var removeRegister = this.props.removeRegister;
 
         return (
             <div>

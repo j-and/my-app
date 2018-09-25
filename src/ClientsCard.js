@@ -45,10 +45,10 @@ class ClientsCard extends Component {
 
 
     render() {
-
+        var clientName = this.props.client.name;
         return (
             <div>
-                <h2> Clients card {this.state.clientName}</h2>
+                <h2> Clients card {clientName}</h2>
 
                 <form ref="registerForm" onSubmit={this.handleSubmit}>
                     <label>Name</label>
