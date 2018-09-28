@@ -26029,11 +26029,9 @@
 	            var _this2 = this;
 
 	            console.log('switchClient');
-	            // var datetime = dateToTimestamp(register.datetime);
+
 	            var client = {
 	                name: clientName
-	                //     name: register.name,
-	                //     status: 'available'
 	            };
 	            fetch('/switchClient', {
 	                method: "POST",
@@ -26043,9 +26041,7 @@
 	                }
 	            }).then(function (response) {
 	                response.json().then(function (data) {
-	                    console.log('data=' + data);
-	                    _this2.setState({ client: data });
-	                    //this.setState({registers: []});
+	                    _this2.setState({ client: data[0] });
 	                });
 	            });
 	        }
@@ -26078,8 +26074,6 @@
 	}(_react.Component);
 
 	exports.default = Client;
-	// <div className="col-sm-8"><ClientsCard></ClientsCard></div>
-	// <div className="col-sm-4"><ClientsHistory></ClientsHistory></div>
 
 /***/ }),
 /* 230 */
@@ -26131,7 +26125,7 @@
 
 	        _this.state = {
 	            clientName: "",
-	            clientBirthDate: "",
+	            clientBirthDate: new Date('09/09/2018'),
 	            clientDesease: "",
 	            clientPhone: "",
 	            clientEmail: "",
@@ -26158,7 +26152,7 @@
 	            event.preventDefault();
 	            var newClient = {
 	                clientName: this.state.clientName,
-	                clientBirthDate: this.state.clientBirthDate == 0 ? null : this.state.clientBirthDate,
+	                clientBirthDate: this.state.clientBirthDate,
 	                clientDesease: this.state.clientDesease,
 	                clientPhone: this.state.clientPhone,
 	                clientEmail: this.state.clientEmail,
@@ -26169,7 +26163,21 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var clientName = this.props.client;
+	            var client = this.props.client;
+	            var a = new Date(client.birthdate);
+	            var month = a.getMonth() + '';
+	            if (month.length == 1) {
+	                month = '0' + month;
+	            }
+	            var day = a.getDate() + '';
+	            if (day.length == 1) {
+	                day = '0' + day;
+	            }
+	            a = a.getFullYear() + '-' + month + '-' + day;
+	            console.log('a=' + a);
+
+	            var birthdate = a;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -26177,7 +26185,7 @@
 	                    'h2',
 	                    null,
 	                    ' Clients card ',
-	                    clientName
+	                    client.name
 	                ),
 	                _react2.default.createElement(
 	                    'form',
@@ -26197,14 +26205,14 @@
 	                            null,
 	                            'Desease'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: 'Enter text',
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: client.desease,
 	                            onChange: this.handleInputChange, name: 'clientDesease' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Date of birth'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', placeholder: 'Enter text',
+	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', value: birthdate,
 	                            onChange: this.handleInputChange, name: 'clientBirthDate' })
 	                    ),
 	                    _react2.default.createElement(
@@ -26215,14 +26223,14 @@
 	                            null,
 	                            'Phone'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: 'Enter phone',
+	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: client.phone,
 	                            onChange: this.handleInputChange, name: 'clientPhone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Email'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: 'Enter email',
+	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: client.email,
 	                            onChange: this.handleInputChange, name: 'clientEmail' })
 	                    ),
 	                    _react2.default.createElement(
@@ -26230,7 +26238,7 @@
 	                        null,
 	                        'Description'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: 'Enter description', rows: '15',
+	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: client.description, rows: '15',
 	                        onChange: this.handleInputChange, name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,

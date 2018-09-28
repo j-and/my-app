@@ -8,24 +8,13 @@ class Client extends Component {
         super(props);
         this.state = {
             client: {}
-        }
-        // this.toggleModal = this.toggleModal.bind(this);
+        };
         this.switchClient = this.switchClient.bind(this);
     }
 
-    // toggleModal() {
-    //     this.setState({
-    //         isOpen: !this.state.isOpen
-    //     });
-    // }
-
     switchClient(clientName) {
-        console.log('switchClient');
-        // var datetime = dateToTimestamp(register.datetime);
         var client = {
-            name: clientName,
-        //     name: register.name,
-        //     status: 'available'
+            name: clientName
         };
         fetch('/switchClient', {
             method: "POST",
@@ -36,11 +25,9 @@ class Client extends Component {
         }).then(
             (response) => {
                 response.json().then((data) => {
-                    console.log('data='+data);
-                    this.setState({client: data});
-                    //this.setState({registers: []});
+                    this.setState({client: data[0]});
                 })
-        
+
             }
         );
     }
@@ -48,7 +35,7 @@ class Client extends Component {
     render() {
         return (
             <div>
-                <div className="col-sm-3"><ClientsList  switchClient={this.switchClient}/></div>
+                <div className="col-sm-3"><ClientsList switchClient={this.switchClient}/></div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}></ClientsCard></div>
                 <div className="col-sm-3"><ClientsHistory></ClientsHistory></div>
             </div>
@@ -57,5 +44,3 @@ class Client extends Component {
 }
 
 export default Client;
-// <div className="col-sm-8"><ClientsCard></ClientsCard></div>
-// <div className="col-sm-4"><ClientsHistory></ClientsHistory></div>

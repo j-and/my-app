@@ -3,13 +3,14 @@ import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
 import {sendClientData} from './methods.js';
+import {dateToTimestamp} from './methods.js';
 
 class ClientsCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             clientName: "",
-            clientBirthDate: "",
+            clientBirthDate: new Date('09/09/2018'),
             clientDesease: "",
             clientPhone: "",
             clientEmail: "",
@@ -34,7 +35,7 @@ class ClientsCard extends Component {
         event.preventDefault();
         var newClient = {
             clientName: this.state.clientName,
-            clientBirthDate: this.state.clientBirthDate==0 ? null:this.state.clientBirthDate,
+            clientBirthDate: this.state.clientBirthDate,
             clientDesease: this.state.clientDesease,
             clientPhone: this.state.clientPhone,
             clientEmail: this.state.clientEmail,
@@ -45,10 +46,23 @@ class ClientsCard extends Component {
 
 
     render() {
-        var clientName = this.props.client.name;
+        var client = this.props.client;
+        var a = new Date(client.birthdate);
+        var month = a.getMonth() + '';
+        if (month.length == 1) {
+            month = '0' + month;
+        }
+        var day = a.getDate() + '';
+        if (day.length == 1) {
+            day = '0' + day;
+        }
+        a = a.getFullYear() + '-' + month + '-' + day;
+
+        var birthdate = (a);
+
         return (
             <div>
-                <h2> Clients card {clientName}</h2>
+                <h2> Clients card {client.name}</h2>
 
                 <form ref="registerForm" onSubmit={this.handleSubmit}>
                     <label>Name</label>
@@ -56,22 +70,22 @@ class ClientsCard extends Component {
                                 name="clientName" required/>
                     <div className="col-xs-6 client_col_left">
                         <label>Desease</label>
-                        <FieldGroup type="text" label="Desease" placeholder="Enter text"
+                        <FieldGroup type="text" label="Desease" placeholder={client.desease}
                                     onChange={this.handleInputChange} name="clientDesease"/>
                         <label>Date of birth</label>
-                        <FieldGroup type="date" label="Date of birth" placeholder="Enter text"
+                        <FieldGroup type="date" label="Date of birth" value={birthdate}
                                     onChange={this.handleInputChange} name="clientBirthDate"/>
                     </div>
                     <div className="col-xs-6 client_col_right">
                         <label>Phone</label>
-                        <FieldGroup type="phone" label="Phone" placeholder="Enter phone"
+                        <FieldGroup type="phone" label="Phone" placeholder={client.phone}
                                     onChange={this.handleInputChange} name="clientPhone"/>
                         <label>Email</label>
-                        <FieldGroup type="email" label="Email address" placeholder="Enter email"
+                        <FieldGroup type="email" label="Email address" placeholder={client.email}
                                     onChange={this.handleInputChange} name="clientEmail"/>
                     </div>
                     <label>Description</label>
-                    <FieldGroup componentClass="textarea" placeholder="Enter description" rows="15"
+                    <FieldGroup componentClass="textarea" placeholder={client.description} rows="15"
                                 onChange={this.handleInputChange} name="clientDescription"/>
                     <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add">
                         Save changes
