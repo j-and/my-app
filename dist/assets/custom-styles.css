@@ -150,4 +150,10 @@ label {
   display: flex;
   justify-content: space-around; }
 
+.clients_list {
+  list-style: none; }
+  .clients_list a:hover {
+    cursor: pointer;
+    border-bottom: 2px solid #FF6C36; }
+
 /*# sourceMappingURL=custom-styles.css.map */

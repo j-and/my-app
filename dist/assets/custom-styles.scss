@@ -237,3 +237,11 @@ label {
   display: flex;
   justify-content: space-around;
 }
+.clients_list{
+  list-style: none;
+
+  a:hover{
+    cursor:pointer;
+    border-bottom: 2px solid $red;
+  }
+}

@@ -259,13 +259,9 @@ module.exports =
 	    });
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        console.log('req.body.name=' + req.body.name);
 	        con.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name), function (err, result) {
 	            if (err) throw err;
-	            // con.query("SELECT * FROM registers", function (err, result) {
-	            // if (err) throw err;
 	            res.send(result);
-	            // });
 	        });
 	    });
 	});
@@ -332,7 +328,7 @@ module.exports =
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -457,7 +453,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ClientsCard = __webpack_require__(6);
+	var _Button = __webpack_require__(6);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _ClientsCard = __webpack_require__(7);
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
@@ -487,23 +487,15 @@ module.exports =
 
 	        _this.state = {
 	            client: {}
-	            // this.toggleModal = this.toggleModal.bind(this);
-	        };_this.switchClient = _this.switchClient.bind(_this);
+	        };
+	        _this.switchClient = _this.switchClient.bind(_this);
 	        return _this;
 	    }
-
-	    // toggleModal() {
-	    //     this.setState({
-	    //         isOpen: !this.state.isOpen
-	    //     });
-	    // }
 
 	    _createClass(Client, [{
 	        key: 'switchClient',
 	        value: function switchClient(clientName) {
 	            var _this2 = this;
-
-	            console.log('switchClient');
 
 	            var client = {
 	                name: clientName
@@ -529,7 +521,12 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient })
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient }),
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { bsStyle: 'success', type: 'submit', value: 'Add' },
+	                        'Add new'
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -539,7 +536,7 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsHistory2.default, null)
+	                    _react2.default.createElement(_ClientsHistory2.default, { client: this.state.client })
 	                )
 	            );
 	        }
@@ -552,6 +549,12 @@ module.exports =
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Button");
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -560,13 +563,15 @@ module.exports =
 	    value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -618,12 +623,15 @@ module.exports =
 	            var value = target.value;
 	            var name = target.name;
 
+	            //if(typeof value==Object){
+	            console.log('value= ' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + value);
+	            //}
 	            this.setState(_defineProperty({}, name, value));
 	        }
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
-	            alert('An essay was submitted: ' + this.state.clientDescription);
+	            alert('Data was submitted: ' + this.state.clientName);
 	            event.preventDefault();
 	            var newClient = {
 	                clientName: this.state.clientName,
@@ -634,6 +642,9 @@ module.exports =
 	                clientDescription: this.state.clientDescription
 	            };
 	            (0, _methods.sendClientData)(newClient);
+	            this.refs.registerForm.reset();
+	            // this.setState({times: ''});
+	            // this.setState({names: ''});
 	        }
 	    }, {
 	        key: 'render',
@@ -649,7 +660,6 @@ module.exports =
 	                day = '0' + day;
 	            }
 	            a = a.getFullYear() + '-' + month + '-' + day;
-	            console.log('a=' + a);
 
 	            var birthdate = a;
 
@@ -729,12 +739,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = ClientsCard;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/Button");
 
 /***/ }),
 /* 8 */
@@ -845,7 +849,7 @@ module.exports =
 
 	        _this.state = {
 	            clientInfo: {},
-	            clientName: 'john doe',
+	            clientName: _this.props.client.name,
 	            VISITS: []
 	        };
 	        return _this;
@@ -856,7 +860,7 @@ module.exports =
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            var obj = { clientName: 'ann doe' };
+	            var obj = { clientName: this.props.client.name };
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -874,6 +878,7 @@ module.exports =
 	        value: function render() {
 
 	            var sortedArr = this.state.VISITS;
+	            //var client = this.props.client;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -931,7 +936,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -1077,10 +1082,6 @@ module.exports =
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
-	var _Visit = __webpack_require__(14);
-
-	var _Visit2 = _interopRequireDefault(_Visit);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1128,7 +1129,7 @@ module.exports =
 	                    'li',
 	                    null,
 	                    _react2.default.createElement(
-	                        'button',
+	                        'a',
 	                        { onClick: function onClick() {
 	                                switchClient(client.name);
 	                            } },
@@ -1146,7 +1147,7 @@ module.exports =
 	                ),
 	                _react2.default.createElement(
 	                    'ul',
-	                    null,
+	                    { className: 'clients_list' },
 	                    listItems
 	                )
 	            );
@@ -1776,7 +1777,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -1887,7 +1888,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -2033,7 +2034,7 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -2150,7 +2151,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(7);
+	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Visit from './Visit.js';
+
 
 class ClientsList extends Component {
     constructor(props) {
@@ -27,15 +27,17 @@ class ClientsList extends Component {
 console.log('sortedArray='+sortedArr.length);
         var listItems = sortedArr.map((client) =>
        
-            <li><button onClick={() => { switchClient(client.name)}}>{client.name}</button></li>
+            <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
         );
         return (
             <div>
                 <h2> Clients list</h2>
-            <ul>
+            <ul className='clients_list'>
                 {listItems}
             </ul>
+               
             </div>
+           
         );
 
     }

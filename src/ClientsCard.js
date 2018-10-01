@@ -24,14 +24,17 @@ class ClientsCard extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
+        
+//if(typeof value==Object){
+    console.log('value= '+typeof value+value);
+//}
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        alert('An essay was submitted: ' + this.state.clientDescription);
+        alert('Data was submitted: ' + this.state.clientName);
         event.preventDefault();
         var newClient = {
             clientName: this.state.clientName,
@@ -42,6 +45,9 @@ class ClientsCard extends Component {
             clientDescription: this.state.clientDescription
         };
         sendClientData(newClient);
+        this.refs.registerForm.reset();
+        // this.setState({times: ''});
+        // this.setState({names: ''});
     }
 
 

@@ -7,13 +7,14 @@ class ClientsHistory extends Component {
         super(props);
         this.state = {
             clientInfo:{},
-           clientName: 'john doe',
+           clientName: this.props.client.name,
             VISITS: []
         }
     }
 
     componentDidMount() {
-        var obj = {clientName: 'ann doe'};
+        var obj = {clientName: this.props.client.name};
+        console.log('this.props.client.name='+this.props.client.name);
         fetch('/getVisits', {
             method: 'POST',
             body: JSON.stringify(obj),
@@ -30,6 +31,7 @@ class ClientsHistory extends Component {
     render() {
 
         var sortedArr = this.state.VISITS;
+        //var client = this.props.client;
 
         return (
             <div>
