@@ -31,12 +31,12 @@ class ClientsHistory extends Component {
     render() {
 
         var sortedArr = this.state.VISITS;
-        //var client = this.props.client;
+        var client = this.props.client;
 
         return (
             <div>
                 <h2> Clients history</h2>
-                <label>Visits of {this.state.clientName}</label>
+                <label>Visits of {client.name}</label>
                 <ListGroup >
                     {Object.keys(sortedArr).map(function (key) {
                         return <Visit clientInfo={sortedArr[key]}> </Visit>;

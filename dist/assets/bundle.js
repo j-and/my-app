@@ -29419,6 +29419,7 @@
 	            var _this2 = this;
 
 	            var obj = { clientName: this.props.client.name };
+	            console.log('this.props.client.name=' + this.props.client.name);
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -29436,7 +29437,7 @@
 	        value: function render() {
 
 	            var sortedArr = this.state.VISITS;
-	            //var client = this.props.client;
+	            var client = this.props.client;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -29450,7 +29451,7 @@
 	                    'label',
 	                    null,
 	                    'Visits of ',
-	                    this.state.clientName
+	                    client.name
 	                ),
 	                _react2.default.createElement(
 	                    _ListGroup2.default,
@@ -30337,11 +30338,9 @@
 	    _createClass(MonthTable, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            // fetch('/clearRegistersDB', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            //
-	            // });
+	            fetch('/clearRegistersDB', {
+	                method: 'GET'
+	            }).then(function (response) {});
 
 	            // fetch('/setMockRegistersData', {
 	            //     method: 'GET'

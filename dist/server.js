@@ -116,7 +116,11 @@ module.exports =
 	            throw err;
 	        }
 	        var values = [[req.body.datetime, req.body.name, 'busy']];
+	        var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
 	        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
+	            if (err) throw err;
+	        });
+	        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
 	            if (err) throw err;
 	        });
 	    });
@@ -227,7 +231,7 @@ module.exports =
 
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("SELECT * FROM visits WHERE clientName = " + mysql.escape(req.body.clientName), function (err, result) {
+	        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.clientName), function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
 	        });
@@ -861,6 +865,7 @@ module.exports =
 	            var _this2 = this;
 
 	            var obj = { clientName: this.props.client.name };
+	            console.log('this.props.client.name=' + this.props.client.name);
 	            fetch('/getVisits', {
 	                method: 'POST',
 	                body: JSON.stringify(obj),
@@ -878,7 +883,7 @@ module.exports =
 	        value: function render() {
 
 	            var sortedArr = this.state.VISITS;
-	            //var client = this.props.client;
+	            var client = this.props.client;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -892,7 +897,7 @@ module.exports =
 	                    'label',
 	                    null,
 	                    'Visits of ',
-	                    this.state.clientName
+	                    client.name
 	                ),
 	                _react2.default.createElement(
 	                    _ListGroup2.default,
@@ -1324,11 +1329,9 @@ module.exports =
 	    _createClass(MonthTable, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            // fetch('/clearRegistersDB', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            //
-	            // });
+	            fetch('/clearRegistersDB', {
+	                method: 'GET'
+	            }).then(function (response) {});
 
 	            // fetch('/setMockRegistersData', {
 	            //     method: 'GET'

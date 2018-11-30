@@ -16,11 +16,11 @@ class MonthTable extends Component {
     }
 
     componentDidMount() {
-        // fetch('/clearRegistersDB', {
-        //     method: 'GET'
-        // }).then((response) => {
-        //
-        // });
+        fetch('/clearRegistersDB', {
+            method: 'GET'
+        }).then((response) => {
+        
+        });
 
         // fetch('/setMockRegistersData', {
         //     method: 'GET'
