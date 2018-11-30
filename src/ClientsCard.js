@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
 import {sendClientData} from './methods.js';
-import {dateToTimestamp} from './methods.js';
 
 class ClientsCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientName: "",
-            clientBirthDate: new Date('09/09/2018'),
-            clientDesease: "",
-            clientPhone: "",
-            clientEmail: "",
-            clientDescription: ""
+            client: {}
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,32 +17,26 @@ class ClientsCard extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        
-//if(typeof value==Object){
-    console.log('value= '+typeof value+value);
-//}
+
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        alert('Data was submitted: ' + this.state.clientName);
         event.preventDefault();
         var newClient = {
-            clientName: this.state.clientName,
-            clientBirthDate: this.state.clientBirthDate,
-            clientDesease: this.state.clientDesease,
-            clientPhone: this.state.clientPhone,
-            clientEmail: this.state.clientEmail,
-            clientDescription: this.state.clientDescription
+            name: this.state.clientName,
+            birthdate: this.state.clientBirthDate,
+            desease: this.state.clientDesease,
+            phone: this.state.clientPhone,
+            email: this.state.clientEmail,
+            description: this.state.clientDescription
         };
+        this.props.addClient(newClient);
         sendClientData(newClient);
         this.refs.registerForm.reset();
-        // this.setState({times: ''});
-        // this.setState({names: ''});
     }
-
 
     render() {
         var client = this.props.client;
@@ -72,7 +59,7 @@ class ClientsCard extends Component {
 
                 <form ref="registerForm" onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <FieldGroup type="text" label="Name" placeholder="Enter text" onChange={this.handleInputChange}
+                    <FieldGroup type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
                                 name="clientName" required/>
                     <div className="col-xs-6 client_col_left">
                         <label>Desease</label>

@@ -72,7 +72,7 @@ server.post('/addClient', function (req, res) {
             throw err;
         }
 
-        var values = [[req.body.clientName, req.body.clientDesease, req.body.clientBirthDate, req.body.clientPhone, req.body.clientEmail, req.body.clientDescription]];
+        var values = [[req.body.name, req.body.desease, req.body.birthdate, req.body.phone, req.body.email, req.body.description]];
         con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });

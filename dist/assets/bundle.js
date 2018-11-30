@@ -25849,7 +25849,7 @@
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _FormControl = __webpack_require__(333);
+	var _FormControl = __webpack_require__(332);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -26018,6 +26018,7 @@
 	            client: {}
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
+	        _this.addClient = _this.addClient.bind(_this);
 	        return _this;
 	    }
 
@@ -26042,6 +26043,12 @@
 	            });
 	        }
 	    }, {
+	        key: 'addClient',
+	        value: function addClient(client) {
+	            alert('client=' + client.name);
+	            this.setState({ client: client });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -26050,17 +26057,17 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient }),
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsStyle: 'success', type: 'submit', value: 'Add' },
+	                        { bsStyle: 'success', type: 'submit', value: 'Add', onClick: '' },
 	                        'Add new'
 	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
-	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client })
+	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client, addClient: this.addClient })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -28684,8 +28691,6 @@
 	    value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -28696,11 +28701,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(332);
-
-	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
-
-	var _FormControl = __webpack_require__(333);
+	var _FormControl = __webpack_require__(332);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -28725,12 +28726,13 @@
 	        var _this = _possibleConstructorReturn(this, (ClientsCard.__proto__ || Object.getPrototypeOf(ClientsCard)).call(this, props));
 
 	        _this.state = {
-	            clientName: "",
-	            clientBirthDate: new Date('09/09/2018'),
+	            client: {}
+	            /*clientName: "",
+	            clientBirthDate: dateToTimestamp(new Date()),
 	            clientDesease: "",
 	            clientPhone: "",
 	            clientEmail: "",
-	            clientDescription: ""
+	            clientDescription: ""*/
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -28744,28 +28746,25 @@
 	            var value = target.value;
 	            var name = target.name;
 
-	            //if(typeof value==Object){
-	            console.log('value= ' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + value);
-	            //}
 	            this.setState(_defineProperty({}, name, value));
 	        }
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
-	            alert('Data was submitted: ' + this.state.clientName);
 	            event.preventDefault();
 	            var newClient = {
-	                clientName: this.state.clientName,
-	                clientBirthDate: this.state.clientBirthDate,
-	                clientDesease: this.state.clientDesease,
-	                clientPhone: this.state.clientPhone,
-	                clientEmail: this.state.clientEmail,
-	                clientDescription: this.state.clientDescription
+	                name: this.state.clientName,
+	                birthdate: this.state.clientBirthDate,
+	                desease: this.state.clientDesease,
+	                phone: this.state.clientPhone,
+	                email: this.state.clientEmail,
+	                description: this.state.clientDescription
 	            };
+	            this.props.addClient(newClient);
 	            (0, _methods.sendClientData)(newClient);
 	            this.refs.registerForm.reset();
-	            // this.setState({times: ''});
-	            // this.setState({names: ''});
+
+	            // this.setState({client: newClient});
 	        }
 	    }, {
 	        key: 'render',
@@ -28801,7 +28800,7 @@
 	                        null,
 	                        'Name'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text', onChange: this.handleInputChange,
+	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
 	                        name: 'clientName', required: true }),
 	                    _react2.default.createElement(
 	                        'div',
@@ -28865,90 +28864,6 @@
 /* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends3 = __webpack_require__(268);
-
-	var _extends4 = _interopRequireDefault(_extends3);
-
-	var _objectWithoutProperties2 = __webpack_require__(267);
-
-	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-	var _classCallCheck2 = __webpack_require__(275);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(276);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(310);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(318);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _propTypes = __webpack_require__(187);
-
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-
-	var _bootstrapUtils = __webpack_require__(324);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var propTypes = {
-	  /**
-	   * An icon name without "glyphicon-" prefix. See e.g. http://getbootstrap.com/components/#glyphicons
-	   */
-	  glyph: _propTypes2.default.string.isRequired
-	};
-
-	var Glyphicon = function (_React$Component) {
-	  (0, _inherits3.default)(Glyphicon, _React$Component);
-
-	  function Glyphicon() {
-	    (0, _classCallCheck3.default)(this, Glyphicon);
-	    return (0, _possibleConstructorReturn3.default)(this, _React$Component.apply(this, arguments));
-	  }
-
-	  Glyphicon.prototype.render = function render() {
-	    var _extends2;
-
-	    var _props = this.props,
-	        glyph = _props.glyph,
-	        className = _props.className,
-	        props = (0, _objectWithoutProperties3.default)(_props, ['glyph', 'className']);
-
-	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
-	        bsProps = _splitBsProps[0],
-	        elementProps = _splitBsProps[1];
-
-	    var classes = (0, _extends4.default)({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, glyph)] = true, _extends2));
-
-	    return _react2.default.createElement('span', (0, _extends4.default)({}, elementProps, { className: (0, _classnames2.default)(className, classes) }));
-	  };
-
-	  return Glyphicon;
-	}(_react2.default.Component);
-
-	Glyphicon.propTypes = propTypes;
-
-	exports.default = (0, _bootstrapUtils.bsClass)('glyphicon', Glyphicon);
-	module.exports = exports['default'];
-
-/***/ }),
-/* 333 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	exports.__esModule = true;
@@ -28993,7 +28908,7 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _FormControlFeedback = __webpack_require__(334);
+	var _FormControlFeedback = __webpack_require__(333);
 
 	var _FormControlFeedback2 = _interopRequireDefault(_FormControlFeedback);
 
@@ -29099,7 +29014,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29138,7 +29053,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Glyphicon = __webpack_require__(332);
+	var _Glyphicon = __webpack_require__(334);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -29216,6 +29131,90 @@
 	FormControlFeedback.contextTypes = contextTypes;
 
 	exports.default = (0, _bootstrapUtils.bsClass)('form-control-feedback', FormControlFeedback);
+	module.exports = exports['default'];
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends3 = __webpack_require__(268);
+
+	var _extends4 = _interopRequireDefault(_extends3);
+
+	var _objectWithoutProperties2 = __webpack_require__(267);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+	var _classCallCheck2 = __webpack_require__(275);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(276);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(310);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(318);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(187);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _bootstrapUtils = __webpack_require__(324);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var propTypes = {
+	  /**
+	   * An icon name without "glyphicon-" prefix. See e.g. http://getbootstrap.com/components/#glyphicons
+	   */
+	  glyph: _propTypes2.default.string.isRequired
+	};
+
+	var Glyphicon = function (_React$Component) {
+	  (0, _inherits3.default)(Glyphicon, _React$Component);
+
+	  function Glyphicon() {
+	    (0, _classCallCheck3.default)(this, Glyphicon);
+	    return (0, _possibleConstructorReturn3.default)(this, _React$Component.apply(this, arguments));
+	  }
+
+	  Glyphicon.prototype.render = function render() {
+	    var _extends2;
+
+	    var _props = this.props,
+	        glyph = _props.glyph,
+	        className = _props.className,
+	        props = (0, _objectWithoutProperties3.default)(_props, ['glyph', 'className']);
+
+	    var _splitBsProps = (0, _bootstrapUtils.splitBsProps)(props),
+	        bsProps = _splitBsProps[0],
+	        elementProps = _splitBsProps[1];
+
+	    var classes = (0, _extends4.default)({}, (0, _bootstrapUtils.getClassSet)(bsProps), (_extends2 = {}, _extends2[(0, _bootstrapUtils.prefix)(bsProps, glyph)] = true, _extends2));
+
+	    return _react2.default.createElement('span', (0, _extends4.default)({}, elementProps, { className: (0, _classnames2.default)(className, classes) }));
+	  };
+
+	  return Glyphicon;
+	}(_react2.default.Component);
+
+	Glyphicon.propTypes = propTypes;
+
+	exports.default = (0, _bootstrapUtils.bsClass)('glyphicon', Glyphicon);
 	module.exports = exports['default'];
 
 /***/ }),
@@ -29960,7 +29959,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(332);
+	var _Glyphicon = __webpack_require__(334);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -29968,7 +29967,7 @@
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
-	var _FormControl = __webpack_require__(333);
+	var _FormControl = __webpack_require__(332);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -30138,6 +30137,8 @@
 	            var switchClient = this.props.switchClient;
 	            var sortedArr = this.state.CLIENTS;
 	            console.log('sortedArray=' + sortedArr.length);
+	            console.warn('newClient.name' + this.props.newClient.name);
+	            sortedArr.push(this.props.newClient);
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    'li',
@@ -30793,7 +30794,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(332);
+	var _Glyphicon = __webpack_require__(334);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -30904,7 +30905,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(332);
+	var _Glyphicon = __webpack_require__(334);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -31144,7 +31145,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(333);
+	var _FormControl = __webpack_require__(332);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 

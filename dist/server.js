@@ -140,7 +140,7 @@ module.exports =
 	            throw err;
 	        }
 
-	        var values = [[req.body.clientName, req.body.clientDesease, req.body.clientBirthDate, req.body.clientPhone, req.body.clientEmail, req.body.clientDescription]];
+	        var values = [[req.body.name, req.body.desease, req.body.birthdate, req.body.phone, req.body.email, req.body.description]];
 	        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [values], function (err, result) {
 	            if (err) throw err;
 	        });
@@ -324,7 +324,7 @@ module.exports =
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _FormControl = __webpack_require__(9);
+	var _FormControl = __webpack_require__(8);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -465,7 +465,7 @@ module.exports =
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(12);
+	var _ClientsHistory = __webpack_require__(11);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
@@ -493,6 +493,7 @@ module.exports =
 	            client: {}
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
+	        _this.addClient = _this.addClient.bind(_this);
 	        return _this;
 	    }
 
@@ -517,6 +518,12 @@ module.exports =
 	            });
 	        }
 	    }, {
+	        key: 'addClient',
+	        value: function addClient(client) {
+	            alert('client=' + client.name);
+	            this.setState({ client: client });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -525,17 +532,17 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient }),
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsStyle: 'success', type: 'submit', value: 'Add' },
+	                        { bsStyle: 'success', type: 'submit', value: 'Add', onClick: '' },
 	                        'Add new'
 	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
-	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client })
+	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client, addClient: this.addClient })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -567,8 +574,6 @@ module.exports =
 	    value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -579,15 +584,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(8);
-
-	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
-
-	var _FormControl = __webpack_require__(9);
+	var _FormControl = __webpack_require__(8);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -608,12 +609,13 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (ClientsCard.__proto__ || Object.getPrototypeOf(ClientsCard)).call(this, props));
 
 	        _this.state = {
-	            clientName: "",
-	            clientBirthDate: new Date('09/09/2018'),
+	            client: {}
+	            /*clientName: "",
+	            clientBirthDate: dateToTimestamp(new Date()),
 	            clientDesease: "",
 	            clientPhone: "",
 	            clientEmail: "",
-	            clientDescription: ""
+	            clientDescription: ""*/
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -627,28 +629,25 @@ module.exports =
 	            var value = target.value;
 	            var name = target.name;
 
-	            //if(typeof value==Object){
-	            console.log('value= ' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + value);
-	            //}
 	            this.setState(_defineProperty({}, name, value));
 	        }
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
-	            alert('Data was submitted: ' + this.state.clientName);
 	            event.preventDefault();
 	            var newClient = {
-	                clientName: this.state.clientName,
-	                clientBirthDate: this.state.clientBirthDate,
-	                clientDesease: this.state.clientDesease,
-	                clientPhone: this.state.clientPhone,
-	                clientEmail: this.state.clientEmail,
-	                clientDescription: this.state.clientDescription
+	                name: this.state.clientName,
+	                birthdate: this.state.clientBirthDate,
+	                desease: this.state.clientDesease,
+	                phone: this.state.clientPhone,
+	                email: this.state.clientEmail,
+	                description: this.state.clientDescription
 	            };
+	            this.props.addClient(newClient);
 	            (0, _methods.sendClientData)(newClient);
 	            this.refs.registerForm.reset();
-	            // this.setState({times: ''});
-	            // this.setState({names: ''});
+
+	            // this.setState({client: newClient});
 	        }
 	    }, {
 	        key: 'render',
@@ -684,7 +683,7 @@ module.exports =
 	                        null,
 	                        'Name'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: 'Enter text', onChange: this.handleInputChange,
+	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
 	                        name: 'clientName', required: true }),
 	                    _react2.default.createElement(
 	                        'div',
@@ -748,16 +747,10 @@ module.exports =
 /* 8 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Glyphicon");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
 	module.exports = require("react-bootstrap/lib/FormControl");
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -767,7 +760,7 @@ module.exports =
 	});
 	exports.dateToTimestamp = exports.sendClientData = exports.sendData = undefined;
 
-	var _nodeFetch = __webpack_require__(11);
+	var _nodeFetch = __webpack_require__(10);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -806,13 +799,13 @@ module.exports =
 	};
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -827,11 +820,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(13);
+	var _ListGroup = __webpack_require__(12);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
-	var _Visit = __webpack_require__(14);
+	var _Visit = __webpack_require__(13);
 
 	var _Visit2 = _interopRequireDefault(_Visit);
 
@@ -920,13 +913,13 @@ module.exports =
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/ListGroup");
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -945,7 +938,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(8);
+	var _Glyphicon = __webpack_require__(14);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -953,11 +946,11 @@ module.exports =
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
-	var _FormControl = __webpack_require__(9);
+	var _FormControl = __webpack_require__(8);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1062,6 +1055,12 @@ module.exports =
 	exports.default = Visit;
 
 /***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Glyphicon");
+
+/***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
@@ -1083,7 +1082,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(13);
+	var _ListGroup = __webpack_require__(12);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
@@ -1129,6 +1128,8 @@ module.exports =
 	            var switchClient = this.props.switchClient;
 	            var sortedArr = this.state.CLIENTS;
 	            console.log('sortedArray=' + sortedArr.length);
+	            console.warn('newClient.name' + this.props.newClient.name);
+	            sortedArr.push(this.props.newClient);
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    'li',
@@ -1637,7 +1638,7 @@ module.exports =
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1647,7 +1648,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var fetch = __webpack_require__(11);
+	var fetch = __webpack_require__(10);
 
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
@@ -1784,11 +1785,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(8);
+	var _Glyphicon = __webpack_require__(14);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1895,11 +1896,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(8);
+	var _Glyphicon = __webpack_require__(14);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2033,7 +2034,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(9);
+	var _FormControl = __webpack_require__(8);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
@@ -2041,7 +2042,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(10);
+	var _methods = __webpack_require__(9);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

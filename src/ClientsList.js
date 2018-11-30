@@ -15,7 +15,6 @@ class ClientsList extends Component {
             method: 'GET'
         }).then((response) => {
             response.json().then((data) => {
-                console.log('data= '+data.length);
                 this.setState({CLIENTS: data});
             })
         });
@@ -24,20 +23,20 @@ class ClientsList extends Component {
     render() {
         var switchClient = this.props.switchClient;
         var sortedArr = this.state.CLIENTS;
-console.log('sortedArray='+sortedArr.length);
+        sortedArr.push(this.props.newClient);
         var listItems = sortedArr.map((client) =>
-       
+
             <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
         );
         return (
             <div>
                 <h2> Clients list</h2>
-            <ul className='clients_list'>
-                {listItems}
-            </ul>
-               
+                <ul className='clients_list'>
+                    {listItems}
+                </ul>
+
             </div>
-           
+
         );
 
     }
