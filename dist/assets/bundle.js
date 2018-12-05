@@ -26015,7 +26015,8 @@
 	        var _this = _possibleConstructorReturn(this, (Client.__proto__ || Object.getPrototypeOf(Client)).call(this, props));
 
 	        _this.state = {
-	            client: {}
+	            client: {},
+	            CLIENTS: []
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
 	        _this.addClient = _this.addClient.bind(_this);
@@ -26023,9 +26024,23 @@
 	    }
 
 	    _createClass(Client, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            fetch('/getClients', {
+	                method: 'GET'
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this2.setState({ CLIENTS: data });
+	                    alert('data.length=' + data.length);
+	                });
+	            });
+	        }
+	    }, {
 	        key: 'switchClient',
 	        value: function switchClient(clientName) {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            var client = {
 	                name: clientName
@@ -26038,15 +26053,15 @@
 	                }
 	            }).then(function (response) {
 	                response.json().then(function (data) {
-	                    _this2.setState({ client: data[0] });
+	                    _this3.setState({ client: data[0] });
 	                });
 	            });
 	        }
 	    }, {
 	        key: 'addClient',
-	        value: function addClient(client) {
-	            alert('client=' + client.name);
-	            this.setState({ client: client });
+	        value: function addClient(clients) {
+	            clients = clients.concat(this.state.CLIENTS);
+	            this.setState({ CLIENTS: clients });
 	        }
 	    }, {
 	        key: 'render',
@@ -26057,17 +26072,13 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client }),
-	                    _react2.default.createElement(
-	                        _Button2.default,
-	                        { bsStyle: 'success', type: 'submit', value: 'Add', onClick: '' },
-	                        'Add new'
-	                    )
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client, CLIENTS: this.state.CLIENTS })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
-	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client, addClient: this.addClient })
+	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client,
+	                        addClient: this.addClient, CLIENTS: this.state.CLIENTS })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -26082,6 +26093,8 @@
 	}(_react.Component);
 
 	exports.default = Client;
+
+	//<Button bsStyle="success" type="submit" value="Add" onClick="">Add new</Button>
 
 /***/ }),
 /* 230 */
@@ -28726,13 +28739,8 @@
 	        var _this = _possibleConstructorReturn(this, (ClientsCard.__proto__ || Object.getPrototypeOf(ClientsCard)).call(this, props));
 
 	        _this.state = {
-	            client: {}
-	            /*clientName: "",
-	            clientBirthDate: dateToTimestamp(new Date()),
-	            clientDesease: "",
-	            clientPhone: "",
-	            clientEmail: "",
-	            clientDescription: ""*/
+	            client: {},
+	            clients: []
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -28752,19 +28760,31 @@
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
-	            var newClient = {
-	                name: this.state.clientName,
-	                birthdate: this.state.clientBirthDate,
-	                desease: this.state.clientDesease,
-	                phone: this.state.clientPhone,
-	                email: this.state.clientEmail,
-	                description: this.state.clientDescription
-	            };
-	            this.props.addClient(newClient);
-	            (0, _methods.sendClientData)(newClient);
-	            this.refs.registerForm.reset();
+	            if (this.state.clientName) {
+	                var newClient = {
+	                    name: this.state.clientName,
+	                    birthdate: this.state.clientBirthdate,
+	                    desease: this.state.clientDesease,
+	                    phone: this.state.clientPhone,
+	                    email: this.state.clientEmail,
+	                    description: this.state.clientDescription
+	                };
 
-	            // this.setState({client: newClient});
+	                var newArray = this.state.clients;
+
+	                newArray.push(newClient);
+	                alert('newArray.length=' + newArray.length);
+	                this.setState({ clients: newArray });
+	                alert('this.state.clients.length=' + this.state.clients.length);
+	                this.props.addClient(this.state.clients);
+	                (0, _methods.sendClientData)(newClient);
+
+	                this.refs.registerForm.reset();
+	                // this.setState({name: ''});
+	                //  this.setState({birthdate: ''});
+	            } else {
+	                alert("Enter name");
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -28818,7 +28838,7 @@
 	                            'Date of birth'
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', value: birthdate,
-	                            onChange: this.handleInputChange, name: 'clientBirthDate' })
+	                            onChange: this.handleInputChange, name: 'clientBirthdate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -30118,27 +30138,19 @@
 	    }
 
 	    _createClass(ClientsList, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
-
-	            fetch('/getClients', {
-	                method: 'GET'
-	            }).then(function (response) {
-	                response.json().then(function (data) {
-	                    console.log('data= ' + data.length);
-	                    _this2.setState({ CLIENTS: data });
-	                });
-	            });
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var switchClient = this.props.switchClient;
-	            var sortedArr = this.state.CLIENTS;
-	            console.log('sortedArray=' + sortedArr.length);
-	            console.warn('newClient.name' + this.props.newClient.name);
-	            sortedArr.push(this.props.newClient);
+	            var arr = this.props.CLIENTS;
+	            var sortedArr = sortByKey(arr, 'name');
+	            function sortByKey(array, key) {
+	                return array.sort(function (a, b) {
+	                    var x = a[key];
+	                    var y = b[key];
+	                    return x < y ? -1 : x > y ? 1 : 0;
+	                });
+	            }
+
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    'li',

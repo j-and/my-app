@@ -10,20 +10,19 @@ class ClientsList extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch('/getClients', {
-            method: 'GET'
-        }).then((response) => {
-            response.json().then((data) => {
-                this.setState({CLIENTS: data});
-            })
-        });
-    }
-
     render() {
         var switchClient = this.props.switchClient;
-        var sortedArr = this.state.CLIENTS;
-        sortedArr.push(this.props.newClient);
+        var arr = this.props.CLIENTS;
+        var sortedArr = sortByKey(arr, 'name');
+
+        function sortByKey(array, key) {
+            return array.sort(function (a, b) {
+                var x = (a[key]);
+                var y = (b[key]);
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+        }
+
         var listItems = sortedArr.map((client) =>
 
             <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>

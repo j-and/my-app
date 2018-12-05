@@ -8,10 +8,21 @@ class Client extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            client: {}
+            client: {},
+            CLIENTS: []
         };
         this.switchClient = this.switchClient.bind(this);
         this.addClient = this.addClient.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('/getClients', {
+            method: 'GET'
+        }).then((response) => {
+            response.json().then((data) => {
+                this.setState({CLIENTS: data});
+            })
+        });
     }
 
     switchClient(clientName) {
@@ -34,18 +45,21 @@ class Client extends Component {
         );
     }
 
-    addClient(client) {
-        this.setState({client: client});
+    addClient(clients) {
+        clients = clients.concat(this.state.CLIENTS);
+        this.setState({CLIENTS: clients});
     }
 
     render() {
         return (
             <div>
-                <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}/>
-                    <Button bsStyle="success" type="submit" value="Add" onClick="">Add new</Button>
+                <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}
+                                                       CLIENTS={this.state.CLIENTS}/>
+
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
-                                                       addClient={this.addClient}></ClientsCard></div>
+                                                       addClient={this.addClient}
+                                                       CLIENTS={this.state.CLIENTS}></ClientsCard></div>
                 <div className="col-sm-3"><ClientsHistory client={this.state.client}></ClientsHistory></div>
             </div>
         );
@@ -53,3 +67,5 @@ class Client extends Component {
 }
 
 export default Client;
+
+//<Button bsStyle="success" type="submit" value="Add" onClick="">Add new</Button>

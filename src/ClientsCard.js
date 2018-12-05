@@ -7,7 +7,8 @@ class ClientsCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            client: {}
+            client: {},
+            clients: []
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +18,6 @@ class ClientsCard extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
         this.setState({
             [name]: value
         });
@@ -25,18 +25,28 @@ class ClientsCard extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        var newClient = {
-            name: this.state.clientName,
-            birthdate: this.state.clientBirthDate,
-            desease: this.state.clientDesease,
-            phone: this.state.clientPhone,
-            email: this.state.clientEmail,
-            description: this.state.clientDescription
-        };
-        this.props.addClient(newClient);
-        sendClientData(newClient);
-        this.refs.registerForm.reset();
+        if (this.state.clientName) {
+            var newClient = {
+                name: this.state.clientName,
+                birthdate: this.state.clientBirthdate,
+                desease: this.state.clientDesease,
+                phone: this.state.clientPhone,
+                email: this.state.clientEmail,
+                description: this.state.clientDescription
+            };
+
+            var newArray = this.state.clients;
+            newArray.push(newClient);
+            this.setState({clients: newArray});
+            this.props.addClient(this.state.clients);
+            sendClientData(newClient);
+            this.refs.registerForm.reset();
+        }
+        else {
+            alert("Enter name");
+        }
     }
+
 
     render() {
         var client = this.props.client;
@@ -67,7 +77,7 @@ class ClientsCard extends Component {
                                     onChange={this.handleInputChange} name="clientDesease"/>
                         <label>Date of birth</label>
                         <FieldGroup type="date" label="Date of birth" value={birthdate}
-                                    onChange={this.handleInputChange} name="clientBirthDate"/>
+                                    onChange={this.handleInputChange} name="clientBirthdate"/>
                     </div>
                     <div className="col-xs-6 client_col_right">
                         <label>Phone</label>
