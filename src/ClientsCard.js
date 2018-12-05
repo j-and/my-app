@@ -39,7 +39,7 @@ class ClientsCard extends Component {
             newArray.push(newClient);
             this.setState({clients: newArray});
             this.props.addClient(this.state.clients);
-            sendData(newClient, "'/addClient'");
+            sendData(newClient, '/addClient');
             this.refs.registerForm.reset();
         }
         else {

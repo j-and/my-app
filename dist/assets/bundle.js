@@ -28774,7 +28774,7 @@
 	                newArray.push(newClient);
 	                this.setState({ clients: newArray });
 	                this.props.addClient(this.state.clients);
-	                (0, _methods.sendData)(newClient, "'/addClient'");
+	                (0, _methods.sendData)(newClient, '/addClient');
 	                this.refs.registerForm.reset();
 	            } else {
 	                alert("Enter name");
@@ -29343,18 +29343,6 @@
 	        console.log('error= ' + error);
 	    });
 	};
-	// export const sendClientData = function (dataObject) {
-	//     fetch('/addClient', {
-	//         method: "POST",
-	//         body: JSON.stringify(dataObject),
-	//         headers: {
-	//             "Content-Type": "application/json"
-	//         }
-	//     }).then(function (response) {
-	//     }, function (error) {
-	//         console.log('error= ' + error);
-	//     })
-	// };
 
 	var dateToTimestamp = exports.dateToTimestamp = function dateToTimestamp(dateString) {
 	    var date = new Date(dateString);
