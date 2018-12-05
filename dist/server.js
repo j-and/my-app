@@ -1814,12 +1814,12 @@ module.exports =
 	        key: 'render',
 	        value: function render() {
 	            var arr = this.props.registers;
-	            var sortedArr = sortByKey(arr, 'datetime');
+	            var sortedArr = dateSortByKey(arr, 'datetime');
 
-	            function sortByKey(array, key) {
+	            function dateSortByKey(array, key) {
 	                return array.sort(function (a, b) {
-	                    var x = /*dateToTimestamp*/a[key];
-	                    var y = /*dateToTimestamp*/b[key];
+	                    var x = (0, _methods.dateToTimestamp)(a[key]);
+	                    var y = (0, _methods.dateToTimestamp)(b[key]);
 	                    return x < y ? -1 : x > y ? 1 : 0;
 	                });
 	            }
