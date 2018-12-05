@@ -41,6 +41,7 @@ class ClientsCard extends Component {
             this.props.addClient(this.state.clients);
             sendData(newClient, '/addClient');
             this.refs.registerForm.reset();
+            this.setState({client: {}});
         }
         else {
             alert("Enter name");

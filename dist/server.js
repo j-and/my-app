@@ -540,6 +540,8 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this4 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -547,7 +549,14 @@ module.exports =
 	                    'div',
 	                    { className: 'col-sm-3' },
 	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client,
-	                        CLIENTS: this.state.CLIENTS })
+	                        CLIENTS: this.state.CLIENTS }),
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { bsStyle: 'success', type: 'submit', value: 'Add', onClick: function onClick() {
+	                                _this4.setState({ client: {} });
+	                            } },
+	                        'Add new'
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -569,8 +578,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = Client;
-
-	//<Button bsStyle="success" type="submit" value="Add" onClick="">Add new</Button>
 
 /***/ }),
 /* 6 */
@@ -659,6 +666,7 @@ module.exports =
 	                this.props.addClient(this.state.clients);
 	                (0, _methods.sendData)(newClient, '/addClient');
 	                this.refs.registerForm.reset();
+	                this.setState({ client: {} });
 	            } else {
 	                alert("Enter name");
 	            }
@@ -1117,7 +1125,6 @@ module.exports =
 	            var switchClient = this.props.switchClient;
 	            var arr = this.props.CLIENTS;
 	            var sortedArr = sortByKey(arr, 'name');
-
 	            function sortByKey(array, key) {
 	                return array.sort(function (a, b) {
 	                    var x = a[key];

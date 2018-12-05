@@ -55,7 +55,7 @@ class Client extends Component {
             <div>
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}
                                                        CLIENTS={this.state.CLIENTS}/>
-
+                    <Button bsStyle="success" type="submit" value="Add" onClick={() => {this.setState({client:{}})}}>Add new</Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
                                                        addClient={this.addClient}
@@ -67,5 +67,3 @@ class Client extends Component {
 }
 
 export default Client;
-
-//<Button bsStyle="success" type="submit" value="Add" onClick="">Add new</Button>

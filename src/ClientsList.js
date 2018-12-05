@@ -14,7 +14,6 @@ class ClientsList extends Component {
         var switchClient = this.props.switchClient;
         var arr = this.props.CLIENTS;
         var sortedArr = sortByKey(arr, 'name');
-
         function sortByKey(array, key) {
             return array.sort(function (a, b) {
                 var x = (a[key]);
@@ -22,7 +21,7 @@ class ClientsList extends Component {
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
         }
-
+      
         var listItems = sortedArr.map((client) =>
 
             <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
@@ -33,7 +32,7 @@ class ClientsList extends Component {
                 <ul className='clients_list'>
                     {listItems}
                 </ul>
-
+                
             </div>
 
         );
