@@ -9,7 +9,8 @@ class Client extends Component {
         super(props);
         this.state = {
             client: {},
-            CLIENTS: []
+            CLIENTS: [],
+            VISITS: []
         };
         this.switchClient = this.switchClient.bind(this);
         this.addClient = this.addClient.bind(this);
@@ -43,6 +44,17 @@ class Client extends Component {
 
             }
         );
+        fetch('/getVisits', {
+            method: "POST",
+            body: JSON.stringify(client),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            response.json().then((data) => {
+                this.setState({VISITS: data});
+            })
+        });
     }
 
     addClient(clients) {
@@ -55,12 +67,14 @@ class Client extends Component {
             <div>
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}
                                                        CLIENTS={this.state.CLIENTS}/>
-                    <Button bsStyle="success" type="submit" value="Add" onClick={() => {this.setState({client:{}})}}>Add new</Button>
+                    <Button bsStyle="success" type="submit" value="Add" onClick={() => {this.setState({client:{}})}}>Add
+                        new</Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
                                                        addClient={this.addClient}
                                                        CLIENTS={this.state.CLIENTS}></ClientsCard></div>
-                <div className="col-sm-3"><ClientsHistory client={this.state.client}></ClientsHistory></div>
+                <div className="col-sm-3"><ClientsHistory client={this.state.client}
+                                                          VISITS={this.state.VISITS}></ClientsHistory></div>
             </div>
         );
     }

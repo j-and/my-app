@@ -48,7 +48,7 @@ server.post('/addRegister', function (req, res) {
             throw err;
         }
         var values = [[req.body.datetime, req.body.name, 'busy']];
-        var valuesClient = [[ req.body.name, 'desease', null, 'phone', 'email', 'description']];
+        var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
         con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });
@@ -173,7 +173,7 @@ server.post('/getVisits', function (req, res) {
 
     con.connect(function (err) {
         if (err) throw err;
-        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.clientName), function (err, result) {
+        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.name), function (err, result) {
             if (err) throw err;
             res.send(result);
         });
@@ -210,7 +210,7 @@ server.post('/switchClient', function (req, res) {
         con.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name),
             function (err, result) {
                 if (err) throw err;
-                    res.send(result);
+                res.send(result);
             });
     });
 });

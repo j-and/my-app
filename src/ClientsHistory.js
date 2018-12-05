@@ -6,32 +6,23 @@ class ClientsHistory extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientInfo:{},
-           clientName: this.props.client.name,
-            VISITS: []
+            
         }
-    }
-
-    componentDidMount() {
-        var obj = {clientName: this.props.client.name};
-        console.log('this.props.client.name='+this.props.client.name);
-        fetch('/getVisits', {
-            method: 'POST',
-            body: JSON.stringify(obj),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((response) => {
-            response.json().then((data) => {
-                this.setState({VISITS: data});
-            })
-        });
     }
 
     render() {
 
-        var sortedArr = this.state.VISITS;
+        var arr = this.props.VISITS;
+        var sortedArr = sortByKey(arr, 'datetime');
         var client = this.props.client;
+
+        function sortByKey(array, key) {
+            return array.sort(function (a, b) {
+                var x = (a[key]);
+                var y = (b[key]);
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+        }
 
         return (
             <div>

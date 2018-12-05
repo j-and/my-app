@@ -231,7 +231,7 @@ module.exports =
 
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.clientName), function (err, result) {
+	        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.name), function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
 	        });
@@ -491,7 +491,8 @@ module.exports =
 
 	        _this.state = {
 	            client: {},
-	            CLIENTS: []
+	            CLIENTS: [],
+	            VISITS: []
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
 	        _this.addClient = _this.addClient.bind(_this);
@@ -528,6 +529,17 @@ module.exports =
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this3.setState({ client: data[0] });
+	                });
+	            });
+	            fetch('/getVisits', {
+	                method: "POST",
+	                body: JSON.stringify(client),
+	                headers: {
+	                    "Content-Type": "application/json"
+	                }
+	            }).then(function (response) {
+	                response.json().then(function (data) {
+	                    _this3.setState({ VISITS: data });
 	                });
 	            });
 	        }
@@ -568,7 +580,7 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsHistory2.default, { client: this.state.client })
+	                    _react2.default.createElement(_ClientsHistory2.default, { client: this.state.client, VISITS: this.state.VISITS })
 	                )
 	            );
 	        }
@@ -855,39 +867,42 @@ module.exports =
 
 	        var _this = _possibleConstructorReturn(this, (ClientsHistory.__proto__ || Object.getPrototypeOf(ClientsHistory)).call(this, props));
 
-	        _this.state = {
-	            clientInfo: {},
-	            clientName: _this.props.client.name,
-	            VISITS: []
-	        };
+	        _this.state = {};
 	        return _this;
 	    }
 
-	    _createClass(ClientsHistory, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
+	    // componentDidMount() {
+	    //     var obj = {clientName: this.props.client.name};
+	    //     console.log('this.props.client.name='+this.props.client.name);
+	    //     fetch('/getVisits', {
+	    //         method: 'POST',
+	    //         body: JSON.stringify(obj),
+	    //         headers: {
+	    //             "Content-Type": "application/json"
+	    //         }
+	    //     }).then((response) => {
+	    //         response.json().then((data) => {
+	    //             this.setState({VISITS: data});
+	    //         })
+	    //     });
+	    // }
 
-	            var obj = { clientName: this.props.client.name };
-	            console.log('this.props.client.name=' + this.props.client.name);
-	            fetch('/getVisits', {
-	                method: 'POST',
-	                body: JSON.stringify(obj),
-	                headers: {
-	                    "Content-Type": "application/json"
-	                }
-	            }).then(function (response) {
-	                response.json().then(function (data) {
-	                    _this2.setState({ VISITS: data });
-	                });
-	            });
-	        }
-	    }, {
+	    _createClass(ClientsHistory, [{
 	        key: 'render',
 	        value: function render() {
 
-	            var sortedArr = this.state.VISITS;
+	            // var sortedArr = this.state.VISITS;
+	            var arr = this.props.VISITS;
+	            var sortedArr = sortByKey(arr, 'datetime');
 	            var client = this.props.client;
+
+	            function sortByKey(array, key) {
+	                return array.sort(function (a, b) {
+	                    var x = a[key];
+	                    var y = b[key];
+	                    return x < y ? -1 : x > y ? 1 : 0;
+	                });
+	            }
 
 	            return _react2.default.createElement(
 	                'div',
