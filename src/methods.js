@@ -1,18 +1,6 @@
 import fetch from 'node-fetch';
-export const sendData = function (dataObject) {
-    fetch('/addRegister', {
-        method: "POST",
-        body: JSON.stringify(dataObject),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(function (response) {
-    }, function (error) {
-        console.log('error= ' + error);
-    })
-};
-export const sendClientData = function (dataObject) {
-    fetch('/addClient', {
+export const sendData = function (dataObject, url) {
+    fetch(url, {
         method: "POST",
         body: JSON.stringify(dataObject),
         headers: {
@@ -31,4 +19,4 @@ export const dateToTimestamp = function (dateString) {
     datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
     datetime = datetime.slice(0, datetime.length - 2);
     return datetime;
-}
+};

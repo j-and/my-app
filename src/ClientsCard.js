@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
-import {sendClientData} from './methods.js';
+import {sendData} from './methods.js';
 
 class ClientsCard extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class ClientsCard extends Component {
             newArray.push(newClient);
             this.setState({clients: newArray});
             this.props.addClient(this.state.clients);
-            sendClientData(newClient);
+            sendData(newClient, "'/addClient'");
             this.refs.registerForm.reset();
         }
         else {

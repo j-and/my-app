@@ -508,7 +508,6 @@ module.exports =
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this2.setState({ CLIENTS: data });
-	                    alert('data.length=' + data.length);
 	                });
 	            });
 	        }
@@ -547,13 +546,15 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client, CLIENTS: this.state.CLIENTS })
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client,
+	                        CLIENTS: this.state.CLIENTS })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-6' },
 	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client,
-	                        addClient: this.addClient, CLIENTS: this.state.CLIENTS })
+	                        addClient: this.addClient,
+	                        CLIENTS: this.state.CLIENTS })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -636,7 +637,6 @@ module.exports =
 	            var target = event.target;
 	            var value = target.value;
 	            var name = target.name;
-
 	            this.setState(_defineProperty({}, name, value));
 	        }
 	    }, {
@@ -654,17 +654,11 @@ module.exports =
 	                };
 
 	                var newArray = this.state.clients;
-
 	                newArray.push(newClient);
-	                alert('newArray.length=' + newArray.length);
 	                this.setState({ clients: newArray });
-	                alert('this.state.clients.length=' + this.state.clients.length);
 	                this.props.addClient(this.state.clients);
-	                (0, _methods.sendClientData)(newClient);
-
+	                (0, _methods.sendData)(newClient, "'/addClient'");
 	                this.refs.registerForm.reset();
-	                // this.setState({name: ''});
-	                //  this.setState({birthdate: ''});
 	            } else {
 	                alert("Enter name");
 	            }
@@ -773,12 +767,12 @@ module.exports =
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.dateToTimestamp = exports.sendClientData = exports.sendData = undefined;
+	exports.dateToTimestamp = exports.sendData = undefined;
 
 	var _nodeFetch = __webpack_require__(10);
 
@@ -786,8 +780,8 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var sendData = exports.sendData = function sendData(dataObject) {
-	    (0, _nodeFetch2.default)('/addRegister', {
+	var sendData = exports.sendData = function sendData(dataObject, url) {
+	    (0, _nodeFetch2.default)(url, {
 	        method: "POST",
 	        body: JSON.stringify(dataObject),
 	        headers: {
@@ -797,17 +791,18 @@ module.exports =
 	        console.log('error= ' + error);
 	    });
 	};
-	var sendClientData = exports.sendClientData = function sendClientData(dataObject) {
-	    (0, _nodeFetch2.default)('/addClient', {
-	        method: "POST",
-	        body: JSON.stringify(dataObject),
-	        headers: {
-	            "Content-Type": "application/json"
-	        }
-	    }).then(function (response) {}, function (error) {
-	        console.log('error= ' + error);
-	    });
-	};
+	// export const sendClientData = function (dataObject) {
+	//     fetch('/addClient', {
+	//         method: "POST",
+	//         body: JSON.stringify(dataObject),
+	//         headers: {
+	//             "Content-Type": "application/json"
+	//         }
+	//     }).then(function (response) {
+	//     }, function (error) {
+	//         console.log('error= ' + error);
+	//     })
+	// };
 
 	var dateToTimestamp = exports.dateToTimestamp = function dateToTimestamp(dateString) {
 	    var date = new Date(dateString);
@@ -1134,6 +1129,7 @@ module.exports =
 	            var switchClient = this.props.switchClient;
 	            var arr = this.props.CLIENTS;
 	            var sortedArr = sortByKey(arr, 'name');
+
 	            function sortByKey(array, key) {
 	                return array.sort(function (a, b) {
 	                    var x = a[key];
@@ -1966,7 +1962,7 @@ module.exports =
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
 	                this.props.addRegister(this.state.registers);
-	                (0, _methods.sendData)(newRegister);
+	                (0, _methods.sendData)(newRegister, "/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ times: '' });
 	                this.setState({ names: '' });
@@ -2108,7 +2104,7 @@ module.exports =
 	                servantDataArray.name = this.state.name;
 	                servantDataArray.password = this.state.password;
 	                this.setState({ servantData: servantDataArray });
-	                (0, _methods.sendData)(this.state.servantData);
+	                //sendData(this.state.servantData,"/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ isOpen: false });
 	            } else {

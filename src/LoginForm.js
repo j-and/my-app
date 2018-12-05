@@ -12,7 +12,7 @@ class LoginForm extends Component {
             name: '',
             password: '',
             servantData: {},
-            isOpen:false//true
+            isOpen: false//true
 
         };
         this.closeLoginForm = this.closeLoginForm.bind(this);
@@ -21,7 +21,7 @@ class LoginForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    closeLoginForm(){
+    closeLoginForm() {
 
     }
 
@@ -40,7 +40,7 @@ class LoginForm extends Component {
             servantDataArray.name = this.state.name;
             servantDataArray.password = this.state.password;
             this.setState({servantData: servantDataArray});
-            sendData(this.state.servantData);
+            //sendData(this.state.servantData,"/addRegister");
             this.refs.registerForm.reset();
             this.setState({isOpen: false});
         }
@@ -51,7 +51,7 @@ class LoginForm extends Component {
 
     render() {
 
-        if(!this.state.isOpen) {
+        if (!this.state.isOpen) {
             return null;
         }
 
