@@ -12,17 +12,17 @@ class RegisterList extends Component {
 
     render() {
         var arr = this.props.registers;
-        var sortedArr = sortByKey(arr, 'datetime');
+        var sortedArr = dateSortByKey(arr, 'datetime');
 
-        function sortByKey(array, key) {
+        function dateSortByKey(array, key) {
             return array.sort(function (a, b) {
                 var x = dateToTimestamp(a[key]);
-                var y = dateToTimestamp(b[key]);                
+                var y = dateToTimestamp(b[key]);
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
         }
 
-       var removeRegister = this.props.removeRegister;
+        var removeRegister = this.props.removeRegister;
 
         return (
             <div>

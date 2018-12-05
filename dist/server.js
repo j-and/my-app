@@ -580,7 +580,8 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsHistory2.default, { client: this.state.client, VISITS: this.state.VISITS })
+	                    _react2.default.createElement(_ClientsHistory2.default, { client: this.state.client,
+	                        VISITS: this.state.VISITS })
 	                )
 	            );
 	        }
@@ -792,7 +793,7 @@ module.exports =
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.dateToTimestamp = exports.sendData = undefined;
+	exports.sortByKey = exports.dateToTimestamp = exports.sendData = undefined;
 
 	var _nodeFetch = __webpack_require__(10);
 
@@ -819,6 +820,14 @@ module.exports =
 	    datetime = datetime.slice(0, 10) + ' ' + datetime.slice(11, datetime.length);
 	    datetime = datetime.slice(0, datetime.length - 2);
 	    return datetime;
+	};
+
+	var sortByKey = exports.sortByKey = function sortByKey(array, key) {
+	    return array.sort(function (a, b) {
+	        var x = a[key];
+	        var y = b[key];
+	        return x < y ? -1 : x > y ? 1 : 0;
+	    });
 	};
 
 /***/ }),
@@ -851,6 +860,8 @@ module.exports =
 
 	var _Visit2 = _interopRequireDefault(_Visit);
 
+	var _methods = __webpack_require__(9);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -871,38 +882,13 @@ module.exports =
 	        return _this;
 	    }
 
-	    // componentDidMount() {
-	    //     var obj = {clientName: this.props.client.name};
-	    //     console.log('this.props.client.name='+this.props.client.name);
-	    //     fetch('/getVisits', {
-	    //         method: 'POST',
-	    //         body: JSON.stringify(obj),
-	    //         headers: {
-	    //             "Content-Type": "application/json"
-	    //         }
-	    //     }).then((response) => {
-	    //         response.json().then((data) => {
-	    //             this.setState({VISITS: data});
-	    //         })
-	    //     });
-	    // }
-
 	    _createClass(ClientsHistory, [{
 	        key: 'render',
 	        value: function render() {
 
-	            // var sortedArr = this.state.VISITS;
 	            var arr = this.props.VISITS;
-	            var sortedArr = sortByKey(arr, 'datetime');
+	            var sortedArr = (0, _methods.sortByKey)(arr, 'datetime');
 	            var client = this.props.client;
-
-	            function sortByKey(array, key) {
-	                return array.sort(function (a, b) {
-	                    var x = a[key];
-	                    var y = b[key];
-	                    return x < y ? -1 : x > y ? 1 : 0;
-	                });
-	            }
 
 	            return _react2.default.createElement(
 	                'div',
@@ -1112,6 +1098,8 @@ module.exports =
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
+	var _methods = __webpack_require__(9);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1139,14 +1127,7 @@ module.exports =
 	        value: function render() {
 	            var switchClient = this.props.switchClient;
 	            var arr = this.props.CLIENTS;
-	            var sortedArr = sortByKey(arr, 'name');
-	            function sortByKey(array, key) {
-	                return array.sort(function (a, b) {
-	                    var x = a[key];
-	                    var y = b[key];
-	                    return x < y ? -1 : x > y ? 1 : 0;
-	                });
-	            }
+	            var sortedArr = (0, _methods.sortByKey)(arr, 'name');
 
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
@@ -1837,8 +1818,8 @@ module.exports =
 
 	            function sortByKey(array, key) {
 	                return array.sort(function (a, b) {
-	                    var x = (0, _methods.dateToTimestamp)(a[key]);
-	                    var y = (0, _methods.dateToTimestamp)(b[key]);
+	                    var x = /*dateToTimestamp*/a[key];
+	                    var y = /*dateToTimestamp*/b[key];
 	                    return x < y ? -1 : x > y ? 1 : 0;
 	                });
 	            }
