@@ -26017,7 +26017,8 @@
 	        _this.state = {
 	            client: {},
 	            CLIENTS: [],
-	            VISITS: []
+	            VISITS: [],
+	            editable: false
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
 	        _this.addClient = _this.addClient.bind(_this);
@@ -26073,6 +26074,7 @@
 	        value: function addClient(clients) {
 	            clients = clients.concat(this.state.CLIENTS);
 	            this.setState({ CLIENTS: clients });
+	            this.setState({ editable: true });
 	        }
 	    }, {
 	        key: 'render',
@@ -26100,7 +26102,7 @@
 	                    { className: 'col-sm-6' },
 	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client,
 	                        addClient: this.addClient,
-	                        CLIENTS: this.state.CLIENTS })
+	                        CLIENTS: this.state.CLIENTS, editable: this.state.editable })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -28763,9 +28765,10 @@
 	            client: {},
 	            clients: [],
 	            clientName: _this.props.client.name,
-	            editable: false
+	            editable: _this.props.editable
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
+	        _this.handleInputDateChange = _this.handleInputDateChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
 	        _this.editClient = _this.editClient.bind(_this);
 	        return _this;
@@ -28783,21 +28786,22 @@
 	        key: 'handleInputDateChange',
 	        value: function handleInputDateChange(event) {
 	            var target = event.target;
-	            var value = (0, _methods.dateToTimestamp)(target.value);
+	            var value = target.value;
 	            var name = target.name;
-	            this.setState(_defineProperty({}, name, value));
+
+	            this.setState(_defineProperty({}, name, (0, _methods.dateToTimestamp)(value)));
+	            console.log('value=' + value);
 	        }
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
-	            // alert('this.props.client.name='+this.props.client.name)
 	            if (this.state.clientName) {
 	                var newClient = {
 	                    /*client_id is auto generated in db*/
-	                    client_id: 'idididi',
+	                    //client_id:'idididi',
 	                    name: this.state.clientName,
-	                    birthdate: this.state.clientBirthdate,
+	                    birthdate: (0, _methods.dateToTimestamp)(new Date(this.state.clientBirthdate).toISOString()), //this.state.clientBirthdate,
 	                    desease: this.state.clientDesease,
 	                    phone: this.state.clientPhone,
 	                    email: this.state.clientEmail,
@@ -28825,7 +28829,12 @@
 	        key: 'render',
 	        value: function render() {
 	            var client = this.props.client;
-	            var a = new Date(client.birthdate);
+
+	            var a = client.birthdate;
+	            if (!a) {
+	                a = this.state.clientBirthdate;
+	            }
+	            a = new Date(a);
 	            var month = a.getMonth() + '';
 	            if (month.length == 1) {
 	                month = '0' + month;
@@ -28837,7 +28846,7 @@
 	            a = a.getFullYear() + '-' + month + '-' + day;
 
 	            var birthdate = a;
-	            console.log('this.props.client.name=' + this.props.client.name);
+
 	            var className = this.props.client.name ? this.state.editable ? '' : 'view-form' : '';
 	            //var nameValue = this.props.client.name ? this.props.client.name:'';
 	            return _react2.default.createElement(

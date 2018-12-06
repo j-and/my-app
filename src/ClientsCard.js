@@ -10,10 +10,11 @@ class ClientsCard extends Component {
         this.state = {
             client: {},
             clients: [],
-            clientName:this.props.client.name,
-            editable: false
+            clientName: this.props.client.name,
+            editable: this.props.editable
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputDateChange = this.handleInputDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.editClient = this.editClient.bind(this);
     }
@@ -25,26 +26,28 @@ class ClientsCard extends Component {
         this.setState({
             [name]: value
         });
+
     }
 
     handleInputDateChange(event) {
         const target = event.target;
-        const value = dateToTimestamp(target.value);
+        const value = target.value;
         const name = target.name;
+
         this.setState({
-            [name]: value
+            [name]: dateToTimestamp(value)
         });
+        console.log('value=' + value);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-       // alert('this.props.client.name='+this.props.client.name)
         if (this.state.clientName) {
             var newClient = {
                 /*client_id is auto generated in db*/
-                client_id:'idididi',
+                //client_id:'idididi',
                 name: this.state.clientName,
-                birthdate: this.state.clientBirthdate,
+                birthdate: dateToTimestamp(new Date(this.state.clientBirthdate).toISOString()),//this.state.clientBirthdate,
                 desease: this.state.clientDesease,
                 phone: this.state.clientPhone,
                 email: this.state.clientEmail,
@@ -66,12 +69,17 @@ class ClientsCard extends Component {
     }
 
     editClient() {
-    this.setState({editable: true});
-}
+        this.setState({editable: true});
+    }
 
     render() {
         var client = this.props.client;
-        var a = new Date(client.birthdate);
+
+        var a = client.birthdate;
+        if (!a) {
+            a = this.state.clientBirthdate;
+        }
+        a = new Date(a);
         var month = a.getMonth() + '';
         if (month.length == 1) {
             month = '0' + month;
@@ -82,9 +90,9 @@ class ClientsCard extends Component {
         }
         a = a.getFullYear() + '-' + month + '-' + day;
 
-        var birthdate = (a);
-console.log('this.props.client.name='+this.props.client.name);
-        var className = this.props.client.name ? (this.state.editable?'':'view-form'):'';
+        var birthdate = a;
+
+        var className = this.props.client.name ? (this.state.editable ? '' : 'view-form') : '';
         //var nameValue = this.props.client.name ? this.props.client.name:'';
         return (
             <div>
@@ -92,7 +100,7 @@ console.log('this.props.client.name='+this.props.client.name);
                 <Button bsSize="xsmall" bsStyle="success" value="Edit" onClick={this.editClient}>
                     Edit client
                 </Button>
-                <form ref="registerForm" className={className}  onSubmit={this.handleSubmit}>
+                <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
                     <label>Name</label>
                     <FieldGroup type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
                                 name="clientName"/>

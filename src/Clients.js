@@ -10,7 +10,8 @@ class Client extends Component {
         this.state = {
             client: {},
             CLIENTS: [],
-            VISITS: []
+            VISITS: [],
+            editable:false
         };
         this.switchClient = this.switchClient.bind(this);
         this.addClient = this.addClient.bind(this);
@@ -60,6 +61,7 @@ class Client extends Component {
     addClient(clients) {
         clients = clients.concat(this.state.CLIENTS);
         this.setState({CLIENTS: clients});
+        this.setState({editable:true});
     }
 
     render() {
@@ -72,7 +74,7 @@ class Client extends Component {
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
                                                        addClient={this.addClient} 
-                                                       CLIENTS={this.state.CLIENTS}></ClientsCard></div>
+                                                       CLIENTS={this.state.CLIENTS} editable={this.state.editable}></ClientsCard></div>
                 <div className="col-sm-3"><ClientsHistory client={this.state.client}
                                                           VISITS={this.state.VISITS}></ClientsHistory></div>
             </div>
