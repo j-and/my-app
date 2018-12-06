@@ -156,4 +156,11 @@ label {
     cursor: pointer;
     border-bottom: 2px solid #FF6C36; }
 
+.view-form {
+  pointer-events: none; }
+  .view-form input, .view-form textarea {
+    background: #DCEEF7;
+    border: none;
+    box-shadow: none; }
+
 /*# sourceMappingURL=custom-styles.css.map */

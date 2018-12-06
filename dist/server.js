@@ -644,10 +644,13 @@ module.exports =
 
 	        _this.state = {
 	            client: {},
-	            clients: []
+	            clients: [],
+	            clientName: _this.props.client.name,
+	            editable: false
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        _this.editClient = _this.editClient.bind(_this);
 	        return _this;
 	    }
 
@@ -660,11 +663,22 @@ module.exports =
 	            this.setState(_defineProperty({}, name, value));
 	        }
 	    }, {
+	        key: 'handleInputDateChange',
+	        value: function handleInputDateChange(event) {
+	            var target = event.target;
+	            var value = (0, _methods.dateToTimestamp)(target.value);
+	            var name = target.name;
+	            this.setState(_defineProperty({}, name, value));
+	        }
+	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
+	            // alert('this.props.client.name='+this.props.client.name)
 	            if (this.state.clientName) {
 	                var newClient = {
+	                    /*client_id is auto generated in db*/
+	                    client_id: 'idididi',
 	                    name: this.state.clientName,
 	                    birthdate: this.state.clientBirthdate,
 	                    desease: this.state.clientDesease,
@@ -680,9 +694,15 @@ module.exports =
 	                (0, _methods.sendData)(newClient, '/addClient');
 	                this.refs.registerForm.reset();
 	                this.setState({ client: {} });
+	                this.setState({ editable: false });
 	            } else {
 	                alert("Enter name");
 	            }
+	        }
+	    }, {
+	        key: 'editClient',
+	        value: function editClient() {
+	            this.setState({ editable: true });
 	        }
 	    }, {
 	        key: 'render',
@@ -700,7 +720,9 @@ module.exports =
 	            a = a.getFullYear() + '-' + month + '-' + day;
 
 	            var birthdate = a;
-
+	            console.log('this.props.client.name=' + this.props.client.name);
+	            var className = this.props.client.name ? this.state.editable ? '' : 'view-form' : '';
+	            //var nameValue = this.props.client.name ? this.props.client.name:'';
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -708,18 +730,24 @@ module.exports =
 	                    'h2',
 	                    null,
 	                    ' Clients card ',
-	                    client.name
+	                    client.name,
+	                    client.client_id
+	                ),
+	                _react2.default.createElement(
+	                    _Button2.default,
+	                    { bsSize: 'xsmall', bsStyle: 'success', value: 'Edit', onClick: this.editClient },
+	                    'Edit client'
 	                ),
 	                _react2.default.createElement(
 	                    'form',
-	                    { ref: 'registerForm', onSubmit: this.handleSubmit },
+	                    { ref: 'registerForm', className: className, onSubmit: this.handleSubmit },
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
 	                        'Name'
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
-	                        name: 'clientName', required: true }),
+	                        name: 'clientName' }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-xs-6 client_col_left' },
@@ -736,7 +764,7 @@ module.exports =
 	                            'Date of birth'
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', value: birthdate,
-	                            onChange: this.handleInputChange, name: 'clientBirthdate' })
+	                            onChange: this.handleInputDateChange, name: 'clientBirthdate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',

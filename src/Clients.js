@@ -71,7 +71,7 @@ class Client extends Component {
                         new</Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
-                                                       addClient={this.addClient}
+                                                       addClient={this.addClient} 
                                                        CLIENTS={this.state.CLIENTS}></ClientsCard></div>
                 <div className="col-sm-3"><ClientsHistory client={this.state.client}
                                                           VISITS={this.state.VISITS}></ClientsHistory></div>

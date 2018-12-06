@@ -245,3 +245,12 @@ label {
     border-bottom: 2px solid $red;
   }
 }
+
+.view-form{
+  pointer-events:none;
+  input, textarea{
+    background: $light-blue;
+    border: none;
+    box-shadow:none;
+  }
+}
