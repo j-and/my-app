@@ -11,7 +11,8 @@ class Client extends Component {
             client: {},
             CLIENTS: [],
             VISITS: [],
-            editable:false
+            editable: false,
+            isAdded: false
         };
         this.switchClient = this.switchClient.bind(this);
         this.addClient = this.addClient.bind(this);
@@ -31,6 +32,7 @@ class Client extends Component {
         var client = {
             name: clientName
         };
+        //this.setState({editable: false});
         fetch('/switchClient', {
             method: "POST",
             body: JSON.stringify(client),
@@ -41,6 +43,7 @@ class Client extends Component {
             (response) => {
                 response.json().then((data) => {
                     this.setState({client: data[0]});
+                    this.setState({editable: false});
                 })
 
             }
@@ -58,10 +61,22 @@ class Client extends Component {
         });
     }
 
-    addClient(clients) {
-        clients = clients.concat(this.state.CLIENTS);
+    addClient(clients, editable) {
+        var oldArray = this.state.CLIENTS;
+        for (var i = 0; i < oldArray.length; i++) {
+            if (oldArray[i]) {
+                if (oldArray[i].name == clients[0].name) {
+                    delete oldArray[i];
+                }
+            }
+            else {
+                i++;
+            }
+        }
+        clients = clients.concat(oldArray);
         this.setState({CLIENTS: clients});
-        this.setState({editable:true});
+        this.setState({editable: editable});
+        this.setState({isAdded: true});
     }
 
     render() {
@@ -73,8 +88,10 @@ class Client extends Component {
                         new</Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
-                                                       addClient={this.addClient} 
-                                                       CLIENTS={this.state.CLIENTS} editable={this.state.editable}></ClientsCard></div>
+                                                       addClient={this.addClient}
+                                                       CLIENTS={this.state.CLIENTS}
+                                                       editable={this.state.editable}
+                                                       isAdded={this.state.isAdded}></ClientsCard></div>
                 <div className="col-sm-3"><ClientsHistory client={this.state.client}
                                                           VISITS={this.state.VISITS}></ClientsHistory></div>
             </div>

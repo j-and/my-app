@@ -59,17 +59,17 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(29);
+	var _template = __webpack_require__(30);
 
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var bodyParser = __webpack_require__(30);
+	var bodyParser = __webpack_require__(31);
 
-	var express = __webpack_require__(31);
+	var express = __webpack_require__(32);
 	var server = express();
-	var mysql = __webpack_require__(32);
+	var mysql = __webpack_require__(33);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -142,6 +142,26 @@ module.exports =
 
 	        var values = [[req.body.name, req.body.desease, req.body.birthdate, req.body.phone, req.body.email, req.body.description]];
 	        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [values], function (err, result) {
+	            if (err) throw err;
+	        });
+	    });
+	    res.send('Response from server');
+	});
+
+	server.post('/editClient', function (req, res) {
+	    var con = mysql.createConnection({
+	        host: "localhost",
+	        user: "root",
+	        password: "root",
+	        database: "my_db"
+	    });
+
+	    con.connect(function (err) {
+	        if (err) {
+	            throw err;
+	        }
+	        var query = "UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name);
+	        con.query(query, function (err, result) {
 	            if (err) throw err;
 	        });
 	    });
@@ -310,17 +330,17 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(17);
+	var _Calendar = __webpack_require__(18);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(25);
+	var _reactRouterDom = __webpack_require__(26);
 
-	var _Navbar = __webpack_require__(26);
+	var _Navbar = __webpack_require__(27);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(27);
+	var _Nav = __webpack_require__(28);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
@@ -328,7 +348,7 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(28);
+	var _FormGroup = __webpack_require__(29);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -465,11 +485,11 @@ module.exports =
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(11);
+	var _ClientsHistory = __webpack_require__(12);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(16);
+	var _ClientsList = __webpack_require__(17);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
@@ -493,7 +513,8 @@ module.exports =
 	            client: {},
 	            CLIENTS: [],
 	            VISITS: [],
-	            editable: false
+	            editable: false,
+	            isAdded: false
 	        };
 	        _this.switchClient = _this.switchClient.bind(_this);
 	        _this.addClient = _this.addClient.bind(_this);
@@ -521,6 +542,7 @@ module.exports =
 	            var client = {
 	                name: clientName
 	            };
+	            //this.setState({editable: false});
 	            fetch('/switchClient', {
 	                method: "POST",
 	                body: JSON.stringify(client),
@@ -530,6 +552,8 @@ module.exports =
 	            }).then(function (response) {
 	                response.json().then(function (data) {
 	                    _this3.setState({ client: data[0] });
+	                    _this3.setState({ editable: false });
+	                    alert('editable=' + _this3.state.editable);
 	                });
 	            });
 	            fetch('/getVisits', {
@@ -546,10 +570,21 @@ module.exports =
 	        }
 	    }, {
 	        key: 'addClient',
-	        value: function addClient(clients) {
-	            clients = clients.concat(this.state.CLIENTS);
+	        value: function addClient(clients, editable) {
+	            var oldArray = this.state.CLIENTS;
+	            for (var i = 0; i < oldArray.length; i++) {
+	                if (oldArray[i]) {
+	                    if (oldArray[i].name == clients[0].name) {
+	                        delete oldArray[i];
+	                    }
+	                } else {
+	                    i++;
+	                }
+	            }
+	            clients = clients.concat(oldArray);
 	            this.setState({ CLIENTS: clients });
-	            this.setState({ editable: true });
+	            this.setState({ editable: editable });
+	            this.setState({ isAdded: true });
 	        }
 	    }, {
 	        key: 'render',
@@ -577,7 +612,9 @@ module.exports =
 	                    { className: 'col-sm-6' },
 	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client,
 	                        addClient: this.addClient,
-	                        CLIENTS: this.state.CLIENTS, editable: this.state.editable })
+	                        CLIENTS: this.state.CLIENTS,
+	                        editable: this.state.editable,
+	                        isAdded: this.state.isAdded })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -626,6 +663,10 @@ module.exports =
 
 	var _methods = __webpack_require__(9);
 
+	var _moment = __webpack_require__(11);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -647,13 +688,14 @@ module.exports =
 	        _this.state = {
 	            client: {},
 	            clients: [],
-	            clientName: _this.props.client.name,
-	            editable: _this.props.editable
+	            editable: _this.props.editable,
+	            isChanged: false
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
-	        _this.handleInputDateChange = _this.handleInputDateChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
 	        _this.editClient = _this.editClient.bind(_this);
+	        _this.saveClient = _this.saveClient.bind(_this);
+	        _this.saveEditedClient = _this.saveEditedClient.bind(_this);
 	        return _this;
 	    }
 
@@ -664,73 +706,92 @@ module.exports =
 	            var value = target.value;
 	            var name = target.name;
 	            this.setState(_defineProperty({}, name, value));
+	            this.setState({ isChanged: true });
 	        }
 	    }, {
-	        key: 'handleInputDateChange',
-	        value: function handleInputDateChange(event) {
-	            var target = event.target;
-	            var value = target.value;
-	            var name = target.name;
+	        key: 'saveClient',
+	        value: function saveClient() {
+	            var birthDate = this.state.clientBirthdate ? this.state.clientBirthdate : (0, _methods.dateToTimestamp)(new Date().toISOString());
+	            var newClient = {
+	                /*client_id is auto generated in db*/
+	                //client_id:'idididi',
+	                name: this.state.clientName,
+	                birthdate: birthDate,
+	                desease: this.state.clientDesease,
+	                phone: this.state.clientPhone,
+	                email: this.state.clientEmail,
+	                description: this.state.clientDescription
+	            };
+	            alert('saveClient; newClient.birthdate=' + newClient.birthdate);
+	            var newArray = this.state.clients;
+	            newArray.push(newClient);
+	            this.setState({ clients: newArray });
+	            this.props.addClient(this.state.editable);
+	            (0, _methods.sendData)(newClient, '/addClient');
+	            this.refs.registerForm.reset();
+	        }
+	    }, {
+	        key: 'saveEditedClient',
+	        value: function saveEditedClient() {
 
-	            this.setState(_defineProperty({}, name, (0, _methods.dateToTimestamp)(value)));
-	            console.log('value=' + value);
+	            var newClient = {
+	                /*client_id is auto generated in db*/
+	                //client_id:'idididi',
+	                name: this.state.clientName,
+	                birthdate: this.state.clientBirthdate,
+	                desease: this.state.clientDesease,
+	                phone: this.state.clientPhone,
+	                email: this.state.clientEmail,
+	                description: this.state.clientDescription
+	            };
+	            (0, _methods.sendData)(newClient, '/editClient');
 	        }
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(event) {
 	            event.preventDefault();
-	            if (this.state.clientName) {
-	                var newClient = {
-	                    /*client_id is auto generated in db*/
-	                    //client_id:'idididi',
-	                    name: this.state.clientName,
-	                    birthdate: (0, _methods.dateToTimestamp)(new Date(this.state.clientBirthdate).toISOString()), //this.state.clientBirthdate,
-	                    desease: this.state.clientDesease,
-	                    phone: this.state.clientPhone,
-	                    email: this.state.clientEmail,
-	                    description: this.state.clientDescription
-	                };
-
-	                var newArray = this.state.clients;
-	                newArray.push(newClient);
-	                this.setState({ clients: newArray });
-	                this.props.addClient(this.state.clients);
-	                (0, _methods.sendData)(newClient, '/addClient');
-	                this.refs.registerForm.reset();
-	                this.setState({ client: {} });
-	                this.setState({ editable: false });
+	            if (this.props.isAdded) {
+	                this.saveClient();
 	            } else {
-	                alert("Enter name");
+	                this.saveEditedClient();
 	            }
+	            this.refs.registerForm.reset();
+	            this.setState({ client: {} });
+	            this.setState({ clients: [] });
+	            this.setState({ editable: false });
+	            this.props.addClient(this.state.clients);
+	            this.setState({ isChanged: false });
 	        }
 	    }, {
 	        key: 'editClient',
 	        value: function editClient() {
 	            this.setState({ editable: true });
+	            //this.setState({isChanged: true});
+
+	            var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
+	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
+
+	            this.setState({ clientName: this.props.client.name });
+	            this.setState({ clientBirthdate: birthdate });
+	            this.setState({ clientDesease: this.props.client.desease });
+	            this.setState({ clientPhone: this.props.client.phone });
+	            this.setState({ clientEmail: this.props.client.email });
+	            this.setState({ clientDescription: this.props.client.description });
+	            document.getElementById('clientName').value = this.props.client.name;
+	            document.getElementById('clientDesease').value = this.props.client.desease;
+	            document.getElementById('clientBirthdate').value = birthdate;
+	            document.getElementById('clientPhone').value = this.props.client.phone;
+	            document.getElementById('clientEmail').value = this.props.client.email;
+	            document.getElementById('clientDescription').value = this.props.client.description;
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var client = this.props.client;
 
-	            var a = client.birthdate;
-	            if (!a) {
-	                a = this.state.clientBirthdate;
-	            }
-	            a = new Date(a);
-	            var month = a.getMonth() + '';
-	            if (month.length == 1) {
-	                month = '0' + month;
-	            }
-	            var day = a.getDate() + '';
-	            if (day.length == 1) {
-	                day = '0' + day;
-	            }
-	            a = a.getFullYear() + '-' + month + '-' + day;
-
-	            var birthdate = a;
-
-	            var className = this.props.client.name ? this.state.editable ? '' : 'view-form' : '';
+	            var className = /*this.props.client.name ? (*/this.state.editable ? '' : 'view-form'; /*) : '';*/
+	            var showBtn = this.props.client.name ? '' : 'disabled';
+	            var showSaveBtn = this.state.isChanged ? '' : 'disabled';
 	            //var nameValue = this.props.client.name ? this.props.client.name:'';
 	            return _react2.default.createElement(
 	                'div',
@@ -744,7 +805,7 @@ module.exports =
 	                ),
 	                _react2.default.createElement(
 	                    _Button2.default,
-	                    { bsSize: 'xsmall', bsStyle: 'success', value: 'Edit', onClick: this.editClient },
+	                    { bsSize: 'xsmall', bsStyle: 'success', className: showBtn, value: 'Edit', onClick: this.editClient },
 	                    'Edit client'
 	                ),
 	                _react2.default.createElement(
@@ -756,7 +817,7 @@ module.exports =
 	                        'Name'
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
-	                        name: 'clientName' }),
+	                        id: 'clientName', name: 'clientName' }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-xs-6 client_col_left' },
@@ -766,14 +827,14 @@ module.exports =
 	                            'Desease'
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: client.desease,
-	                            onChange: this.handleInputChange, name: 'clientDesease' }),
+	                            onChange: this.handleInputChange, id: 'clientDesease', name: 'clientDesease' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Date of birth'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', value: birthdate,
-	                            onChange: this.handleInputDateChange, name: 'clientBirthdate' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth',
+	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -784,14 +845,14 @@ module.exports =
 	                            'Phone'
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: client.phone,
-	                            onChange: this.handleInputChange, name: 'clientPhone' }),
+	                            onChange: this.handleInputChange, id: 'clientPhone', name: 'clientPhone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
 	                            'Email'
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: client.email,
-	                            onChange: this.handleInputChange, name: 'clientEmail' })
+	                            onChange: this.handleInputChange, id: 'clientEmail', name: 'clientEmail' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'label',
@@ -799,10 +860,11 @@ module.exports =
 	                        'Description'
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: client.description, rows: '15',
-	                        onChange: this.handleInputChange, name: 'clientDescription' }),
+	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
+	                        { bsSize: 'xsmall', bsStyle: 'success', className: showSaveBtn, type: 'submit', value: 'Add',
+	                            onClick: this.handleSubmit },
 	                        'Save changes'
 	                    )
 	                )
@@ -875,6 +937,12 @@ module.exports =
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports) {
+
+	module.exports = require("moment");
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -889,11 +957,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(12);
+	var _ListGroup = __webpack_require__(13);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
-	var _Visit = __webpack_require__(13);
+	var _Visit = __webpack_require__(14);
 
 	var _Visit2 = _interopRequireDefault(_Visit);
 
@@ -962,13 +1030,13 @@ module.exports =
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/ListGroup");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -987,11 +1055,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(14);
+	var _Glyphicon = __webpack_require__(15);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _ListGroupItem = __webpack_require__(15);
+	var _ListGroupItem = __webpack_require__(16);
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
@@ -1104,19 +1172,19 @@ module.exports =
 	exports.default = Visit;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/ListGroupItem");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1131,7 +1199,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(12);
+	var _ListGroup = __webpack_require__(13);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
@@ -1202,7 +1270,7 @@ module.exports =
 	exports.default = ClientsList;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1217,15 +1285,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(18);
+	var _MonthTable = __webpack_require__(19);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(23);
+	var _LoginForm = __webpack_require__(24);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(24);
+	var _MonthNavigation = __webpack_require__(25);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1316,7 +1384,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1331,11 +1399,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(19);
+	var _DayList = __webpack_require__(20);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(22);
+	var _Table = __webpack_require__(23);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -1651,7 +1719,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1666,11 +1734,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(20);
+	var _RegisterList = __webpack_require__(21);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(21);
+	var _ClientNameInput = __webpack_require__(22);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1802,7 +1870,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1821,7 +1889,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(14);
+	var _Glyphicon = __webpack_require__(15);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -1913,7 +1981,7 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1932,7 +2000,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(14);
+	var _Glyphicon = __webpack_require__(15);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -2049,13 +2117,13 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2176,7 +2244,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2256,31 +2324,31 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormGroup");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2297,19 +2365,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

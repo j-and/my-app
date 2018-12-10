@@ -80,6 +80,27 @@ server.post('/addClient', function (req, res) {
     res.send('Response from server');
 });
 
+
+server.post('/editClient', function (req, res) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+
+    con.connect(function (err) {
+        if (err) {
+            throw err;
+        }
+        var query = "UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name);
+        con.query(query, function (err, result) {
+            if (err) throw err;
+        });
+    });
+    res.send('Response from server');
+});
+
 server.get('/clearRegistersDB', function (req, res) {
     var con = mysql.createConnection({
         host: "localhost",

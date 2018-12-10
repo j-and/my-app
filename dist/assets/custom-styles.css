@@ -163,4 +163,7 @@ label {
     border: none;
     box-shadow: none; }
 
+.disabled {
+  display: none; }
+
 /*# sourceMappingURL=custom-styles.css.map */
