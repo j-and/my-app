@@ -542,7 +542,6 @@ module.exports =
 	            var client = {
 	                name: clientName
 	            };
-	            //this.setState({editable: false});
 	            fetch('/switchClient', {
 	                method: "POST",
 	                body: JSON.stringify(client),
@@ -553,7 +552,6 @@ module.exports =
 	                response.json().then(function (data) {
 	                    _this3.setState({ client: data[0] });
 	                    _this3.setState({ editable: false });
-	                    alert('editable=' + _this3.state.editable);
 	                });
 	            });
 	            fetch('/getVisits', {
@@ -688,9 +686,11 @@ module.exports =
 	        _this.state = {
 	            client: {},
 	            clients: [],
+	            clientName: '',
 	            editable: _this.props.editable,
 	            isChanged: false
 	        };
+	        _this.clearForm = _this.clearForm.bind(_this);
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
 	        _this.editClient = _this.editClient.bind(_this);
@@ -706,6 +706,7 @@ module.exports =
 	            var value = target.value;
 	            var name = target.name;
 	            this.setState(_defineProperty({}, name, value));
+
 	            this.setState({ isChanged: true });
 	        }
 	    }, {
@@ -722,18 +723,14 @@ module.exports =
 	                email: this.state.clientEmail,
 	                description: this.state.clientDescription
 	            };
-	            alert('saveClient; newClient.birthdate=' + newClient.birthdate);
 	            var newArray = this.state.clients;
 	            newArray.push(newClient);
 	            this.setState({ clients: newArray });
-	            this.props.addClient(this.state.editable);
 	            (0, _methods.sendData)(newClient, '/addClient');
-	            this.refs.registerForm.reset();
 	        }
 	    }, {
 	        key: 'saveEditedClient',
 	        value: function saveEditedClient() {
-
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
@@ -747,14 +744,8 @@ module.exports =
 	            (0, _methods.sendData)(newClient, '/editClient');
 	        }
 	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(event) {
-	            event.preventDefault();
-	            if (this.props.isAdded) {
-	                this.saveClient();
-	            } else {
-	                this.saveEditedClient();
-	            }
+	        key: 'clearForm',
+	        value: function clearForm() {
 	            this.refs.registerForm.reset();
 	            this.setState({ client: {} });
 	            this.setState({ clients: [] });
@@ -763,14 +754,22 @@ module.exports =
 	            this.setState({ isChanged: false });
 	        }
 	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(event) {
+	            event.preventDefault();
+	            if (this.props.isAdded) {
+	                this.saveClient();
+	            } else {
+	                this.saveEditedClient();
+	            }
+	            this.clearForm();
+	        }
+	    }, {
 	        key: 'editClient',
 	        value: function editClient() {
 	            this.setState({ editable: true });
-	            //this.setState({isChanged: true});
-
 	            var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
 	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
-
 	            this.setState({ clientName: this.props.client.name });
 	            this.setState({ clientBirthdate: birthdate });
 	            this.setState({ clientDesease: this.props.client.desease });
@@ -788,11 +787,27 @@ module.exports =
 	        key: 'render',
 	        value: function render() {
 	            var client = this.props.client;
-
-	            var className = /*this.props.client.name ? (*/this.state.editable ? '' : 'view-form'; /*) : '';*/
+	            var className = this.props.client.name ? this.state.editable ? '' : 'view-form' : '';
 	            var showBtn = this.props.client.name ? '' : 'disabled';
-	            var showSaveBtn = this.state.isChanged ? '' : 'disabled';
-	            //var nameValue = this.props.client.name ? this.props.client.name:'';
+
+	            // var showSaveBtn = this.state.editable ? (this.state.isChanged ? '' : 'disabled'):'disabled';
+	            // var birthdateDateInput = this.state.editable ?'':'disabled' ;
+	            // var birthdateTextInput = this.state.editable ? 'disabled':'';
+
+	            if (this.state.editable) {
+	                var showSaveBtn = this.state.isChanged ? '' : 'disabled';
+	                var birthdateDateInput = '';
+	                var birthdateTextInput = 'disabled';
+	            } else {
+	                showSaveBtn = 'disabled';
+	                birthdateDateInput = 'disabled';
+	                birthdateTextInput = '';
+	            }
+
+	            if (this.props.client.birthdate) {
+	                var birthdate = (0, _moment2.default)(this.props.client.birthdate).format('MM/DD/YYYY');
+	            }
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -833,8 +848,9 @@ module.exports =
 	                            null,
 	                            'Date of birth'
 	                        ),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth',
-	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', className: birthdateDateInput,
+	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Date of birth', className: birthdateTextInput, placeholder: birthdate })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',

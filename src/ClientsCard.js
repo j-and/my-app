@@ -11,9 +11,11 @@ class ClientsCard extends Component {
         this.state = {
             client: {},
             clients: [],
+            clientName:'',
             editable: this.props.editable,
             isChanged: false
         };
+        this.clearForm = this.clearForm.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.editClient = this.editClient.bind(this);
@@ -28,6 +30,7 @@ class ClientsCard extends Component {
         this.setState({
             [name]: value
         });
+       
         this.setState({isChanged: true});
     }
 
@@ -46,14 +49,11 @@ class ClientsCard extends Component {
         var newArray = this.state.clients;
         newArray.push(newClient);
         this.setState({clients: newArray});
-        this.props.addClient(this.state.editable);
         sendData(newClient, '/addClient');
-        this.refs.registerForm.reset();
     }
 
 
     saveEditedClient() {
-
         var newClient = {
             /*client_id is auto generated in db*/
             //client_id:'idididi',
@@ -65,9 +65,17 @@ class ClientsCard extends Component {
             description: this.state.clientDescription
         };
         sendData(newClient, '/editClient');
-
     }
 
+    clearForm() {
+        this.refs.registerForm.reset();
+        this.setState({client: {}});
+        this.setState({clients: []});
+        this.setState({editable: false});
+        this.props.addClient(this.state.clients);
+        this.setState({isChanged: false});
+    }
+    
     handleSubmit(event) {
         event.preventDefault();
         if (this.props.isAdded) {
@@ -76,21 +84,13 @@ class ClientsCard extends Component {
         else {
             this.saveEditedClient();
         }
-        this.refs.registerForm.reset();
-        this.setState({client: {}});
-        this.setState({clients: []});
-        this.setState({editable: false});
-        this.props.addClient(this.state.clients);
-        this.setState({isChanged: false});
+        this.clearForm();
     }
 
     editClient() {
         this.setState({editable: true});
-        //this.setState({isChanged: true});
-
         var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
         birthdate = moment(birthdate).format('YYYY-MM-DD');
-
         this.setState({clientName: this.props.client.name});
         this.setState({clientBirthdate: birthdate});
         this.setState({clientDesease: this.props.client.desease});
@@ -107,11 +107,24 @@ class ClientsCard extends Component {
 
     render() {
         var client = this.props.client;
-
         var className = this.props.client.name ? (this.state.editable ? '' : 'view-form') : '';
         var showBtn = this.props.client.name ? '' : 'disabled';
-        var showSaveBtn = this.state.isChanged ? '' : 'disabled';
-        //var nameValue = this.props.client.name ? this.props.client.name:'';
+
+        if(this.state.editable){
+            var showSaveBtn=this.state.isChanged ? '' : 'disabled';
+            var birthdateDateInput='';
+            var birthdateTextInput='disabled';
+        }
+        else{
+             showSaveBtn='disabled';
+             birthdateDateInput='disabled';
+             birthdateTextInput='';
+        }
+        
+       if(this.props.client.birthdate){
+          var birthdate=moment(this.props.client.birthdate).format('MM/DD/YYYY');
+       }
+        
         return (
             <div>
                 <h2> Clients card {client.name}{client.client_id}</h2>
@@ -126,9 +139,12 @@ class ClientsCard extends Component {
                         <label>Desease</label>
                         <FieldGroup type="text" label="Desease" placeholder={client.desease}
                                     onChange={this.handleInputChange} id="clientDesease" name="clientDesease"/>
+
                         <label>Date of birth</label>
-                        <FieldGroup type="date" label="Date of birth"
+                        <FieldGroup type="date" label="Date of birth" className={birthdateDateInput}
                                     onChange={this.handleInputChange} id="clientBirthdate" name="clientBirthdate"/>
+                            <FieldGroup type="text" label="Date of birth"  className={birthdateTextInput}  placeholder={birthdate}/>
+
                     </div>
                     <div className="col-xs-6 client_col_right">
                         <label>Phone</label>

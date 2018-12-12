@@ -32,7 +32,6 @@ class Client extends Component {
         var client = {
             name: clientName
         };
-        //this.setState({editable: false});
         fetch('/switchClient', {
             method: "POST",
             body: JSON.stringify(client),
