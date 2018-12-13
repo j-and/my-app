@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ClientsCard from './ClientsCard.js';
 import ClientsHistory from './ClientsHistory.js';
 import ClientsList from './ClientsList.js';
+import moment from 'moment';
 
 class Client extends Component {
     constructor(props) {
@@ -11,11 +12,12 @@ class Client extends Component {
             client: {},
             CLIENTS: [],
             VISITS: [],
-            editable: false,
-            isAdded: false
+            editable: true,
+            isAdded: true
         };
-        this.switchClient = this.switchClient.bind(this);
         this.addClient = this.addClient.bind(this);
+        this.editClient = this.editClient.bind(this);
+        this.switchClient = this.switchClient.bind(this);
     }
 
     componentDidMount() {
@@ -60,31 +62,52 @@ class Client extends Component {
         });
     }
 
-    addClient(clients, editable) {
+    addClient(clients, editable, isAdded) {
         var oldArray = this.state.CLIENTS;
-        for (var i = 0; i < oldArray.length; i++) {
-            if (oldArray[i]) {
-                if (oldArray[i].name == clients[0].name) {
-                    delete oldArray[i];
+        if(clients.length){
+            for (var i = 0; i < oldArray.length; i++) {
+                if (oldArray[i]) {
+                    if (oldArray[i].name == clients[0].name) {
+                        delete oldArray[i];
+                    }
                 }
-            }
-            else {
-                i++;
-            }
+                else {
+                    i++;
+                }
+            }  
         }
         clients = clients.concat(oldArray);
         this.setState({CLIENTS: clients});
         this.setState({editable: editable});
-        this.setState({isAdded: true});
+        this.setState({isAdded: isAdded});
+    }
+
+    editClient() {
+        this.setState({isAdded: false});
+        this.setState({editable: true});
+        var birthdate = this.state.client.birthdate ? this.state.client.birthdate : new Date();
+        birthdate = moment(birthdate).format('YYYY-MM-DD');
+        document.getElementById('clientName').value = this.state.client.name;
+        document.getElementById('clientDesease').value = this.state.client.desease;
+        document.getElementById('clientBirthdate').value = birthdate;
+        document.getElementById('clientPhone').value = this.state.client.phone;
+        document.getElementById('clientEmail').value = this.state.client.email;
+        document.getElementById('clientDescription').value = this.state.client.description;
     }
 
     render() {
+
+        var showEditBtn = this.state.client.name ? '' : 'disabled';
+        
         return (
             <div>
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}
                                                        CLIENTS={this.state.CLIENTS}/>
-                    <Button bsStyle="success" type="submit" value="Add" onClick={() => {this.setState({client:{}})}}>Add
-                        new</Button>
+                    <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
+        this.setState({isAdded:true});this.setState({client:{}});})}>Add new</Button>
+                    <Button bsSize="xsmall" bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{this.editClient()})}>
+                        Edit client
+                    </Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
                                                        addClient={this.addClient}

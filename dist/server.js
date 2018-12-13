@@ -493,6 +493,10 @@ module.exports =
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
+	var _moment = __webpack_require__(11);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -513,11 +517,12 @@ module.exports =
 	            client: {},
 	            CLIENTS: [],
 	            VISITS: [],
-	            editable: false,
-	            isAdded: false
+	            editable: true,
+	            isAdded: true
 	        };
-	        _this.switchClient = _this.switchClient.bind(_this);
 	        _this.addClient = _this.addClient.bind(_this);
+	        _this.editClient = _this.editClient.bind(_this);
+	        _this.switchClient = _this.switchClient.bind(_this);
 	        return _this;
 	    }
 
@@ -568,26 +573,44 @@ module.exports =
 	        }
 	    }, {
 	        key: 'addClient',
-	        value: function addClient(clients, editable) {
+	        value: function addClient(clients, editable, isAdded) {
 	            var oldArray = this.state.CLIENTS;
-	            for (var i = 0; i < oldArray.length; i++) {
-	                if (oldArray[i]) {
-	                    if (oldArray[i].name == clients[0].name) {
-	                        delete oldArray[i];
+	            if (clients.length) {
+	                for (var i = 0; i < oldArray.length; i++) {
+	                    if (oldArray[i]) {
+	                        if (oldArray[i].name == clients[0].name) {
+	                            delete oldArray[i];
+	                        }
+	                    } else {
+	                        i++;
 	                    }
-	                } else {
-	                    i++;
 	                }
 	            }
 	            clients = clients.concat(oldArray);
 	            this.setState({ CLIENTS: clients });
 	            this.setState({ editable: editable });
-	            this.setState({ isAdded: true });
+	            this.setState({ isAdded: isAdded });
+	        }
+	    }, {
+	        key: 'editClient',
+	        value: function editClient() {
+	            this.setState({ isAdded: false });
+	            this.setState({ editable: true });
+	            var birthdate = this.state.client.birthdate ? this.state.client.birthdate : new Date();
+	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
+	            document.getElementById('clientName').value = this.state.client.name;
+	            document.getElementById('clientDesease').value = this.state.client.desease;
+	            document.getElementById('clientBirthdate').value = birthdate;
+	            document.getElementById('clientPhone').value = this.state.client.phone;
+	            document.getElementById('clientEmail').value = this.state.client.email;
+	            document.getElementById('clientDescription').value = this.state.client.description;
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this4 = this;
+
+	            var showEditBtn = this.state.client.name ? '' : 'disabled';
 
 	            return _react2.default.createElement(
 	                'div',
@@ -599,10 +622,18 @@ module.exports =
 	                        CLIENTS: this.state.CLIENTS }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsStyle: 'success', type: 'submit', value: 'Add', onClick: function onClick() {
-	                                _this4.setState({ client: {} });
+	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
+	                                _this4.setState({ editable: true });
+	                                _this4.setState({ isAdded: true });_this4.setState({ client: {} });
 	                            } },
 	                        'Add new'
+	                    ),
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { bsSize: 'xsmall', bsStyle: 'success', className: showEditBtn, value: 'Edit', onClick: function onClick() {
+	                                _this4.editClient();
+	                            } },
+	                        'Edit client'
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -686,62 +717,82 @@ module.exports =
 	        _this.state = {
 	            client: {},
 	            clients: [],
-	            clientName: '',
-	            editable: _this.props.editable,
-	            isChanged: false
+	            editable: false
 	        };
 	        _this.clearForm = _this.clearForm.bind(_this);
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        _this.editClient = _this.editClient.bind(_this);
 	        _this.saveClient = _this.saveClient.bind(_this);
 	        _this.saveEditedClient = _this.saveEditedClient.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(ClientsCard, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
+	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
+	            this.setState({ clientName: this.props.client.name });
+	            this.setState({ clientBirthdate: birthdate });
+	            this.setState({ clientDesease: this.props.client.desease });
+	            this.setState({ clientPhone: this.props.client.phone });
+	            this.setState({ clientEmail: this.props.client.email });
+	            this.setState({ clientDescription: this.props.client.description });
+	        }
+	    }, {
 	        key: 'handleInputChange',
 	        value: function handleInputChange(event) {
 	            var target = event.target;
 	            var value = target.value;
 	            var name = target.name;
 	            this.setState(_defineProperty({}, name, value));
-
-	            this.setState({ isChanged: true });
 	        }
 	    }, {
 	        key: 'saveClient',
 	        value: function saveClient() {
-	            var birthDate = this.state.clientBirthdate ? this.state.clientBirthdate : (0, _methods.dateToTimestamp)(new Date().toISOString());
+	            var name = this.state.clientName ? this.state.clientName : '';
+	            var birthdate = this.state.clientBirthdate ? this.state.clientBirthdate : new Date();
+	            var desease = this.state.clientDesease ? this.state.clientDesease : '';
+	            var phone = this.state.clientPhone ? this.state.clientPhone : '';
+	            var email = this.state.clientEmail ? this.state.clientEmail : '';
+	            var description = this.state.clientDescription ? this.state.clientDescription : '';
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
-	                name: this.state.clientName,
-	                birthdate: birthDate,
-	                desease: this.state.clientDesease,
-	                phone: this.state.clientPhone,
-	                email: this.state.clientEmail,
-	                description: this.state.clientDescription
+	                name: name,
+	                birthdate: birthdate,
+	                desease: desease,
+	                phone: phone,
+	                email: email,
+	                description: description
 	            };
 	            var newArray = this.state.clients;
 	            newArray.push(newClient);
 	            this.setState({ clients: newArray });
 	            (0, _methods.sendData)(newClient, '/addClient');
+	            this.clearForm();
 	        }
 	    }, {
 	        key: 'saveEditedClient',
 	        value: function saveEditedClient() {
+	            var name = this.state.clientName ? this.state.clientName : this.props.client.name;
+	            var birthdate = this.state.clientBirthdate ? this.state.clientBirthdate : this.props.client.birthdate;
+	            var desease = this.state.clientDesease ? this.state.clientDesease : this.props.client.desease;
+	            var phone = this.state.clientPhone ? this.state.clientPhone : this.props.client.phone;
+	            var email = this.state.clientEmail ? this.state.clientEmail : this.props.client.email;
+	            var description = this.state.clientDescription ? this.state.clientDescription : this.props.client.description;
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
-	                name: this.state.clientName,
-	                birthdate: this.state.clientBirthdate,
-	                desease: this.state.clientDesease,
-	                phone: this.state.clientPhone,
-	                email: this.state.clientEmail,
-	                description: this.state.clientDescription
+	                name: name,
+	                birthdate: birthdate,
+	                desease: desease,
+	                phone: phone,
+	                email: email,
+	                description: description
 	            };
 	            (0, _methods.sendData)(newClient, '/editClient');
+	            this.clearForm();
 	        }
 	    }, {
 	        key: 'clearForm',
@@ -750,8 +801,8 @@ module.exports =
 	            this.setState({ client: {} });
 	            this.setState({ clients: [] });
 	            this.setState({ editable: false });
-	            this.props.addClient(this.state.clients);
-	            this.setState({ isChanged: false });
+	            this.setState({ isAdded: false });
+	            this.props.addClient(this.state.clients, this.state.editable, this.state.isAdded);
 	        }
 	    }, {
 	        key: 'handleSubmit',
@@ -762,46 +813,29 @@ module.exports =
 	            } else {
 	                this.saveEditedClient();
 	            }
-	            this.clearForm();
-	        }
-	    }, {
-	        key: 'editClient',
-	        value: function editClient() {
-	            this.setState({ editable: true });
-	            var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
-	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
-	            this.setState({ clientName: this.props.client.name });
-	            this.setState({ clientBirthdate: birthdate });
-	            this.setState({ clientDesease: this.props.client.desease });
-	            this.setState({ clientPhone: this.props.client.phone });
-	            this.setState({ clientEmail: this.props.client.email });
-	            this.setState({ clientDescription: this.props.client.description });
-	            document.getElementById('clientName').value = this.props.client.name;
-	            document.getElementById('clientDesease').value = this.props.client.desease;
-	            document.getElementById('clientBirthdate').value = birthdate;
-	            document.getElementById('clientPhone').value = this.props.client.phone;
-	            document.getElementById('clientEmail').value = this.props.client.email;
-	            document.getElementById('clientDescription').value = this.props.client.description;
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var client = this.props.client;
-	            var className = this.props.client.name ? this.state.editable ? '' : 'view-form' : '';
-	            var showBtn = this.props.client.name ? '' : 'disabled';
+	            if (this.props.editable) {
 
-	            // var showSaveBtn = this.state.editable ? (this.state.isChanged ? '' : 'disabled'):'disabled';
-	            // var birthdateDateInput = this.state.editable ?'':'disabled' ;
-	            // var birthdateTextInput = this.state.editable ? 'disabled':'';
-
-	            if (this.state.editable) {
-	                var showSaveBtn = this.state.isChanged ? '' : 'disabled';
+	                var className = '';
 	                var birthdateDateInput = '';
 	                var birthdateTextInput = 'disabled';
+	                var showSaveBtn = '';
 	            } else {
-	                showSaveBtn = 'disabled';
-	                birthdateDateInput = 'disabled';
-	                birthdateTextInput = '';
+	                if (this.state.editable && this.props.isAdded) {
+	                    var className = '';
+	                    var birthdateDateInput = '';
+	                    var birthdateTextInput = 'disabled';
+	                    var showSaveBtn = '';
+	                } else {
+	                    className = 'view-form';
+	                    birthdateDateInput = 'disabled';
+	                    birthdateTextInput = '';
+	                    showSaveBtn = 'disabled';
+	                }
 	            }
 
 	            if (this.props.client.birthdate) {
@@ -817,11 +851,6 @@ module.exports =
 	                    ' Clients card ',
 	                    client.name,
 	                    client.client_id
-	                ),
-	                _react2.default.createElement(
-	                    _Button2.default,
-	                    { bsSize: 'xsmall', bsStyle: 'success', className: showBtn, value: 'Edit', onClick: this.editClient },
-	                    'Edit client'
 	                ),
 	                _react2.default.createElement(
 	                    'form',
@@ -850,7 +879,8 @@ module.exports =
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', className: birthdateDateInput,
 	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' }),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Date of birth', className: birthdateTextInput, placeholder: birthdate })
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Date of birth', className: birthdateTextInput,
+	                            placeholder: birthdate })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -879,8 +909,7 @@ module.exports =
 	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsSize: 'xsmall', bsStyle: 'success', className: showSaveBtn, type: 'submit', value: 'Add',
-	                            onClick: this.handleSubmit },
+	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add', className: showSaveBtn },
 	                        'Save changes'
 	                    )
 	                )
