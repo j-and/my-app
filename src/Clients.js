@@ -15,8 +15,8 @@ class Client extends Component {
             editable: true,
             isAdded: true
         };
-        this.addClient = this.addClient.bind(this);
-        this.editClient = this.editClient.bind(this);
+        this.changeClient = this.changeClient.bind(this);
+        this.fillForm = this.fillForm.bind(this);
         this.switchClient = this.switchClient.bind(this);
     }
 
@@ -62,9 +62,9 @@ class Client extends Component {
         });
     }
 
-    addClient(clients, editable, isAdded) {
+    changeClient(clients) {
         var oldArray = this.state.CLIENTS;
-        if(clients.length){
+        if (clients.length) {
             for (var i = 0; i < oldArray.length; i++) {
                 if (oldArray[i]) {
                     if (oldArray[i].name == clients[0].name) {
@@ -74,17 +74,16 @@ class Client extends Component {
                 else {
                     i++;
                 }
-            }  
+            }
         }
         clients = clients.concat(oldArray);
         this.setState({CLIENTS: clients});
-        this.setState({editable: editable});
-        this.setState({isAdded: isAdded});
+        this.setState({editable: false});
+        this.setState({isAdded: false});
+        this.setState({client: false});
     }
 
-    editClient() {
-        this.setState({isAdded: false});
-        this.setState({editable: true});
+    fillForm() {
         var birthdate = this.state.client.birthdate ? this.state.client.birthdate : new Date();
         birthdate = moment(birthdate).format('YYYY-MM-DD');
         document.getElementById('clientName').value = this.state.client.name;
@@ -98,19 +97,19 @@ class Client extends Component {
     render() {
 
         var showEditBtn = this.state.client.name ? '' : 'disabled';
-        
+
         return (
             <div>
-                <div className="col-sm-3"><ClientsList switchClient={this.switchClient} newClient={this.state.client}
-                                                       CLIENTS={this.state.CLIENTS}/>
+                <div className="col-sm-3"><ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
                     <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
-        this.setState({isAdded:true});this.setState({client:{}});})}>Add new</Button>
-                    <Button bsSize="xsmall" bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{this.editClient()})}>
+        this.setState({isAdded:true});this.setState({client:{}})})}>Add new</Button>
+                    <Button bsSize="xsmall" bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{ this.setState({isAdded: false});
+        this.setState({editable: true});this.fillForm()})}>
                         Edit client
                     </Button>
                 </div>
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
-                                                       addClient={this.addClient}
+                                                       changeClient={this.changeClient}
                                                        CLIENTS={this.state.CLIENTS}
                                                        editable={this.state.editable}
                                                        isAdded={this.state.isAdded}></ClientsCard></div>

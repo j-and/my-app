@@ -11,24 +11,19 @@ class ClientsCard extends Component {
         this.state = {
             client: {},
             clients: [],
-            editable: false
+            editable: false,
+            clientName: '',
+            clientBirthdate: moment(new Date()).format('YYYY-MM-DD'),
+            clientDesease: '',
+            clientPhone: '',
+            clientEmail: '',
+            clientDescription: ''
         };
         this.clearForm = this.clearForm.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.saveClient = this.saveClient.bind(this);
         this.saveEditedClient = this.saveEditedClient.bind(this);
-    }
-
-    componentDidMount() {
-        var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
-        birthdate = moment(birthdate).format('YYYY-MM-DD');
-        this.setState({clientName: this.props.client.name});
-        this.setState({clientBirthdate: birthdate});
-        this.setState({clientDesease: this.props.client.desease});
-        this.setState({clientPhone: this.props.client.phone});
-        this.setState({clientEmail: this.props.client.email});
-        this.setState({clientDescription: this.props.client.description});
     }
 
     handleInputChange(event) {
@@ -41,8 +36,8 @@ class ClientsCard extends Component {
     }
 
     saveClient() {
-        var name = this.state.clientName ? this.state.clientName : '';
-        var birthdate = this.state.clientBirthdate ? this.state.clientBirthdate :new Date();
+        var name = this.state.clientName;
+        var birthdate = this.state.clientBirthdate ? this.state.clientBirthdate : new Date();
         var desease = this.state.clientDesease ? this.state.clientDesease : '';
         var phone = this.state.clientPhone ? this.state.clientPhone : '';
         var email = this.state.clientEmail ? this.state.clientEmail : '';
@@ -61,7 +56,8 @@ class ClientsCard extends Component {
         newArray.push(newClient);
         this.setState({clients: newArray});
         sendData(newClient, '/addClient');
-        this.clearForm();
+        this.props.changeClient(this.state.clients);
+        this.clearForm(newClient);
     }
 
 
@@ -76,23 +72,28 @@ class ClientsCard extends Component {
             /*client_id is auto generated in db*/
             //client_id:'idididi',
             name: name,
-            birthdate: birthdate,
+            birthdate: dateToTimestamp(birthdate),
             desease: desease,
             phone: phone,
             email: email,
             description: description
         };
         sendData(newClient, '/editClient');
-        this.clearForm();
+        this.setState({clients: []});
+        this.props.changeClient(this.state.clients);
+        this.clearForm(newClient);
     }
 
-    clearForm() {
+    clearForm(newClient) {
         this.refs.registerForm.reset();
         this.setState({client: {}});
         this.setState({clients: []});
-        this.setState({editable: false});
-        this.setState({isAdded: false});
-        this.props.addClient(this.state.clients, this.state.editable, this.state.isAdded);
+        this.setState({clientName: ''});
+        this.setState({clientDesease: ''});
+        this.setState({clientBirthdate: dateToTimestamp(new Date())});
+        this.setState({clientPhone: ''});
+        this.setState({clientEmail: ''});
+        this.setState({clientDescription: ''});
     }
 
     handleSubmit(event) {
@@ -107,26 +108,26 @@ class ClientsCard extends Component {
 
     render() {
         var client = this.props.client;
-        if (this.props.editable) {
 
+        if (this.props.editable) {
             var className = '';
             var birthdateDateInput = '';
             var birthdateTextInput = 'disabled';
             var showSaveBtn = '';
         }
-        else{
-          if(this.state.editable&&this.props.isAdded){
-              var className = '';
-              var birthdateDateInput = '';
-              var birthdateTextInput = 'disabled';
-              var showSaveBtn = '';
-          }  
-            else{
-              className = 'view-form';
-              birthdateDateInput = 'disabled';
-              birthdateTextInput = '';
-              showSaveBtn = 'disabled';
-          }
+        else {
+            if (this.state.editable && this.props.isAdded) {
+                className = '';
+                birthdateDateInput = '';
+                birthdateTextInput = 'disabled';
+                showSaveBtn = '';
+            }
+            else {
+                className = 'view-form';
+                birthdateDateInput = 'disabled';
+                birthdateTextInput = '';
+                showSaveBtn = 'disabled';
+            }
         }
 
         if (this.props.client.birthdate) {

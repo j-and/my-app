@@ -26025,8 +26025,8 @@
 	            editable: true,
 	            isAdded: true
 	        };
-	        _this.addClient = _this.addClient.bind(_this);
-	        _this.editClient = _this.editClient.bind(_this);
+	        _this.changeClient = _this.changeClient.bind(_this);
+	        _this.fillForm = _this.fillForm.bind(_this);
 	        _this.switchClient = _this.switchClient.bind(_this);
 	        return _this;
 	    }
@@ -26077,8 +26077,8 @@
 	            });
 	        }
 	    }, {
-	        key: 'addClient',
-	        value: function addClient(clients, editable, isAdded) {
+	        key: 'changeClient',
+	        value: function changeClient(clients) {
 	            var oldArray = this.state.CLIENTS;
 	            if (clients.length) {
 	                for (var i = 0; i < oldArray.length; i++) {
@@ -26093,14 +26093,13 @@
 	            }
 	            clients = clients.concat(oldArray);
 	            this.setState({ CLIENTS: clients });
-	            this.setState({ editable: editable });
-	            this.setState({ isAdded: isAdded });
+	            this.setState({ editable: false });
+	            this.setState({ isAdded: false });
+	            this.setState({ client: false });
 	        }
 	    }, {
-	        key: 'editClient',
-	        value: function editClient() {
-	            this.setState({ isAdded: false });
-	            this.setState({ editable: true });
+	        key: 'fillForm',
+	        value: function fillForm() {
 	            var birthdate = this.state.client.birthdate ? this.state.client.birthdate : new Date();
 	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
 	            document.getElementById('clientName').value = this.state.client.name;
@@ -26123,8 +26122,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, newClient: this.state.client,
-	                        CLIENTS: this.state.CLIENTS }),
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
@@ -26136,7 +26134,8 @@
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', className: showEditBtn, value: 'Edit', onClick: function onClick() {
-	                                _this4.editClient();
+	                                _this4.setState({ isAdded: false });
+	                                _this4.setState({ editable: true });_this4.fillForm();
 	                            } },
 	                        'Edit client'
 	                    )
@@ -26145,7 +26144,7 @@
 	                    'div',
 	                    { className: 'col-sm-6' },
 	                    _react2.default.createElement(_ClientsCard2.default, { client: this.state.client,
-	                        addClient: this.addClient,
+	                        changeClient: this.changeClient,
 	                        CLIENTS: this.state.CLIENTS,
 	                        editable: this.state.editable,
 	                        isAdded: this.state.isAdded })
@@ -28814,7 +28813,13 @@
 	        _this.state = {
 	            client: {},
 	            clients: [],
-	            editable: false
+	            editable: false,
+	            clientName: '',
+	            clientBirthdate: (0, _moment2.default)(new Date()).format('YYYY-MM-DD'),
+	            clientDesease: '',
+	            clientPhone: '',
+	            clientEmail: '',
+	            clientDescription: ''
 	        };
 	        _this.clearForm = _this.clearForm.bind(_this);
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
@@ -28826,16 +28831,7 @@
 
 	    _createClass(ClientsCard, [{
 	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var birthdate = this.props.client.birthdate ? this.props.client.birthdate : this.state.clientBirthdate;
-	            birthdate = (0, _moment2.default)(birthdate).format('YYYY-MM-DD');
-	            this.setState({ clientName: this.props.client.name });
-	            this.setState({ clientBirthdate: birthdate });
-	            this.setState({ clientDesease: this.props.client.desease });
-	            this.setState({ clientPhone: this.props.client.phone });
-	            this.setState({ clientEmail: this.props.client.email });
-	            this.setState({ clientDescription: this.props.client.description });
-	        }
+	        value: function componentDidMount() {}
 	    }, {
 	        key: 'handleInputChange',
 	        value: function handleInputChange(event) {
@@ -28847,12 +28843,13 @@
 	    }, {
 	        key: 'saveClient',
 	        value: function saveClient() {
-	            var name = this.state.clientName ? this.state.clientName : '';
+	            var name = this.state.clientName;
 	            var birthdate = this.state.clientBirthdate ? this.state.clientBirthdate : new Date();
 	            var desease = this.state.clientDesease ? this.state.clientDesease : '';
 	            var phone = this.state.clientPhone ? this.state.clientPhone : '';
 	            var email = this.state.clientEmail ? this.state.clientEmail : '';
 	            var description = this.state.clientDescription ? this.state.clientDescription : '';
+	            alert(name + birthdate + desease + phone);
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
@@ -28867,7 +28864,8 @@
 	            newArray.push(newClient);
 	            this.setState({ clients: newArray });
 	            (0, _methods.sendData)(newClient, '/addClient');
-	            this.clearForm();
+	            this.props.changeClient(this.state.clients);
+	            this.clearForm(newClient);
 	        }
 	    }, {
 	        key: 'saveEditedClient',
@@ -28882,24 +28880,31 @@
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
 	                name: name,
-	                birthdate: birthdate,
+	                birthdate: (0, _methods.dateToTimestamp)(birthdate),
 	                desease: desease,
 	                phone: phone,
 	                email: email,
 	                description: description
 	            };
 	            (0, _methods.sendData)(newClient, '/editClient');
-	            this.clearForm();
+	            this.setState({ clients: [] });
+	            this.setState({ clients: [] });
+	            this.props.changeClient(this.state.clients);
+	            this.clearForm(newClient);
 	        }
 	    }, {
 	        key: 'clearForm',
-	        value: function clearForm() {
+	        value: function clearForm(newClient) {
 	            this.refs.registerForm.reset();
 	            this.setState({ client: {} });
 	            this.setState({ clients: [] });
-	            this.setState({ editable: false });
-	            this.setState({ isAdded: false });
-	            this.props.addClient(this.state.clients, this.state.editable, this.state.isAdded);
+
+	            this.setState({ clientName: '' });
+	            this.setState({ clientDesease: '' });
+	            this.setState({ clientBirthdate: (0, _methods.dateToTimestamp)(new Date()) });
+	            this.setState({ clientPhone: '' });
+	            this.setState({ clientEmail: '' });
+	            this.setState({ clientDescription: '' });
 	        }
 	    }, {
 	        key: 'handleSubmit',
@@ -28915,6 +28920,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var client = this.props.client;
+
 	            if (this.props.editable) {
 
 	                var className = '';
@@ -28923,10 +28929,10 @@
 	                var showSaveBtn = '';
 	            } else {
 	                if (this.state.editable && this.props.isAdded) {
-	                    var className = '';
-	                    var birthdateDateInput = '';
-	                    var birthdateTextInput = 'disabled';
-	                    var showSaveBtn = '';
+	                    className = '';
+	                    birthdateDateInput = '';
+	                    birthdateTextInput = 'disabled';
+	                    showSaveBtn = '';
 	                } else {
 	                    className = 'view-form';
 	                    birthdateDateInput = 'disabled';
