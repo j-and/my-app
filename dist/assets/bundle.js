@@ -28830,9 +28830,6 @@
 	    }
 
 	    _createClass(ClientsCard, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
-	    }, {
 	        key: 'handleInputChange',
 	        value: function handleInputChange(event) {
 	            var target = event.target;
@@ -28849,7 +28846,6 @@
 	            var phone = this.state.clientPhone ? this.state.clientPhone : '';
 	            var email = this.state.clientEmail ? this.state.clientEmail : '';
 	            var description = this.state.clientDescription ? this.state.clientDescription : '';
-	            alert(name + birthdate + desease + phone);
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
@@ -28888,7 +28884,6 @@
 	            };
 	            (0, _methods.sendData)(newClient, '/editClient');
 	            this.setState({ clients: [] });
-	            this.setState({ clients: [] });
 	            this.props.changeClient(this.state.clients);
 	            this.clearForm(newClient);
 	        }
@@ -28898,7 +28893,6 @@
 	            this.refs.registerForm.reset();
 	            this.setState({ client: {} });
 	            this.setState({ clients: [] });
-
 	            this.setState({ clientName: '' });
 	            this.setState({ clientDesease: '' });
 	            this.setState({ clientBirthdate: (0, _methods.dateToTimestamp)(new Date()) });
@@ -28922,7 +28916,6 @@
 	            var client = this.props.client;
 
 	            if (this.props.editable) {
-
 	                var className = '';
 	                var birthdateDateInput = '';
 	                var birthdateTextInput = 'disabled';

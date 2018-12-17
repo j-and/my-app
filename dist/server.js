@@ -117,12 +117,34 @@ module.exports =
 	        }
 	        var values = [[req.body.datetime, req.body.name, 'busy']];
 	        var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
+	        var valuesVisit = [[req.body.name, req.body.datetime, null, null]];
 	        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
 	            if (err) throw err;
 	        });
-	        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+	        con.query("INSERT INTO visits (name, datetime, comment, payment) VALUES ?", [valuesVisit], function (err, result) {
 	            if (err) throw err;
 	        });
+
+	        con.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name), function (err, result) {
+	            if (err) throw err;
+	            if (result.length == 0) {
+	                // if (result){
+	                //  console.log("Test:" + Object.keys(result)+result[0].name+'/'+result[0].desease);
+	                con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+	                    if (err) throw err;
+	                });
+	                // }
+	            } else {
+	                console.log('This client is in clients list');
+	            }
+	        });
+
+	        // con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+	        //     if (err) throw err;
+	        // });
+	        // con.query("INSERT INTO visits (name,client_id, datetime, comment, payment) VALUES ?"+ mysql.escape(req.body.birthdate) , [valuesClient], function (err, result) {
+	        //     if (err) throw err;
+	        // })
 	    });
 	    res.send('Response from server');
 	});
@@ -733,9 +755,6 @@ module.exports =
 	    }
 
 	    _createClass(ClientsCard, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
-	    }, {
 	        key: 'handleInputChange',
 	        value: function handleInputChange(event) {
 	            var target = event.target;
@@ -752,7 +771,6 @@ module.exports =
 	            var phone = this.state.clientPhone ? this.state.clientPhone : '';
 	            var email = this.state.clientEmail ? this.state.clientEmail : '';
 	            var description = this.state.clientDescription ? this.state.clientDescription : '';
-	            alert(name + birthdate + desease + phone);
 	            var newClient = {
 	                /*client_id is auto generated in db*/
 	                //client_id:'idididi',
@@ -791,7 +809,6 @@ module.exports =
 	            };
 	            (0, _methods.sendData)(newClient, '/editClient');
 	            this.setState({ clients: [] });
-	            this.setState({ clients: [] });
 	            this.props.changeClient(this.state.clients);
 	            this.clearForm(newClient);
 	        }
@@ -801,7 +818,6 @@ module.exports =
 	            this.refs.registerForm.reset();
 	            this.setState({ client: {} });
 	            this.setState({ clients: [] });
-
 	            this.setState({ clientName: '' });
 	            this.setState({ clientDesease: '' });
 	            this.setState({ clientBirthdate: (0, _methods.dateToTimestamp)(new Date()) });
@@ -825,7 +841,6 @@ module.exports =
 	            var client = this.props.client;
 
 	            if (this.props.editable) {
-
 	                var className = '';
 	                var birthdateDateInput = '';
 	                var birthdateTextInput = 'disabled';

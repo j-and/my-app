@@ -49,12 +49,25 @@ server.post('/addRegister', function (req, res) {
         }
         var values = [[req.body.datetime, req.body.name, 'busy']];
         var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
+        var valuesVisit = [[req.body.name, req.body.datetime, null, null]];
         con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
             if (err) throw err;
         });
-        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+        con.query("INSERT INTO visits (name, datetime, comment, payment) VALUES ?", [valuesVisit], function (err, result) {
             if (err) throw err;
         });
+
+        con.query("SELECT * FROM my_db.clients WHERE name= "+ mysql.escape(req.body.name) , function (err, result) {
+                if (err) throw err;
+            if (result.length == 0) {
+                    con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+                        if (err) throw err;
+                    });
+            }
+            else{
+                console.log('This client is in clients list')
+            }
+            });
     });
     res.send('Response from server');
 });
