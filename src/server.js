@@ -47,27 +47,35 @@ server.post('/addRegister', function (req, res) {
         if (err) {
             throw err;
         }
-        var values = [[req.body.datetime, req.body.name, 'busy']];
         var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
-        var valuesVisit = [[req.body.name, req.body.datetime, null, null]];
-        con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
-            if (err) throw err;
-        });
-        con.query("INSERT INTO visits (name, datetime, comment, payment) VALUES ?", [valuesVisit], function (err, result) {
-            if (err) throw err;
-        });
 
-        con.query("SELECT * FROM my_db.clients WHERE name= "+ mysql.escape(req.body.name) , function (err, result) {
-                if (err) throw err;
+        con.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name), function (err, result) {
+            if (err) throw err;
             if (result.length == 0) {
-                    con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+                con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
+                    con.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name), function (err, rows) {// function (err, result) {
                         if (err) throw err;
+                        else {
+                            var ret = JSON.stringify(rows);
+                            var client_id = Object.values(JSON.parse(JSON.stringify(rows)))[0].client_id;
+                            console.log('client_id=' + client_id);
+                        }
                     });
+                });
             }
-            else{
-                console.log('This client is in clients list')
+            else {
+                var client_id = result[0].client_id;
+                console.log('This client is in clients list' + client_id);
             }
+            var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
+            var valuesVisit = [[req.body.name, req.body.datetime, null, null, client_id]];
+            con.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters], function (err, result) {
+                if (err) throw err;
             });
+            con.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit], function (err, result) {
+                if (err) throw err;
+            });
+        });
     });
     res.send('Response from server');
 });
