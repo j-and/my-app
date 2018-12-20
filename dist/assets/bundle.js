@@ -28859,7 +28859,8 @@
 	            var newArray = this.state.clients;
 	            newArray.push(newClient);
 	            this.setState({ clients: newArray });
-	            (0, _methods.sendData)(newClient, '/addClient');
+	            var a = (0, _methods.sendData)(newClient, '/addClient');
+	            alert(a);
 	            this.props.changeClient(this.state.clients);
 	            this.clearForm(newClient);
 	        }
@@ -47698,7 +47699,6 @@
 	            names: '',
 	            client_id: ''
 	        };
-	        _this.getClientId = _this.getClientId.bind(_this);
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleTimeChange = _this.handleTimeChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -47735,22 +47735,6 @@
 	            } else {
 	                alert("Enter name");
 	            }
-	        }
-	    }, {
-	        key: 'getClientId',
-	        value: function getClientId(newRegister) {
-	            // fetch('/getClientId', {
-	            //     method: "POST",
-	            //     body: JSON.stringify(newRegister),
-	            //     headers: {
-	            //         "Content-Type": "application/json"
-	            //     }
-	            // }).then((response) => {
-	            //     response.json().then((data) => {
-	            //         alert('data[0].client_id='+data[0].client_id);
-	            //         this.setState({client_id: data[0].client_id});
-	            //     })
-	            // });
 	        }
 	    }, {
 	        key: 'handleTimeChange',

@@ -86,7 +86,6 @@ server.post('/addRegister', function (req, res) {
         .then(function (rows) {
             client_id = rows[0].client_id;
             return client_id;
-
         })
         .then(function () {
             var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
@@ -101,23 +100,24 @@ server.post('/addRegister', function (req, res) {
 });
 
 server.post('/addClient', function (req, res) {
-    var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "my_db"
-    });
-
-    con.connect(function (err) {
-        if (err) {
-            throw err;
-        }
-
-        var values = [[req.body.name, req.body.desease, req.body.birthdate, req.body.phone, req.body.email, req.body.description]];
-        con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [values], function (err, result) {
-            if (err) throw err;
-        });
-    });
+    const database = new Database(config);
+    var client_id;
+    database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name))
+        .then(function (result) {
+            if (result.length != 0) {
+                client_id = result[0].client_id;
+            }
+            return client_id;
+        })
+        .then(function (client_id) {
+            if(!client_id){
+                console.log('client_id='+client_id);
+                var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);  
+            }
+            return database.close();
+        })
+        
     res.send('Response from server');
 });
 
