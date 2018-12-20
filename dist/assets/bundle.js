@@ -28859,8 +28859,7 @@
 	            var newArray = this.state.clients;
 	            newArray.push(newClient);
 	            this.setState({ clients: newArray });
-	            var a = (0, _methods.sendData)(newClient, '/addClient');
-	            alert(a);
+	            (0, _methods.sendData)(newClient, '/addClient');
 	            this.props.changeClient(this.state.clients);
 	            this.clearForm(newClient);
 	        }
