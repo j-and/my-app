@@ -47,6 +47,8 @@ module.exports =
 
 	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -64,6 +66,8 @@ module.exports =
 	var _template2 = _interopRequireDefault(_template);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var bodyParser = __webpack_require__(31);
 
@@ -103,7 +107,98 @@ module.exports =
 	    }));
 	});
 
+	var config = {
+	    host: "localhost",
+	    user: "root",
+	    password: "root",
+	    database: "my_db"
+	};
+
+	var Database = function () {
+	    function Database(config) {
+	        _classCallCheck(this, Database);
+
+	        this.connection = mysql.createConnection(config);
+	    }
+
+	    _createClass(Database, [{
+	        key: 'query',
+	        value: function query(sql, args) {
+	            var _this = this;
+
+	            return new Promise(function (resolve, reject) {
+	                _this.connection.query(sql, args, function (err, rows) {
+	                    if (err) throw err; //return reject(err);
+	                    resolve(rows);
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'close',
+	        value: function close() {
+	            var _this2 = this;
+
+	            return new Promise(function (resolve, reject) {
+	                _this2.connection.end(function (err) {
+	                    if (err) throw err; //if (err) return reject(err);
+	                    resolve();
+	                });
+	            });
+	        }
+	    }]);
+
+	    return Database;
+	}();
+
 	server.post('/addRegister', function (req, res) {
+	    var database = new Database(config);
+	    var client_id;
+	    database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name)).then(function (result) {
+	        console.log('result.length=' + result.length);
+	        if (result.length != 0) {
+	            client_id = result[0].client_id;
+	        }
+	        return client_id;
+	    }).then(function (client_id) {
+	        console.log('client_id=' + client_id);
+	        var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+	        database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);
+	    }).then(function (res) {
+	        // console.log('res='+res+req.body.name);
+	        return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+	    }).then(function (rows) {
+	        console.log('rows=' + rows);
+	        console.log('rows[0].client_id=' + rows[0].client_id);
+	        client_id = rows[0].client_id;
+	        return client_id;
+	    })
+	    //console.log('err='+err.length);
+	    // var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+	    // database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])
+	    //     .then(function (result) {
+	    //         database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+	    //
+	    //     })
+	    //     .then(function (rows) {
+	    //         console.log('rows[0].client_id=' + rows[0].client_id);
+	    //         client_id = rows[0].client_id;
+	    //     });
+
+	    // })
+
+	    .then(function () {
+	        console.log('registers client_id=' + client_id);
+	        var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
+	        database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
+	    }).then(function () {
+	        console.log('visits client_id=' + client_id);
+	        var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, client_id]];
+	        database.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit]);
+	        return database.close();
+	    });
+	});
+
+	server.post('/getClientId', function (req, res) {
 	    var con = mysql.createConnection({
 	        host: "localhost",
 	        user: "root",
@@ -115,46 +210,28 @@ module.exports =
 	        if (err) {
 	            throw err;
 	        }
-	        // var valuesRegisters = [[req.body.datetime, req.body.name, 'busy']];
-	        var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
-	        // var valuesVisit = [[req.body.name, req.body.datetime, null, null]];
-	        // con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [valuesRegisters], function (err, result) {
-	        //     if (err) throw err;
-	        // });
-	        // con.query("INSERT INTO visits (name, datetime, comment, payment) VALUES ?", [valuesVisit], function (err, result) {
-	        //     if (err) throw err;
-	        // });
-
 	        con.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name), function (err, result) {
 	            if (err) throw err;
-	            if (result.length == 0) {
-	                con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
-	                    con.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name), function (err, rows) {
-	                        // function (err, result) {
-	                        if (err) throw err;else {
-	                            var ret = JSON.stringify(rows);
-	                            var client_id = Object.values(JSON.parse(JSON.stringify(rows)))[0].client_id;
-	                            console.log('client_id=' + client_id);
-	                        }
-	                    });
-	                });
-	            } else {
-	                var client_id = result[0].client_id;
-	                console.log('This client is in clients list' + client_id);
-	            }
-	            var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-	            // var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
-	            var valuesVisit = [[req.body.name, req.body.datetime, null, null, client_id]];
-	            con.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters], function (err, result) {
-	                if (err) throw err;
-	            });
-	            con.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit], function (err, result) {
-	                if (err) throw err;
-	            });
+	            res.send(result);
 	        });
 	    });
-	    res.send('Response from server');
+	    // res.send(result);
 	});
+
+	// function getClientId(req,database) {
+	//     console.log('getClientId');
+	//     var id ;
+	//     var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+	//     database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])
+	//         .then(function (result) {
+	//             return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+	//
+	//         })
+	//         .then(function (rows) {
+	//             console.log('rows[0].client_id=' + rows[0].client_id);
+	//             return id=rows[0].client_id;
+	//         });
+	// }
 
 	server.post('/addClient', function (req, res) {
 	    var con = mysql.createConnection({
@@ -2101,8 +2178,10 @@ module.exports =
 	                time: '',
 	                isAvailable: true
 	            },
-	            names: ''
+	            names: '',
+	            client_id: ''
 	        };
+	        _this.getClientId = _this.getClientId.bind(_this);
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleTimeChange = _this.handleTimeChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -2131,6 +2210,7 @@ module.exports =
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
 	                this.props.addRegister(this.state.registers);
+	                //this.getClientId(newRegister);
 	                (0, _methods.sendData)(newRegister, "/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ times: '' });
@@ -2138,6 +2218,22 @@ module.exports =
 	            } else {
 	                alert("Enter name");
 	            }
+	        }
+	    }, {
+	        key: 'getClientId',
+	        value: function getClientId(newRegister) {
+	            // fetch('/getClientId', {
+	            //     method: "POST",
+	            //     body: JSON.stringify(newRegister),
+	            //     headers: {
+	            //         "Content-Type": "application/json"
+	            //     }
+	            // }).then((response) => {
+	            //     response.json().then((data) => {
+	            //         alert('data[0].client_id='+data[0].client_id);
+	            //         this.setState({client_id: data[0].client_id});
+	            //     })
+	            // });
 	        }
 	    }, {
 	        key: 'handleTimeChange',

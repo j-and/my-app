@@ -15,7 +15,8 @@ class ClientNameInput extends Component {
                 time: '',
                 isAvailable: true
             },
-            names: ''
+            names: '',
+            client_id: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -41,6 +42,7 @@ class ClientNameInput extends Component {
             newArray.push(newRegister);
             this.setState({registers: newArray});
             this.props.addRegister(this.state.registers);
+            //this.getClientId(newRegister);
             sendData(newRegister, "/addRegister");
             this.refs.registerForm.reset();
             this.setState({times: ''});

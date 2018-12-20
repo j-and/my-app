@@ -35,49 +35,69 @@ server.get('/clients', (req, res) => {
     }));
 });
 
-server.post('/addRegister', function (req, res) {
-    var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "my_db"
-    });
+var config = {
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "my_db"
+};
 
-    con.connect(function (err) {
-        if (err) {
-            throw err;
-        }
-        var valuesClient = [[req.body.name, 'desease', null, 'phone', 'email', 'description']];
+class Database {
+    constructor(config) {
+        this.connection = mysql.createConnection(config);
+    }
 
-        con.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name), function (err, result) {
-            if (err) throw err;
-            if (result.length == 0) {
-                con.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient], function (err, result) {
-                    con.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name), function (err, rows) {// function (err, result) {
-                        if (err) throw err;
-                        else {
-                            var ret = JSON.stringify(rows);
-                            var client_id = Object.values(JSON.parse(JSON.stringify(rows)))[0].client_id;
-                            console.log('client_id=' + client_id);
-                        }
-                    });
-                });
-            }
-            else {
-                var client_id = result[0].client_id;
-                console.log('This client is in clients list' + client_id);
-            }
-            var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-            var valuesVisit = [[req.body.name, req.body.datetime, null, null, client_id]];
-            con.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters], function (err, result) {
-                if (err) throw err;
-            });
-            con.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit], function (err, result) {
-                if (err) throw err;
+    query(sql, args) {
+        return new Promise((resolve, reject) => {
+            this.connection.query(sql, args, (err, rows) => {
+                if (err) throw err;//return reject(err);
+                resolve(rows);
             });
         });
-    });
-    res.send('Response from server');
+    }
+
+    close() {
+        return new Promise((resolve, reject) => {
+            this.connection.end(err => {
+                if (err) throw err;//if (err) return reject(err);
+                resolve();
+            });
+        });
+    }
+}
+
+server.post('/addRegister', function (req, res) {
+    const database = new Database(config);
+    var client_id;
+    database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name))
+        .then(function (result) {
+            if (result.length != 0) {
+                client_id = result[0].client_id;
+            }
+            return client_id;
+        })
+        .then(function (client_id) {
+            var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+            database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])
+        })
+        .then(function (res) {
+            return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+        })
+        .then(function (rows) {
+            client_id = rows[0].client_id;
+            return client_id;
+
+        })
+        .then(function () {
+            var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
+            database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
+        })
+        .then(function () {
+            console.log('visits client_id=' + client_id);
+            var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, client_id]];
+            database.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit]);
+            return database.close();
+        })
 });
 
 server.post('/addClient', function (req, res) {

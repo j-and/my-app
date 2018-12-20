@@ -47695,8 +47695,10 @@
 	                time: '',
 	                isAvailable: true
 	            },
-	            names: ''
+	            names: '',
+	            client_id: ''
 	        };
+	        _this.getClientId = _this.getClientId.bind(_this);
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleTimeChange = _this.handleTimeChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -47725,6 +47727,7 @@
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
 	                this.props.addRegister(this.state.registers);
+	                //this.getClientId(newRegister);
 	                (0, _methods.sendData)(newRegister, "/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ times: '' });
@@ -47732,6 +47735,22 @@
 	            } else {
 	                alert("Enter name");
 	            }
+	        }
+	    }, {
+	        key: 'getClientId',
+	        value: function getClientId(newRegister) {
+	            // fetch('/getClientId', {
+	            //     method: "POST",
+	            //     body: JSON.stringify(newRegister),
+	            //     headers: {
+	            //         "Content-Type": "application/json"
+	            //     }
+	            // }).then((response) => {
+	            //     response.json().then((data) => {
+	            //         alert('data[0].client_id='+data[0].client_id);
+	            //         this.setState({client_id: data[0].client_id});
+	            //     })
+	            // });
 	        }
 	    }, {
 	        key: 'handleTimeChange',
