@@ -50,7 +50,8 @@ class Database {
     query(sql, args) {
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
-                if (err) throw err;//return reject(err);
+                if (err)
+                    return reject(err);
                 resolve(rows);
             });
         });
@@ -59,7 +60,8 @@ class Database {
     close() {
         return new Promise((resolve, reject) => {
             this.connection.end(err => {
-                if (err) throw err;//if (err) return reject(err);
+                if (err)
+                    return reject(err);
                 resolve();
             });
         });
@@ -75,28 +77,49 @@ server.post('/addRegister', function (req, res) {
                 client_id = result[0].client_id;
             }
             return client_id;
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
         .then(function (client_id) {
-            if(!client_id){
+            if (!client_id) {
                 var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
-                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])  
+                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])
             }
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
         .then(function (res) {
             return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
         .then(function (rows) {
             client_id = rows[0].client_id;
             return client_id;
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
-        // .then(function () {
-        //     var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-        //     database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
-        // })
         .then(function () {
             var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, 'busy', client_id]];
             database.query("INSERT INTO visits (name, datetime, comment, payment,status, client_id) VALUES ?", [valuesVisit]);
             return database.close();
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
 });
 
@@ -109,15 +132,30 @@ server.post('/addClient', function (req, res) {
                 client_id = result[0].client_id;
             }
             return client_id;
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
         .then(function (client_id) {
-            if(!client_id){
+            if (!client_id) {
                 var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
-                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);  
+                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);
             }
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
         .then(function (client_id) {
             return database.close();
+        }, function (err) {
+            return database.close()
+                .then(() => {
+                    throw err;
+                })
         })
     res.send('Response from server');
 });
@@ -137,7 +175,7 @@ server.post('/editClient', function (req, res) {
         password: "root",
         database: "my_db"
     });
-    
+
     con.connect(function (err) {
         if (err) {
             throw err;
@@ -148,7 +186,7 @@ server.post('/editClient', function (req, res) {
         });
     });
     res.send('Response from server');
-    
+
 });
 
 server.post('/removeRegister', function (req, res) {
@@ -161,7 +199,7 @@ server.post('/removeRegister', function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         // con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
-        con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
+        con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime) + "AND name=" + mysql.escape(req.body.name),
             function (err, result) {
                 if (err) throw err;
                 // con.query("SELECT * FROM registers", function (err, result) {

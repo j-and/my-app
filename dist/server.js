@@ -128,7 +128,7 @@ module.exports =
 
 	            return new Promise(function (resolve, reject) {
 	                _this.connection.query(sql, args, function (err, rows) {
-	                    if (err) throw err; //return reject(err);
+	                    if (err) return reject(err);
 	                    resolve(rows);
 	                });
 	            });
@@ -140,7 +140,7 @@ module.exports =
 
 	            return new Promise(function (resolve, reject) {
 	                _this2.connection.end(function (err) {
-	                    if (err) throw err; //if (err) return reject(err);
+	                    if (err) return reject(err);
 	                    resolve();
 	                });
 	            });
@@ -158,25 +158,40 @@ module.exports =
 	            client_id = result[0].client_id;
 	        }
 	        return client_id;
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    }).then(function (client_id) {
 	        if (!client_id) {
 	            var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
 	            database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);
 	        }
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    }).then(function (res) {
 	        return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    }).then(function (rows) {
 	        client_id = rows[0].client_id;
 	        return client_id;
-	    })
-	    // .then(function () {
-	    //     var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-	    //     database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
-	    // })
-	    .then(function () {
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
+	    }).then(function () {
 	        var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, 'busy', client_id]];
 	        database.query("INSERT INTO visits (name, datetime, comment, payment,status, client_id) VALUES ?", [valuesVisit]);
 	        return database.close();
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    });
 	});
 
@@ -188,13 +203,25 @@ module.exports =
 	            client_id = result[0].client_id;
 	        }
 	        return client_id;
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    }).then(function (client_id) {
 	        if (!client_id) {
 	            var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
 	            database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);
 	        }
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    }).then(function (client_id) {
 	        return database.close();
+	    }, function (err) {
+	        return database.close().then(function () {
+	            throw err;
+	        });
 	    });
 	    res.send('Response from server');
 	});
