@@ -47099,18 +47099,6 @@
 	    }
 
 	    _createClass(MonthTable, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            fetch('/clearRegistersDB', {
-	                method: 'GET'
-	            }).then(function (response) {});
-
-	            // fetch('/setMockRegistersData', {
-	            //     method: 'GET'
-	            // }).then((response) => {
-	            // });
-	        }
-	    }, {
 	        key: 'fillHeadArray',
 	        value: function fillHeadArray() {
 	            var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

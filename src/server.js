@@ -77,8 +77,10 @@ server.post('/addRegister', function (req, res) {
             return client_id;
         })
         .then(function (client_id) {
-            var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
-            database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])
+            if(!client_id){
+                var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
+                database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient])  
+            }
         })
         .then(function (res) {
             return database.query("SELECT client_id FROM clients WHERE name= " + mysql.escape(req.body.name));
@@ -113,29 +115,40 @@ server.post('/addClient', function (req, res) {
                 var valuesClient = [[req.body.name, null, req.body.datetime, null, null, null]];
                 database.query("INSERT INTO clients (name, desease, birthdate, phone, email, description) VALUES ?", [valuesClient]);  
             }
+        })
+        .then(function (client_id) {
             return database.close();
         })
-        
     res.send('Response from server');
 });
 
 
 server.post('/editClient', function (req, res) {
-    const database = new Database(config);
-    database.query("UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name))
-    .then(function () {
-        return database.close();
+    // const database = new Database(config);
+    // database.query("UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name))
+    //     .then(function () {
+    //         return database.close();
+    //     });
+    // res.send('Response from server');
+
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    
+    con.connect(function (err) {
+        if (err) {
+            throw err;
+        }
+        var query = "UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name);
+        con.query(query, function (err, result) {
+            if (err) throw err;
+        });
     });
     res.send('Response from server');
-});
-
-server.get('/clearRegistersDB', function (req, res) {
-    const database = new Database(config);
-    database.query("DELETE FROM registers")
-        .then(function () {
-            return database.close();
-        });
-    res.send('Response from server');
+    
 });
 
 server.post('/removeRegister', function (req, res) {
@@ -158,18 +171,23 @@ server.post('/removeRegister', function (req, res) {
     });
 });
 
-server.get('/setMockRegistersData', function (req, res) {
+server.get('/getRegisters', function (req, res) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query("SELECT * FROM registers", function (err, result) {
+            if (err) throw err;
+            res.send(result);
+        });
+    });
+});
 
-    var values = [
-        ['2018-08-02 08.00', 'John Doe', 'busy'],
-        ['2018-08-02 09.00', 'John Doe', 'busy'],
-        ['2018-08-06 10.00', 'John Doe', 'busy'],
-        ['2018-08-06 11.00', 'John Doe', 'busy'],
-        ['2018-08-06 12.00', 'John Doe', 'busy'],
-        ['2018-08-07 13.00', 'John Doe', 'busy'],
-        ['2018-08-07 14.00', 'John Doe', 'busy']
-    ];
-
+server.post('/getVisits', function (req, res) {
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -177,53 +195,46 @@ server.get('/setMockRegistersData', function (req, res) {
         database: "my_db"
     });
 
-    con.query("INSERT INTO registers (dateTime, name, status) VALUES ?", [values], function (err, result) {
+    con.connect(function (err) {
         if (err) throw err;
-    });
-});
-
-server.get('/getRegisters', function (req, res) {
-    const database = new Database(config);
-    database.query("SELECT * FROM registers")
-        .then(function (result) {
-           res.send(result);
-        })
-    .then(function (result) {
-        return database.close();
-    });
-});
-
-server.post('/getVisits', function (req, res) {
-    const database = new Database(config);
-    database.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.name))
-        .then(function (result) {
+        con.query("SELECT * FROM visits WHERE name = " + mysql.escape(req.body.name), function (err, result) {
+            if (err) throw err;
             res.send(result);
-        })
-        .then(function (result) {
-            return database.close();
         });
+    });
 });
 
 server.get('/getClients', function (req, res) {
-    const database = new Database(config);
-    database.query("SELECT * FROM clients")
-        .then(function (result) {
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query("SELECT * FROM clients", function (err, result) {
+            if (err) throw err;
             res.send(result);
-        })
-        .then(function (result) {
-            return database.close();
         });
+    });
 });
 
 server.post('/switchClient', function (req, res) {
-    const database = new Database(config);
-    database.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name))
-        .then(function (result) {
-            res.send(result);
-        })
-        .then(function (result) {
-            return database.close();
-        });
+    var con = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "root",
+        database: "my_db"
+    });
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query("SELECT * FROM `my_db`.`clients` WHERE `name`=" + mysql.escape(req.body.name),
+            function (err, result) {
+                if (err) throw err;
+                res.send(result);
+            });
+    });
 });
 
 server.listen(3000);
