@@ -89,13 +89,13 @@ server.post('/addRegister', function (req, res) {
             client_id = rows[0].client_id;
             return client_id;
         })
+        // .then(function () {
+        //     var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
+        //     database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
+        // })
         .then(function () {
-            var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-            database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
-        })
-        .then(function () {
-            var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, client_id]];
-            database.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit]);
+            var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, 'busy', client_id]];
+            database.query("INSERT INTO visits (name, datetime, comment, payment,status, client_id) VALUES ?", [valuesVisit]);
             return database.close();
         })
 });
@@ -160,10 +160,12 @@ server.post('/removeRegister', function (req, res) {
     });
     con.connect(function (err) {
         if (err) throw err;
-        con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
+        // con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
+        con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
             function (err, result) {
                 if (err) throw err;
-                con.query("SELECT * FROM registers", function (err, result) {
+                // con.query("SELECT * FROM registers", function (err, result) {
+                con.query("SELECT * FROM visits", function (err, result) {
                     if (err) throw err;
                     res.send(result);
                 });
@@ -180,7 +182,8 @@ server.get('/getRegisters', function (req, res) {
     });
     con.connect(function (err) {
         if (err) throw err;
-        con.query("SELECT * FROM registers", function (err, result) {
+        // con.query("SELECT * FROM registers", function (err, result) {
+        con.query("SELECT * FROM visits", function (err, result) {
             if (err) throw err;
             res.send(result);
         });

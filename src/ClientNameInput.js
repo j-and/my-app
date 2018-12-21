@@ -31,11 +31,12 @@ class ClientNameInput extends Component {
         event.preventDefault();
         if (this.state.times && this.state.names) {
             var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-
-            var datetime = dateToTimestamp(date);
+           // var datetime = dateToTimestamp(date);
             var newRegister = {
-                datetime: datetime,
                 name: this.state.names,
+                datetime: dateToTimestamp(date),
+                comment:'comment',
+                payment:0,
                 status: 'busy'
             };
             var newArray = this.state.registers;

@@ -47453,11 +47453,14 @@
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            var datetime = (0, _methods.dateToTimestamp)(register.datetime);
+	            //var datetime = dateToTimestamp(register.datetime);
 	            var newRegister = {
-	                datetime: datetime,
-	                name: register.name,
-	                status: 'available'
+	                name: this.state.names,
+	                datetime: (0, _methods.dateToTimestamp)(register.datetime),
+	                comment: 'comment',
+	                payment: 0,
+	                status: 'busy'
+
 	            };
 	            fetch('/removeRegister', {
 	                method: "POST",
@@ -47703,11 +47706,12 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-
-	                var datetime = (0, _methods.dateToTimestamp)(date);
+	                // var datetime = dateToTimestamp(date);
 	                var newRegister = {
-	                    datetime: datetime,
 	                    name: this.state.names,
+	                    datetime: (0, _methods.dateToTimestamp)(date),
+	                    comment: 'comment',
+	                    payment: 0,
 	                    status: 'busy'
 	                };
 	                var newArray = this.state.registers;

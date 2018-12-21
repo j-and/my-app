@@ -168,12 +168,14 @@ module.exports =
 	    }).then(function (rows) {
 	        client_id = rows[0].client_id;
 	        return client_id;
-	    }).then(function () {
-	        var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
-	        database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
-	    }).then(function () {
-	        var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, client_id]];
-	        database.query("INSERT INTO visits (name, datetime, comment, payment,client_id) VALUES ?", [valuesVisit]);
+	    })
+	    // .then(function () {
+	    //     var valuesRegisters = [[req.body.datetime, req.body.name, 'busy', client_id]];
+	    //     database.query("INSERT INTO registers (dateTime, name, status,client_id) VALUES ?", [valuesRegisters]);
+	    // })
+	    .then(function () {
+	        var valuesVisit = [[req.body.name, req.body.datetime, 'comment', 50, 'busy', client_id]];
+	        database.query("INSERT INTO visits (name, datetime, comment, payment,status, client_id) VALUES ?", [valuesVisit]);
 	        return database.close();
 	    });
 	});
@@ -233,9 +235,11 @@ module.exports =
 	    });
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime) + "AND name=" + mysql.escape(req.body.name), function (err, result) {
+	        // con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
+	        con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime) + "AND name=" + mysql.escape(req.body.name), function (err, result) {
 	            if (err) throw err;
-	            con.query("SELECT * FROM registers", function (err, result) {
+	            // con.query("SELECT * FROM registers", function (err, result) {
+	            con.query("SELECT * FROM visits", function (err, result) {
 	                if (err) throw err;
 	                res.send(result);
 	            });
@@ -252,7 +256,8 @@ module.exports =
 	    });
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        con.query("SELECT * FROM registers", function (err, result) {
+	        // con.query("SELECT * FROM registers", function (err, result) {
+	        con.query("SELECT * FROM visits", function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
 	        });
@@ -1848,11 +1853,14 @@ module.exports =
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            var datetime = (0, _methods.dateToTimestamp)(register.datetime);
+	            //var datetime = dateToTimestamp(register.datetime);
 	            var newRegister = {
-	                datetime: datetime,
-	                name: register.name,
-	                status: 'available'
+	                name: this.state.names,
+	                datetime: (0, _methods.dateToTimestamp)(register.datetime),
+	                comment: 'comment',
+	                payment: 0,
+	                status: 'busy'
+
 	            };
 	            fetch('/removeRegister', {
 	                method: "POST",
@@ -2098,11 +2106,12 @@ module.exports =
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-
-	                var datetime = (0, _methods.dateToTimestamp)(date);
+	                // var datetime = dateToTimestamp(date);
 	                var newRegister = {
-	                    datetime: datetime,
 	                    name: this.state.names,
+	                    datetime: (0, _methods.dateToTimestamp)(date),
+	                    comment: 'comment',
+	                    payment: 0,
 	                    status: 'busy'
 	                };
 	                var newArray = this.state.registers;
