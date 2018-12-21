@@ -47453,14 +47453,10 @@
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            //var datetime = dateToTimestamp(register.datetime);
+	            var datetime = (0, _methods.dateToTimestamp)(register.datetime);
 	            var newRegister = {
-	                name: this.state.names,
-	                datetime: (0, _methods.dateToTimestamp)(register.datetime),
-	                comment: 'comment',
-	                payment: 0,
-	                status: 'busy'
-
+	                name: register.name,
+	                datetime: (0, _methods.dateToTimestamp)(register.datetime)
 	            };
 	            fetch('/removeRegister', {
 	                method: "POST",
