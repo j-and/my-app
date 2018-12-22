@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import {dateToTimestamp} from './methods.js';
+import {LocaleContext}  from './Context';
 
 class RegisterList extends Component {
 
@@ -32,8 +33,13 @@ class RegisterList extends Component {
                         if (time.length == 4) {
                             time = '0' + time;
                         }
-                        return <li className="register_list"><span className="register_time">{time}</span><span
-                            className="register_name">{sortedArr[key].name}</span>
+                        return <li key={(sortedArr[key].datetime+sortedArr[key].name).toString()} className="register_list"><span className="register_time">{time}</span>
+                            <LocaleContext.Consumer>
+                                {localeVal => (
+                                    <span className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
+                                )}
+                            </LocaleContext.Consumer>
+                            
                              <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
                                            onClick={() => { removeRegister(sortedArr[key])}}>
                                                               <Glyphicon glyph="remove"/></Button></span>
@@ -46,3 +52,8 @@ class RegisterList extends Component {
 }
 
 export default RegisterList;
+
+// <span className="register_name">{sortedArr[key].name}</span>
+
+// {localeVthis.setState({className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
+// )}

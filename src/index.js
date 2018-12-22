@@ -7,6 +7,8 @@ import Nav from 'react-bootstrap/lib/Nav';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
+import LocaleProvider from './Context';
+
 
 class App extends Component {
 
@@ -27,6 +29,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <LocaleProvider>
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
@@ -48,6 +51,7 @@ class App extends Component {
                     <Route exact path="/" component={Calendar}/>
                     <Route path="/clients" component={Client}/>
                 </Switch>
+                    </LocaleProvider>
             </div>
         );
     }

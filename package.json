@@ -34,11 +34,11 @@
     "file-loader": "^1.1.11",
     "functionhappy": "^1.0.0",
     "json-loader": "^0.5.4",
-    "node-sass": "^3.8.0",
+    "node-sass": "^4.5.3",
     "sass-loader": "^4.0.0",
     "snazzy": "^4.0.0",
     "url-loader": "^1.0.1",
-    "webpack": "^1.13.1",
+    "webpack": "^1.15.0",
     "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
@@ -48,10 +48,12 @@
     "es6-promise": "^4.2.4",
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^1.9.1",
     "moment": "^2.22.2",
     "node-fetch": "^2.1.2",
-    "react": "^15.2.0",
-    "react-dom": "^15.2.0",
+    "popper.js": "^1.14.6",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "react-router-dom": "^4.3.1"
   }
 }

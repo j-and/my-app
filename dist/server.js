@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(30);
+	var _template = __webpack_require__(31);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(31);
+	var bodyParser = __webpack_require__(32);
 
-	var express = __webpack_require__(32);
+	var express = __webpack_require__(33);
 	var server = express();
-	var mysql = __webpack_require__(33);
+	var mysql = __webpack_require__(34);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -380,17 +380,17 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(18);
+	var _Calendar = __webpack_require__(19);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(26);
+	var _reactRouterDom = __webpack_require__(27);
 
-	var _Navbar = __webpack_require__(27);
+	var _Navbar = __webpack_require__(28);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(28);
+	var _Nav = __webpack_require__(29);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
@@ -398,13 +398,17 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(29);
+	var _FormGroup = __webpack_require__(30);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
 	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
+
+	var _Context = __webpack_require__(12);
+
+	var _Context2 = _interopRequireDefault(_Context);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -443,64 +447,68 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Navbar2.default,
+	                    _Context2.default,
 	                    null,
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Header,
+	                        _Navbar2.default,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Brand,
+	                            _Navbar2.default.Header,
 	                            null,
 	                            _react2.default.createElement(
-	                                'a',
-	                                { href: '#' },
-	                                'My-app'
+	                                _Navbar2.default.Brand,
+	                                null,
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '#' },
+	                                    'My-app'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Nav2.default,
+	                            null,
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactRouterDom.NavLink,
+	                                    { to: '/' },
+	                                    'Home'
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactRouterDom.NavLink,
+	                                    { to: '/clients' },
+	                                    'Clients'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Navbar2.default.Form,
+	                            { pullLeft: true },
+	                            _react2.default.createElement(
+	                                _FormGroup2.default,
+	                                null,
+	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                            ),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                _Button2.default,
+	                                { type: 'submit' },
+	                                'Submit'
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _Nav2.default,
+	                        _reactRouterDom.Switch,
 	                        null,
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.NavLink,
-	                                { to: '/' },
-	                                'Home'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouterDom.NavLink,
-	                                { to: '/clients' },
-	                                'Clients'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _Navbar2.default.Form,
-	                        { pullLeft: true },
-	                        _react2.default.createElement(
-	                            _FormGroup2.default,
-	                            null,
-	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
-	                        ),
-	                        ' ',
-	                        _react2.default.createElement(
-	                            _Button2.default,
-	                            { type: 'submit' },
-	                            'Submit'
-	                        )
+	                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                        _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouterDom.Switch,
-	                    null,
-	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
-	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                )
 	            );
 	        }
@@ -535,11 +543,11 @@ module.exports =
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(12);
+	var _ClientsHistory = __webpack_require__(13);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(17);
+	var _ClientsList = __webpack_require__(18);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
@@ -745,6 +753,8 @@ module.exports =
 
 	var _moment2 = _interopRequireDefault(_moment);
 
+	var _Context = __webpack_require__(12);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -895,6 +905,19 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    _Context.LocaleContext.Consumer,
+	                    null,
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            localeVal.clientName
+	                        );
+	                    }
+	                    //localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>
+
+	                ),
+	                _react2.default.createElement(
 	                    'h2',
 	                    null,
 	                    ' Clients card ',
@@ -1044,6 +1067,7 @@ module.exports =
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.LocaleContext = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -1051,11 +1075,80 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(13);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LocaleContext = exports.LocaleContext = _react2.default.createContext();
+
+	var LocaleProvider = function (_React$Component) {
+	    _inherits(LocaleProvider, _React$Component);
+
+	    function LocaleProvider(props) {
+	        _classCallCheck(this, LocaleProvider);
+
+	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
+
+	        _this.changeLocale = function () {
+	            //console.log('props='+props);
+	            _this.setState(function (state) {
+	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
+	                var newName = state.clientName;
+	                return {
+	                    locale: newLocale,
+	                    clientName: newName
+	                };
+	            });
+	        };
+
+	        _this.state = {
+	            locale: 'en',
+	            changeLocale: _this.changeLocale
+	        };
+	        return _this;
+	    }
+
+	    _createClass(LocaleProvider, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                LocaleContext.Provider,
+	                { value: this.state },
+	                this.props.children
+	            );
+	        }
+	    }]);
+
+	    return LocaleProvider;
+	}(_react2.default.Component);
+
+	exports.default = LocaleProvider;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ListGroup = __webpack_require__(14);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
-	var _Visit = __webpack_require__(14);
+	var _Visit = __webpack_require__(15);
 
 	var _Visit2 = _interopRequireDefault(_Visit);
 
@@ -1124,13 +1217,13 @@ module.exports =
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/ListGroup");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1149,11 +1242,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(15);
+	var _Glyphicon = __webpack_require__(16);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _ListGroupItem = __webpack_require__(16);
+	var _ListGroupItem = __webpack_require__(17);
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
@@ -1266,19 +1359,19 @@ module.exports =
 	exports.default = Visit;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/ListGroupItem");
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1293,7 +1386,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(13);
+	var _ListGroup = __webpack_require__(14);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
@@ -1364,7 +1457,7 @@ module.exports =
 	exports.default = ClientsList;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1379,15 +1472,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(19);
+	var _MonthTable = __webpack_require__(20);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(24);
+	var _LoginForm = __webpack_require__(25);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(25);
+	var _MonthNavigation = __webpack_require__(26);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1478,7 +1571,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1493,11 +1586,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(20);
+	var _DayList = __webpack_require__(21);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(23);
+	var _Table = __webpack_require__(24);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
@@ -1801,7 +1894,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1816,11 +1909,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(21);
+	var _RegisterList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./RegisterList.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(22);
+	var _ClientNameInput = __webpack_require__(23);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1880,7 +1973,6 @@ module.exports =
 	        value: function removeRegister(register) {
 	            var _this3 = this;
 
-	            var datetime = (0, _methods.dateToTimestamp)(register.datetime);
 	            var newRegister = {
 	                name: register.name,
 	                datetime: (0, _methods.dateToTimestamp)(register.datetime)
@@ -1951,7 +2043,8 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 21 */
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1970,118 +2063,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(15);
-
-	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
-
-	var _methods = __webpack_require__(9);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var RegisterList = function (_Component) {
-	    _inherits(RegisterList, _Component);
-
-	    function RegisterList(props) {
-	        _classCallCheck(this, RegisterList);
-
-	        var _this = _possibleConstructorReturn(this, (RegisterList.__proto__ || Object.getPrototypeOf(RegisterList)).call(this, props));
-
-	        _this.state = {};
-	        return _this;
-	    }
-
-	    _createClass(RegisterList, [{
-	        key: 'render',
-	        value: function render() {
-	            var arr = this.props.registers;
-	            var sortedArr = dateSortByKey(arr, 'datetime');
-
-	            function dateSortByKey(array, key) {
-	                return array.sort(function (a, b) {
-	                    var x = (0, _methods.dateToTimestamp)(a[key]);
-	                    var y = (0, _methods.dateToTimestamp)(b[key]);
-	                    return x < y ? -1 : x > y ? 1 : 0;
-	                });
-	            }
-
-	            var removeRegister = this.props.removeRegister;
-
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: 'register_ul' },
-	                    Object.keys(sortedArr).map(function (key) {
-	                        var time = new Date(sortedArr[key].datetime).getHours() + '.00';
-	                        if (time.length == 4) {
-	                            time = '0' + time;
-	                        }
-	                        return _react2.default.createElement(
-	                            'li',
-	                            { className: 'register_list' },
-	                            _react2.default.createElement(
-	                                'span',
-	                                { className: 'register_time' },
-	                                time
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                {
-	                                    className: 'register_name' },
-	                                sortedArr[key].name
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                _react2.default.createElement(
-	                                    _Button2.default,
-	                                    { bsSize: 'xsmall', bsStyle: 'danger', className: 'btn-close',
-	                                        onClick: function onClick() {
-	                                            removeRegister(sortedArr[key]);
-	                                        } },
-	                                    _react2.default.createElement(_Glyphicon2.default, { glyph: 'remove' })
-	                                )
-	                            )
-	                        );
-	                    })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return RegisterList;
-	}(_react.Component);
-
-	exports.default = RegisterList;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Button = __webpack_require__(6);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	var _Glyphicon = __webpack_require__(15);
+	var _Glyphicon = __webpack_require__(16);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -2201,13 +2183,13 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2328,7 +2310,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2408,31 +2390,31 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormGroup");
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2449,19 +2431,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

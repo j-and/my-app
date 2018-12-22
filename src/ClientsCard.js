@@ -4,6 +4,7 @@ import FieldGroup from 'react-bootstrap/lib/FormControl';
 import {sendData} from './methods.js';
 import {dateToTimestamp} from './methods.js';
 import moment from 'moment';
+import {LocaleContext}  from './Context';
 
 class ClientsCard extends Component {
     constructor(props) {
@@ -136,6 +137,11 @@ class ClientsCard extends Component {
 
         return (
             <div>
+                <LocaleContext.Consumer>
+                    {localeVal =><h2>{localeVal.clientName}</h2>
+                        //localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>
+                    }
+                </LocaleContext.Consumer>
                 <h2> Clients card {client.name}{client.client_id}</h2>
 
                 <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
