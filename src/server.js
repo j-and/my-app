@@ -157,6 +157,9 @@ server.post('/addClient', function (req, res) {
                     throw err;
                 })
         })
+        .finally(function () {
+            return database.close();
+        });
     res.send('Response from server');
 });
 
@@ -176,7 +179,7 @@ server.post('/editClient', function (req, res) {
         var query = "UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name);
         con.query(query, function (err, result) {
             if (err) throw err;
-        });
+        })
     });
     res.send('Response from server');
 
@@ -199,7 +202,7 @@ server.post('/removeRegister', function (req, res) {
                     res.send(result);
                 });
             });
-    });
+    })
 });
 
 server.get('/getRegisters', function (req, res) {

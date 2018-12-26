@@ -28466,8 +28466,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Nav from 'react-bootstrap/lib/Nav';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -49853,7 +49851,8 @@
 	                                    '-'
 	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_weekend' },
+	                                    { key: j,
+	                                        className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -49861,7 +49860,8 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { key: j,
+	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -49869,7 +49869,8 @@
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { key: j,
+	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -50181,7 +50182,7 @@
 
 	                var month = datetime.slice(5, 7);
 	                var day = datetime.slice(8, 10);
-	                var time = datetime.slice(11, 13) + '.00'; //:00:00';
+	                var time = datetime.slice(11, 13) + '.00';
 
 	                if (time.length == 4) {
 	                    time = '0' + time;
@@ -50409,7 +50410,6 @@
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-	                // var datetime = dateToTimestamp(date);
 	                var newRegister = {
 	                    name: this.state.names,
 	                    datetime: (0, _methods.dateToTimestamp)(date),
@@ -50421,7 +50421,6 @@
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
 	                this.props.addRegister(this.state.registers);
-	                //this.getClientId(newRegister);
 	                (0, _methods.sendData)(newRegister, "/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ times: '' });

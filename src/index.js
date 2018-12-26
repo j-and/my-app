@@ -50,7 +50,7 @@ class App extends Component {
                         </Nav>
                         <Navbar.Form pullLeft>
                             <FormGroup>
-                                <FormControl type="text" placeholder="Search"/>
+                                <FormControl type="text" placeholder="Search client"/>
                             </FormGroup>{' '}
                             <Button type="submit">Submit</Button>
                         </Navbar.Form>

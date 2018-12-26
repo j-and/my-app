@@ -222,18 +222,13 @@ module.exports =
 	        return database.close().then(function () {
 	            throw err;
 	        });
+	    }).finally(function () {
+	        return database.close();
 	    });
 	    res.send('Response from server');
 	});
 
 	server.post('/editClient', function (req, res) {
-	    // const database = new Database(config);
-	    // database.query("UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name))
-	    //     .then(function () {
-	    //         return database.close();
-	    //     });
-	    // res.send('Response from server');
-
 	    var con = mysql.createConnection({
 	        host: "localhost",
 	        user: "root",
@@ -249,6 +244,9 @@ module.exports =
 	        con.query(query, function (err, result) {
 	            if (err) throw err;
 	        });
+	        // .finally(function (res) {
+	        //     return database.close();
+	        // });
 	    });
 	    res.send('Response from server');
 	});
@@ -262,16 +260,17 @@ module.exports =
 	    });
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        // con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
 	        con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime) + "AND name=" + mysql.escape(req.body.name), function (err, result) {
 	            if (err) throw err;
-	            // con.query("SELECT * FROM registers", function (err, result) {
 	            con.query("SELECT * FROM visits", function (err, result) {
 	                if (err) throw err;
 	                res.send(result);
 	            });
 	        });
 	    });
+	    // .finally(function (res) {
+	    //     return database.close();
+	    // });
 	});
 
 	server.get('/getRegisters', function (req, res) {
@@ -283,7 +282,6 @@ module.exports =
 	    });
 	    con.connect(function (err) {
 	        if (err) throw err;
-	        // con.query("SELECT * FROM registers", function (err, result) {
 	        con.query("SELECT * FROM visits", function (err, result) {
 	            if (err) throw err;
 	            res.send(result);
@@ -421,8 +419,6 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Nav from 'react-bootstrap/lib/Nav';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -1690,7 +1686,8 @@ module.exports =
 	                                    '-'
 	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_weekend' },
+	                                    { key: j,
+	                                        className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -1698,7 +1695,8 @@ module.exports =
 	                                if (j < 5) {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { key: j,
+	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -1706,7 +1704,8 @@ module.exports =
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { key: j,
+	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -2018,7 +2017,7 @@ module.exports =
 
 	                var month = datetime.slice(5, 7);
 	                var day = datetime.slice(8, 10);
-	                var time = datetime.slice(11, 13) + '.00'; //:00:00';
+	                var time = datetime.slice(11, 13) + '.00';
 
 	                if (time.length == 4) {
 	                    time = '0' + time;
@@ -2246,7 +2245,6 @@ module.exports =
 	            event.preventDefault();
 	            if (this.state.times && this.state.names) {
 	                var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-	                // var datetime = dateToTimestamp(date);
 	                var newRegister = {
 	                    name: this.state.names,
 	                    datetime: (0, _methods.dateToTimestamp)(date),
@@ -2258,7 +2256,6 @@ module.exports =
 	                newArray.push(newRegister);
 	                this.setState({ registers: newArray });
 	                this.props.addRegister(this.state.registers);
-	                //this.getClientId(newRegister);
 	                (0, _methods.sendData)(newRegister, "/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ times: '' });
