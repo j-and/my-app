@@ -28502,7 +28502,6 @@
 	                _react2.default.createElement(
 	                    _Context2.default,
 	                    { value: this.state.clientName },
-	                    this.state.clientName,
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
@@ -28729,6 +28728,18 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    _Context.LocaleContext.Consumer,
+	                    null,
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            localeVal.clientName,
+	                            '!'
+	                        );
+	                    }
+	                ),
+	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
 	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
@@ -28748,18 +28759,6 @@
 	                            } },
 	                        'Edit client'
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _Context.LocaleContext.Consumer,
-	                    null,
-	                    function (localeVal) {
-	                        return _react2.default.createElement(
-	                            'h1',
-	                            null,
-	                            localeVal.clientName,
-	                            '!'
-	                        );
-	                    }
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -28784,6 +28783,8 @@
 	}(_react.Component);
 
 	exports.default = Client;
+
+	//this.switchClient(localeVal.clientName)}
 
 /***/ }),
 /* 64 */
@@ -49483,10 +49484,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(299);
-
-	var _ListGroup2 = _interopRequireDefault(_ListGroup);
-
 	var _methods = __webpack_require__(170);
 
 	var _Context = __webpack_require__(304);
@@ -49519,7 +49516,6 @@
 	            var switchClient = this.props.switchClient;
 	            var arr = this.props.CLIENTS;
 	            var sortedArr = (0, _methods.sortByKey)(arr, 'name');
-
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    _Context.LocaleContext.Consumer,
@@ -49530,7 +49526,8 @@
 	                            null,
 	                            _react2.default.createElement(
 	                                'a',
-	                                { onClick: function onClick() {
+	                                {
+	                                    onClick: function onClick() {
 	                                        switchClient(client.name);localeVal.changeName(client.name);
 	                                    } },
 	                                client.name
@@ -49561,8 +49558,6 @@
 
 	exports.default = ClientsList;
 
-	// <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
-
 /***/ }),
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -49588,7 +49583,9 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var LocaleContext = exports.LocaleContext = _react2.default.createContext({ changeName: function changeName() {} });
+	var LocaleContext = exports.LocaleContext = _react2.default.createContext({
+	    changeName: function changeName() {}
+	});
 
 	var LocaleProvider = function (_React$Component) {
 	    _inherits(LocaleProvider, _React$Component);
@@ -49596,32 +49593,22 @@
 	    function LocaleProvider(props) {
 	        _classCallCheck(this, LocaleProvider);
 
+	        // this.changeLocale = () => {
+	        //     this.setState(state => {
+	        //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
+	        //         return {
+	        //             locale: newLocale
+	        //         };
+	        //     });
+	        // };
+
 	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
 
-	        _this.changeLocale = function () {
-	            _this.setState(function (state) {
-	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
-	                return {
-	                    locale: newLocale
-	                };
-	            });
-	        };
-
 	        _this.changeName = function (name) {
-	            alert('name=' + name);
-	            // this.setState(state => {
-	            //     const clientName = state.clientName;// === 'en' ? 'fr' : 'en';
-	            //     alert('clientName='+clientName)
-	            //     return {
-	            //         clientName: clientName
-	            //     };
-	            // });
 	            _this.setState({ clientName: name });
 	        };
 
 	        _this.state = {
-	            locale: 'en',
-	            changeLocale: _this.changeLocale,
 	            changeName: _this.changeName,
 	            clientName: 'contextName'
 	        };
@@ -50307,7 +50294,8 @@
 	                        }
 	                        return _react2.default.createElement(
 	                            'li',
-	                            { key: (sortedArr[key].datetime + sortedArr[key].name).toString(), className: 'register_list' },
+	                            { key: (sortedArr[key].datetime + sortedArr[key].name).toString(),
+	                                className: 'register_list' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_time' },
@@ -50319,10 +50307,15 @@
 	                                function (localeVal) {
 	                                    return _react2.default.createElement(
 	                                        'span',
-	                                        { className: 'register_name', onClick: function onClick() {
+	                                        { className: 'register_name',
+	                                            onClick: function onClick() {
 	                                                return localeVal.changeName(sortedArr[key].name);
 	                                            } },
-	                                        sortedArr[key].name
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '/clients' },
+	                                            sortedArr[key].name
+	                                        )
 	                                    );
 	                                }
 	                            ),
@@ -50349,15 +50342,6 @@
 	}(_react.Component);
 
 	exports.default = RegisterList;
-
-	// <span className="register_name">{sortedArr[key].name}</span>
-	// <span className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
-
-	// <LocaleContext.Consumer>
-	//     {localeVal => (
-	//         <span className="register_name" onClick={localeVal.changeName}>{sortedArr[key].name}</span>
-	//     )}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 309 */

@@ -37,8 +37,8 @@ class RegisterList extends Component {
                                    className="register_list"><span className="register_time">{time}</span>
                             <LocaleContext.Consumer>
                                 {localeVal => (
-                                    <span className="register_name"
-                                          onClick={() => localeVal.changeName(sortedArr[key].name)}>{sortedArr[key].name}</span>
+                                    <span  className="register_name"
+                                          onClick={() => localeVal.changeName(sortedArr[key].name)}><a href="/clients">{sortedArr[key].name}</a></span>
                                 )}
                             </LocaleContext.Consumer>
                             

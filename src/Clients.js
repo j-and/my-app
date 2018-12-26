@@ -130,3 +130,5 @@ class Client extends Component {
 }
 
 export default Client;
+
+//this.switchClient(localeVal.clientName)}
