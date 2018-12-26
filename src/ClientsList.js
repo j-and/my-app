@@ -18,7 +18,7 @@ class ClientsList extends Component {
         var listItems = sortedArr.map((client) =>
             <LocaleContext.Consumer>
                 {localeVal => (
-                    <li><a
+                    <li key={localeVal.clientName}><a
                         onClick={() => { switchClient(client.name);localeVal.changeName(client.name)}}>{client.name}</a>
                     </li>
 

@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(31);
+	var _template = __webpack_require__(32);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(32);
+	var bodyParser = __webpack_require__(33);
 
-	var express = __webpack_require__(33);
+	var express = __webpack_require__(34);
 	var server = express();
-	var mysql = __webpack_require__(34);
+	var mysql = __webpack_require__(35);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -394,11 +394,15 @@ module.exports =
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
+	var _NavItem = __webpack_require__(30);
+
+	var _NavItem2 = _interopRequireDefault(_NavItem);
+
 	var _FormControl = __webpack_require__(8);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(30);
+	var _FormGroup = __webpack_require__(31);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -417,6 +421,8 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Nav from 'react-bootstrap/lib/Nav';
+
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -477,22 +483,14 @@ module.exports =
 	                            _Nav2.default,
 	                            null,
 	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    _reactRouterDom.NavLink,
-	                                    { to: '/' },
-	                                    'Home'
-	                                )
+	                                _NavItem2.default,
+	                                { to: '/' },
+	                                'Home'
 	                            ),
 	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    _reactRouterDom.NavLink,
-	                                    { to: '/clients' },
-	                                    'Clients'
-	                                )
+	                                _NavItem2.default,
+	                                { to: '/clients' },
+	                                'Clients'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -1137,7 +1135,7 @@ module.exports =
 	                    Object.keys(sortedArr).map(function (key) {
 	                        return _react2.default.createElement(
 	                            _Visit2.default,
-	                            { clientInfo: sortedArr[key] },
+	                            { clientInfo: sortedArr[key], key: key },
 	                            ' '
 	                        );
 	                    })
@@ -1360,7 +1358,7 @@ module.exports =
 	                    function (localeVal) {
 	                        return _react2.default.createElement(
 	                            'li',
-	                            null,
+	                            { key: localeVal.clientName },
 	                            _react2.default.createElement(
 	                                'a',
 	                                {
@@ -2548,10 +2546,16 @@ module.exports =
 /* 30 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/FormGroup");
+	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
 /* 31 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/FormGroup");
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2568,19 +2572,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

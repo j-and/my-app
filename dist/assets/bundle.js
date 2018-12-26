@@ -28439,11 +28439,15 @@
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
+	var _NavItem = __webpack_require__(339);
+
+	var _NavItem2 = _interopRequireDefault(_NavItem);
+
 	var _FormControl = __webpack_require__(166);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(339);
+	var _FormGroup = __webpack_require__(340);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -28462,6 +28466,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Nav from 'react-bootstrap/lib/Nav';
+
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -28522,22 +28528,14 @@
 	                            _Nav2.default,
 	                            null,
 	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    _reactRouterDom.NavLink,
-	                                    { to: '/' },
-	                                    'Home'
-	                                )
+	                                _NavItem2.default,
+	                                { to: '/' },
+	                                'Home'
 	                            ),
 	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    _reactRouterDom.NavLink,
-	                                    { to: '/clients' },
-	                                    'Clients'
-	                                )
+	                                _NavItem2.default,
+	                                { to: '/clients' },
+	                                'Clients'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -48851,7 +48849,7 @@
 	                    Object.keys(sortedArr).map(function (key) {
 	                        return _react2.default.createElement(
 	                            _Visit2.default,
-	                            { clientInfo: sortedArr[key] },
+	                            { clientInfo: sortedArr[key], key: key },
 	                            ' '
 	                        );
 	                    })
@@ -49523,7 +49521,7 @@
 	                    function (localeVal) {
 	                        return _react2.default.createElement(
 	                            'li',
-	                            null,
+	                            { key: localeVal.clientName },
 	                            _react2.default.createElement(
 	                                'a',
 	                                {
@@ -53886,6 +53884,142 @@
 
 /***/ }),
 /* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends2 = __webpack_require__(102);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _objectWithoutProperties2 = __webpack_require__(101);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+	var _classCallCheck2 = __webpack_require__(109);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(110);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(144);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(152);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(20);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _SafeAnchor = __webpack_require__(163);
+
+	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
+
+	var _createChainedFunction = __webpack_require__(164);
+
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var propTypes = {
+	  active: _propTypes2.default.bool,
+	  disabled: _propTypes2.default.bool,
+	  role: _propTypes2.default.string,
+	  href: _propTypes2.default.string,
+	  onClick: _propTypes2.default.func,
+	  onSelect: _propTypes2.default.func,
+	  eventKey: _propTypes2.default.any
+	};
+
+	var defaultProps = {
+	  active: false,
+	  disabled: false
+	};
+
+	var NavItem = function (_React$Component) {
+	  (0, _inherits3.default)(NavItem, _React$Component);
+
+	  function NavItem(props, context) {
+	    (0, _classCallCheck3.default)(this, NavItem);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, _React$Component.call(this, props, context));
+
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+
+	  NavItem.prototype.handleClick = function handleClick(e) {
+	    if (this.props.disabled) {
+	      e.preventDefault();
+	      return;
+	    }
+
+	    if (this.props.onSelect) {
+	      this.props.onSelect(this.props.eventKey, e);
+	    }
+	  };
+
+	  NavItem.prototype.render = function render() {
+	    var _props = this.props,
+	        active = _props.active,
+	        disabled = _props.disabled,
+	        onClick = _props.onClick,
+	        className = _props.className,
+	        style = _props.style,
+	        props = (0, _objectWithoutProperties3.default)(_props, ['active', 'disabled', 'onClick', 'className', 'style']);
+
+
+	    delete props.onSelect;
+	    delete props.eventKey;
+
+	    // These are injected down by `<Nav>` for building `<SubNav>`s.
+	    delete props.activeKey;
+	    delete props.activeHref;
+
+	    if (!props.role) {
+	      if (props.href === '#') {
+	        props.role = 'button';
+	      }
+	    } else if (props.role === 'tab') {
+	      props['aria-selected'] = active;
+	    }
+
+	    return _react2.default.createElement(
+	      'li',
+	      {
+	        role: 'presentation',
+	        className: (0, _classnames2.default)(className, { active: active, disabled: disabled }),
+	        style: style
+	      },
+	      _react2.default.createElement(_SafeAnchor2.default, (0, _extends3.default)({}, props, {
+	        disabled: disabled,
+	        onClick: (0, _createChainedFunction2.default)(onClick, this.handleClick)
+	      }))
+	    );
+	  };
+
+	  return NavItem;
+	}(_react2.default.Component);
+
+	NavItem.propTypes = propTypes;
+	NavItem.defaultProps = defaultProps;
+
+	exports.default = NavItem;
+	module.exports = exports['default'];
+
+/***/ }),
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

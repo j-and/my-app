@@ -21,7 +21,7 @@ class ClientsHistory extends Component {
                 <label>Visits of {client.name}</label>
                 <ListGroup >
                     {Object.keys(sortedArr).map(function (key) {
-                        return <Visit clientInfo={sortedArr[key]}> </Visit>;
+                        return <Visit clientInfo={sortedArr[key]}  key={key}> </Visit>;
                     }) }
                 </ListGroup>
             </div>
