@@ -162,13 +162,6 @@ server.post('/addClient', function (req, res) {
 
 
 server.post('/editClient', function (req, res) {
-    // const database = new Database(config);
-    // database.query("UPDATE my_db.clients SET desease = " + mysql.escape(req.body.desease) + ", birthdate=" + mysql.escape(req.body.birthdate) + ", phone=" + mysql.escape(req.body.phone) + ", email=" + mysql.escape(req.body.email) + ", description=" + mysql.escape(req.body.description) + " WHERE name = " + mysql.escape(req.body.name))
-    //     .then(function () {
-    //         return database.close();
-    //     });
-    // res.send('Response from server');
-
     var con = mysql.createConnection({
         host: "localhost",
         user: "root",
@@ -198,11 +191,9 @@ server.post('/removeRegister', function (req, res) {
     });
     con.connect(function (err) {
         if (err) throw err;
-        // con.query("DELETE FROM registers WHERE datetime=" + mysql.escape(req.body.datetime)+"AND name=" + mysql.escape(req.body.name),
         con.query("DELETE FROM visits WHERE datetime=" + mysql.escape(req.body.datetime) + "AND name=" + mysql.escape(req.body.name),
             function (err, result) {
                 if (err) throw err;
-                // con.query("SELECT * FROM registers", function (err, result) {
                 con.query("SELECT * FROM visits", function (err, result) {
                     if (err) throw err;
                     res.send(result);
@@ -220,7 +211,6 @@ server.get('/getRegisters', function (req, res) {
     });
     con.connect(function (err) {
         if (err) throw err;
-        // con.query("SELECT * FROM registers", function (err, result) {
         con.query("SELECT * FROM visits", function (err, result) {
             if (err) throw err;
             res.send(result);

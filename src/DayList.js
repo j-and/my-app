@@ -73,7 +73,7 @@ class DayList extends Component {
 
             var month = datetime.slice(5, 7);
             var day = datetime.slice(8, 10);
-            var time = datetime.slice(11, 13) + '.00';//:00:00';
+            var time = datetime.slice(11, 13) + '.00';
 
             if (time.length == 4) {
                 time = '0' + time;

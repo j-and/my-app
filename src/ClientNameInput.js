@@ -31,19 +31,17 @@ class ClientNameInput extends Component {
         event.preventDefault();
         if (this.state.times && this.state.names) {
             var date = new Date(this.props.currentYear, this.props.currentMonth - 1, this.props.currentDay, this.state.times.time);
-           // var datetime = dateToTimestamp(date);
             var newRegister = {
                 name: this.state.names,
                 datetime: dateToTimestamp(date),
-                comment:'comment',
-                payment:0,
+                comment: 'comment',
+                payment: 0,
                 status: 'busy'
             };
             var newArray = this.state.registers;
             newArray.push(newRegister);
             this.setState({registers: newArray});
             this.props.addRegister(this.state.registers);
-            //this.getClientId(newRegister);
             sendData(newRegister, "/addRegister");
             this.refs.registerForm.reset();
             this.setState({times: ''});
@@ -69,7 +67,7 @@ class ClientNameInput extends Component {
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>
                         {arr.map(function (time) {
-                            return <option value={time}>{time}</option>
+                            return <option value={time} key={time}>{time}</option>
                         })}
                     </select>
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>

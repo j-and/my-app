@@ -5,7 +5,6 @@ import {Route, Switch, NavLink}   from 'react-router-dom';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-// import Nav from 'react-bootstrap/lib/Nav';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
@@ -46,8 +45,8 @@ class App extends Component {
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav>
-                            <NavItem to="/">Home</NavItem>
-                            <NavItem to="/clients">Clients</NavItem>
+                            <NavItem href="/">Home</NavItem>
+                            <NavItem href="/clients">Clients</NavItem>
                         </Nav>
                         <Navbar.Form pullLeft>
                             <FormGroup>

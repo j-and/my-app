@@ -28529,12 +28529,12 @@
 	                            null,
 	                            _react2.default.createElement(
 	                                _NavItem2.default,
-	                                { to: '/' },
+	                                { href: '/' },
 	                                'Home'
 	                            ),
 	                            _react2.default.createElement(
 	                                _NavItem2.default,
-	                                { to: '/clients' },
+	                                { href: '/clients' },
 	                                'Clients'
 	                            )
 	                        ),
@@ -49517,7 +49517,7 @@
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    _Context.LocaleContext.Consumer,
-	                    null,
+	                    { key: client.name },
 	                    function (localeVal) {
 	                        return _react2.default.createElement(
 	                            'li',
@@ -49798,7 +49798,7 @@
 	            for (var i = 0; i < array.length; i++) {
 	                this.state.trHead.push(_react2.default.createElement(
 	                    'td',
-	                    { className: 'day_ordinary' },
+	                    { key: i, className: 'day_ordinary' },
 	                    'array[i]'
 	                ));
 	            }
@@ -49819,7 +49819,7 @@
 	                for (j = 0; j < 5; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { className: 'day_ordinary' },
+	                        { key: j, className: 'day_ordinary' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -49828,7 +49828,7 @@
 	                for (j = 5; j < 7; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { className: 'day_weekend' },
+	                        { key: j, className: 'day_weekend' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -49848,12 +49848,12 @@
 	                            for (j = 0; j < this.props.currentDate.monthStart; j++) {
 	                                j < 5 ? this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    {
+	                                    { key: j,
 	                                        className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { className: 'day_weekend' },
+	                                    { key: j, className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -49861,7 +49861,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -49869,7 +49869,7 @@
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -49880,18 +49880,18 @@
 	                            for (j = 0; j < 5; j++) {
 	                                this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { className: 'day_ordinary' },
+	                                    { key: j, className: 'day_ordinary' },
 	                                    '-'
 	                                ));
 	                            }
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { className: 'day_weekend' },
+	                                { key: j, className: 'day_weekend' },
 	                                '-'
 	                            ));
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { className: 'day_weekend' },
+	                                { key: j, className: 'day_weekend' },
 	                                _react2.default.createElement(_DayList2.default, {
 	                                    currentDay: currentDay })
 	                            ));
@@ -49914,7 +49914,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -49922,7 +49922,7 @@
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
@@ -49933,13 +49933,13 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        '-'
 	                                    ));
 	                                }
@@ -49951,7 +49951,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -49959,7 +49959,7 @@
 	                                } else {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
@@ -49970,11 +49970,11 @@
 	                            for (j; j < 7; j++) {
 	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { className: 'day_ordinary' },
+	                                    { key: j, className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { className: 'day_weekend' },
+	                                    { key: j, className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -50001,7 +50001,7 @@
 	                            this.state.trHead.map(function (day) {
 	                                return _react2.default.createElement(
 	                                    'td',
-	                                    { className: 'month-header' },
+	                                    { key: day, className: 'month-header' },
 	                                    day
 	                                );
 	                            })
@@ -50458,7 +50458,7 @@
 	                        arr.map(function (time) {
 	                            return _react2.default.createElement(
 	                                'option',
-	                                { value: time },
+	                                { value: time, key: time },
 	                                time
 	                            );
 	                        })
