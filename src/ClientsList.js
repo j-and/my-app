@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
 import {sortByKey} from './methods.js';
+import {LocaleContext}  from './Context';
 
 
 class ClientsList extends Component {
@@ -15,10 +15,15 @@ class ClientsList extends Component {
         var switchClient = this.props.switchClient;
         var arr = this.props.CLIENTS;
         var sortedArr = sortByKey(arr, 'name');
-
         var listItems = sortedArr.map((client) =>
+            <LocaleContext.Consumer>
+                {localeVal => (
+                    <li><a
+                        onClick={() => { switchClient(client.name);localeVal.changeName(client.name)}}>{client.name}</a>
+                    </li>
 
-            <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
+                )}
+            </LocaleContext.Consumer>
         );
         return (
             <div>
@@ -35,4 +40,3 @@ class ClientsList extends Component {
 }
 
 export default ClientsList;
-

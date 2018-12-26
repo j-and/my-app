@@ -28451,7 +28451,7 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Context = __webpack_require__(298);
+	var _Context = __webpack_require__(304);
 
 	var _Context2 = _interopRequireDefault(_Context);
 
@@ -28472,13 +28472,21 @@
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '' //,true
+	            isOpen: '', //true
+	            clientName: 'initialName'
 	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
+	        _this.changeName = _this.changeName.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(App, [{
+	        key: 'changeName',
+	        value: function changeName(name) {
+	            alert('name' + name);
+	            this.setState({ clientName: name });
+	        }
+	    }, {
 	        key: 'toggleModal',
 	        value: function toggleModal() {
 	            this.setState({
@@ -28493,7 +28501,8 @@
 	                null,
 	                _react2.default.createElement(
 	                    _Context2.default,
-	                    null,
+	                    { value: this.state.clientName },
+	                    this.state.clientName,
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
@@ -28588,17 +28597,19 @@
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(299);
+	var _ClientsHistory = __webpack_require__(298);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(304);
+	var _ClientsList = __webpack_require__(303);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
 	var _moment = __webpack_require__(172);
 
 	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Context = __webpack_require__(304);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28737,6 +28748,18 @@
 	                            } },
 	                        'Edit client'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _Context.LocaleContext.Consumer,
+	                    null,
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            localeVal.clientName,
+	                            '!'
+	                        );
+	                    }
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -31390,8 +31413,6 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _Context = __webpack_require__(298);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -31447,8 +31468,6 @@
 	            var email = this.state.clientEmail ? this.state.clientEmail : '';
 	            var description = this.state.clientDescription ? this.state.clientDescription : '';
 	            var newClient = {
-	                /*client_id is auto generated in db*/
-	                //client_id:'idididi',
 	                name: name,
 	                birthdate: birthdate,
 	                desease: desease,
@@ -31473,8 +31492,6 @@
 	            var email = this.state.clientEmail ? this.state.clientEmail : this.props.client.email;
 	            var description = this.state.clientDescription ? this.state.clientDescription : this.props.client.description;
 	            var newClient = {
-	                /*client_id is auto generated in db*/
-	                //client_id:'idididi',
 	                name: name,
 	                birthdate: (0, _methods.dateToTimestamp)(birthdate),
 	                desease: desease,
@@ -31513,6 +31530,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+
 	            var client = this.props.client;
 
 	            if (this.props.editable) {
@@ -31542,24 +31560,10 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Context.LocaleContext.Consumer,
-	                    null,
-	                    function (localeVal) {
-	                        return _react2.default.createElement(
-	                            'h2',
-	                            null,
-	                            localeVal.clientName
-	                        );
-	                    }
-	                    //localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>
-
-	                ),
-	                _react2.default.createElement(
 	                    'h2',
 	                    null,
 	                    ' Clients card ',
-	                    client.name,
-	                    client.client_id
+	                    client.name
 	                ),
 	                _react2.default.createElement(
 	                    'form',
@@ -48781,7 +48785,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.LocaleContext = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -48789,80 +48792,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var LocaleContext = exports.LocaleContext = _react2.default.createContext();
-
-	var LocaleProvider = function (_React$Component) {
-	    _inherits(LocaleProvider, _React$Component);
-
-	    function LocaleProvider(props) {
-	        _classCallCheck(this, LocaleProvider);
-
-	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
-
-	        _this.changeLocale = function () {
-	            //console.log('props='+props);
-	            _this.setState(function (state) {
-	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
-	                var newName = state.clientName;
-	                return {
-	                    locale: newLocale,
-	                    clientName: newName
-	                };
-	            });
-	        };
-
-	        _this.state = {
-	            locale: 'en',
-	            changeLocale: _this.changeLocale
-	        };
-	        return _this;
-	    }
-
-	    _createClass(LocaleProvider, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                LocaleContext.Provider,
-	                { value: this.state },
-	                this.props.children
-	            );
-	        }
-	    }]);
-
-	    return LocaleProvider;
-	}(_react2.default.Component);
-
-	exports.default = LocaleProvider;
-
-/***/ }),
-/* 299 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _ListGroup = __webpack_require__(300);
+	var _ListGroup = __webpack_require__(299);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
-	var _Visit = __webpack_require__(303);
+	var _Visit = __webpack_require__(302);
 
 	var _Visit2 = _interopRequireDefault(_Visit);
 
@@ -48931,7 +48865,7 @@
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48970,13 +48904,13 @@
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _ListGroupItem = __webpack_require__(301);
+	var _ListGroupItem = __webpack_require__(300);
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
 	var _bootstrapUtils = __webpack_require__(158);
 
-	var _ValidComponentChildren = __webpack_require__(302);
+	var _ValidComponentChildren = __webpack_require__(301);
 
 	var _ValidComponentChildren2 = _interopRequireDefault(_ValidComponentChildren);
 
@@ -49051,7 +48985,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49201,7 +49135,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49398,7 +49332,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49421,7 +49355,7 @@
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _ListGroupItem = __webpack_require__(301);
+	var _ListGroupItem = __webpack_require__(300);
 
 	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
 
@@ -49534,7 +49468,7 @@
 	exports.default = Visit;
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49549,11 +49483,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ListGroup = __webpack_require__(300);
+	var _ListGroup = __webpack_require__(299);
 
 	var _ListGroup2 = _interopRequireDefault(_ListGroup);
 
 	var _methods = __webpack_require__(170);
+
+	var _Context = __webpack_require__(304);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49586,15 +49522,21 @@
 
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
-	                    'li',
+	                    _Context.LocaleContext.Consumer,
 	                    null,
-	                    _react2.default.createElement(
-	                        'a',
-	                        { onClick: function onClick() {
-	                                switchClient(client.name);
-	                            } },
-	                        client.name
-	                    )
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            _react2.default.createElement(
+	                                'a',
+	                                { onClick: function onClick() {
+	                                        switchClient(client.name);localeVal.changeName(client.name);
+	                                    } },
+	                                client.name
+	                            )
+	                        );
+	                    }
 	                );
 	            });
 	            return _react2.default.createElement(
@@ -49618,6 +49560,89 @@
 	}(_react.Component);
 
 	exports.default = ClientsList;
+
+	// <li><a onClick={() => { switchClient(client.name)}}>{client.name}</a></li>
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.LocaleContext = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LocaleContext = exports.LocaleContext = _react2.default.createContext({ changeName: function changeName() {} });
+
+	var LocaleProvider = function (_React$Component) {
+	    _inherits(LocaleProvider, _React$Component);
+
+	    function LocaleProvider(props) {
+	        _classCallCheck(this, LocaleProvider);
+
+	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
+
+	        _this.changeLocale = function () {
+	            _this.setState(function (state) {
+	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
+	                return {
+	                    locale: newLocale
+	                };
+	            });
+	        };
+
+	        _this.changeName = function (name) {
+	            alert('name=' + name);
+	            // this.setState(state => {
+	            //     const clientName = state.clientName;// === 'en' ? 'fr' : 'en';
+	            //     alert('clientName='+clientName)
+	            //     return {
+	            //         clientName: clientName
+	            //     };
+	            // });
+	            _this.setState({ clientName: name });
+	        };
+
+	        _this.state = {
+	            locale: 'en',
+	            changeLocale: _this.changeLocale,
+	            changeName: _this.changeName,
+	            clientName: 'contextName'
+	        };
+	        return _this;
+	    }
+
+	    _createClass(LocaleProvider, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                LocaleContext.Provider,
+	                { value: this.state },
+	                this.props.children
+	            );
+	        }
+	    }]);
+
+	    return LocaleProvider;
+	}(_react2.default.Component);
+
+	exports.default = LocaleProvider;
 
 /***/ }),
 /* 305 */
@@ -50072,7 +50097,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./RegisterList.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _RegisterList = __webpack_require__(308);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
@@ -50206,7 +50231,135 @@
 	exports.default = DayList;
 
 /***/ }),
-/* 308 */,
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Button = __webpack_require__(64);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _Glyphicon = __webpack_require__(168);
+
+	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
+
+	var _methods = __webpack_require__(170);
+
+	var _Context = __webpack_require__(304);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RegisterList = function (_Component) {
+	    _inherits(RegisterList, _Component);
+
+	    function RegisterList(props) {
+	        _classCallCheck(this, RegisterList);
+
+	        var _this = _possibleConstructorReturn(this, (RegisterList.__proto__ || Object.getPrototypeOf(RegisterList)).call(this, props));
+
+	        _this.state = {};
+	        return _this;
+	    }
+
+	    _createClass(RegisterList, [{
+	        key: 'render',
+	        value: function render() {
+	            var arr = this.props.registers;
+	            var sortedArr = dateSortByKey(arr, 'datetime');
+
+	            function dateSortByKey(array, key) {
+	                return array.sort(function (a, b) {
+	                    var x = (0, _methods.dateToTimestamp)(a[key]);
+	                    var y = (0, _methods.dateToTimestamp)(b[key]);
+	                    return x < y ? -1 : x > y ? 1 : 0;
+	                });
+	            }
+
+	            var removeRegister = this.props.removeRegister;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: 'register_ul' },
+	                    Object.keys(sortedArr).map(function (key) {
+	                        var time = new Date(sortedArr[key].datetime).getHours() + '.00';
+	                        if (time.length == 4) {
+	                            time = '0' + time;
+	                        }
+	                        return _react2.default.createElement(
+	                            'li',
+	                            { key: (sortedArr[key].datetime + sortedArr[key].name).toString(), className: 'register_list' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'register_time' },
+	                                time
+	                            ),
+	                            _react2.default.createElement(
+	                                _Context.LocaleContext.Consumer,
+	                                null,
+	                                function (localeVal) {
+	                                    return _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'register_name', onClick: function onClick() {
+	                                                return localeVal.changeName(sortedArr[key].name);
+	                                            } },
+	                                        sortedArr[key].name
+	                                    );
+	                                }
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _Button2.default,
+	                                    { bsSize: 'xsmall', bsStyle: 'danger', className: 'btn-close',
+	                                        onClick: function onClick() {
+	                                            removeRegister(sortedArr[key]);
+	                                        } },
+	                                    _react2.default.createElement(_Glyphicon2.default, { glyph: 'remove' })
+	                                )
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RegisterList;
+	}(_react.Component);
+
+	exports.default = RegisterList;
+
+	// <span className="register_name">{sortedArr[key].name}</span>
+	// <span className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
+
+	// <LocaleContext.Consumer>
+	//     {localeVal => (
+	//         <span className="register_name" onClick={localeVal.changeName}>{sortedArr[key].name}</span>
+	//     )}
+	// </LocaleContext.Consumer>
+
+/***/ }),
 /* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53173,7 +53326,7 @@
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
-	var _ValidComponentChildren = __webpack_require__(302);
+	var _ValidComponentChildren = __webpack_require__(301);
 
 	var _ValidComponentChildren2 = _interopRequireDefault(_ValidComponentChildren);
 
@@ -53791,7 +53944,7 @@
 
 	var _StyleConfig = __webpack_require__(162);
 
-	var _ValidComponentChildren = __webpack_require__(302);
+	var _ValidComponentChildren = __webpack_require__(301);
 
 	var _ValidComponentChildren2 = _interopRequireDefault(_ValidComponentChildren);
 

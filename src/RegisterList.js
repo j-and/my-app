@@ -33,10 +33,12 @@ class RegisterList extends Component {
                         if (time.length == 4) {
                             time = '0' + time;
                         }
-                        return <li key={(sortedArr[key].datetime+sortedArr[key].name).toString()} className="register_list"><span className="register_time">{time}</span>
+                        return <li key={(sortedArr[key].datetime+sortedArr[key].name).toString()}
+                                   className="register_list"><span className="register_time">{time}</span>
                             <LocaleContext.Consumer>
                                 {localeVal => (
-                                    <span className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
+                                    <span className="register_name"
+                                          onClick={() => localeVal.changeName(sortedArr[key].name)}>{sortedArr[key].name}</span>
                                 )}
                             </LocaleContext.Consumer>
                             
@@ -52,8 +54,3 @@ class RegisterList extends Component {
 }
 
 export default RegisterList;
-
-// <span className="register_name">{sortedArr[key].name}</span>
-
-// {localeVthis.setState({className="register_name" onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
-// )}

@@ -4,7 +4,6 @@ import FieldGroup from 'react-bootstrap/lib/FormControl';
 import {sendData} from './methods.js';
 import {dateToTimestamp} from './methods.js';
 import moment from 'moment';
-import {LocaleContext}  from './Context';
 
 class ClientsCard extends Component {
     constructor(props) {
@@ -44,8 +43,6 @@ class ClientsCard extends Component {
         var email = this.state.clientEmail ? this.state.clientEmail : '';
         var description = this.state.clientDescription ? this.state.clientDescription : '';
         var newClient = {
-            /*client_id is auto generated in db*/
-            //client_id:'idididi',
             name: name,
             birthdate: birthdate,
             desease: desease,
@@ -70,8 +67,6 @@ class ClientsCard extends Component {
         var email = this.state.clientEmail ? this.state.clientEmail : this.props.client.email;
         var description = this.state.clientDescription ? this.state.clientDescription : this.props.client.description;
         var newClient = {
-            /*client_id is auto generated in db*/
-            //client_id:'idididi',
             name: name,
             birthdate: dateToTimestamp(birthdate),
             desease: desease,
@@ -108,6 +103,7 @@ class ClientsCard extends Component {
     }
 
     render() {
+
         var client = this.props.client;
 
         if (this.props.editable) {
@@ -137,12 +133,8 @@ class ClientsCard extends Component {
 
         return (
             <div>
-                <LocaleContext.Consumer>
-                    {localeVal =><h2>{localeVal.clientName}</h2>
-                        //localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>
-                    }
-                </LocaleContext.Consumer>
-                <h2> Clients card {client.name}{client.client_id}</h2>
+
+                <h2> Clients card {client.name}</h2>
 
                 <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
                     <label>Name</label>

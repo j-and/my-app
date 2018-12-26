@@ -4,6 +4,7 @@ import ClientsCard from './ClientsCard.js';
 import ClientsHistory from './ClientsHistory.js';
 import ClientsList from './ClientsList.js';
 import moment from 'moment';
+import {LocaleContext}  from './Context';
 
 class Client extends Component {
     constructor(props) {
@@ -100,6 +101,13 @@ class Client extends Component {
 
         return (
             <div>
+                <LocaleContext.Consumer>
+                    {
+                        localeVal =>
+                            <h1>{localeVal.clientName}!</h1>
+                    }
+                </LocaleContext.Consumer>
+
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
                     <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
         this.setState({isAdded:true});this.setState({client:{}})})}>Add new</Button>
@@ -108,6 +116,7 @@ class Client extends Component {
                         Edit client
                     </Button>
                 </div>
+
                 <div className="col-sm-6"><ClientsCard client={this.state.client}
                                                        changeClient={this.changeClient}
                                                        CLIENTS={this.state.CLIENTS}
