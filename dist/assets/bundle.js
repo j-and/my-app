@@ -28542,7 +28542,7 @@
 	                            _react2.default.createElement(
 	                                _FormGroup2.default,
 	                                null,
-	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
 	                            ),
 	                            ' ',
 	                            _react2.default.createElement(
@@ -28738,7 +28738,16 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        ' Clients list'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'clients_list' },
+	                        _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS })
+	                    ),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
@@ -49536,13 +49545,8 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    ' Clients list'
-	                ),
-	                _react2.default.createElement(
 	                    'ul',
-	                    { className: 'clients_list' },
+	                    { className: '' },
 	                    listItems
 	                )
 	            );

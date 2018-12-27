@@ -238,7 +238,12 @@ label {
   justify-content: space-around;
 }
 .clients_list{
-  list-style: none;
+
+  height: 400px;
+  overflow-y: auto;
+  ul{
+    list-style: none;
+  }
 
   a:hover{
     cursor:pointer;

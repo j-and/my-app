@@ -53,8 +53,8 @@ class Database {
                 if (err)
                     return reject(err);
                 resolve(rows);
-            });
-        });
+            })
+        })
     }
 
     close() {
@@ -63,14 +63,15 @@ class Database {
                 if (err)
                     return reject(err);
                 resolve();
-            });
-        });
+            })
+        })
     }
 }
 
 server.post('/addRegister', function (req, res) {
     const database = new Database(config);
     var client_id;
+
     database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name))
         .then(function (result) {
             if (result.length != 0) {
@@ -120,7 +121,8 @@ server.post('/addRegister', function (req, res) {
                 .then(() => {
                     throw err;
                 })
-        })
+        });
+    res.send('Response from server');
 });
 
 server.post('/addClient', function (req, res) {
@@ -156,9 +158,6 @@ server.post('/addClient', function (req, res) {
                 .then(() => {
                     throw err;
                 })
-        })
-        .finally(function () {
-            return database.close();
         });
     res.send('Response from server');
 });

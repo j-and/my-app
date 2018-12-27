@@ -114,12 +114,69 @@ module.exports =
 	    database: "my_db"
 	};
 
+	// var pool = mysql.createPool({
+	//     connectionLimit : 10,
+	//     host: Config.appSettings().database.host,
+	//     user: Config.appSettings().database.username,
+	//     password: Config.appSettings().database.password,
+	//     database: Config.appSettings().database.database
+	// });
+	//
+	//
+	// var DB = (function () {
+	//
+	//     function _query(query, params, callback) {
+	//         pool.getConnection(function (err, connection) {
+	//             if (err) {
+	//                 connection.release();
+	//                 callback(null, err);
+	//                 throw err;
+	//             }
+	//
+	//             connection.query(query, params, function (err, rows) {
+	//                 connection.release();
+	//                 if (!err) {
+	//                     callback(rows);
+	//                 }
+	//                 else {
+	//                     callback(null, err);
+	//                 }
+	//
+	//             });
+	//
+	//             connection.on('error', function (err) {
+	//                 connection.release();
+	//                 callback(null, err);
+	//                 throw err;
+	//             });
+	//         });
+	//     };
+	//
+	//     return {
+	//         query: _query
+	//     };
+	// })();
+	//
+	// module.exports = DB;
+
+	// var mysql = require('mysql').pool;
+
 	var Database = function () {
 	    function Database(config) {
 	        _classCallCheck(this, Database);
 
 	        this.connection = mysql.createConnection(config);
 	    }
+	    //
+	    //
+	    //     for (var i=0; i<size;i++) {
+	    //     pool.getConnection(function(err, connection) {
+	    //     connection.query( 'INSERT INTO ...', function(err, rows) {
+	    //         connection.release();
+	    //     });
+	    // });
+	    // }
+
 
 	    _createClass(Database, [{
 	        key: 'query',
@@ -132,6 +189,9 @@ module.exports =
 	                    resolve(rows);
 	                });
 	            });
+	            //     .then(function () {
+	            //     this.connection.close();
+	            // });
 	        }
 	    }, {
 	        key: 'close',
@@ -144,6 +204,9 @@ module.exports =
 	                    resolve();
 	                });
 	            });
+	            //     .then(function () {
+	            //     this.connection.close();
+	            // });
 	        }
 	    }]);
 
@@ -153,6 +216,11 @@ module.exports =
 	server.post('/addRegister', function (req, res) {
 	    var database = new Database(config);
 	    var client_id;
+
+	    // DB.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name), null, function (data, error) {
+	    //     callback(data, error);
+	    // })
+
 	    database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name)).then(function (result) {
 	        if (result.length != 0) {
 	            client_id = result[0].client_id;
@@ -192,7 +260,11 @@ module.exports =
 	        return database.close().then(function () {
 	            throw err;
 	        });
+	    }).then(function () {
+	        console.log('close');
+	        //    database.close(); 
 	    });
+	    res.send('Response from server');
 	});
 
 	server.post('/addClient', function (req, res) {
@@ -222,8 +294,9 @@ module.exports =
 	        return database.close().then(function () {
 	            throw err;
 	        });
-	    }).finally(function () {
-	        return database.close();
+	    }).then(function () {
+	        console.log('close');
+	        //   database.close();
 	    });
 	    res.send('Response from server');
 	});
@@ -244,9 +317,6 @@ module.exports =
 	        con.query(query, function (err, result) {
 	            if (err) throw err;
 	        });
-	        // .finally(function (res) {
-	        //     return database.close();
-	        // });
 	    });
 	    res.send('Response from server');
 	});
@@ -268,9 +338,6 @@ module.exports =
 	            });
 	        });
 	    });
-	    // .finally(function (res) {
-	    //     return database.close();
-	    // });
 	});
 
 	server.get('/getRegisters', function (req, res) {
@@ -495,7 +562,7 @@ module.exports =
 	                            _react2.default.createElement(
 	                                _FormGroup2.default,
 	                                null,
-	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
 	                            ),
 	                            ' ',
 	                            _react2.default.createElement(
@@ -691,7 +758,16 @@ module.exports =
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        ' Clients list'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'clients_list' },
+	                        _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS })
+	                    ),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
@@ -1371,13 +1447,8 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    ' Clients list'
-	                ),
-	                _react2.default.createElement(
 	                    'ul',
-	                    { className: 'clients_list' },
+	                    { className: '' },
 	                    listItems
 	                )
 	            );

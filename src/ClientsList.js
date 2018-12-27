@@ -27,15 +27,13 @@ class ClientsList extends Component {
         );
         return (
             <div>
-                <h2> Clients list</h2>
-                <ul className='clients_list'>
+                <ul className=''>
                     {listItems}
                 </ul>
 
             </div>
 
         );
-
     }
 }
 
