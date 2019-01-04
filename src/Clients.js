@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/lib/Button';
 import ClientsCard from './ClientsCard.js';
 import ClientsHistory from './ClientsHistory.js';
 import ClientsList from './ClientsList.js';
-import moment from 'moment';
 import {LocaleContext}  from './Context';
+import moment from 'moment';
 
 class Client extends Component {
     constructor(props) {
@@ -101,14 +101,13 @@ class Client extends Component {
 
         return (
             <div>
-                <LocaleContext.Consumer>
-                    {
-                        localeVal =>
-                            <h1>{localeVal.clientName}!</h1>
-                    }
-                </LocaleContext.Consumer>
+                
 
                 <div className="col-sm-3">
+                    <LocaleContext.Consumer>
+                        {localeVal =>
+        localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>}
+                     </LocaleContext.Consumer>
                     <h2> Clients list</h2>
                     <div className="clients_list">
                     <ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
@@ -138,3 +137,4 @@ class Client extends Component {
 export default Client;
 
 //this.switchClient(localeVal.clientName)}
+

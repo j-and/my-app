@@ -33,14 +33,22 @@ class RegisterList extends Component {
                         if (time.length == 4) {
                             time = '0' + time;
                         }
-                        return <li key={(sortedArr[key].datetime+sortedArr[key].name).toString()}
-                                   className="register_list"><span className="register_time">{time}</span>
+                        return <li key={sortedArr[key].datetime.toString()} className="register_list"><span className="register_time">{time}</span>
+                            
                             <LocaleContext.Consumer>
                                 {localeVal => (
-                                    <span  className="register_name"
-                                          onClick={() => localeVal.changeName(sortedArr[key].name)}><a href="/clients">{sortedArr[key].name}</a></span>
+                                    <span className="register_name"
+                                          onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
                                 )}
                             </LocaleContext.Consumer>
+
+                            {({ language, setLanguage }) => (
+                                <button onClick={() => setLanguage("jp")}>
+                                    Switch Language (Current: {language})
+                                </button>
+                            )}
+                            
+                            
                             
                              <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
                                            onClick={() => { removeRegister(sortedArr[key])}}>

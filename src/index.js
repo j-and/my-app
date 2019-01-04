@@ -16,16 +16,10 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: '',//true
-            clientName: 'initialName'
+            isOpen: ''//,true
         };
-        this.toggleModal = this.toggleModal.bind(this);
-        this.changeName = this.changeName.bind(this);
-    }
 
-    changeName(name) {
-        alert('name' + name);
-        this.setState({clientName: name});
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     toggleModal() {
@@ -37,11 +31,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <LocaleProvider value={this.state.clientName}>
+                <LocaleProvider>
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="#">My-app</a>
+                                <a href="">My-app</a>
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav>
