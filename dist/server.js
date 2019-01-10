@@ -244,9 +244,6 @@ module.exports =
 	        con.query(query, function (err, result) {
 	            if (err) throw err;
 	        });
-	        // .finally(function (res) {
-	        //     return database.close();
-	        // });
 	    });
 	    res.send('Response from server');
 	});
@@ -268,9 +265,6 @@ module.exports =
 	            });
 	        });
 	    });
-	    // .finally(function (res) {
-	    //     return database.close();
-	    // });
 	});
 
 	server.get('/getRegisters', function (req, res) {
@@ -408,10 +402,6 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Context = __webpack_require__(18);
-
-	var _Context2 = _interopRequireDefault(_Context);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -429,21 +419,14 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '', //true
-	            clientName: 'initialName'
+	            isOpen: '' //true
 	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
-	        _this.changeName = _this.changeName.bind(_this);
+
 	        return _this;
 	    }
 
 	    _createClass(App, [{
-	        key: 'changeName',
-	        value: function changeName(name) {
-	            alert('name' + name);
-	            this.setState({ clientName: name });
-	        }
-	    }, {
 	        key: 'toggleModal',
 	        value: function toggleModal() {
 	            this.setState({
@@ -457,60 +440,56 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Context2.default,
-	                    { value: this.state.clientName },
+	                    _Navbar2.default,
+	                    null,
 	                    _react2.default.createElement(
-	                        _Navbar2.default,
+	                        _Navbar2.default.Header,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Header,
+	                            _Navbar2.default.Brand,
 	                            null,
 	                            _react2.default.createElement(
-	                                _Navbar2.default.Brand,
-	                                null,
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: '#' },
-	                                    'My-app'
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _Nav2.default,
-	                            null,
-	                            _react2.default.createElement(
-	                                _NavItem2.default,
-	                                { href: '/' },
-	                                'Home'
-	                            ),
-	                            _react2.default.createElement(
-	                                _NavItem2.default,
-	                                { href: '/clients' },
-	                                'Clients'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _Navbar2.default.Form,
-	                            { pullLeft: true },
-	                            _react2.default.createElement(
-	                                _FormGroup2.default,
-	                                null,
-	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
-	                            ),
-	                            ' ',
-	                            _react2.default.createElement(
-	                                _Button2.default,
-	                                { type: 'submit' },
-	                                'Submit'
+	                                'a',
+	                                { href: '#' },
+	                                'My-app'
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _reactRouterDom.Switch,
+	                        _Nav2.default,
 	                        null,
-	                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
-	                        _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/' },
+	                            'Home'
+	                        ),
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/clients' },
+	                            'Clients'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _Navbar2.default.Form,
+	                        { pullLeft: true },
+	                        _react2.default.createElement(
+	                            _FormGroup2.default,
+	                            null,
+	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
+	                        ),
+	                        ' ',
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { type: 'submit' },
+	                            'Submit'
+	                        )
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouterDom.Switch,
+	                    null,
+	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                )
 	            );
 	        }
@@ -1317,8 +1296,6 @@ module.exports =
 
 	var _methods = __webpack_require__(9);
 
-	var _Context = __webpack_require__(18);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1349,22 +1326,16 @@ module.exports =
 	            var sortedArr = (0, _methods.sortByKey)(arr, 'name');
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
-	                    _Context.LocaleContext.Consumer,
-	                    { key: client.name },
-	                    function (localeVal) {
-	                        return _react2.default.createElement(
-	                            'li',
-	                            { key: localeVal.clientName },
-	                            _react2.default.createElement(
-	                                'a',
-	                                {
-	                                    onClick: function onClick() {
-	                                        switchClient(client.name);localeVal.changeName(client.name);
-	                                    } },
-	                                client.name
-	                            )
-	                        );
-	                    }
+	                    'li',
+	                    { key: localeVal.clientName },
+	                    _react2.default.createElement(
+	                        'a',
+	                        {
+	                            onClick: function onClick() {
+	                                switchClient(client.name);
+	                            } },
+	                        client.name
+	                    )
 	                );
 	            });
 	            return _react2.default.createElement(
@@ -1400,67 +1371,58 @@ module.exports =
 	});
 	exports.LocaleContext = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var LocaleContext = exports.LocaleContext = _react2.default.createContext({
-	    changeName: function changeName() {}
+	    theme: 'themes.dark',
+	    toggleTheme: function toggleTheme() {}
 	});
 
-	var LocaleProvider = function (_React$Component) {
-	    _inherits(LocaleProvider, _React$Component);
+	// class LocaleProvider extends React.Component {
+	//     constructor(props) {
+	//         super(props);
+	//        
+	//         // this.changeLocale = () => {
+	//         //     this.setState(state => {
+	//         //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
+	//         //         alert('newLocale='+newLocale);
+	//         //         return {
+	//         //             locale: newLocale
+	//         //         };
+	//         //     });
+	//         //   
+	//         // };
+	//        
+	//         this.state = {
+	//             locale: 'en',
+	//             changeLocale: this.changeLocale
+	//         };
+	//     }
+	//
+	//     render() {
+	//         return (
+	//             <LocaleContext.Provider value={this.state}>
+	//                  {this.props.children}
+	//             </LocaleContext.Provider>
+	//         );
+	//     }
+	// }
 
-	    function LocaleProvider(props) {
-	        _classCallCheck(this, LocaleProvider);
+	// export default LocaleProvider;
 
-	        // this.changeLocale = () => {
-	        //     this.setState(state => {
-	        //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
-	        //         return {
-	        //             locale: newLocale
-	        //         };
-	        //     });
-	        // };
 
-	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
+	// <LocaleContext.Provider value={{
+	//             state:this.state,
+	//             changeLocale: e => this.setState(e.target.value)
+	//             }}>
+	//     {this.props.children}
+	// </LocaleContext.Provider>
 
-	        _this.changeName = function (name) {
-	            _this.setState({ clientName: name });
-	        };
-
-	        _this.state = {
-	            changeName: _this.changeName,
-	            clientName: 'contextName'
-	        };
-	        return _this;
-	    }
-
-	    _createClass(LocaleProvider, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                LocaleContext.Provider,
-	                { value: this.state },
-	                this.props.children
-	            );
-	        }
-	    }]);
-
-	    return LocaleProvider;
-	}(_react2.default.Component);
-
-	exports.default = LocaleProvider;
+	// {state: this.state, changeLocale: this.changeLocale}
 
 /***/ }),
 /* 19 */
@@ -2077,8 +2039,6 @@ module.exports =
 
 	var _methods = __webpack_require__(9);
 
-	var _Context = __webpack_require__(18);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2136,22 +2096,9 @@ module.exports =
 	                                time
 	                            ),
 	                            _react2.default.createElement(
-	                                _Context.LocaleContext.Consumer,
-	                                null,
-	                                function (localeVal) {
-	                                    return _react2.default.createElement(
-	                                        'span',
-	                                        { className: 'register_name',
-	                                            onClick: function onClick() {
-	                                                return localeVal.changeName(sortedArr[key].name);
-	                                            } },
-	                                        _react2.default.createElement(
-	                                            'a',
-	                                            { href: '/clients' },
-	                                            sortedArr[key].name
-	                                        )
-	                                    );
-	                                }
+	                                'span',
+	                                { className: 'register_name' },
+	                                sortedArr[key].name
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',

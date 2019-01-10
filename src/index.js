@@ -8,7 +8,6 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
-import LocaleProvider from './Context';
 
 
 class App extends Component {
@@ -17,15 +16,9 @@ class App extends Component {
         super(props);
         this.state = {
             isOpen: '',//true
-            clientName: 'initialName'
         };
         this.toggleModal = this.toggleModal.bind(this);
-        this.changeName = this.changeName.bind(this);
-    }
 
-    changeName(name) {
-        alert('name' + name);
-        this.setState({clientName: name});
     }
 
     toggleModal() {
@@ -37,29 +30,27 @@ class App extends Component {
     render() {
         return (
             <div>
-                <LocaleProvider value={this.state.clientName}>
-                    <Navbar>
-                        <Navbar.Header>
-                            <Navbar.Brand>
-                                <a href="#">My-app</a>
-                            </Navbar.Brand>
-                        </Navbar.Header>
-                        <Nav>
-                            <NavItem href="/">Home</NavItem>
-                            <NavItem href="/clients">Clients</NavItem>
-                        </Nav>
-                        <Navbar.Form pullLeft>
-                            <FormGroup>
-                                <FormControl type="text" placeholder="Search client"/>
-                            </FormGroup>{' '}
-                            <Button type="submit">Submit</Button>
-                        </Navbar.Form>
-                    </Navbar>
-                    <Switch>
-                        <Route exact path="/" component={Calendar}/>
-                        <Route path="/clients" component={Client}/>
-                    </Switch>
-                </LocaleProvider>
+                <Navbar>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="#">My-app</a>
+                        </Navbar.Brand>
+                    </Navbar.Header>
+                    <Nav>
+                        <NavItem href="/">Home</NavItem>
+                        <NavItem href="/clients">Clients</NavItem>
+                    </Nav>
+                    <Navbar.Form pullLeft>
+                        <FormGroup>
+                            <FormControl type="text" placeholder="Search client"/>
+                        </FormGroup>{' '}
+                        <Button type="submit">Submit</Button>
+                    </Navbar.Form>
+                </Navbar>
+                <Switch>
+                    <Route exact path="/" component={Calendar}/>
+                    <Route path="/clients" component={Client}/>
+                </Switch>
             </div>
         );
     }
