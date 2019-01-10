@@ -176,4 +176,12 @@ label {
 .disabled {
   display: none; }
 
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.showSaveBtn {
+  margin: 20px auto; }
+
 /*# sourceMappingURL=custom-styles.css.map */

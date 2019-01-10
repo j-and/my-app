@@ -103,12 +103,14 @@ class Client extends Component {
         return (
             <div>
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
+                    <div className="btn-row">
                     <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
         this.setState({isAdded:true});this.setState({client:{}})})}>Add new</Button>
-                    <Button bsSize="xsmall" bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{ this.setState({isAdded: false});
+                    <Button bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{ this.setState({isAdded: false});
         this.setState({editable: true});this.fillForm()})}>
                         Edit client
                     </Button>
+                    </div>
                 </div>
 
                 <div className="col-sm-6"><ClientsCard client={this.state.client}

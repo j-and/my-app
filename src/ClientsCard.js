@@ -163,7 +163,7 @@ class ClientsCard extends Component {
                     <label>Description</label>
                     <FieldGroup componentClass="textarea" placeholder={client.description} rows="15"
                                 onChange={this.handleInputChange} id="clientDescription" name="clientDescription"/>
-                    <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add" className={showSaveBtn}>
+                    <Button bsStyle="success" type="submit" value="Add" className="showSaveBtn">
                         Save changes
                     </Button>
                 </form>

@@ -24655,20 +24655,24 @@
 	                    { className: 'col-sm-3' },
 	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
 	                    _react2.default.createElement(
-	                        _Button2.default,
-	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
-	                                _this4.setState({ editable: true });
-	                                _this4.setState({ isAdded: true });_this4.setState({ client: {} });
-	                            } },
-	                        'Add new'
-	                    ),
-	                    _react2.default.createElement(
-	                        _Button2.default,
-	                        { bsSize: 'xsmall', bsStyle: 'success', className: showEditBtn, value: 'Edit', onClick: function onClick() {
-	                                _this4.setState({ isAdded: false });
-	                                _this4.setState({ editable: true });_this4.fillForm();
-	                            } },
-	                        'Edit client'
+	                        'div',
+	                        { className: 'btn-row' },
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { bsStyle: 'success', value: 'Add', onClick: function onClick() {
+	                                    _this4.setState({ editable: true });
+	                                    _this4.setState({ isAdded: true });_this4.setState({ client: {} });
+	                                } },
+	                            'Add new'
+	                        ),
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { bsStyle: 'success', className: showEditBtn, value: 'Edit', onClick: function onClick() {
+	                                    _this4.setState({ isAdded: false });
+	                                    _this4.setState({ editable: true });_this4.fillForm();
+	                                } },
+	                            'Edit client'
+	                        )
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -27534,7 +27538,7 @@
 	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add', className: showSaveBtn },
+	                        { bsStyle: 'success', type: 'submit', value: 'Add', className: 'showSaveBtn' },
 	                        'Save changes'
 	                    )
 	                )
