@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {sortByKey} from './methods.js';
+import {LocaleContext}  from './Context';
+
 
 class ClientsList extends Component {
     constructor(props) {
@@ -14,29 +16,22 @@ class ClientsList extends Component {
         var arr = this.props.CLIENTS;
         var sortedArr = sortByKey(arr, 'name');
         var listItems = sortedArr.map((client) =>
-            <li key={client.name}><span
-                onClick={() => {switchClient(client.name)}}>{client.name}</span>
+            <li key={client.name}>
+                <a onClick={() => {switchClient(client.name)}}>{client.name}</a>
             </li>
         );
         return (
             <div>
-                <ul className=''>
+                <h2> Clients list</h2>
+                <ul className='clients_list'>
                     {listItems}
                 </ul>
 
             </div>
 
         );
+
     }
 }
 
 export default ClientsList;
-
-// <LocaleContext.Consumer>
-//     {localeVal => (
-//         <li><span
-//             onClick={() => { switchClient(client.name)}}>{client.name}</span>
-//         </li>
-//
-//     )}
-// </LocaleContext.Consumer>

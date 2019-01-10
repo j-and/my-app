@@ -153,7 +153,6 @@ module.exports =
 	server.post('/addRegister', function (req, res) {
 	    var database = new Database(config);
 	    var client_id;
-
 	    database.query("SELECT * FROM my_db.clients WHERE name= " + mysql.escape(req.body.name)).then(function (result) {
 	        if (result.length != 0) {
 	            client_id = result[0].client_id;
@@ -194,7 +193,6 @@ module.exports =
 	            throw err;
 	        });
 	    });
-	    res.send('Response from server');
 	});
 
 	server.post('/addClient', function (req, res) {
@@ -224,6 +222,8 @@ module.exports =
 	        return database.close().then(function () {
 	            throw err;
 	        });
+	    }).finally(function () {
+	        return database.close();
 	    });
 	    res.send('Response from server');
 	});
@@ -244,6 +244,9 @@ module.exports =
 	        con.query(query, function (err, result) {
 	            if (err) throw err;
 	        });
+	        // .finally(function (res) {
+	        //     return database.close();
+	        // });
 	    });
 	    res.send('Response from server');
 	});
@@ -265,6 +268,9 @@ module.exports =
 	            });
 	        });
 	    });
+	    // .finally(function (res) {
+	    //     return database.close();
+	    // });
 	});
 
 	server.get('/getRegisters', function (req, res) {
@@ -404,6 +410,8 @@ module.exports =
 
 	var _Context = __webpack_require__(18);
 
+	var _Context2 = _interopRequireDefault(_Context);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -411,8 +419,6 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import LocaleProvider from './Context';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -423,24 +429,21 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '' //true
-	            //theme: 'themes.initial',
-	            //toggleTheme: this.toggleTheme
+	            isOpen: '', //true
+	            clientName: 'initialName'
 	        };
-
-	        // this.toggleTheme = () => {
-	        //  
-	        //     this.setState(state => ({
-	        //         theme:
-	        //             state.theme === 'themes.dark'? 'themes.light': 'themes.dark',
-	        //     }));
-	        //     alert('this.state.theme='+this.state.theme);
-	        // };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
+	        _this.changeName = _this.changeName.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(App, [{
+	        key: 'changeName',
+	        value: function changeName(name) {
+	            alert('name' + name);
+	            this.setState({ clientName: name });
+	        }
+	    }, {
 	        key: 'toggleModal',
 	        value: function toggleModal() {
 	            this.setState({
@@ -454,56 +457,60 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Navbar2.default,
-	                    null,
+	                    _Context2.default,
+	                    { value: this.state.clientName },
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Header,
+	                        _Navbar2.default,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Brand,
+	                            _Navbar2.default.Header,
 	                            null,
 	                            _react2.default.createElement(
-	                                'a',
-	                                { href: '' },
-	                                'My-app'
+	                                _Navbar2.default.Brand,
+	                                null,
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '#' },
+	                                    'My-app'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Nav2.default,
+	                            null,
+	                            _react2.default.createElement(
+	                                _NavItem2.default,
+	                                { href: '/' },
+	                                'Home'
+	                            ),
+	                            _react2.default.createElement(
+	                                _NavItem2.default,
+	                                { href: '/clients' },
+	                                'Clients'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Navbar2.default.Form,
+	                            { pullLeft: true },
+	                            _react2.default.createElement(
+	                                _FormGroup2.default,
+	                                null,
+	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search' })
+	                            ),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                _Button2.default,
+	                                { type: 'submit' },
+	                                'Submit'
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _Nav2.default,
+	                        _reactRouterDom.Switch,
 	                        null,
-	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/' },
-	                            'Home'
-	                        ),
-	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/clients' },
-	                            'Clients'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _Navbar2.default.Form,
-	                        { pullLeft: true },
-	                        _react2.default.createElement(
-	                            _FormGroup2.default,
-	                            null,
-	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
-	                        ),
-	                        ' ',
-	                        _react2.default.createElement(
-	                            _Button2.default,
-	                            { type: 'submit' },
-	                            'Submit'
-	                        )
+	                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                        _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouterDom.Switch,
-	                    null,
-	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
-	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                )
 	            );
 	        }
@@ -513,8 +520,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
-
-	// <LocaleContext.Provider value={{theme:'theme',toggleTheme:this.toggleTheme}}>  </LocaleContext.Provider>
 
 /***/ }),
 /* 5 */
@@ -548,11 +553,11 @@ module.exports =
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
-	var _Context = __webpack_require__(18);
-
 	var _moment = __webpack_require__(11);
 
 	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Context = __webpack_require__(18);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -672,18 +677,21 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    _Context.LocaleContext.Consumer,
+	                    null,
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            localeVal.clientName,
+	                            '!'
+	                        );
+	                    }
+	                ),
+	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        ' Clients list'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'clients_list' },
-	                        _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS })
-	                    ),
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
@@ -726,11 +734,6 @@ module.exports =
 	exports.default = Client;
 
 	//this.switchClient(localeVal.clientName)}
-
-	// <LocaleContext.Consumer>
-	//     {state=>
-	//         <h1>{state.theme}!</h1>}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 6 */
@@ -1314,6 +1317,8 @@ module.exports =
 
 	var _methods = __webpack_require__(9);
 
+	var _Context = __webpack_require__(18);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1344,24 +1349,35 @@ module.exports =
 	            var sortedArr = (0, _methods.sortByKey)(arr, 'name');
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
-	                    'li',
+	                    _Context.LocaleContext.Consumer,
 	                    { key: client.name },
-	                    _react2.default.createElement(
-	                        'span',
-	                        {
-	                            onClick: function onClick() {
-	                                switchClient(client.name);
-	                            } },
-	                        client.name
-	                    )
+	                    function (localeVal) {
+	                        return _react2.default.createElement(
+	                            'li',
+	                            { key: localeVal.clientName },
+	                            _react2.default.createElement(
+	                                'a',
+	                                {
+	                                    onClick: function onClick() {
+	                                        switchClient(client.name);localeVal.changeName(client.name);
+	                                    } },
+	                                client.name
+	                            )
+	                        );
+	                    }
 	                );
 	            });
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Clients list'
+	                ),
+	                _react2.default.createElement(
 	                    'ul',
-	                    { className: '' },
+	                    { className: 'clients_list' },
 	                    listItems
 	                )
 	            );
@@ -1372,15 +1388,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = ClientsList;
-
-	// <LocaleContext.Consumer>
-	//     {localeVal => (
-	//         <li><span
-	//             onClick={() => { switchClient(client.name)}}>{client.name}</span>
-	//         </li>
-	//
-	//     )}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 18 */
@@ -1393,58 +1400,67 @@ module.exports =
 	});
 	exports.LocaleContext = undefined;
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var LocaleContext = exports.LocaleContext = _react2.default.createContext({
-	    theme: 'themes.dark',
-	    toggleTheme: function toggleTheme() {}
+	    changeName: function changeName() {}
 	});
 
-	// class LocaleProvider extends React.Component {
-	//     constructor(props) {
-	//         super(props);
-	//        
-	//         // this.changeLocale = () => {
-	//         //     this.setState(state => {
-	//         //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
-	//         //         alert('newLocale='+newLocale);
-	//         //         return {
-	//         //             locale: newLocale
-	//         //         };
-	//         //     });
-	//         //   
-	//         // };
-	//        
-	//         this.state = {
-	//             locale: 'en',
-	//             changeLocale: this.changeLocale
-	//         };
-	//     }
-	//
-	//     render() {
-	//         return (
-	//             <LocaleContext.Provider value={this.state}>
-	//                  {this.props.children}
-	//             </LocaleContext.Provider>
-	//         );
-	//     }
-	// }
+	var LocaleProvider = function (_React$Component) {
+	    _inherits(LocaleProvider, _React$Component);
 
-	// export default LocaleProvider;
+	    function LocaleProvider(props) {
+	        _classCallCheck(this, LocaleProvider);
 
+	        // this.changeLocale = () => {
+	        //     this.setState(state => {
+	        //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
+	        //         return {
+	        //             locale: newLocale
+	        //         };
+	        //     });
+	        // };
 
-	// <LocaleContext.Provider value={{
-	//             state:this.state,
-	//             changeLocale: e => this.setState(e.target.value)
-	//             }}>
-	//     {this.props.children}
-	// </LocaleContext.Provider>
+	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
 
-	// {state: this.state, changeLocale: this.changeLocale}
+	        _this.changeName = function (name) {
+	            _this.setState({ clientName: name });
+	        };
+
+	        _this.state = {
+	            changeName: _this.changeName,
+	            clientName: 'contextName'
+	        };
+	        return _this;
+	    }
+
+	    _createClass(LocaleProvider, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                LocaleContext.Provider,
+	                { value: this.state },
+	                this.props.children
+	            );
+	        }
+	    }]);
+
+	    return LocaleProvider;
+	}(_react2.default.Component);
+
+	exports.default = LocaleProvider;
 
 /***/ }),
 /* 19 */
@@ -1636,7 +1652,7 @@ module.exports =
 	                for (j = 0; j < 5; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: currentDay, className: 'day_ordinary' },
+	                        { key: j, className: 'day_ordinary' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -1645,7 +1661,7 @@ module.exports =
 	                for (j = 5; j < 7; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: currentDay, className: 'day_weekend' },
+	                        { key: j, className: 'day_weekend' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -1682,13 +1698,13 @@ module.exports =
 	                                        { key: j,
 	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
-	                                            currentYear: this.props.currentDate.currentYear, currentDay: j })
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay,
+	                                        { key: j,
 	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
@@ -1700,18 +1716,18 @@ module.exports =
 	                            for (j = 0; j < 5; j++) {
 	                                this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: currentDay, className: 'day_ordinary' },
+	                                    { key: j, className: 'day_ordinary' },
 	                                    '-'
 	                                ));
 	                            }
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: currentDay, className: 'day_weekend' },
+	                                { key: j, className: 'day_weekend' },
 	                                '-'
 	                            ));
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: currentDay, className: 'day_weekend' },
+	                                { key: j, className: 'day_weekend' },
 	                                _react2.default.createElement(_DayList2.default, {
 	                                    currentDay: currentDay })
 	                            ));
@@ -1734,7 +1750,7 @@ module.exports =
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -1742,7 +1758,7 @@ module.exports =
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
@@ -1753,13 +1769,13 @@ module.exports =
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j + currentDay, className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j + currentDay, className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        '-'
 	                                    ));
 	                                }
@@ -1771,7 +1787,7 @@ module.exports =
 	                                if (j < 5) {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_ordinary' },
+	                                        { key: j, className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -1779,13 +1795,14 @@ module.exports =
 	                                } else {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_weekend' },
+	                                        { key: j, className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
 	                            }
+
 	                            for (j; j < 7; j++) {
 	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
@@ -2111,11 +2128,30 @@ module.exports =
 	                        }
 	                        return _react2.default.createElement(
 	                            'li',
-	                            { key: sortedArr[key].name, className: 'register_list' },
+	                            { key: (sortedArr[key].datetime + sortedArr[key].name).toString(),
+	                                className: 'register_list' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_time' },
 	                                time
+	                            ),
+	                            _react2.default.createElement(
+	                                _Context.LocaleContext.Consumer,
+	                                null,
+	                                function (localeVal) {
+	                                    return _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'register_name',
+	                                            onClick: function onClick() {
+	                                                return localeVal.changeName(sortedArr[key].name);
+	                                            } },
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '/clients' },
+	                                            sortedArr[key].name
+	                                        )
+	                                    );
+	                                }
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
@@ -2140,13 +2176,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = RegisterList;
-
-	// <LocaleContext.Consumer>
-	//     {({theme, toggleTheme}) => (
-	//         <span onClick={toggleTheme}>{sortedArr[key].name}
-	//                                         </span>
-	//     )}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 23 */
