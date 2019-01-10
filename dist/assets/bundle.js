@@ -24417,30 +24417,20 @@
 
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-	        _this.changeLocale = function () {
-	            _this.setState(function (state) {
-	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
-	                alert('newLocale=' + newLocale);
-	                return {
-	                    locale: newLocale
-	                };
-	            });
-	        };
-
 	        _this.state = {
-	            isOpen: '', //true
-	            theme: 'themes.initial',
-	            toggleTheme: _this.toggleTheme
+	            isOpen: '' //true
+	            //theme: 'themes.initial',
+	            //toggleTheme: this.toggleTheme
 	        };
 
-	        _this.toggleTheme = function () {
-	            alert('toggleTheme');
-	            _this.setState(function (state) {
-	                return {
-	                    theme: state.theme === 'themes.dark' ? 'themes.light' : 'themes.dark'
-	                };
-	            });
-	        };
+	        // this.toggleTheme = () => {
+	        //  
+	        //     this.setState(state => ({
+	        //         theme:
+	        //             state.theme === 'themes.dark'? 'themes.light': 'themes.dark',
+	        //     }));
+	        //     alert('this.state.theme='+this.state.theme);
+	        // };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
 	        return _this;
 	    }
@@ -24459,60 +24449,56 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Context.LocaleContext.Provider,
-	                    { value: { theme: 'theme', toggleTheme: this.toggleTheme } },
+	                    _Navbar2.default,
+	                    null,
 	                    _react2.default.createElement(
-	                        _Navbar2.default,
+	                        _Navbar2.default.Header,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Header,
+	                            _Navbar2.default.Brand,
 	                            null,
 	                            _react2.default.createElement(
-	                                _Navbar2.default.Brand,
-	                                null,
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: '' },
-	                                    'My-app'
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _Nav2.default,
-	                            null,
-	                            _react2.default.createElement(
-	                                _NavItem2.default,
-	                                { href: '/' },
-	                                'Home'
-	                            ),
-	                            _react2.default.createElement(
-	                                _NavItem2.default,
-	                                { href: '/clients' },
-	                                'Clients'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _Navbar2.default.Form,
-	                            { pullLeft: true },
-	                            _react2.default.createElement(
-	                                _FormGroup2.default,
-	                                null,
-	                                _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
-	                            ),
-	                            ' ',
-	                            _react2.default.createElement(
-	                                _Button2.default,
-	                                { type: 'submit' },
-	                                'Submit'
+	                                'a',
+	                                { href: '' },
+	                                'My-app'
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _reactRouterDom.Switch,
+	                        _Nav2.default,
 	                        null,
-	                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
-	                        _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/' },
+	                            'Home'
+	                        ),
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/clients' },
+	                            'Clients'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _Navbar2.default.Form,
+	                        { pullLeft: true },
+	                        _react2.default.createElement(
+	                            _FormGroup2.default,
+	                            null,
+	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
+	                        ),
+	                        ' ',
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { type: 'submit' },
+	                            'Submit'
+	                        )
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouterDom.Switch,
+	                    null,
+	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                )
 	            );
 	        }
@@ -24522,6 +24508,8 @@
 	}(_react.Component);
 
 	exports.default = App;
+
+	// <LocaleContext.Provider value={{theme:'theme',toggleTheme:this.toggleTheme}}>  </LocaleContext.Provider>
 
 /***/ }),
 /* 71 */
@@ -24682,18 +24670,6 @@
 	                    'div',
 	                    { className: 'col-sm-3' },
 	                    _react2.default.createElement(
-	                        _Context.LocaleContext.Consumer,
-	                        null,
-	                        function (state) {
-	                            return _react2.default.createElement(
-	                                'h1',
-	                                null,
-	                                state.theme,
-	                                '!'
-	                            );
-	                        }
-	                    ),
-	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
 	                        ' Clients list'
@@ -24745,6 +24721,11 @@
 	exports.default = Client;
 
 	//this.switchClient(localeVal.clientName)}
+
+	// <LocaleContext.Consumer>
+	//     {state=>
+	//         <h1>{state.theme}!</h1>}
+	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 72 */
@@ -45918,7 +45899,6 @@
 	                                    currentDay += 1;
 	                                }
 	                            }
-
 	                            for (j; j < 7; j++) {
 	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
@@ -46251,19 +46231,6 @@
 	                                time
 	                            ),
 	                            _react2.default.createElement(
-	                                _Context.LocaleContext.Consumer,
-	                                null,
-	                                function (_ref) {
-	                                    var theme = _ref.theme,
-	                                        toggleTheme = _ref.toggleTheme;
-	                                    return _react2.default.createElement(
-	                                        'span',
-	                                        { onClick: toggleTheme },
-	                                        sortedArr[key].name
-	                                    );
-	                                }
-	                            ),
-	                            _react2.default.createElement(
 	                                'span',
 	                                null,
 	                                _react2.default.createElement(
@@ -46286,6 +46253,13 @@
 	}(_react.Component);
 
 	exports.default = RegisterList;
+
+	// <LocaleContext.Consumer>
+	//     {({theme, toggleTheme}) => (
+	//         <span onClick={toggleTheme}>{sortedArr[key].name}
+	//                                         </span>
+	//     )}
+	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 317 */

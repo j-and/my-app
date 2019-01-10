@@ -101,13 +101,8 @@ class Client extends Component {
 
         return (
             <div>
-                
-
                 <div className="col-sm-3">
-                    <LocaleContext.Consumer>
-                        {localeVal =>
-        localeVal.locale === 'en' ? <h1>Welcome!</h1> : <h1>Bienvenue!</h1>}
-                     </LocaleContext.Consumer>
+                  
                     <h2> Clients list</h2>
                     <div className="clients_list">
                     <ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
@@ -137,4 +132,9 @@ class Client extends Component {
 export default Client;
 
 //this.switchClient(localeVal.clientName)}
+
+// <LocaleContext.Consumer>
+//     {state=>
+//         <h1>{state.theme}!</h1>}
+// </LocaleContext.Consumer>
 

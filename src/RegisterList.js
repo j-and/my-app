@@ -33,23 +33,7 @@ class RegisterList extends Component {
                         if (time.length == 4) {
                             time = '0' + time;
                         }
-                        return <li key={sortedArr[key].datetime.toString()} className="register_list"><span className="register_time">{time}</span>
-                            
-                            <LocaleContext.Consumer>
-                                {localeVal => (
-                                    <span className="register_name"
-                                          onClick={localeVal.changeLocale}>{sortedArr[key].name}</span>
-                                )}
-                            </LocaleContext.Consumer>
-
-                            {({ language, setLanguage }) => (
-                                <button onClick={() => setLanguage("jp")}>
-                                    Switch Language (Current: {language})
-                                </button>
-                            )}
-                            
-                            
-                            
+                        return <li key={sortedArr[key].name} className="register_list"><span className="register_time">{time}</span>                            
                              <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
                                            onClick={() => { removeRegister(sortedArr[key])}}>
                                                               <Glyphicon glyph="remove"/></Button></span>
@@ -62,3 +46,11 @@ class RegisterList extends Component {
 }
 
 export default RegisterList;
+
+
+// <LocaleContext.Consumer>
+//     {({theme, toggleTheme}) => (
+//         <span onClick={toggleTheme}>{sortedArr[key].name}
+//                                         </span>
+//     )}
+// </LocaleContext.Consumer>

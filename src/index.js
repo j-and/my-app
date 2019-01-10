@@ -8,17 +8,29 @@ import NavItem from 'react-bootstrap/lib/NavItem';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
-import LocaleProvider from './Context';
+// import LocaleProvider from './Context';
+import {LocaleContext}  from './Context';
 
 
 class App extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            isOpen: ''//,true
+            isOpen: '',//true
+           //theme: 'themes.initial',
+           //toggleTheme: this.toggleTheme
         };
 
+        // this.toggleTheme = () => {
+        //  
+        //     this.setState(state => ({
+        //         theme:
+        //             state.theme === 'themes.dark'? 'themes.light': 'themes.dark',
+        //     }));
+        //     alert('this.state.theme='+this.state.theme);
+        // };
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -31,7 +43,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <LocaleProvider>
+                
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
@@ -53,10 +65,12 @@ class App extends Component {
                         <Route exact path="/" component={Calendar}/>
                         <Route path="/clients" component={Client}/>
                     </Switch>
-                </LocaleProvider>
+              
             </div>
         );
     }
 }
 
 export default App;
+
+// <LocaleContext.Provider value={{theme:'theme',toggleTheme:this.toggleTheme}}>  </LocaleContext.Provider>
