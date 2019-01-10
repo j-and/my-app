@@ -7,6 +7,7 @@ import moment from 'moment';
 import {LocaleContext}  from './Context';
 
 class Client extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -101,13 +102,6 @@ class Client extends Component {
 
         return (
             <div>
-                <LocaleContext.Consumer>
-                    {
-                        localeVal =>
-                            <h1>{localeVal.clientName}!</h1>
-                    }
-                </LocaleContext.Consumer>
-
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
                     <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
         this.setState({isAdded:true});this.setState({client:{}})})}>Add new</Button>

@@ -9,7 +9,6 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
 
-
 class App extends Component {
 
     constructor(props) {
@@ -33,7 +32,7 @@ class App extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">My-app</a>
+                            <a href="">My-app</a>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>

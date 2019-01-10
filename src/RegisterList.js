@@ -36,7 +36,7 @@ class RegisterList extends Component {
                         return <li key={(sortedArr[key].datetime+sortedArr[key].name).toString()}
                                    className="register_list"><span className="register_time">{time}</span>
 
-                            <span className="register_name">{sortedArr[key].name}</span>
+                            <span className="register_name"><a href="/clients">{sortedArr[key].name}</a></span>
                                                      
                              <span><Button bsSize="xsmall" bsStyle="danger" className="btn-close"
                                            onClick={() => { removeRegister(sortedArr[key])}}>

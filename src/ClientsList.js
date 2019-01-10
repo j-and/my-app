@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {sortByKey} from './methods.js';
 
 class ClientsList extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -14,8 +15,8 @@ class ClientsList extends Component {
         var arr = this.props.CLIENTS;
         var sortedArr = sortByKey(arr, 'name');
         var listItems = sortedArr.map((client) =>
-            <li key={localeVal.clientName}><a
-                onClick={() => { switchClient(client.name)}}>{client.name}</a>
+            <li key={client.name}>
+                <a onClick={() => {switchClient(client.name)}}>{client.name}</a>
             </li>
         );
         return (
@@ -26,9 +27,7 @@ class ClientsList extends Component {
                 </ul>
 
             </div>
-
         );
-
     }
 }
 

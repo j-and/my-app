@@ -24445,7 +24445,7 @@
 	                            null,
 	                            _react2.default.createElement(
 	                                'a',
-	                                { href: '#' },
+	                                { href: '' },
 	                                'My-app'
 	                            )
 	                        )
@@ -24650,18 +24650,6 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    _Context.LocaleContext.Consumer,
-	                    null,
-	                    function (localeVal) {
-	                        return _react2.default.createElement(
-	                            'h1',
-	                            null,
-	                            localeVal.clientName,
-	                            '!'
-	                        );
-	                    }
-	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
@@ -45440,11 +45428,10 @@
 	            var listItems = sortedArr.map(function (client) {
 	                return _react2.default.createElement(
 	                    'li',
-	                    { key: localeVal.clientName },
+	                    { key: client.name },
 	                    _react2.default.createElement(
 	                        'a',
-	                        {
-	                            onClick: function onClick() {
+	                        { onClick: function onClick() {
 	                                switchClient(client.name);
 	                            } },
 	                        client.name
@@ -45727,7 +45714,7 @@
 	                for (j = 0; j < 5; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: j, className: 'day_ordinary' },
+	                        { className: 'day_ordinary' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -45736,7 +45723,7 @@
 	                for (j = 5; j < 7; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: j, className: 'day_weekend' },
+	                        { className: 'day_weekend' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -45756,12 +45743,12 @@
 	                            for (j = 0; j < this.props.currentDate.monthStart; j++) {
 	                                j < 5 ? this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j,
+	                                    {
 	                                        className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j,
+	                                    {
 	                                        className: 'day_weekend' },
 	                                    '-'
 	                                ));
@@ -45770,7 +45757,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j,
+	                                        {
 	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
@@ -45779,7 +45766,7 @@
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j,
+	                                        {
 	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
@@ -45791,18 +45778,18 @@
 	                            for (j = 0; j < 5; j++) {
 	                                this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_ordinary' },
+	                                    { className: 'day_ordinary' },
 	                                    '-'
 	                                ));
 	                            }
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: j, className: 'day_weekend' },
+	                                { className: 'day_weekend' },
 	                                '-'
 	                            ));
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: j, className: 'day_weekend' },
+	                                { className: 'day_weekend' },
 	                                _react2.default.createElement(_DayList2.default, {
 	                                    currentDay: currentDay })
 	                            ));
@@ -45821,11 +45808,13 @@
 	                        break;
 	                    case 5:
 	                        if (this.props.currentDate.daysInMonth - currentDay < 7) {
-	                            for (j = 0; j < this.props.currentDate.daysInMonth - currentDay; j++) {
+	                            var a = this.props.currentDate.daysInMonth - currentDay;
+	                            //  console.log('this.props.currentDate.daysInMonth - currentDay='+a)
+	                            for (j = 0; j <= a; j++) {
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -45833,24 +45822,24 @@
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
 	                            }
-	                            for (j = this.props.currentDate.daysInMonth - currentDay; j < 7; j++) {
+	                            for (j = a + 1; j < 7; j++) {
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        '-'
 	                                    ));
 	                                }
@@ -45862,7 +45851,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -45870,7 +45859,7 @@
 	                                } else {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
@@ -45881,11 +45870,11 @@
 	                            for (j; j < 7; j++) {
 	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_ordinary' },
+	                                    { className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_weekend' },
+	                                    { className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -45912,7 +45901,7 @@
 	                            this.state.trHead.map(function (day) {
 	                                return _react2.default.createElement(
 	                                    'td',
-	                                    { key: day, className: 'month-header' },
+	                                    { className: 'month-header' },
 	                                    day
 	                                );
 	                            })
@@ -46211,7 +46200,11 @@
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_name' },
-	                                sortedArr[key].name
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '/clients' },
+	                                    sortedArr[key].name
+	                                )
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
