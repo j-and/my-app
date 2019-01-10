@@ -24397,8 +24397,6 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Context = __webpack_require__(312);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24406,8 +24404,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import LocaleProvider from './Context';
-
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -24419,19 +24415,9 @@
 
 	        _this.state = {
 	            isOpen: '' //true
-	            //theme: 'themes.initial',
-	            //toggleTheme: this.toggleTheme
 	        };
-
-	        // this.toggleTheme = () => {
-	        //  
-	        //     this.setState(state => ({
-	        //         theme:
-	        //             state.theme === 'themes.dark'? 'themes.light': 'themes.dark',
-	        //     }));
-	        //     alert('this.state.theme='+this.state.theme);
-	        // };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
+
 	        return _this;
 	    }
 
@@ -24509,8 +24495,6 @@
 
 	exports.default = App;
 
-	// <LocaleContext.Provider value={{theme:'theme',toggleTheme:this.toggleTheme}}>  </LocaleContext.Provider>
-
 /***/ }),
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -24543,11 +24527,11 @@
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
-	var _Context = __webpack_require__(312);
-
 	var _moment = __webpack_require__(180);
 
 	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Context = __webpack_require__(312);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24669,16 +24653,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-sm-3' },
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        ' Clients list'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'clients_list' },
-	                        _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS })
-	                    ),
+	                    _react2.default.createElement(_ClientsList2.default, { switchClient: this.switchClient, CLIENTS: this.state.CLIENTS }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', value: 'Add', onClick: function onClick() {
@@ -24721,11 +24696,6 @@
 	exports.default = Client;
 
 	//this.switchClient(localeVal.clientName)}
-
-	// <LocaleContext.Consumer>
-	//     {state=>
-	//         <h1>{state.theme}!</h1>}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 72 */
@@ -45427,6 +45397,8 @@
 
 	var _methods = __webpack_require__(178);
 
+	var _Context = __webpack_require__(312);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45460,9 +45432,8 @@
 	                    'li',
 	                    { key: client.name },
 	                    _react2.default.createElement(
-	                        'span',
-	                        {
-	                            onClick: function onClick() {
+	                        'a',
+	                        { onClick: function onClick() {
 	                                switchClient(client.name);
 	                            } },
 	                        client.name
@@ -45473,8 +45444,13 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    ' Clients list'
+	                ),
+	                _react2.default.createElement(
 	                    'ul',
-	                    { className: '' },
+	                    { className: 'clients_list' },
 	                    listItems
 	                )
 	            );
@@ -45485,15 +45461,6 @@
 	}(_react.Component);
 
 	exports.default = ClientsList;
-
-	// <LocaleContext.Consumer>
-	//     {localeVal => (
-	//         <li><span
-	//             onClick={() => { switchClient(client.name)}}>{client.name}</span>
-	//         </li>
-	//
-	//     )}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 312 */
@@ -45728,7 +45695,7 @@
 	            for (var i = 0; i < array.length; i++) {
 	                this.state.trHead.push(_react2.default.createElement(
 	                    'td',
-	                    { key: i, className: 'day_ordinary' },
+	                    { className: 'day_ordinary' },
 	                    'array[i]'
 	                ));
 	            }
@@ -45749,7 +45716,7 @@
 	                for (j = 0; j < 5; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: currentDay, className: 'day_ordinary' },
+	                        { className: 'day_ordinary' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -45758,7 +45725,7 @@
 	                for (j = 5; j < 7; j++) {
 	                    arrayName.push(_react2.default.createElement(
 	                        'td',
-	                        { key: currentDay, className: 'day_weekend' },
+	                        { className: 'day_weekend' },
 	                        _react2.default.createElement(_DayList2.default, { currentMonth: month, currentYear: year,
 	                            currentDay: currentDay })
 	                    ));
@@ -45778,12 +45745,12 @@
 	                            for (j = 0; j < this.props.currentDate.monthStart; j++) {
 	                                j < 5 ? this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j,
+	                                    {
 	                                        className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j,
+	                                    {
 	                                        className: 'day_weekend' },
 	                                    '-'
 	                                ));
@@ -45792,16 +45759,16 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j,
+	                                        {
 	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
-	                                            currentYear: this.props.currentDate.currentYear, currentDay: j })
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay,
+	                                        {
 	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
@@ -45813,18 +45780,18 @@
 	                            for (j = 0; j < 5; j++) {
 	                                this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: currentDay, className: 'day_ordinary' },
+	                                    { className: 'day_ordinary' },
 	                                    '-'
 	                                ));
 	                            }
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: currentDay, className: 'day_weekend' },
+	                                { className: 'day_weekend' },
 	                                '-'
 	                            ));
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: currentDay, className: 'day_weekend' },
+	                                { className: 'day_weekend' },
 	                                _react2.default.createElement(_DayList2.default, {
 	                                    currentDay: currentDay })
 	                            ));
@@ -45843,11 +45810,12 @@
 	                        break;
 	                    case 5:
 	                        if (this.props.currentDate.daysInMonth - currentDay < 7) {
-	                            for (j = 0; j < this.props.currentDate.daysInMonth - currentDay; j++) {
+	                            var a = this.props.currentDate.daysInMonth - currentDay;
+	                            for (j = 0; j <= a; j++) {
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -45855,24 +45823,24 @@
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
 	                            }
-	                            for (j = this.props.currentDate.daysInMonth - currentDay; j < 7; j++) {
+	                            for (j = a + 1; j < 7; j++) {
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j + currentDay, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j + currentDay, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        '-'
 	                                    ));
 	                                }
@@ -45884,7 +45852,7 @@
 	                                if (j < 5) {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_ordinary' },
+	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
 	                                    ));
@@ -45892,21 +45860,22 @@
 	                                } else {
 	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: currentDay, className: 'day_weekend' },
+	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
 	                                            currentDay: currentDay })
 	                                    ));
 	                                    currentDay += 1;
 	                                }
 	                            }
+
 	                            for (j; j < 7; j++) {
 	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_ordinary' },
+	                                    { className: 'day_ordinary' },
 	                                    '-'
 	                                )) : this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_weekend' },
+	                                    { className: 'day_weekend' },
 	                                    '-'
 	                                ));
 	                            }
@@ -45933,7 +45902,7 @@
 	                            this.state.trHead.map(function (day) {
 	                                return _react2.default.createElement(
 	                                    'td',
-	                                    { key: day, className: 'month-header' },
+	                                    { className: 'month-header' },
 	                                    day
 	                                );
 	                            })
@@ -46224,11 +46193,21 @@
 	                        }
 	                        return _react2.default.createElement(
 	                            'li',
-	                            { key: sortedArr[key].name, className: 'register_list' },
+	                            { key: (sortedArr[key].datetime + sortedArr[key].name).toString(),
+	                                className: 'register_list' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_time' },
 	                                time
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'register_name' },
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '/clients' },
+	                                    sortedArr[key].name
+	                                )
 	                            ),
 	                            _react2.default.createElement(
 	                                'span',
@@ -46253,13 +46232,6 @@
 	}(_react.Component);
 
 	exports.default = RegisterList;
-
-	// <LocaleContext.Consumer>
-	//     {({theme, toggleTheme}) => (
-	//         <span onClick={toggleTheme}>{sortedArr[key].name}
-	//                                         </span>
-	//     )}
-	// </LocaleContext.Consumer>
 
 /***/ }),
 /* 317 */

@@ -18,7 +18,7 @@ class MonthTable extends Component {
     fillHeadArray() {
         var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
         for (var i = 0; i < array.length; i++) {
-            this.state.trHead.push(<td key={i} className="day_ordinary">array[i]</td>);
+            this.state.trHead.push(<td className="day_ordinary">array[i]</td>);
         }
         return this.state.trHead;
     }
@@ -110,29 +110,30 @@ class MonthTable extends Component {
                     break;
                 case 5:
                     if ((this.props.currentDate.daysInMonth - currentDay) < 7) {
-                        for (j = 0; j < (this.props.currentDate.daysInMonth - currentDay); j++) {
+                        var a=this.props.currentDate.daysInMonth - currentDay;
+                        for (j = 0; j <= a; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td key={j} className="day_ordinary">
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
                                 currentDay += 1;
                             }
                             else {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td key={j} className="day_weekend">
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend">
                                     <DayList
                                         currentDay={currentDay}/>
                                 </td>);
                                 currentDay += 1;
                             }
                         }
-                        for (j = this.props.currentDate.daysInMonth - currentDay; j < 7; j++) {
+                        for (j = a+1; j < 7; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td key={j} className="day_ordinary">
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
                                     -</td>)
                             }
                             else {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td key={j} className="day_weekend">
+                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend">
                                     -</td>);
                             }
                         }
@@ -142,14 +143,14 @@ class MonthTable extends Component {
 
                         for (j = 0; j <= this.props.currentDate.daysInMonth - currentDay + 1; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.sixthWeekInMonth.push(<td key={j} className="day_ordinary">
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
                                 currentDay += 1;
                             }
                             else {
-                                this.props.weeksObject.sixthWeekInMonth.push(<td key={j} className="day_weekend">
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">
                                     <DayList
                                         currentDay={currentDay}/></td>);
                                 currentDay += 1;
@@ -157,9 +158,9 @@ class MonthTable extends Component {
                         }
 
                         for (j; j < 7; j++) {
-                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td key={j} className="day_ordinary">
+                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
                                 -</td>) :
-                                this.props.weeksObject.sixthWeekInMonth.push(<td key={j} className="day_weekend">
+                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">
                                     -</td>);
                         }
                     }
@@ -176,7 +177,7 @@ class MonthTable extends Component {
                     <thead className="month-header">
                     <tr>
                         {this.state.trHead.map(function (day) {
-                            return <td key={day} className="month-header">{day}</td>;
+                            return <td className="month-header">{day}</td>;
                         })}
                     </tr>
                     </thead>
