@@ -153,6 +153,13 @@ label {
 .clients_list {
   height: 400px;
   overflow-y: auto; }
+  .clients_list::-webkit-scrollbar {
+    width: 3px; }
+  .clients_list::-webkit-scrollbar-thumb {
+    background: #83c9a6;
+    height: 40px; }
+  .clients_list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 100, 100, 0.6); }
   .clients_list ul {
     list-style: none; }
   .clients_list a:hover {
