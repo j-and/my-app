@@ -404,8 +404,6 @@ module.exports =
 
 	var _Context = __webpack_require__(18);
 
-	var _Context2 = _interopRequireDefault(_Context);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -413,6 +411,8 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import LocaleProvider from './Context';
+
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -422,10 +422,30 @@ module.exports =
 
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-	        _this.state = {
-	            isOpen: '' //,true
+	        _this.changeLocale = function () {
+	            _this.setState(function (state) {
+	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
+	                alert('newLocale=' + newLocale);
+	                return {
+	                    locale: newLocale
+	                };
+	            });
 	        };
 
+	        _this.state = {
+	            isOpen: '', //true
+	            theme: 'themes.initial',
+	            toggleTheme: _this.toggleTheme
+	        };
+
+	        _this.toggleTheme = function () {
+	            alert('toggleTheme');
+	            _this.setState(function (state) {
+	                return {
+	                    theme: state.theme === 'themes.dark' ? 'themes.light' : 'themes.dark'
+	                };
+	            });
+	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
 	        return _this;
 	    }
@@ -444,8 +464,8 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Context2.default,
-	                    null,
+	                    _Context.LocaleContext.Provider,
+	                    { value: { theme: 'theme', toggleTheme: this.toggleTheme } },
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
@@ -669,15 +689,12 @@ module.exports =
 	                    _react2.default.createElement(
 	                        _Context.LocaleContext.Consumer,
 	                        null,
-	                        function (localeVal) {
-	                            return localeVal.locale === 'en' ? _react2.default.createElement(
+	                        function (state) {
+	                            return _react2.default.createElement(
 	                                'h1',
 	                                null,
-	                                'Welcome!'
-	                            ) : _react2.default.createElement(
-	                                'h1',
-	                                null,
-	                                'Bienvenue!'
+	                                state.theme,
+	                                '!'
 	                            );
 	                        }
 	                    ),
@@ -1395,62 +1412,49 @@ module.exports =
 	});
 	exports.LocaleContext = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var LocaleContext = exports.LocaleContext = _react2.default.createContext({
+	    theme: 'themes.dark',
+	    toggleTheme: function toggleTheme() {}
+	});
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	// class LocaleProvider extends React.Component {
+	//     constructor(props) {
+	//         super(props);
+	//        
+	//         // this.changeLocale = () => {
+	//         //     this.setState(state => {
+	//         //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
+	//         //         alert('newLocale='+newLocale);
+	//         //         return {
+	//         //             locale: newLocale
+	//         //         };
+	//         //     });
+	//         //   
+	//         // };
+	//        
+	//         this.state = {
+	//             locale: 'en',
+	//             changeLocale: this.changeLocale
+	//         };
+	//     }
+	//
+	//     render() {
+	//         return (
+	//             <LocaleContext.Provider value={this.state}>
+	//                  {this.props.children}
+	//             </LocaleContext.Provider>
+	//         );
+	//     }
+	// }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// export default LocaleProvider;
 
-	var LocaleContext = exports.LocaleContext = _react2.default.createContext();
-
-	var LocaleProvider = function (_React$Component) {
-	    _inherits(LocaleProvider, _React$Component);
-
-	    function LocaleProvider(props) {
-	        _classCallCheck(this, LocaleProvider);
-
-	        var _this = _possibleConstructorReturn(this, (LocaleProvider.__proto__ || Object.getPrototypeOf(LocaleProvider)).call(this, props));
-
-	        _this.changeLocale = function () {
-	            _this.setState(function (state) {
-	                var newLocale = state.locale === 'en' ? 'fr' : 'en';
-	                alert('newLocale=' + newLocale);
-	                return {
-	                    locale: newLocale
-	                };
-	            });
-	        };
-
-	        _this.state = {
-	            locale: 'en',
-	            changeLocale: _this.changeLocale
-	        };
-	        return _this;
-	    }
-
-	    _createClass(LocaleProvider, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                LocaleContext.Provider,
-	                { value: this.state },
-	                this.props.children
-	            );
-	        }
-	    }]);
-
-	    return LocaleProvider;
-	}(_react2.default.Component);
-
-	exports.default = LocaleProvider;
 
 	// <LocaleContext.Provider value={{
 	//             state:this.state,
@@ -1697,13 +1701,13 @@ module.exports =
 	                                        { key: j,
 	                                            className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
-	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
+	                                            currentYear: this.props.currentDate.currentYear, currentDay: j })
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
 	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j,
+	                                        { key: currentDay,
 	                                            className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
 	                                            currentYear: this.props.currentDate.currentYear, currentDay: currentDay })
@@ -1715,18 +1719,18 @@ module.exports =
 	                            for (j = 0; j < 5; j++) {
 	                                this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                    'td',
-	                                    { key: j, className: 'day_ordinary' },
+	                                    { key: currentDay, className: 'day_ordinary' },
 	                                    '-'
 	                                ));
 	                            }
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: j, className: 'day_weekend' },
+	                                { key: currentDay, className: 'day_weekend' },
 	                                '-'
 	                            ));
 	                            this.props.weeksObject.nullWeekBeforeMonthStart.push(_react2.default.createElement(
 	                                'td',
-	                                { key: j, className: 'day_weekend' },
+	                                { key: currentDay, className: 'day_weekend' },
 	                                _react2.default.createElement(_DayList2.default, {
 	                                    currentDay: currentDay })
 	                            ));
@@ -1768,13 +1772,13 @@ module.exports =
 	                                if (j < 5) {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_ordinary' },
+	                                        { key: j + currentDay, className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
 	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
 	                                        'td',
-	                                        { key: j, className: 'day_weekend' },
+	                                        { key: j + currentDay, className: 'day_weekend' },
 	                                        '-'
 	                                    ));
 	                                }
@@ -2127,7 +2131,7 @@ module.exports =
 	                        }
 	                        return _react2.default.createElement(
 	                            'li',
-	                            { key: sortedArr[key].datetime.toString(), className: 'register_list' },
+	                            { key: sortedArr[key].name, className: 'register_list' },
 	                            _react2.default.createElement(
 	                                'span',
 	                                { className: 'register_time' },
@@ -2136,28 +2140,16 @@ module.exports =
 	                            _react2.default.createElement(
 	                                _Context.LocaleContext.Consumer,
 	                                null,
-	                                function (localeVal) {
+	                                function (_ref) {
+	                                    var theme = _ref.theme,
+	                                        toggleTheme = _ref.toggleTheme;
 	                                    return _react2.default.createElement(
 	                                        'span',
-	                                        { className: 'register_name',
-	                                            onClick: localeVal.changeLocale },
+	                                        { onClick: toggleTheme },
 	                                        sortedArr[key].name
 	                                    );
 	                                }
 	                            ),
-	                            function (_ref) {
-	                                var language = _ref.language,
-	                                    setLanguage = _ref.setLanguage;
-	                                return _react2.default.createElement(
-	                                    'button',
-	                                    { onClick: function onClick() {
-	                                            return setLanguage("jp");
-	                                        } },
-	                                    'Switch Language (Current: ',
-	                                    language,
-	                                    ')'
-	                                );
-	                            },
 	                            _react2.default.createElement(
 	                                'span',
 	                                null,
