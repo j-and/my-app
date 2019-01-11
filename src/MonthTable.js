@@ -110,7 +110,7 @@ class MonthTable extends Component {
                     break;
                 case 5:
                     if ((this.props.currentDate.daysInMonth - currentDay) < 7) {
-                        var a=this.props.currentDate.daysInMonth - currentDay;
+                        var a = this.props.currentDate.daysInMonth - currentDay;
                         for (j = 0; j <= a; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
@@ -127,7 +127,7 @@ class MonthTable extends Component {
                                 currentDay += 1;
                             }
                         }
-                        for (j = a+1; j < 7; j++) {
+                        for (j = a + 1; j < 7; j++) {
                             if (j < 5) {
                                 this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
                                     -</td>)
@@ -173,7 +173,7 @@ class MonthTable extends Component {
 
         return (
             <div>
-                <Table responsive>
+                <Table responsive className="calendar">
                     <thead className="month-header">
                     <tr>
                         {this.state.trHead.map(function (day) {

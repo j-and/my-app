@@ -5,40 +5,40 @@ body {
   color: #002B5B;
   background-color: #DCEEF7; }
 
-table .month-header {
+.calendar .month-header {
   border: 2px solid #002B5B;
   background-color: #F8EADA; }
-  table .month-header tr {
+  .calendar .month-header tr {
     height: 60px; }
-    table .month-header tr td {
+    .calendar .month-header tr td {
       text-align: center;
       vertical-align: middle;
       font-size: 1.7em; }
-table tr {
+.calendar tr {
   height: 120px; }
-  table tr .day_ordinary {
+  .calendar tr .day_ordinary {
     border: 2px solid #002B5B; }
-    table tr .day_ordinary_label {
+    .calendar tr .day_ordinary_label {
       background-color: #83c9a6;
       line-height: 1.5em;
       font-size: 18px;
       color: #ffffff;
       font-weight: bold;
       text-align: center; }
-    table tr .day_ordinary ul {
+    .calendar tr .day_ordinary ul {
       padding: 0;
       line-height: 1.7em; }
-  table tr .day_weekend {
+  .calendar tr .day_weekend {
     border: 2px solid #FF6C36; }
-    table tr .day_weekend input, table tr .day_weekend select, table tr .day_weekend Button {
+    .calendar tr .day_weekend input, .calendar tr .day_weekend select, .calendar tr .day_weekend Button {
       display: none; }
-  table tr .day_list {
+  .calendar tr .day_list {
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap; }
-    table tr .day_list input {
+    .calendar tr .day_list input {
       max-width: 110px; }
-    table tr .day_list select {
+    .calendar tr .day_list select {
       max-width: 55px; }
 
 .dropdown-menu {
@@ -107,6 +107,11 @@ label {
   display: block;
   margin-top: 10px; }
 
+a:focus, a:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #FF6C36;
+  text-decoration: none; }
+
 .client_col {
   display: inline-flex;
   flex-direction: column; }
@@ -134,8 +139,6 @@ label {
   display: inline-block; }
   .nav.navbar-nav li {
     font-size: 18px; }
-    .nav.navbar-nav li:hover {
-      border-bottom: 2px solid #FF6C36; }
 
 @media all and (max-width: 1024px) {
   body {
@@ -162,9 +165,6 @@ label {
     background: rgba(0, 100, 100, 0.6); }
   .clients_list ul {
     list-style: none; }
-  .clients_list a:hover {
-    cursor: pointer;
-    border-bottom: 2px solid #FF6C36; }
 
 .view-form {
   pointer-events: none; }

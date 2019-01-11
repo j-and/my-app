@@ -16,7 +16,7 @@ body {
   background-color: $light-blue;
 }
 
-table {
+.calendar {
   .month-header {
     border: 2px solid $blue;
     background-color: $pale;
@@ -160,6 +160,12 @@ label {
   margin-top: 10px;
 }
 
+a:focus, a:hover {
+  cursor: pointer;
+  border-bottom: 2px solid $red;
+  text-decoration: none;
+}
+
 .client {
   &_col {
     display: inline-flex;
@@ -207,9 +213,9 @@ label {
   display: inline-block;
   li {
     font-size: 18px;
-    &:hover {
-      border-bottom: 2px solid $red;
-    }
+    //&:hover {
+    //  border-bottom: 2px solid $red;
+    //}
   }
 }
 
@@ -255,11 +261,6 @@ label {
   ul {
     list-style: none;
   }
-
-  a:hover {
-    cursor: pointer;
-    border-bottom: 2px solid $red;
-  }
 }
 
 .view-form {
@@ -276,12 +277,12 @@ label {
   display: none;
 }
 
-.btn-row{
+.btn-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.showSaveBtn{
- margin:20px auto;
+.showSaveBtn {
+  margin: 20px auto;
 }
