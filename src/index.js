@@ -39,12 +39,6 @@ class App extends Component {
                         <NavItem href="/">Home</NavItem>
                         <NavItem href="/clients">Clients</NavItem>
                     </Nav>
-                    <Navbar.Form pullLeft>
-                        <FormGroup>
-                            <FormControl type="text" placeholder="Search client"/>
-                        </FormGroup>{' '}
-                        <Button type="submit">Submit</Button>
-                    </Navbar.Form>
                 </Navbar>
                 <Switch>
                     <Route exact path="/" component={Calendar}/>
@@ -56,3 +50,10 @@ class App extends Component {
 }
 
 export default App;
+
+// <Navbar.Form pullLeft>
+//     <FormGroup>
+//         <FormControl type="text" placeholder="Search client"/>
+//     </FormGroup>{' '}
+//     <Button type="submit">Submit</Button>
+// </Navbar.Form>

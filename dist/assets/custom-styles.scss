@@ -16,6 +16,17 @@ body {
   background-color: $light-blue;
 }
 
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+a:focus, a:hover {
+  cursor: pointer;
+  border-bottom: 2px solid $red;
+  text-decoration: none;
+}
+
 .calendar {
   .month-header {
     border: 2px solid $blue;
@@ -155,17 +166,6 @@ body {
   margin: 0;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-}
-
-a:focus, a:hover {
-  cursor: pointer;
-  border-bottom: 2px solid $red;
-  text-decoration: none;
-}
-
 .client {
   &_col {
     display: inline-flex;
@@ -213,9 +213,6 @@ a:focus, a:hover {
   display: inline-block;
   li {
     font-size: 18px;
-    //&:hover {
-    //  border-bottom: 2px solid $red;
-    //}
   }
 }
 
@@ -245,7 +242,6 @@ a:focus, a:hover {
 }
 
 .clients_list {
-
   height: 400px;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -270,7 +266,6 @@ a:focus, a:hover {
     border: none;
     box-shadow: none;
   }
-
 }
 
 .disabled {

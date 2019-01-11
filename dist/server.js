@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(30);
+	var _template = __webpack_require__(29);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(31);
+	var bodyParser = __webpack_require__(30);
 
-	var express = __webpack_require__(32);
+	var express = __webpack_require__(31);
 	var server = express();
-	var mysql = __webpack_require__(33);
+	var mysql = __webpack_require__(32);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -372,21 +372,21 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(17);
+	var _Calendar = __webpack_require__(16);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(25);
+	var _reactRouterDom = __webpack_require__(24);
 
-	var _Navbar = __webpack_require__(26);
+	var _Navbar = __webpack_require__(25);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(27);
+	var _Nav = __webpack_require__(26);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(28);
+	var _NavItem = __webpack_require__(27);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
@@ -394,7 +394,7 @@ module.exports =
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _FormGroup = __webpack_require__(29);
+	var _FormGroup = __webpack_require__(28);
 
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 
@@ -468,21 +468,6 @@ module.exports =
 	                            { href: '/clients' },
 	                            'Clients'
 	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _Navbar2.default.Form,
-	                        { pullLeft: true },
-	                        _react2.default.createElement(
-	                            _FormGroup2.default,
-	                            null,
-	                            _react2.default.createElement(_FormControl2.default, { type: 'text', placeholder: 'Search client' })
-	                        ),
-	                        ' ',
-	                        _react2.default.createElement(
-	                            _Button2.default,
-	                            { type: 'submit' },
-	                            'Submit'
-	                        )
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -499,6 +484,13 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
+
+	// <Navbar.Form pullLeft>
+	//     <FormGroup>
+	//         <FormControl type="text" placeholder="Search client"/>
+	//     </FormGroup>{' '}
+	//     <Button type="submit">Submit</Button>
+	// </Navbar.Form>
 
 /***/ }),
 /* 5 */
@@ -528,7 +520,7 @@ module.exports =
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(15);
+	var _ClientsList = __webpack_require__(14);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
@@ -702,8 +694,6 @@ module.exports =
 
 	exports.default = Client;
 
-	//this.switchClient(localeVal.clientName)}
-
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
@@ -762,6 +752,7 @@ module.exports =
 	            client: {},
 	            clients: [],
 	            editable: false,
+	            showSaveBtn: 'disabled',
 	            clientName: '',
 	            clientBirthdate: (0, _moment2.default)(new Date()).format('YYYY-MM-DD'),
 	            clientDesease: '',
@@ -780,10 +771,12 @@ module.exports =
 	    _createClass(ClientsCard, [{
 	        key: 'handleInputChange',
 	        value: function handleInputChange(event) {
+	            var _setState;
+
 	            var target = event.target;
 	            var value = target.value;
 	            var name = target.name;
-	            this.setState(_defineProperty({}, name, value));
+	            this.setState((_setState = {}, _defineProperty(_setState, name, value), _defineProperty(_setState, 'showSaveBtn', 'showSaveBtn'), _setState));
 	        }
 	    }, {
 	        key: 'saveClient',
@@ -853,6 +846,7 @@ module.exports =
 	            } else {
 	                this.saveEditedClient();
 	            }
+	            this.setState({ showSaveBtn: 'disabled' });
 	        }
 	    }, {
 	        key: 'render',
@@ -900,7 +894,7 @@ module.exports =
 	                        null,
 	                        'Name'
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
+	                    _react2.default.createElement(_FormControl2.default, { required: true, type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
 	                        id: 'clientName', name: 'clientName' }),
 	                    _react2.default.createElement(
 	                        'div',
@@ -949,7 +943,7 @@ module.exports =
 	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { bsStyle: 'success', type: 'submit', value: 'Add', className: 'showSaveBtn' },
+	                        { bsStyle: 'success', type: 'submit', value: 'Add', className: showSaveBtn },
 	                        'Save changes'
 	                    )
 	                )
@@ -1046,9 +1040,9 @@ module.exports =
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _ListGroupItem = __webpack_require__(14);
+	var _Button = __webpack_require__(6);
 
-	var _ListGroupItem2 = _interopRequireDefault(_ListGroupItem);
+	var _Button2 = _interopRequireDefault(_Button);
 
 	var _methods = __webpack_require__(9);
 
@@ -1063,8 +1057,6 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Visit from './Visit.js';
-
 
 	var ClientsHistory = function (_Component) {
 	    _inherits(ClientsHistory, _Component);
@@ -1209,12 +1201,6 @@ module.exports =
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-bootstrap/lib/ListGroupItem");
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1231,7 +1217,7 @@ module.exports =
 
 	var _methods = __webpack_require__(9);
 
-	var _Context = __webpack_require__(16);
+	var _Context = __webpack_require__(15);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1297,7 +1283,7 @@ module.exports =
 	exports.default = ClientsList;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1361,7 +1347,7 @@ module.exports =
 	// {state: this.state, changeLocale: this.changeLocale}
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1376,15 +1362,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(18);
+	var _MonthTable = __webpack_require__(17);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(23);
+	var _LoginForm = __webpack_require__(22);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(24);
+	var _MonthNavigation = __webpack_require__(23);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1475,7 +1461,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1490,7 +1476,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(19);
+	var _DayList = __webpack_require__(18);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
@@ -1802,7 +1788,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1817,11 +1803,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(20);
+	var _RegisterList = __webpack_require__(19);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(22);
+	var _ClientNameInput = __webpack_require__(21);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -1951,7 +1937,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1970,13 +1956,13 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(21);
+	var _Glyphicon = __webpack_require__(20);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
 	var _methods = __webpack_require__(9);
 
-	var _Context = __webpack_require__(16);
+	var _Context = __webpack_require__(15);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2068,13 +2054,13 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2093,7 +2079,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(21);
+	var _Glyphicon = __webpack_require__(20);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -2211,7 +2197,7 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2332,7 +2318,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2412,37 +2398,37 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormGroup");
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2459,19 +2445,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

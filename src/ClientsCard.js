@@ -12,6 +12,7 @@ class ClientsCard extends Component {
             client: {},
             clients: [],
             editable: false,
+            showSaveBtn:'disabled',
             clientName: '',
             clientBirthdate: moment(new Date()).format('YYYY-MM-DD'),
             clientDesease: '',
@@ -31,7 +32,8 @@ class ClientsCard extends Component {
         const value = target.value;
         const name = target.name;
         this.setState({
-            [name]: value
+            [name]: value,
+            showSaveBtn:'showSaveBtn'
         });
     }
 
@@ -100,6 +102,7 @@ class ClientsCard extends Component {
         else {
             this.saveEditedClient();
         }
+        this.setState({ showSaveBtn:'disabled'})
     }
 
     render() {
@@ -138,7 +141,7 @@ class ClientsCard extends Component {
 
                 <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <FieldGroup type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
+                    <FieldGroup required type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
                                 id="clientName" name="clientName"/>
                     <div className="col-xs-6 client_col_left">
                         <label>Desease</label>
@@ -163,7 +166,7 @@ class ClientsCard extends Component {
                     <label>Description</label>
                     <FieldGroup componentClass="textarea" placeholder={client.description} rows="15"
                                 onChange={this.handleInputChange} id="clientDescription" name="clientDescription"/>
-                    <Button bsStyle="success" type="submit" value="Add" className="showSaveBtn">
+                    <Button bsStyle="success" type="submit" value="Add" className={showSaveBtn}>
                         Save changes
                     </Button>
                 </form>
