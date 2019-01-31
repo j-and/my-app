@@ -61,7 +61,7 @@ class ClientNameInput extends Component {
     render() {
         var arr = this.props.initialTimeArray;
         return (
-            <div>
+            <div className="register_form">
                 <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
 
                     <select value={this.state.value} onChange={this.handleTimeChange}>
@@ -73,7 +73,7 @@ class ClientNameInput extends Component {
                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
 
                     <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add"><Glyphicon
-                        glyph="plus"/></Button>
+                        glyph="ok"/></Button>
                 </form>
             </div>
         )

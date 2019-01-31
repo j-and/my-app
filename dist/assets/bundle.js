@@ -24436,32 +24436,29 @@
 	                null,
 	                _react2.default.createElement(
 	                    _Navbar2.default,
-	                    null,
+	                    { bg: 'light', expand: 'lg' },
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Header,
-	                        null,
-	                        _react2.default.createElement(
-	                            _Navbar2.default.Brand,
-	                            null,
-	                            _react2.default.createElement(
-	                                'a',
-	                                { href: '' },
-	                                'My-app'
-	                            )
-	                        )
+	                        _Navbar2.default.Brand,
+	                        { href: '/' },
+	                        'My-app'
 	                    ),
+	                    _react2.default.createElement(_Navbar2.default.Toggle, { 'aria-controls': 'basic-navbar-nav' }),
 	                    _react2.default.createElement(
-	                        _Nav2.default,
-	                        null,
+	                        _Navbar2.default.Collapse,
+	                        { id: 'basic-navbar-nav' },
 	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/' },
-	                            'Home'
-	                        ),
-	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/clients' },
-	                            'Clients'
+	                            _Nav2.default,
+	                            { className: 'mr-auto' },
+	                            _react2.default.createElement(
+	                                _Nav2.default.Link,
+	                                { href: '/' },
+	                                'Home'
+	                            ),
+	                            _react2.default.createElement(
+	                                _Nav2.default.Link,
+	                                { href: '/clients' },
+	                                'Clients'
+	                            )
 	                        )
 	                    )
 	                ),
@@ -44847,16 +44844,6 @@
 
 	exports.default = ClientsHistory;
 
-	// <span>
-	//                         <form className="visit_comment" onSubmit={this.handleSubmit} ref="registerForm">
-	//                             <input type="text" value={this.state.value} onChange={this.handleInputChange}
-	//                                    name="visitComment"/>
-	//                                         <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add">
-	//                                             <Glyphicon glyph="plus"/>
-	//                                         </Button>
-	//                                     </form>
-	//                 </span>
-
 /***/ }),
 /* 307 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -45267,27 +45254,13 @@
 	        var _this = _possibleConstructorReturn(this, (MonthTable.__proto__ || Object.getPrototypeOf(MonthTable)).call(this, props));
 
 	        _this.state = {
-	            trHead: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+	            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 	            daysArray: []
 	        };
-	        _this.fillHeadArray = _this.fillHeadArray.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(MonthTable, [{
-	        key: 'fillHeadArray',
-	        value: function fillHeadArray() {
-	            var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-	            for (var i = 0; i < array.length; i++) {
-	                this.state.trHead.push(_react2.default.createElement(
-	                    'td',
-	                    { className: 'day_ordinary' },
-	                    'array[i]'
-	                ));
-	            }
-	            return this.state.trHead;
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 
@@ -45919,7 +45892,7 @@
 	            var arr = this.props.initialTimeArray;
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { className: 'register_form' },
 	                _react2.default.createElement(
 	                    'form',
 	                    { onSubmit: this.handleSubmit, ref: 'registerForm', className: 'day_list' },
@@ -45944,7 +45917,7 @@
 	                        _Button2.default,
 	                        { bsSize: 'xsmall', bsStyle: 'success', type: 'submit', value: 'Add' },
 	                        _react2.default.createElement(_Glyphicon2.default, {
-	                            glyph: 'plus' })
+	                            glyph: 'ok' })
 	                    )
 	                )
 	            );
@@ -46131,7 +46104,7 @@
 	                        onClick: function onClick() {
 	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 1 ? 12 : _this2.props.currentMonth - 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear - 1 : _this2.props.currentYear);
 	                        } },
-	                    '\u2190 Previous'
+	                    'Previous'
 	                ),
 	                _react2.default.createElement(
 	                    'h2',
@@ -46146,7 +46119,7 @@
 	                        onClick: function onClick() {
 	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 12 ? 1 : _this2.props.currentMonth + 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear + 1 : _this2.props.currentYear);
 	                        } },
-	                    'Next  \u2192'
+	                    'Next'
 	                )
 	            );
 	        }

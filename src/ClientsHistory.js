@@ -68,13 +68,3 @@ class ClientsHistory extends Component {
 }
 
 export default ClientsHistory;
-
-// <span>
-//                         <form className="visit_comment" onSubmit={this.handleSubmit} ref="registerForm">
-//                             <input type="text" value={this.state.value} onChange={this.handleInputChange}
-//                                    name="visitComment"/>
-//                                         <Button bsSize="xsmall" bsStyle="success" type="submit" value="Add">
-//                                             <Glyphicon glyph="plus"/>
-//                                         </Button>
-//                                     </form>
-//                 </span>

@@ -9,20 +9,10 @@ class MonthTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trHead: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+             trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             daysArray: []
         };
-        this.fillHeadArray = this.fillHeadArray.bind(this);
     }
-
-    fillHeadArray() {
-        var array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        for (var i = 0; i < array.length; i++) {
-            this.state.trHead.push(<td className="day_ordinary">array[i]</td>);
-        }
-        return this.state.trHead;
-    }
-
 
     render() {
 

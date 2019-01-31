@@ -1,5 +1,5 @@
 body {
-  width: 80%;
+  width: 90%;
   margin: auto;
   font-family: sans-serif;
   color: #002B5B;
@@ -28,25 +28,24 @@ a:focus, a:hover {
   .calendar tr .day_ordinary {
     border: 2px solid #002B5B; }
     .calendar tr .day_ordinary_label {
-      background-color: #83c9a6;
+      color: #002B5B;
       line-height: 1.5em;
-      font-size: 18px;
-      color: #ffffff;
+      font-size: 20px;
       font-weight: bold;
-      text-align: center; }
+      text-align: right; }
     .calendar tr .day_ordinary ul {
       padding: 0;
       line-height: 1.7em; }
   .calendar tr .day_weekend {
-    border: 2px solid #FF6C36; }
+    border: 2px solid #FF6C36;
+    min-width: 100px; }
     .calendar tr .day_weekend input, .calendar tr .day_weekend select, .calendar tr .day_weekend Button {
       display: none; }
   .calendar tr .day_list {
     display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap; }
+    flex-direction: row; }
     .calendar tr .day_list input {
-      max-width: 110px; }
+      max-width: 90px; }
     .calendar tr .day_list select {
       max-width: 55px; }
 
@@ -82,12 +81,12 @@ a:focus, a:hover {
 .nav-centered {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   /*Override bootstrap styles*/ }
   .nav-centered .btn.btn-info {
     height: 40px;
     width: 120px;
-    margin: 20px;
+    margin: 20px 0;
     font-size: 16px;
     font-weight: bold; }
 
@@ -103,6 +102,8 @@ a:focus, a:hover {
 .register_ul {
   overflow-y: auto;
   height: 75px; }
+.register_form {
+  text-align: center; }
 
 .header {
   color: #002B5B;
@@ -134,11 +135,12 @@ a:focus, a:hover {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase; }
-
-.nav.navbar-nav {
+.navbar .nav.navbar-nav {
   display: inline-block; }
-  .nav.navbar-nav li {
+  .navbar .nav.navbar-nav li {
     font-size: 18px; }
+  .navbar .nav.navbar-nav > li > a {
+    padding-bottom: 14px; }
 
 @media all and (max-width: 1024px) {
   body {

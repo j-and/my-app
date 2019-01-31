@@ -9,7 +9,7 @@ $pale: #F8EADA;
 $rose: #F5AACB;
 
 body {
-  width: 80%;
+  width: 90%;
   margin: auto;
   font-family: sans-serif;
   color: $blue;
@@ -46,12 +46,11 @@ a:focus, a:hover {
       &_ordinary {
         border: 2px solid $blue;
         &_label {
-          background-color: $darkseagreen;
+          color:$blue;
           line-height: 1.5em;
-          font-size: 18px;
-          color: $white;
+          font-size: 20px;
           font-weight: bold;
-          text-align: center;
+          text-align: right;
         }
         ul {
           padding: 0;
@@ -60,6 +59,7 @@ a:focus, a:hover {
       }
       &_weekend {
         border: 2px solid $red;
+        min-width: 100px;
         input, select, Button {
           display: none;
         }
@@ -67,9 +67,9 @@ a:focus, a:hover {
       &_list {
         display: inline-flex;
         flex-direction: row;
-        flex-wrap: wrap;
+        //flex-wrap: wrap;
         input {
-          max-width: 110px;
+          max-width: 90px;
         }
         select {
           max-width: 55px;
@@ -121,12 +121,12 @@ a:focus, a:hover {
 .nav-centered {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   /*Override bootstrap styles*/
   .btn.btn-info {
     height: 40px;
     width: 120px;
-    margin: 20px;
+    margin: 20px 0;
     font-size: 16px;
     font-weight: bold;
   }
@@ -153,6 +153,9 @@ a:focus, a:hover {
   &_ul {
     overflow-y: auto;
     height: 75px;
+  }
+  &_form{
+    text-align:center;
   }
 }
 
@@ -207,12 +210,14 @@ a:focus, a:hover {
     font-weight: bold;
     text-transform: uppercase;
   }
-}
-
-.nav.navbar-nav {
-  display: inline-block;
-  li {
-    font-size: 18px;
+  .nav.navbar-nav {
+    display: inline-block;
+    li {
+      font-size: 18px;
+    }
+    &>li>a{
+      padding-bottom:14px;
+    }
   }
 }
 
