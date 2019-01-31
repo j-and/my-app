@@ -158,6 +158,8 @@ a:focus, a:hover {
   overflow-y: auto; }
   .clients_list::-webkit-scrollbar {
     width: 3px; }
+  .clients_list ::-webkit-scrollbar-track {
+    background: #ffffff; }
   .clients_list::-webkit-scrollbar-thumb {
     background: #83c9a6;
     height: 40px; }
