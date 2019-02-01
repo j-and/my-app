@@ -26,7 +26,8 @@ a:focus, a:hover {
 .calendar tr {
   height: 120px; }
   .calendar tr .day_ordinary {
-    border: 2px solid #002B5B; }
+    border: 2px solid #002B5B;
+    max-width: 180px; }
     .calendar tr .day_ordinary_label {
       color: #002B5B;
       line-height: 1.5em;
@@ -44,10 +45,6 @@ a:focus, a:hover {
   .calendar tr .day_list {
     display: inline-flex;
     flex-direction: row; }
-    .calendar tr .day_list input {
-      max-width: 90px; }
-    .calendar tr .day_list select {
-      max-width: 55px; }
 
 .dropdown-menu {
   min-width: 57px; }
@@ -90,20 +87,34 @@ a:focus, a:hover {
     font-size: 16px;
     font-weight: bold; }
 
-.register_list .btn-close {
-  display: none; }
-.register_list:hover .btn-close {
-  display: inline-block; }
+.register_list {
+  display: flex;
+  justify-content: space-between;
+  width: 90%; }
+  .register_list .btn-close {
+    visibility: hidden; }
+  .register_list:hover .btn-close {
+    visibility: visible; }
 .register_time {
-  display: inline-block;
-  width: 55px; }
-.register_name {
-  width: 105px; }
+  display: inline-block; }
 .register_ul {
   overflow-y: auto;
   height: 75px; }
+  .register_ul::-webkit-scrollbar {
+    width: 3px; }
+  .register_ul ::-webkit-scrollbar-track {
+    background: #ffffff; }
+  .register_ul::-webkit-scrollbar-thumb {
+    background: #83c9a6;
+    height: 40px; }
+  .register_ul::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 100, 100, 0.6); }
 .register_form {
-  text-align: center; }
+  width: 90%;
+  display: flex;
+  justify-content: space-between; }
+  .register_form input {
+    overflow: hidden; }
 
 .header {
   color: #002B5B;
@@ -136,11 +147,12 @@ a:focus, a:hover {
   font-weight: bold;
   text-transform: uppercase; }
 .navbar .nav.navbar-nav {
-  display: inline-block; }
+  display: inline-flex;
+  flex-direction: row; }
   .navbar .nav.navbar-nav li {
     font-size: 18px; }
   .navbar .nav.navbar-nav > li > a {
-    padding-bottom: 14px; }
+    padding-bottom: 13px; }
 
 @media all and (max-width: 1024px) {
   body {

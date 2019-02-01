@@ -5,9 +5,6 @@ import {Route, Switch, NavLink}   from 'react-router-dom';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import Button from 'react-bootstrap/lib/Button';
 
 class App extends Component {
 
@@ -29,6 +26,8 @@ class App extends Component {
     render() {
         return (
             <div>
+
+
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
@@ -40,6 +39,8 @@ class App extends Component {
                         <NavItem href="/clients">Clients</NavItem>
                     </Nav>
                 </Navbar>
+
+
                 <Switch>
                     <Route exact path="/" component={Calendar}/>
                     <Route path="/clients" component={Client}/>
@@ -57,3 +58,15 @@ export default App;
 //     </FormGroup>{' '}
 //     <Button type="submit">Submit</Button>
 // </Navbar.Form>
+
+// <Navbar>
+//     <Navbar.Header>
+//         <Navbar.Brand>
+//             <a href="">My-app</a>
+//         </Navbar.Brand>
+//     </Navbar.Header>
+//     <Nav>
+//         <NavItem href="/">Home</NavItem>
+//         <NavItem href="/clients">Clients</NavItem>
+//     </Nav>
+// </Navbar>

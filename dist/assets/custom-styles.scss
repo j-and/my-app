@@ -45,6 +45,7 @@ a:focus, a:hover {
     .day {
       &_ordinary {
         border: 2px solid $blue;
+        max-width: 180px;
         &_label {
           color:$blue;
           line-height: 1.5em;
@@ -69,10 +70,11 @@ a:focus, a:hover {
         flex-direction: row;
         //flex-wrap: wrap;
         input {
-          max-width: 90px;
+          //max-width: 90px;
+
         }
         select {
-          max-width: 55px;
+          //max-width: 55px;
         }
       }
     }
@@ -134,28 +136,52 @@ a:focus, a:hover {
 
 .register {
   &_list {
+    display: flex;
+    justify-content: space-between;
+    width:90%;
+
     .btn-close {
-      display: none;
+      visibility: hidden;
     }
     &:hover {
       .btn-close {
-        display: inline-block;
+        visibility: visible;
       }
     }
   }
   &_time {
     display: inline-block;
-    width: 55px;
+    //width: 60px;
   }
   &_name {
-    width: 105px;
+    //max-width: 95px;
   }
   &_ul {
     overflow-y: auto;
     height: 75px;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: $white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $darkseagreen;
+      height: 40px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: $overlay;
+    }
   }
   &_form{
-    text-align:center;
+    width:90%;
+    display: flex;
+    justify-content: space-between;
+    input{
+      overflow: hidden;
+    }
   }
 }
 
@@ -211,12 +237,13 @@ a:focus, a:hover {
     text-transform: uppercase;
   }
   .nav.navbar-nav {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: row;
     li {
       font-size: 18px;
     }
     &>li>a{
-      padding-bottom:14px;
+      padding-bottom:13px;
     }
   }
 }

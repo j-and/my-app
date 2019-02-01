@@ -61,8 +61,8 @@ class ClientNameInput extends Component {
     render() {
         var arr = this.props.initialTimeArray;
         return (
-            <div className="register_form">
-                <form onSubmit={this.handleSubmit} ref="registerForm" className="day_list">
+            <div className="">
+                <form onSubmit={this.handleSubmit} ref="registerForm" className="register_form">
 
                     <select value={this.state.value} onChange={this.handleTimeChange}>
                         <option value="Time">Time</option>

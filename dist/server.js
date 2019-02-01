@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(29);
+	var _template = __webpack_require__(28);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(30);
+	var bodyParser = __webpack_require__(29);
 
-	var express = __webpack_require__(31);
+	var express = __webpack_require__(30);
 	var server = express();
-	var mysql = __webpack_require__(32);
+	var mysql = __webpack_require__(31);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -390,18 +390,6 @@ module.exports =
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _FormControl = __webpack_require__(8);
-
-	var _FormControl2 = _interopRequireDefault(_FormControl);
-
-	var _FormGroup = __webpack_require__(28);
-
-	var _FormGroup2 = _interopRequireDefault(_FormGroup);
-
-	var _Button = __webpack_require__(6);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -441,29 +429,32 @@ module.exports =
 	                null,
 	                _react2.default.createElement(
 	                    _Navbar2.default,
-	                    { bg: 'light', expand: 'lg' },
+	                    null,
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Brand,
-	                        { href: '/' },
-	                        'My-app'
-	                    ),
-	                    _react2.default.createElement(_Navbar2.default.Toggle, { 'aria-controls': 'basic-navbar-nav' }),
-	                    _react2.default.createElement(
-	                        _Navbar2.default.Collapse,
-	                        { id: 'basic-navbar-nav' },
+	                        _Navbar2.default.Header,
+	                        null,
 	                        _react2.default.createElement(
-	                            _Nav2.default,
-	                            { className: 'mr-auto' },
+	                            _Navbar2.default.Brand,
+	                            null,
 	                            _react2.default.createElement(
-	                                _Nav2.default.Link,
-	                                { href: '/' },
-	                                'Home'
-	                            ),
-	                            _react2.default.createElement(
-	                                _Nav2.default.Link,
-	                                { href: '/clients' },
-	                                'Clients'
+	                                'a',
+	                                { href: '' },
+	                                'My-app'
 	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _Nav2.default,
+	                        null,
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/' },
+	                            'Home'
+	                        ),
+	                        _react2.default.createElement(
+	                            _NavItem2.default,
+	                            { href: '/clients' },
+	                            'Clients'
 	                        )
 	                    )
 	                ),
@@ -488,6 +479,18 @@ module.exports =
 	//     </FormGroup>{' '}
 	//     <Button type="submit">Submit</Button>
 	// </Navbar.Form>
+
+	// <Navbar>
+	//     <Navbar.Header>
+	//         <Navbar.Brand>
+	//             <a href="">My-app</a>
+	//         </Navbar.Brand>
+	//     </Navbar.Header>
+	//     <Nav>
+	//         <NavItem href="/">Home</NavItem>
+	//         <NavItem href="/clients">Clients</NavItem>
+	//     </Nav>
+	// </Navbar>
 
 /***/ }),
 /* 5 */
@@ -2132,10 +2135,10 @@ module.exports =
 	            var arr = this.props.initialTimeArray;
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'register_form' },
+	                { className: '' },
 	                _react2.default.createElement(
 	                    'form',
-	                    { onSubmit: this.handleSubmit, ref: 'registerForm', className: 'day_list' },
+	                    { onSubmit: this.handleSubmit, ref: 'registerForm', className: 'register_form' },
 	                    _react2.default.createElement(
 	                        'select',
 	                        { value: this.state.value, onChange: this.handleTimeChange },
@@ -2398,12 +2401,6 @@ module.exports =
 /* 28 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/FormGroup");
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -2418,19 +2415,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
