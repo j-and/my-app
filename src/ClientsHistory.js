@@ -45,7 +45,7 @@ class ClientsHistory extends Component {
             <div>
                 <h2> Clients history</h2>
                 <label>Visits of {this.props.client.name}</label>
-                <Table responsive hover>
+                <Table responsive>
                     <thead>
                     <th>Date</th>
                     <th>Status</th>
@@ -55,9 +55,8 @@ class ClientsHistory extends Component {
                     {Object.keys(sortedArr).map(function (key) {
                         return <tr>
                             <td>{moment(sortedArr[key].datetime).format('YYYY-MM-DD')}</td>
-                            <td><a>{sortedArr[key].status}</a></td>
-                            <td><a>{sortedArr[key].payment}</a></td>
-
+                            <td>{sortedArr[key].status}</td>
+                            <td>{sortedArr[key].payment}</td>
                         </tr>
                     }) }
                     </tbody>

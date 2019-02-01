@@ -1120,7 +1120,7 @@ module.exports =
 	                ),
 	                _react2.default.createElement(
 	                    _Table2.default,
-	                    { responsive: true, hover: true },
+	                    { responsive: true },
 	                    _react2.default.createElement(
 	                        'thead',
 	                        null,
@@ -1155,20 +1155,12 @@ module.exports =
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    _react2.default.createElement(
-	                                        'a',
-	                                        null,
-	                                        sortedArr[key].status
-	                                    )
+	                                    sortedArr[key].status
 	                                ),
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    _react2.default.createElement(
-	                                        'a',
-	                                        null,
-	                                        sortedArr[key].payment
-	                                    )
+	                                    sortedArr[key].payment
 	                                )
 	                            );
 	                        })
@@ -1692,17 +1684,13 @@ module.exports =
 	                    _react2.default.createElement(
 	                        'thead',
 	                        { className: 'month-header' },
-	                        _react2.default.createElement(
-	                            'tr',
-	                            null,
-	                            this.state.trHead.map(function (day) {
-	                                return _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'month-header' },
-	                                    day
-	                                );
-	                            })
-	                        )
+	                        this.state.trHead.map(function (day) {
+	                            return _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                day
+	                            );
+	                        })
 	                    ),
 	                    _react2.default.createElement(
 	                        'tbody',

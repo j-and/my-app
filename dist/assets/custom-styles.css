@@ -5,8 +5,20 @@ body {
   color: #002B5B;
   background-color: #DCEEF7; }
 
+.table thead th {
+  border: 2px solid #002B5B;
+  background-color: #F8EADA;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.4em; }
+.table > tbody > tr {
+  border: 1px solid transparent; }
+  .table > tbody > tr:hover {
+    background-color: transparent;
+    border-bottom: 2px solid #FF6C36; }
+
 label {
-  display: block;
+  font-size: 18px;
   margin-top: 10px; }
 
 a:focus, a:hover {
@@ -14,15 +26,6 @@ a:focus, a:hover {
   border-bottom: 2px solid #FF6C36;
   text-decoration: none; }
 
-.calendar .month-header {
-  border: 2px solid #002B5B;
-  background-color: #F8EADA; }
-  .calendar .month-header tr {
-    height: 60px; }
-    .calendar .month-header tr td {
-      text-align: center;
-      vertical-align: middle;
-      font-size: 1.7em; }
 .calendar tr {
   height: 120px; }
   .calendar tr .day_ordinary {
@@ -140,19 +143,24 @@ a:focus, a:hover {
   .client_history tr:nth-of-type(even) td {
     background-color: #f9f9f9; }
 
-.navbar-default {
-  background-color: transparent; }
-.navbar-brand {
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase; }
-.navbar .nav.navbar-nav {
-  display: inline-flex;
-  flex-direction: row; }
-  .navbar .nav.navbar-nav li {
-    font-size: 18px; }
-  .navbar .nav.navbar-nav > li > a {
-    padding-bottom: 13px; }
+.navbar {
+  min-height: 80px;
+  margin-bottom: 50px; }
+  .navbar-default {
+    background-color: transparent;
+    border-bottom: 3px solid #83c9a6; }
+  .navbar-brand {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase; }
+  .navbar .nav.navbar-nav {
+    display: inline-flex;
+    flex-direction: row; }
+    .navbar .nav.navbar-nav li {
+      font-size: 18px; }
+    .navbar .nav.navbar-nav > li > a {
+      padding-bottom: 13px;
+      font-size: 24px; }
 
 @media all and (max-width: 1024px) {
   body {
@@ -168,7 +176,7 @@ a:focus, a:hover {
   justify-content: space-around; }
 
 .clients_list {
-  height: 400px;
+  height: 550px;
   overflow-y: auto; }
   .clients_list::-webkit-scrollbar {
     width: 3px; }
@@ -181,6 +189,9 @@ a:focus, a:hover {
     background: rgba(0, 100, 100, 0.6); }
   .clients_list ul {
     list-style: none; }
+
+.btn-success {
+  margin-top: 10px; }
 
 .view-form {
   pointer-events: none; }
