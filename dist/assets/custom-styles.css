@@ -118,6 +118,8 @@ a:focus, a:hover {
   justify-content: space-between; }
   .register_form input {
     overflow: hidden; }
+  .register_form .btn-success {
+    margin-top: 0; }
 
 .header {
   color: #002B5B;

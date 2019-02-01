@@ -164,12 +164,10 @@ class MonthTable extends Component {
         return (
             <div>
                 <Table responsive className="calendar">
-                    <thead className="month-header">
-                   
+                    <thead>
                         {this.state.trHead.map(function (day) {
                             return <th>{day}</th>;
                         })}
-                   
                     </thead>
                     <tbody>
 

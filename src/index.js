@@ -51,22 +51,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <Navbar.Form pullLeft>
-//     <FormGroup>
-//         <FormControl type="text" placeholder="Search client"/>
-//     </FormGroup>{' '}
-//     <Button type="submit">Submit</Button>
-// </Navbar.Form>
-
-// <Navbar>
-//     <Navbar.Header>
-//         <Navbar.Brand>
-//             <a href="">My-app</a>
-//         </Navbar.Brand>
-//     </Navbar.Header>
-//     <Nav>
-//         <NavItem href="/">Home</NavItem>
-//         <NavItem href="/clients">Clients</NavItem>
-//     </Nav>
-// </Navbar>
