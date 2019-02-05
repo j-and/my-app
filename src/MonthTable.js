@@ -3,18 +3,40 @@ import React, {Component} from 'react';
 import DayList from './DayList.js';
 
 import Table from 'react-bootstrap/lib/Table';
+import Button from 'react-bootstrap/lib/Button';
 
 class MonthTable extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-             trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            daysArray: []
+            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            daysArray: [],
+            showWeekends: true,
+            elements: []
         };
+        this.toggleWeekend = this.toggleWeekend.bind(this);
+    }
+
+    toggleWeekend() {
+        this.setState({elements: []});
+        this.setState({elements: document.getElementsByClassName('day_weekend')});
+        this.setState({showWeekends: !this.state.showWeekends});
     }
 
     render() {
+
+        if (this.state.showWeekends) {
+            for (i = 0; i < this.state.elements.length; i++) {
+                this.state.elements[i].classList.remove("disabled");
+            }
+        }
+        else {
+            for (i = 0; i < this.state.elements.length; i++) {
+                this.state.elements[i].classList.add("disabled");
+            }
+        }
+
 
         var currentDay = 1;
         var month = this.props.currentDate.currentMonth;
@@ -41,23 +63,26 @@ class MonthTable extends Component {
         /*Calendar*/
         var i, j;
         var wholeWeekCount = Math.floor(this.props.currentDate.daysInMonth / 7) + 1;
-
+        var firstWeek = [];
+        var lastWeek = [];
+        var latestWeek = [];
         for (i = 1; i <= wholeWeekCount; i++) {
             switch (i) {
                 case 1:
+
                     if (this.props.currentDate.monthStart !== -1) {
                         for (j = 0; j < this.props.currentDate.monthStart; j++) {
-                            (j < 5) ? this.props.weeksObject.firstWeekBeforeMonthStart.push(<td
+                            (j < 5) ? firstWeek.push(<td
                                 className="day_ordinary">
                                 -</td>) :
-                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td
+                                firstWeek.push(<td
                                     className="day_weekend">
                                     -</td>);
 
                         }
                         for (j = this.props.currentDate.monthStart; j < 7; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td
+                                firstWeek.push(<td
                                     className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
@@ -65,7 +90,7 @@ class MonthTable extends Component {
                                 currentDay += 1;
                             }
                             else {
-                                this.props.weeksObject.firstWeekBeforeMonthStart.push(<td
+                                firstWeek.push(<td
                                     className="day_weekend">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
@@ -103,14 +128,14 @@ class MonthTable extends Component {
                         var a = this.props.currentDate.daysInMonth - currentDay;
                         for (j = 0; j <= a; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
+                                lastWeek.push(<td className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
                                 currentDay += 1;
                             }
                             else {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend">
+                                lastWeek.push(<td className="day_weekend">
                                     <DayList
                                         currentDay={currentDay}/>
                                 </td>);
@@ -119,28 +144,28 @@ class MonthTable extends Component {
                         }
                         for (j = a + 1; j < 7; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_ordinary">
+                                lastWeek.push(<td className="day_ordinary">
                                     -</td>)
                             }
                             else {
-                                this.props.weeksObject.fifthWeekInMonth.push(<td className="day_weekend">
+                                lastWeek.push(<td className="day_weekend">
                                     -</td>);
                             }
                         }
                     }
                     else {
-                        this.props.weeksObject.fifthWeekInMonth = fillWeekArray('fifthWeekInMonth');
+                        lastWeek = fillWeekArray('fifthWeekInMonth');
 
                         for (j = 0; j <= this.props.currentDate.daysInMonth - currentDay + 1; j++) {
                             if (j < 5) {
-                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
+                                latestWeek.push(<td className="day_ordinary">
                                     <DayList currentMonth={this.props.currentDate.currentMonth}
                                              currentYear={this.props.currentDate.currentYear} currentDay={currentDay}/>
                                 </td>);
                                 currentDay += 1;
                             }
                             else {
-                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">
+                                latestWeek.push(<td className="day_weekend">
                                     <DayList
                                         currentDay={currentDay}/></td>);
                                 currentDay += 1;
@@ -148,9 +173,9 @@ class MonthTable extends Component {
                         }
 
                         for (j; j < 7; j++) {
-                            (j < 5) ? this.props.weeksObject.sixthWeekInMonth.push(<td className="day_ordinary">
+                            (j < 5) ? latestWeek.push(<td className="day_ordinary">
                                 -</td>) :
-                                this.props.weeksObject.sixthWeekInMonth.push(<td className="day_weekend">
+                                latestWeek.push(<td className="day_weekend">
                                     -</td>);
                         }
                     }
@@ -162,16 +187,20 @@ class MonthTable extends Component {
         }
 
         return (
-            <div>
+            <div><Button className="btn btn-info" onClick={this.toggleWeekend}>Hide weekends</Button>
                 <Table responsive className="calendar">
                     <thead>
-                        {this.state.trHead.map(function (day) {
-                            return <th>{day}</th>;
-                        })}
+                    <tr>
+                        {
+                            this.state.trHead.map(function (day, index) {
+                                return (index < 5) ? <th>{day}</th> : <th className="day_weekend">{day}</th>;
+                            })
+                        }
+                    </tr>
                     </thead>
                     <tbody>
 
-                    <tr>{this.props.weeksObject.firstWeekBeforeMonthStart.map(function (i) {
+                    <tr>{firstWeek.map(function (i) {
                         return i;
                     })}
                         {this.props.weeksObject.firstWeekAfterMonthStart.map(function (i) {
@@ -194,12 +223,12 @@ class MonthTable extends Component {
                         })}
                     </tr>
                     <tr>
-                        {this.props.weeksObject.fifthWeekInMonth.map(function (i) {
+                        {lastWeek.map(function (i) {
                             return i;
                         })}
                     </tr>
                     <tr>
-                        {this.props.weeksObject.sixthWeekInMonth.map(function (i) {
+                        {latestWeek.map(function (i) {
                             return i;
                         })}
                     </tr>

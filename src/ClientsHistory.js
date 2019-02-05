@@ -47,9 +47,11 @@ class ClientsHistory extends Component {
                 <label>Visits of {this.props.client.name}</label>
                 <Table responsive>
                     <thead>
+                    <tr>
                     <th>Date</th>
                     <th>Status</th>
                     <th>Is Paid</th>
+                        </tr>
                     </thead>
                     <tbody>
                     {Object.keys(sortedArr).map(function (key) {

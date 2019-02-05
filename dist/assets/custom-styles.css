@@ -26,6 +26,8 @@ a:focus, a:hover {
   border-bottom: 2px solid #FF6C36;
   text-decoration: none; }
 
+.calendar thead tr {
+  height: 40px; }
 .calendar tr {
   height: 120px; }
   .calendar tr .day_ordinary {

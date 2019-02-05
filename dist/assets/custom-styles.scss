@@ -48,6 +48,11 @@ a:focus, a:hover {
 }
 
 .calendar {
+  thead{
+    tr{
+      height:40px;
+    }
+  }
   tr {
     height: 120px;
     .day {
@@ -79,6 +84,7 @@ a:focus, a:hover {
         //flex-wrap: wrap;
       }
     }
+
   }
 }
 

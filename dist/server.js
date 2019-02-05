@@ -473,25 +473,6 @@ module.exports =
 
 	exports.default = App;
 
-	// <Navbar.Form pullLeft>
-	//     <FormGroup>
-	//         <FormControl type="text" placeholder="Search client"/>
-	//     </FormGroup>{' '}
-	//     <Button type="submit">Submit</Button>
-	// </Navbar.Form>
-
-	// <Navbar>
-	//     <Navbar.Header>
-	//         <Navbar.Brand>
-	//             <a href="">My-app</a>
-	//         </Navbar.Brand>
-	//     </Navbar.Header>
-	//     <Nav>
-	//         <NavItem href="/">Home</NavItem>
-	//         <NavItem href="/clients">Clients</NavItem>
-	//     </Nav>
-	// </Navbar>
-
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1125,19 +1106,23 @@ module.exports =
 	                        'thead',
 	                        null,
 	                        _react2.default.createElement(
-	                            'th',
+	                            'tr',
 	                            null,
-	                            'Date'
-	                        ),
-	                        _react2.default.createElement(
-	                            'th',
-	                            null,
-	                            'Status'
-	                        ),
-	                        _react2.default.createElement(
-	                            'th',
-	                            null,
-	                            'Is Paid'
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Date'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Status'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Is Paid'
+	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -1466,6 +1451,10 @@ module.exports =
 
 	var _Table2 = _interopRequireDefault(_Table);
 
+	var _Button = __webpack_require__(6);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1484,14 +1473,34 @@ module.exports =
 
 	        _this.state = {
 	            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-	            daysArray: []
+	            daysArray: [],
+	            showWeekends: true,
+	            elements: []
 	        };
+	        _this.toggleWeekend = _this.toggleWeekend.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(MonthTable, [{
+	        key: 'toggleWeekend',
+	        value: function toggleWeekend() {
+	            this.setState({ elements: [] });
+	            this.setState({ elements: document.getElementsByClassName('day_weekend') });
+	            this.setState({ showWeekends: !this.state.showWeekends });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+
+	            if (this.state.showWeekends) {
+	                for (i = 0; i < this.state.elements.length; i++) {
+	                    this.state.elements[i].classList.remove("disabled");
+	                }
+	            } else {
+	                for (i = 0; i < this.state.elements.length; i++) {
+	                    this.state.elements[i].classList.add("disabled");
+	                }
+	            }
 
 	            var currentDay = 1;
 	            var month = this.props.currentDate.currentMonth;
@@ -1525,18 +1534,21 @@ module.exports =
 	            /*Calendar*/
 	            var i, j;
 	            var wholeWeekCount = Math.floor(this.props.currentDate.daysInMonth / 7) + 1;
-
+	            var firstWeek = [];
+	            var lastWeek = [];
+	            var latestWeek = [];
 	            for (i = 1; i <= wholeWeekCount; i++) {
 	                switch (i) {
 	                    case 1:
+
 	                        if (this.props.currentDate.monthStart !== -1) {
 	                            for (j = 0; j < this.props.currentDate.monthStart; j++) {
-	                                j < 5 ? this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
+	                                j < 5 ? firstWeek.push(_react2.default.createElement(
 	                                    'td',
 	                                    {
 	                                        className: 'day_ordinary' },
 	                                    '-'
-	                                )) : this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
+	                                )) : firstWeek.push(_react2.default.createElement(
 	                                    'td',
 	                                    {
 	                                        className: 'day_weekend' },
@@ -1545,7 +1557,7 @@ module.exports =
 	                            }
 	                            for (j = this.props.currentDate.monthStart; j < 7; j++) {
 	                                if (j < 5) {
-	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
+	                                    firstWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        {
 	                                            className: 'day_ordinary' },
@@ -1554,7 +1566,7 @@ module.exports =
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
-	                                    this.props.weeksObject.firstWeekBeforeMonthStart.push(_react2.default.createElement(
+	                                    firstWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        {
 	                                            className: 'day_weekend' },
@@ -1601,7 +1613,7 @@ module.exports =
 	                            var a = this.props.currentDate.daysInMonth - currentDay;
 	                            for (j = 0; j <= a; j++) {
 	                                if (j < 5) {
-	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
+	                                    lastWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
@@ -1609,7 +1621,7 @@ module.exports =
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
-	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
+	                                    lastWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
@@ -1620,13 +1632,13 @@ module.exports =
 	                            }
 	                            for (j = a + 1; j < 7; j++) {
 	                                if (j < 5) {
-	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
+	                                    lastWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
 	                                        '-'
 	                                    ));
 	                                } else {
-	                                    this.props.weeksObject.fifthWeekInMonth.push(_react2.default.createElement(
+	                                    lastWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_weekend' },
 	                                        '-'
@@ -1634,11 +1646,11 @@ module.exports =
 	                                }
 	                            }
 	                        } else {
-	                            this.props.weeksObject.fifthWeekInMonth = fillWeekArray('fifthWeekInMonth');
+	                            lastWeek = fillWeekArray('fifthWeekInMonth');
 
 	                            for (j = 0; j <= this.props.currentDate.daysInMonth - currentDay + 1; j++) {
 	                                if (j < 5) {
-	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
+	                                    latestWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_ordinary' },
 	                                        _react2.default.createElement(_DayList2.default, { currentMonth: this.props.currentDate.currentMonth,
@@ -1646,7 +1658,7 @@ module.exports =
 	                                    ));
 	                                    currentDay += 1;
 	                                } else {
-	                                    this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
+	                                    latestWeek.push(_react2.default.createElement(
 	                                        'td',
 	                                        { className: 'day_weekend' },
 	                                        _react2.default.createElement(_DayList2.default, {
@@ -1657,11 +1669,11 @@ module.exports =
 	                            }
 
 	                            for (j; j < 7; j++) {
-	                                j < 5 ? this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
+	                                j < 5 ? latestWeek.push(_react2.default.createElement(
 	                                    'td',
 	                                    { className: 'day_ordinary' },
 	                                    '-'
-	                                )) : this.props.weeksObject.sixthWeekInMonth.push(_react2.default.createElement(
+	                                )) : latestWeek.push(_react2.default.createElement(
 	                                    'td',
 	                                    { className: 'day_weekend' },
 	                                    '-'
@@ -1679,18 +1691,31 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    _Button2.default,
+	                    { className: 'btn btn-info', onClick: this.toggleWeekend },
+	                    'Hide weekends'
+	                ),
+	                _react2.default.createElement(
 	                    _Table2.default,
 	                    { responsive: true, className: 'calendar' },
 	                    _react2.default.createElement(
 	                        'thead',
-	                        { className: 'month-header' },
-	                        this.state.trHead.map(function (day) {
-	                            return _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                day
-	                            );
-	                        })
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            this.state.trHead.map(function (day, index) {
+	                                return index < 5 ? _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    day
+	                                ) : _react2.default.createElement(
+	                                    'th',
+	                                    { className: 'day_weekend' },
+	                                    day
+	                                );
+	                            })
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'tbody',
@@ -1698,7 +1723,7 @@ module.exports =
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,
-	                            this.props.weeksObject.firstWeekBeforeMonthStart.map(function (i) {
+	                            firstWeek.map(function (i) {
 	                                return i;
 	                            }),
 	                            this.props.weeksObject.firstWeekAfterMonthStart.map(function (i) {
@@ -1729,14 +1754,14 @@ module.exports =
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,
-	                            this.props.weeksObject.fifthWeekInMonth.map(function (i) {
+	                            lastWeek.map(function (i) {
 	                                return i;
 	                            })
 	                        ),
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,
-	                            this.props.weeksObject.sixthWeekInMonth.map(function (i) {
+	                            latestWeek.map(function (i) {
 	                                return i;
 	                            })
 	                        )
