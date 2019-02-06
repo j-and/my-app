@@ -11,7 +11,7 @@ const messages = {
     'ru': messages_ru,
     'en': messages_en
 };
-const language = navigator.language.split(/[-_]/)[0];
+const language = 'ru';//navigator.language.split(/[-_]/)[0];
 
 render(
     <IntlProvider locale={language} messages={messages[language]}>

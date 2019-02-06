@@ -409,8 +409,6 @@ module.exports =
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	// import { addLocaleData } from "react-intl";
-
 
 	(0, _reactIntl.addLocaleData)([].concat(_toConsumableArray(_en2.default), _toConsumableArray(_ru2.default)));
 
@@ -440,15 +438,6 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            // App.contextTypes = {
-	            //     intl: PropTypes.object.isRequired
-	            // };
-
-
-	            // this.context.intl.formatMessage(
-	            //     {id: "home.welcome"}, {name: 'React.js'}
-	            // )
-
 	            return _react2.default.createElement(
 	                _reactIntl.IntlProvider,
 	                { locale: 'en' },
@@ -463,9 +452,14 @@ module.exports =
 	                            description: 'Welcome header on app main page',
 	                            values: { what: 'react-intl' } })
 	                    ),
-	                    _react2.default.createElement(_reactIntl.FormattedHTMLMessage, { id: 'app.intro',
-	                        defaultMessage: 'To get started, edit <code>src/App.js</code> and save to reload.',
-	                        description: 'Text on main page' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'app.intro',
+	                            defaultMessage: 'Welcome to {what}',
+	                            description: 'Press {what}',
+	                            values: { what: 'logo' } })
+	                    ),
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
@@ -512,7 +506,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
-	//
 
 /***/ }),
 /* 5 */

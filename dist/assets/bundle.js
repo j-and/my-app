@@ -74,36 +74,7 @@
 	    'ru': _ru2.default,
 	    'en': _en2.default
 	};
-	var language = 'ru'; //navigator.language.split(/[-_]/)[0];  // language without region code
-
-	/* Import basic support for another locale if needed
-	 ('en' is included by default) */
-	// let elLocaleData = require('react-intl/locale-data/el');
-	// addLocaleData(elLocaleData);
-
-	// let i18nConfig = {
-	//     locale: 'el',
-	//     messages: {
-	//         "home.welcome": "Καλώς 'Ηρθατε στο {name}!",
-	//         "home.declarative": "Δηλωτικό",
-	//         "home.declarative.p1": "To {name} καθιστά ανώφελη τη δημιουργία διαδραστικών διεπαφών χρήστη. Σχεδιάστε απλές προβολές για κάθε κράτος στο δικό σας\n" +
-	//         "                εφαρμογή και το React θα ενημερώσει αποτελεσματικά και θα αποδώσει τα σωστά στοιχεία όταν τα δεδομένα σας\n" +
-	//         "                αλλαγές.",
-	//         "home.declarative.p2": "Οι δηλωτικές προβολές καθιστούν τον κώδικα πιο προβλέψιμο και πιο εύκολο στον εντοπισμό σφαλμάτων.",
-	//         "home.component-based": "Βασισμένο σε στοιχεία",
-	//         "home.component-based.p1": "Δημιουργήστε ενσωματωμένα στοιχεία που διαχειρίζονται τη δική τους κατάσταση, και στη συνέχεια συνθέστε τα για να δημιουργήσετε σύνθετα UI.",
-	//         "home.component-based.p2": "Δεδομένου ότι η λογική συνιστωσών είναι γραμμένη σε JavaScript αντί για πρότυπα, μπορείτε εύκολα να περάσετε πλούσια δεδομένα\n" +
-	//         "                  μέσω της εφαρμογής σας και να κρατήσετε την κατάσταση εκτός του & nbsp; DOM.",
-	//     }
-	// };
-
-	// render(
-	//     <BrowserRouter  locale={i18nConfig.locale}
-	//                     messages={i18nConfig.messages}>
-	//         <App />
-	//     </BrowserRouter>,
-	//     document.getElementById('root')
-	// );
+	var language = 'ru'; //navigator.language.split(/[-_]/)[0];
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	    _reactIntl.IntlProvider,
@@ -24472,8 +24443,6 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	// import { addLocaleData } from "react-intl";
-
 
 	(0, _reactIntl.addLocaleData)([].concat(_toConsumableArray(_en2.default), _toConsumableArray(_ru2.default)));
 
@@ -24503,15 +24472,6 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            // App.contextTypes = {
-	            //     intl: PropTypes.object.isRequired
-	            // };
-
-
-	            // this.context.intl.formatMessage(
-	            //     {id: "home.welcome"}, {name: 'React.js'}
-	            // )
-
 	            return _react2.default.createElement(
 	                _reactIntl.IntlProvider,
 	                { locale: 'en' },
@@ -24526,9 +24486,14 @@
 	                            description: 'Welcome header on app main page',
 	                            values: { what: 'react-intl' } })
 	                    ),
-	                    _react2.default.createElement(_reactIntl.FormattedHTMLMessage, { id: 'app.intro',
-	                        defaultMessage: 'To get started, edit <code>src/App.js</code> and save to reload.',
-	                        description: 'Text on main page' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'app.intro',
+	                            defaultMessage: 'Welcome to {what}',
+	                            description: 'Press {what}',
+	                            values: { what: 'logo' } })
+	                    ),
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
@@ -24575,7 +24540,6 @@
 	}(_react.Component);
 
 	exports.default = App;
-	//
 
 /***/ }),
 /* 71 */
@@ -54340,7 +54304,7 @@
 /* 370 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Willkommen bei react-intl","app.intro":"Zum Loslegen editiere <code>src/App.js</code>."}
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>."}
 
 /***/ }),
 /* 371 */

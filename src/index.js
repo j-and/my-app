@@ -43,9 +43,12 @@ class App extends Component {
                                           values={{ what: 'react-intl' }}/>
                     </h1>
 
-                    <FormattedHTMLMessage id="app.intro"
-                                          defaultMessage="To get started, edit <code>src/App.js</code> and save to reload."
-                                          description="Text on main page"/>
+                    <h2>
+                        <FormattedMessage id="app.intro"
+                                          defaultMessage="Welcome to {what}"
+                                          description="Press {what}"
+                                          values={{ what: 'logo' }}/>
+                    </h2>
 
                     <Navbar>
                         <Navbar.Header>
