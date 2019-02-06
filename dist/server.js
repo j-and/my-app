@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(28);
+	var _template = __webpack_require__(31);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(29);
+	var bodyParser = __webpack_require__(32);
 
-	var express = __webpack_require__(30);
+	var express = __webpack_require__(33);
 	var server = express();
-	var mysql = __webpack_require__(31);
+	var mysql = __webpack_require__(34);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -390,6 +390,16 @@ module.exports =
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
+	var _reactIntl = __webpack_require__(28);
+
+	var _en = __webpack_require__(29);
+
+	var _en2 = _interopRequireDefault(_en);
+
+	var _ru = __webpack_require__(30);
+
+	var _ru2 = _interopRequireDefault(_ru);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -397,6 +407,12 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	// import { addLocaleData } from "react-intl";
+
+
+	(0, _reactIntl.addLocaleData)([].concat(_toConsumableArray(_en2.default), _toConsumableArray(_ru2.default)));
 
 	var App = function (_Component) {
 	    _inherits(App, _Component);
@@ -424,45 +440,69 @@ module.exports =
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            // App.contextTypes = {
+	            //     intl: PropTypes.object.isRequired
+	            // };
+
+
+	            // this.context.intl.formatMessage(
+	            //     {id: "home.welcome"}, {name: 'React.js'}
+	            // )
+
 	            return _react2.default.createElement(
-	                'div',
-	                null,
+	                _reactIntl.IntlProvider,
+	                { locale: 'en' },
 	                _react2.default.createElement(
-	                    _Navbar2.default,
+	                    'div',
 	                    null,
 	                    _react2.default.createElement(
-	                        _Navbar2.default.Header,
+	                        'h1',
+	                        { className: 'App-title' },
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'app.title',
+	                            defaultMessage: 'Welcome to {what}',
+	                            description: 'Welcome header on app main page',
+	                            values: { what: 'react-intl' } })
+	                    ),
+	                    _react2.default.createElement(_reactIntl.FormattedHTMLMessage, { id: 'app.intro',
+	                        defaultMessage: 'To get started, edit <code>src/App.js</code> and save to reload.',
+	                        description: 'Text on main page' }),
+	                    _react2.default.createElement(
+	                        _Navbar2.default,
 	                        null,
 	                        _react2.default.createElement(
-	                            _Navbar2.default.Brand,
+	                            _Navbar2.default.Header,
 	                            null,
 	                            _react2.default.createElement(
-	                                'a',
-	                                { href: '' },
-	                                'My-app'
+	                                _Navbar2.default.Brand,
+	                                null,
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '' },
+	                                    'My-app'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _Nav2.default,
+	                            null,
+	                            _react2.default.createElement(
+	                                _NavItem2.default,
+	                                { href: '/' },
+	                                'Home'
+	                            ),
+	                            _react2.default.createElement(
+	                                _NavItem2.default,
+	                                { href: '/clients' },
+	                                'Clients'
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
-	                        _Nav2.default,
+	                        _reactRouterDom.Switch,
 	                        null,
-	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/' },
-	                            'Home'
-	                        ),
-	                        _react2.default.createElement(
-	                            _NavItem2.default,
-	                            { href: '/clients' },
-	                            'Clients'
-	                        )
+	                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
+	                        _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouterDom.Switch,
-	                    null,
-	                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Calendar2.default }),
-	                    _react2.default.createElement(_reactRouterDom.Route, { path: '/clients', component: _Clients2.default })
 	                )
 	            );
 	        }
@@ -472,6 +512,7 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
+	//
 
 /***/ }),
 /* 5 */
@@ -1478,24 +1519,16 @@ module.exports =
 	            hideWeekendsBtnContent: ' → ',
 	            elements: []
 	        };
-	        // this.getSymbol = this.getSymbol.bind(this);
 	        _this.toggleWeekend = _this.toggleWeekend.bind(_this);
 	        return _this;
 	    }
-
-	    // getSymbol(smiley) {
-	    //     return smiley.substr(1, smiley.length - 1) // Return lol for :lol:
-	    // }
 
 	    _createClass(MonthTable, [{
 	        key: 'toggleWeekend',
 	        value: function toggleWeekend() {
 	            this.setState({ elements: [] });
 	            this.setState({ elements: document.getElementsByClassName('day_weekend') });
-	            // var a=this.state.hideWeekendsBtnContent=='Hide weekends'?'Show weekends':'Hide weekends';
-
 	            var a = this.state.hideWeekendsBtnContent == ' → ' ? ' ← ' : ' → ';
-	            // a=this.getSymbol(a);
 	            this.setState({ showWeekends: !this.state.showWeekends });
 	            this.setState({ hideWeekendsBtnContent: a });
 	        }
@@ -1706,7 +1739,8 @@ module.exports =
 	                    { className: 'btn-row flex-right' },
 	                    _react2.default.createElement(
 	                        _Button2.default,
-	                        { className: 'btn btn-info', onClick: this.toggleWeekend },
+	                        { className: 'btn btn-info',
+	                            onClick: this.toggleWeekend },
 	                        this.state.hideWeekendsBtnContent
 	                    )
 	                ),
@@ -2429,6 +2463,24 @@ module.exports =
 /* 28 */
 /***/ (function(module, exports) {
 
+	module.exports = require("react-intl");
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-intl/locale-data/en");
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-intl/locale-data/ru");
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -2443,19 +2495,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 30 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 31 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
