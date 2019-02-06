@@ -1475,18 +1475,29 @@ module.exports =
 	            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 	            daysArray: [],
 	            showWeekends: true,
+	            hideWeekendsBtnContent: ' → ',
 	            elements: []
 	        };
+	        // this.getSymbol = this.getSymbol.bind(this);
 	        _this.toggleWeekend = _this.toggleWeekend.bind(_this);
 	        return _this;
 	    }
+
+	    // getSymbol(smiley) {
+	    //     return smiley.substr(1, smiley.length - 1) // Return lol for :lol:
+	    // }
 
 	    _createClass(MonthTable, [{
 	        key: 'toggleWeekend',
 	        value: function toggleWeekend() {
 	            this.setState({ elements: [] });
 	            this.setState({ elements: document.getElementsByClassName('day_weekend') });
+	            // var a=this.state.hideWeekendsBtnContent=='Hide weekends'?'Show weekends':'Hide weekends';
+
+	            var a = this.state.hideWeekendsBtnContent == ' → ' ? ' ← ' : ' → ';
+	            // a=this.getSymbol(a);
 	            this.setState({ showWeekends: !this.state.showWeekends });
+	            this.setState({ hideWeekendsBtnContent: a });
 	        }
 	    }, {
 	        key: 'render',
@@ -1691,9 +1702,13 @@ module.exports =
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    _Button2.default,
-	                    { className: 'btn btn-info', onClick: this.toggleWeekend },
-	                    'Hide weekends'
+	                    'div',
+	                    { className: 'btn-row flex-right' },
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { className: 'btn btn-info', onClick: this.toggleWeekend },
+	                        this.state.hideWeekendsBtnContent
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    _Table2.default,

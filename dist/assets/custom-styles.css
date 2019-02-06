@@ -16,6 +16,8 @@ body {
   .table > tbody > tr:hover {
     background-color: transparent;
     border-bottom: 2px solid #FF6C36; }
+.table-responsive {
+  margin-top: 20px; }
 
 label {
   font-size: 18px;
@@ -85,12 +87,13 @@ a:focus, a:hover {
   flex-direction: row;
   justify-content: space-between;
   /*Override bootstrap styles*/ }
-  .nav-centered .btn.btn-info {
-    height: 40px;
-    width: 120px;
-    margin: 20px 0;
-    font-size: 16px;
-    font-weight: bold; }
+
+.btn.btn-info {
+  height: 40px;
+  width: 120px;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold; }
 
 .register_list {
   display: flex;
@@ -214,5 +217,8 @@ a:focus, a:hover {
 
 .showSaveBtn {
   margin: 20px auto; }
+
+.flex-right {
+  justify-content: flex-end; }
 
 /*# sourceMappingURL=custom-styles.css.map */

@@ -33,7 +33,9 @@ body {
       border-bottom: 2px solid #FF6C36;
     }
   }
-
+&-responsive{
+  margin-top:20px;
+}
 }
 
 label {
@@ -132,13 +134,20 @@ a:focus, a:hover {
   flex-direction: row;
   justify-content: space-between;
   /*Override bootstrap styles*/
-  .btn.btn-info {
-    height: 40px;
-    width: 120px;
-    margin: 20px 0;
-    font-size: 16px;
-    font-weight: bold;
-  }
+  //.btn.btn-info {
+  //  height: 40px;
+  //  width: 120px;
+  //  margin: 20px 0;
+  //  font-size: 16px;
+  //  font-weight: bold;
+  //}
+}
+.btn.btn-info {
+  height: 40px;
+  width: 120px;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .register {
@@ -331,4 +340,8 @@ a:focus, a:hover {
 
 .showSaveBtn {
   margin: 20px auto;
+}
+
+.flex-right{
+  justify-content: flex-end;
 }

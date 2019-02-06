@@ -13,6 +13,7 @@ class MonthTable extends Component {
             trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             daysArray: [],
             showWeekends: true,
+            hideWeekendsBtnContent: ' → ',
             elements: []
         };
         this.toggleWeekend = this.toggleWeekend.bind(this);
@@ -21,8 +22,11 @@ class MonthTable extends Component {
     toggleWeekend() {
         this.setState({elements: []});
         this.setState({elements: document.getElementsByClassName('day_weekend')});
+        var a = this.state.hideWeekendsBtnContent == ' → ' ? ' ← ' : ' → ';
         this.setState({showWeekends: !this.state.showWeekends});
+        this.setState({hideWeekendsBtnContent: a});
     }
+
 
     render() {
 
@@ -187,7 +191,11 @@ class MonthTable extends Component {
         }
 
         return (
-            <div><Button className="btn btn-info" onClick={this.toggleWeekend}>Hide weekends</Button>
+            <div>
+                <div className="btn-row flex-right">
+                    <Button className="btn btn-info"
+                            onClick={this.toggleWeekend}>{this.state.hideWeekendsBtnContent}</Button>
+                </div>
                 <Table responsive className="calendar">
                     <thead>
                     <tr>
