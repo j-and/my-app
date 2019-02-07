@@ -10,6 +10,8 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import locale_en from 'react-intl/locale-data/en';
 import locale_ru from 'react-intl/locale-data/ru';
 import Button from 'react-bootstrap/lib/Button';
+import ruTranslations  from "./translations/ru.json";
+import enTranslations  from "./translations/en.json";
 
 
 addLocaleData([...locale_en, ...locale_ru]);
@@ -21,24 +23,42 @@ class App extends Component {
         super(props);
         this.state = {
             isOpen: '',//true
+            locale: 'ru'
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.setEnLocale = this.setEnLocale.bind(this);
+        this.setRuLocale = this.setRuLocale.bind(this);
+        this.messages = {
+            en: enTranslations,
+            ru: ruTranslations
+        };
 
     }
 
     toggleModal() {
-        // this.setState({
-        //     isOpen: !this.state.isOpen
-        // });
-        //document.documentElement.lang = 'ru';
-        // this.forceUpdate();
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
+    setEnLocale() {
+        this.setState({
+            locale: 'en'
+        });
+    }
+
+    setRuLocale() {
+        this.setState({
+            locale: 'ru'
+        });
     }
 
     render() {
         return (
-            <IntlProvider>
-               <div>
-<Button onClick={this.toggleModal}>RU</Button>
+            <IntlProvider locale={this.state.locale} messages={this.messages[this.state.locale]}>
+                <div>
+                    <button onClick={this.setEnLocale}>EN</button>
+                    <button onClick={this.setRuLocale}>RU</button>
                     <h1 className="App-title">
                         <FormattedMessage id="app.title"
                                           defaultMessage="Welcome to {what}"

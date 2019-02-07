@@ -58,33 +58,30 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _reactIntl = __webpack_require__(345);
-
-	var _ru = __webpack_require__(370);
-
-	var _ru2 = _interopRequireDefault(_ru);
-
-	var _en = __webpack_require__(371);
-
-	var _en2 = _interopRequireDefault(_en);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var messages = {
-	    'ru': _ru2.default,
-	    'en': _en2.default
-	};
-	var language = navigator.language.split(/[-_]/)[0]; //'ru';
+	// import {addLocaleData, IntlProvider} from 'react-intl';
+	//
+	// import messages_ru from "./translations/ru.json";
+	// import messages_en from "./translations/en.json";
+	//
+	// const messages = {
+	//     'ru': messages_ru,
+	//     'en': messages_en
+	// };
+	// const language = navigator.language.split(/[-_]/)[0];//'ru';
 
 	(0, _reactDom.hydrate)(_react2.default.createElement(
-	    _reactIntl.IntlProvider,
-	    { locale: language, messages: messages[language] },
-	    _react2.default.createElement(
-	        _reactRouterDom.BrowserRouter,
-	        null,
-	        _react2.default.createElement(_index2.default, null)
-	    )
+	    _reactRouterDom.BrowserRouter,
+	    null,
+	    _react2.default.createElement(_index2.default, null)
 	), document.getElementById('root'));
+
+	// <IntlProvider locale={language} messages={messages[language]}>
+	//     <BrowserRouter>
+	//         <App/>
+	//     </BrowserRouter>
+	// </IntlProvider>,
 
 /***/ }),
 /* 1 */
@@ -24438,6 +24435,14 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _ru3 = __webpack_require__(370);
+
+	var _ru4 = _interopRequireDefault(_ru3);
+
+	var _en3 = __webpack_require__(371);
+
+	var _en4 = _interopRequireDefault(_en3);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24459,9 +24464,16 @@
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '' //true
+	            isOpen: '', //true
+	            locale: 'ru'
 	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
+	        _this.setEnLocale = _this.setEnLocale.bind(_this);
+	        _this.setRuLocale = _this.setRuLocale.bind(_this);
+	        _this.messages = {
+	            en: _en4.default,
+	            ru: _ru4.default
+	        };
 
 	        return _this;
 	    }
@@ -24472,21 +24484,40 @@
 	            // this.setState({
 	            //     isOpen: !this.state.isOpen
 	            // });
-	            document.documentElement.lang = 'ru';
+	            //document.documentElement.lang = 'ru';
 	            // this.forceUpdate();
+	        }
+	    }, {
+	        key: 'setEnLocale',
+	        value: function setEnLocale() {
+	            this.setState({
+	                locale: 'en'
+	            });
+	        }
+	    }, {
+	        key: 'setRuLocale',
+	        value: function setRuLocale() {
+	            this.setState({
+	                locale: 'ru'
+	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactIntl.IntlProvider,
-	                null,
+	                { locale: this.state.locale, messages: this.messages[this.state.locale] },
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    _react2.default.createElement(
-	                        _Button2.default,
-	                        { onClick: this.toggleModal },
+	                        'button',
+	                        { onClick: this.setEnLocale },
+	                        'EN'
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: this.setRuLocale },
 	                        'RU'
 	                    ),
 	                    _react2.default.createElement(

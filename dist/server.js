@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(31);
+	var _template = __webpack_require__(33);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(32);
+	var bodyParser = __webpack_require__(34);
 
-	var express = __webpack_require__(33);
+	var express = __webpack_require__(35);
 	var server = express();
-	var mysql = __webpack_require__(34);
+	var mysql = __webpack_require__(36);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -404,6 +404,14 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _ru3 = __webpack_require__(31);
+
+	var _ru4 = _interopRequireDefault(_ru3);
+
+	var _en3 = __webpack_require__(32);
+
+	var _en4 = _interopRequireDefault(_en3);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -425,9 +433,16 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '' //true
+	            isOpen: '', //true
+	            locale: 'ru'
 	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
+	        _this.setEnLocale = _this.setEnLocale.bind(_this);
+	        _this.setRuLocale = _this.setRuLocale.bind(_this);
+	        _this.messages = {
+	            en: _en4.default,
+	            ru: _ru4.default
+	        };
 
 	        return _this;
 	    }
@@ -438,21 +453,40 @@ module.exports =
 	            // this.setState({
 	            //     isOpen: !this.state.isOpen
 	            // });
-	            document.documentElement.lang = 'ru';
+	            //document.documentElement.lang = 'ru';
 	            // this.forceUpdate();
+	        }
+	    }, {
+	        key: 'setEnLocale',
+	        value: function setEnLocale() {
+	            this.setState({
+	                locale: 'en'
+	            });
+	        }
+	    }, {
+	        key: 'setRuLocale',
+	        value: function setRuLocale() {
+	            this.setState({
+	                locale: 'ru'
+	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactIntl.IntlProvider,
-	                null,
+	                { locale: this.state.locale, messages: this.messages[this.state.locale] },
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    _react2.default.createElement(
-	                        _Button2.default,
-	                        { onClick: this.toggleModal },
+	                        'button',
+	                        { onClick: this.setEnLocale },
+	                        'EN'
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: this.setRuLocale },
 	                        'RU'
 	                    ),
 	                    _react2.default.createElement(
@@ -2443,6 +2477,18 @@ module.exports =
 /* 31 */
 /***/ (function(module, exports) {
 
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты"}
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients"}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -2457,19 +2503,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");
