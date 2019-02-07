@@ -2376,6 +2376,12 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactIntl = __webpack_require__(24);
+
+	var _moment = __webpack_require__(11);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
 	var _Button = __webpack_require__(6);
 
 	var _Button2 = _interopRequireDefault(_Button);
@@ -2414,12 +2420,15 @@ module.exports =
 	                        onClick: function onClick() {
 	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 1 ? 12 : _this2.props.currentMonth - 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear - 1 : _this2.props.currentYear);
 	                        } },
-	                    'Previous'
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.previous', defaultMessage: 'Previous', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", { month: "long" }),
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.' + this.props.currentMonth.toString(),
+	                        defaultMessage: 'Clients',
+	                        description: '',
+	                        values: (0, _moment2.default)(new Date(this.props.currentYear, this.props.currentMonth, 0)).format('MMMM') }),
 	                    '/ ',
 	                    this.props.currentYear
 	                ),
@@ -2429,7 +2438,7 @@ module.exports =
 	                        onClick: function onClick() {
 	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 12 ? 1 : _this2.props.currentMonth + 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear + 1 : _this2.props.currentYear);
 	                        } },
-	                    'Next'
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.next', defaultMessage: 'Next', description: '' })
 	                )
 	            );
 	        }
@@ -2439,6 +2448,11 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = MonthNavigation;
+	//
+	// <FormattedMessage id="calendar.test"
+	//                   defaultMessage="Clients"
+	//                   description=""
+	//                   values={{ month:  new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", {month: "long"})} }/>
 
 /***/ }),
 /* 24 */
@@ -2486,13 +2500,13 @@ module.exports =
 /* 31 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь"}
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье"}
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday"}
 
 /***/ }),
 /* 33 */
