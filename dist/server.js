@@ -400,6 +400,10 @@ module.exports =
 
 	var _ru2 = _interopRequireDefault(_ru);
 
+	var _Button = __webpack_require__(6);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -431,19 +435,26 @@ module.exports =
 	    _createClass(App, [{
 	        key: 'toggleModal',
 	        value: function toggleModal() {
-	            this.setState({
-	                isOpen: !this.state.isOpen
-	            });
+	            // this.setState({
+	            //     isOpen: !this.state.isOpen
+	            // });
+	            document.documentElement.lang = 'ru';
+	            // this.forceUpdate();
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactIntl.IntlProvider,
-	                { locale: 'en' },
+	                null,
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
+	                    _react2.default.createElement(
+	                        _Button2.default,
+	                        { onClick: this.toggleModal },
+	                        'RU'
+	                    ),
 	                    _react2.default.createElement(
 	                        'h1',
 	                        { className: 'App-title' },
@@ -1290,9 +1301,9 @@ module.exports =
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.LocaleContext = undefined;
+	exports.FamilyConsumer = exports.FamilyProvider = undefined;
 
 	var _react = __webpack_require__(1);
 
@@ -1300,52 +1311,10 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LocaleContext = exports.LocaleContext = _react2.default.createContext({
-	    theme: 'themes.dark',
-	    toggleTheme: function toggleTheme() {}
-	});
+	var FamilyContext = _react2.default.createContext({});
 
-	// class LocaleProvider extends React.Component {
-	//     constructor(props) {
-	//         super(props);
-	//        
-	//         // this.changeLocale = () => {
-	//         //     this.setState(state => {
-	//         //         const newLocale = state.locale === 'en' ? 'fr' : 'en';
-	//         //         alert('newLocale='+newLocale);
-	//         //         return {
-	//         //             locale: newLocale
-	//         //         };
-	//         //     });
-	//         //   
-	//         // };
-	//        
-	//         this.state = {
-	//             locale: 'en',
-	//             changeLocale: this.changeLocale
-	//         };
-	//     }
-	//
-	//     render() {
-	//         return (
-	//             <LocaleContext.Provider value={this.state}>
-	//                  {this.props.children}
-	//             </LocaleContext.Provider>
-	//         );
-	//     }
-	// }
-
-	// export default LocaleProvider;
-
-
-	// <LocaleContext.Provider value={{
-	//             state:this.state,
-	//             changeLocale: e => this.setState(e.target.value)
-	//             }}>
-	//     {this.props.children}
-	// </LocaleContext.Provider>
-
-	// {state: this.state, changeLocale: this.changeLocale}
+	var FamilyProvider = exports.FamilyProvider = FamilyContext.Provider;
+	var FamilyConsumer = exports.FamilyConsumer = FamilyContext.Consumer;
 
 /***/ }),
 /* 16 */

@@ -9,6 +9,7 @@ import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import locale_en from 'react-intl/locale-data/en';
 import locale_ru from 'react-intl/locale-data/ru';
+import Button from 'react-bootstrap/lib/Button';
 
 
 addLocaleData([...locale_en, ...locale_ru]);
@@ -26,16 +27,18 @@ class App extends Component {
     }
 
     toggleModal() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+        // this.setState({
+        //     isOpen: !this.state.isOpen
+        // });
+        //document.documentElement.lang = 'ru';
+        // this.forceUpdate();
     }
 
     render() {
         return (
-            <IntlProvider locale="en">
-                <div>
-
+            <IntlProvider>
+               <div>
+<Button onClick={this.toggleModal}>RU</Button>
                     <h1 className="App-title">
                         <FormattedMessage id="app.title"
                                           defaultMessage="Welcome to {what}"
