@@ -59,19 +59,6 @@ class App extends Component {
                 <div>
                     <button onClick={this.setEnLocale}>EN</button>
                     <button onClick={this.setRuLocale}>RU</button>
-                    <h1 className="App-title">
-                        <FormattedMessage id="app.title"
-                                          defaultMessage="Welcome to {what}"
-                                          description="Welcome header on app main page"
-                                          values={{ what: 'react-intl' }}/>
-                    </h1>
-
-                    <h2>
-                        <FormattedMessage id="app.intro"
-                                          defaultMessage="Welcome to {what}"
-                                          description="Press {what}"
-                                          values={{ what: 'logo' }}/>
-                    </h2>
 
                     <Navbar>
                         <Navbar.Header>
@@ -80,8 +67,14 @@ class App extends Component {
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav>
-                            <NavItem href="/">Home</NavItem>
-                            <NavItem href="/clients">Clients</NavItem>
+                            <NavItem href="/"> <FormattedMessage id="nav.home"
+                                                                     defaultMessage="Home"
+                                                                     description=""
+                                                                     values={{ what: 'logo' }}/></NavItem>
+                            <NavItem href="/clients"><FormattedMessage id="nav.clients"
+                                                                       defaultMessage="Clients"
+                                                                       description=""
+                                                                       values={{ what: 'logo' }}/></NavItem>
                         </Nav>
                     </Navbar>
 
@@ -97,3 +90,17 @@ class App extends Component {
 }
 
 export default App;
+
+// <h1 className="App-title">
+//     <FormattedMessage id="app.title"
+//                       defaultMessage="Welcome to {what}"
+//                       description="Welcome header on app main page"
+//                       values={{ what: 'react-intl' }}/>
+// </h1>
+//
+// <h2>
+// <FormattedMessage id="app.intro"
+// defaultMessage="Welcome to {what}"
+// description="Press {what}"
+// values={{ what: 'logo' }}/>
+// </h2>

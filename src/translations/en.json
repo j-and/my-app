@@ -2,6 +2,25 @@
   "app.title": "Welcome to react-intl",
   "app.intro": "To get started, edit <code>src/App.js</code> and save to reload.",
   "nav.home": "Home",
-  "nav.clients": "Clients"
-
+  "nav.clients": "Clients",
+  "calendar.test": "calendar",
+  "calendar.january": "January",
+  "calendar.february": "February",
+  "calendar.march": "March",
+  "calendar.april": "April",
+  "calendar.may": "May",
+  "calendar.june": "June",
+  "calendar.july": "July",
+  "calendar.august": "August",
+  "calendar.september": "September",
+  "calendar.october": "October",
+  "calendar.november": "November",
+  "calendar.december": "December",
+  "calendar.monday": "Monday",
+  "calendar.tuesday": "Tuesday",
+  "calendar.wednesday": "Wednesday",
+  "calendar.thursday": "Thursday",
+  "calendar.friday": "Friday",
+  "calendar.saturday": "Saturday",
+  "calendar.sunday": "Sunday"
 }

@@ -376,21 +376,21 @@ module.exports =
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(24);
+	var _reactRouterDom = __webpack_require__(25);
 
-	var _Navbar = __webpack_require__(25);
+	var _Navbar = __webpack_require__(26);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(26);
+	var _Nav = __webpack_require__(27);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(27);
+	var _NavItem = __webpack_require__(28);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _reactIntl = __webpack_require__(28);
+	var _reactIntl = __webpack_require__(24);
 
 	var _en = __webpack_require__(29);
 
@@ -450,11 +450,9 @@ module.exports =
 	    _createClass(App, [{
 	        key: 'toggleModal',
 	        value: function toggleModal() {
-	            // this.setState({
-	            //     isOpen: !this.state.isOpen
-	            // });
-	            //document.documentElement.lang = 'ru';
-	            // this.forceUpdate();
+	            this.setState({
+	                isOpen: !this.state.isOpen
+	            });
 	        }
 	    }, {
 	        key: 'setEnLocale',
@@ -490,22 +488,6 @@ module.exports =
 	                        'RU'
 	                    ),
 	                    _react2.default.createElement(
-	                        'h1',
-	                        { className: 'App-title' },
-	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'app.title',
-	                            defaultMessage: 'Welcome to {what}',
-	                            description: 'Welcome header on app main page',
-	                            values: { what: 'react-intl' } })
-	                    ),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'app.intro',
-	                            defaultMessage: 'Welcome to {what}',
-	                            description: 'Press {what}',
-	                            values: { what: 'logo' } })
-	                    ),
-	                    _react2.default.createElement(
 	                        _Navbar2.default,
 	                        null,
 	                        _react2.default.createElement(
@@ -527,12 +509,19 @@ module.exports =
 	                            _react2.default.createElement(
 	                                _NavItem2.default,
 	                                { href: '/' },
-	                                'Home'
+	                                ' ',
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'nav.home',
+	                                    defaultMessage: 'Home',
+	                                    description: '',
+	                                    values: { what: 'logo' } })
 	                            ),
 	                            _react2.default.createElement(
 	                                _NavItem2.default,
 	                                { href: '/clients' },
-	                                'Clients'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'nav.clients',
+	                                    defaultMessage: 'Clients',
+	                                    description: '',
+	                                    values: { what: 'logo' } })
 	                            )
 	                        )
 	                    ),
@@ -551,6 +540,20 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = App;
+
+	// <h1 className="App-title">
+	//     <FormattedMessage id="app.title"
+	//                       defaultMessage="Welcome to {what}"
+	//                       description="Welcome header on app main page"
+	//                       values={{ what: 'react-intl' }}/>
+	// </h1>
+	//
+	// <h2>
+	// <FormattedMessage id="app.intro"
+	// defaultMessage="Welcome to {what}"
+	// description="Press {what}"
+	// values={{ what: 'logo' }}/>
+	// </h2>
 
 /***/ }),
 /* 5 */
@@ -1378,6 +1381,8 @@ module.exports =
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
+	var _reactIntl = __webpack_require__(24);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1450,6 +1455,10 @@ module.exports =
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.test',
+	                    defaultMessage: 'Clients',
+	                    description: '',
+	                    values: { what: 'logo' } }),
 	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount,
 	                    currentMonth: this.state.currentDate.currentMonth,
 	                    currentYear: this.state.currentDate.currentYear }),
@@ -2435,31 +2444,31 @@ module.exports =
 /* 24 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-router-dom");
+	module.exports = require("react-intl");
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Navbar");
+	module.exports = require("react-router-dom");
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Nav");
+	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/NavItem");
+	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-intl");
+	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
 /* 29 */
@@ -2477,13 +2486,13 @@ module.exports =
 /* 31 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты"}
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь"}
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar"}
 
 /***/ }),
 /* 33 */
