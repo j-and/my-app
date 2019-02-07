@@ -13,11 +13,11 @@ class MonthNavigation extends Component {
 
     render() {
         return (
-        
+
             <div className="nav-centered">
                 <Button className="btn btn-info"
-                    onClick={() => {this.props.updateMonthCount(this.props.currentMonth===1 ? 12 : this.props.currentMonth-1,this.props.currentMonth===12 ? this.props.currentYear-1 : this.props.currentYear)}}>
-                     <FormattedMessage id="calendar.previous" defaultMessage="Previous" description=""/>
+                        onClick={() => {this.props.updateMonthCount(this.props.currentMonth===1 ? 12 : this.props.currentMonth-1,this.props.currentMonth===12 ? this.props.currentYear-1 : this.props.currentYear)}}>
+                    <FormattedMessage id="calendar.previous" defaultMessage="Previous" description=""/>
                 </Button>
                 <h2>
                     <FormattedMessage id={'calendar.'+this.props.currentMonth.toString()}
@@ -27,7 +27,7 @@ class MonthNavigation extends Component {
                     / {this.props.currentYear}
                 </h2>
                 <Button className="btn btn-info"
-                    onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth===12 ? 1 : this.props.currentMonth+1,this.props.currentMonth===12 ? this.props.currentYear+1 : this.props.currentYear)}}>
+                        onClick={() =>{ this.props.updateMonthCount(this.props.currentMonth===12 ? 1 : this.props.currentMonth+1,this.props.currentMonth===12 ? this.props.currentYear+1 : this.props.currentYear)}}>
                     <FormattedMessage id="calendar.next" defaultMessage="Next" description=""/>
                 </Button>
             </div>
@@ -35,8 +35,3 @@ class MonthNavigation extends Component {
     }
 }
 export default MonthNavigation;
-//
-// <FormattedMessage id="calendar.test"
-//                   defaultMessage="Clients"
-//                   description=""
-//                   values={{ month:  new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", {month: "long"})} }/>

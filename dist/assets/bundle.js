@@ -24404,7 +24404,7 @@
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _reactIntl = __webpack_require__(317);
+	var _reactIntl = __webpack_require__(315);
 
 	var _en = __webpack_require__(368);
 
@@ -45158,15 +45158,15 @@
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(315);
+	var _LoginForm = __webpack_require__(338);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(316);
+	var _MonthNavigation = __webpack_require__(339);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
-	var _reactIntl = __webpack_require__(317);
+	var _reactIntl = __webpack_require__(315);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45286,6 +45286,8 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _reactIntl = __webpack_require__(315);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45303,7 +45305,7 @@
 	        var _this = _possibleConstructorReturn(this, (MonthTable.__proto__ || Object.getPrototypeOf(MonthTable)).call(this, props));
 
 	        _this.state = {
-	            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+	            daysOfWeek: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
 	            daysArray: [],
 	            showWeekends: true,
 	            hideWeekendsBtnContent: ' → ',
@@ -45543,15 +45545,15 @@
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,
-	                            this.state.trHead.map(function (day, index) {
+	                            this.state.daysOfWeek.map(function (day, index) {
 	                                return index < 5 ? _react2.default.createElement(
 	                                    'th',
 	                                    null,
-	                                    day
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
 	                                ) : _react2.default.createElement(
 	                                    'th',
 	                                    { className: 'day_weekend' },
-	                                    day
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
 	                                );
 	                            })
 	                        )
@@ -46022,221 +46024,6 @@
 /* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _FormControl = __webpack_require__(174);
-
-	var _FormControl2 = _interopRequireDefault(_FormControl);
-
-	var _Button = __webpack_require__(72);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	var _methods = __webpack_require__(178);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var LoginForm = function (_Component) {
-	    _inherits(LoginForm, _Component);
-
-	    function LoginForm(props) {
-	        _classCallCheck(this, LoginForm);
-
-	        var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
-
-	        _this.state = {
-	            name: '',
-	            password: '',
-	            servantData: {},
-	            isOpen: false //true
-
-	        };
-	        _this.closeLoginForm = _this.closeLoginForm.bind(_this);
-	        _this.handleChange = _this.handleChange.bind(_this);
-	        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        return _this;
-	    }
-
-	    _createClass(LoginForm, [{
-	        key: 'closeLoginForm',
-	        value: function closeLoginForm() {}
-	    }, {
-	        key: 'handleChange',
-	        value: function handleChange(event) {
-	            this.setState({ name: event.target.value });
-	        }
-	    }, {
-	        key: 'handlePasswordChange',
-	        value: function handlePasswordChange(event) {
-	            this.setState({ password: event.target.value });
-	        }
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(event) {
-	            event.preventDefault();
-	            if (this.state.name && this.state.password) {
-	                var servantDataArray = this.state.servantData;
-	                servantDataArray.name = this.state.name;
-	                servantDataArray.password = this.state.password;
-	                this.setState({ servantData: servantDataArray });
-	                //sendData(this.state.servantData,"/addRegister");
-	                this.refs.registerForm.reset();
-	                this.setState({ isOpen: false });
-	            } else {
-	                alert("Enter name");
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-
-	            if (!this.state.isOpen) {
-	                return null;
-	            }
-
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'login_overlay' },
-	                    _react2.default.createElement(
-	                        'form',
-	                        { className: 'login_form', onSubmit: this.handleSubmit, ref: 'registerForm' },
-	                        _react2.default.createElement(_FormControl2.default, { type: 'text', value: this.state.value, onChange: this.handleChange, placeholder: 'Name' }),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'password', value: this.state.value, onChange: this.handlePasswordChange,
-	                            placeholder: 'Password' }),
-	                        _react2.default.createElement(
-	                            _Button2.default,
-	                            { type: 'submit', onClick: this.handleSubmit },
-	                            'Login'
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return LoginForm;
-	}(_react.Component);
-
-	exports.default = LoginForm;
-
-/***/ }),
-/* 316 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactIntl = __webpack_require__(317);
-
-	var _moment = __webpack_require__(180);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	var _Button = __webpack_require__(72);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var MonthNavigation = function (_Component) {
-	    _inherits(MonthNavigation, _Component);
-
-	    function MonthNavigation(props) {
-	        _classCallCheck(this, MonthNavigation);
-
-	        var _this = _possibleConstructorReturn(this, (MonthNavigation.__proto__ || Object.getPrototypeOf(MonthNavigation)).call(this, props));
-
-	        _this.state = {};
-	        return _this;
-	    }
-
-	    _createClass(MonthNavigation, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'nav-centered' },
-	                _react2.default.createElement(
-	                    _Button2.default,
-	                    { className: 'btn btn-info',
-	                        onClick: function onClick() {
-	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 1 ? 12 : _this2.props.currentMonth - 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear - 1 : _this2.props.currentYear);
-	                        } },
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.previous', defaultMessage: 'Previous', description: '' })
-	                ),
-	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.' + this.props.currentMonth.toString(),
-	                        defaultMessage: 'Clients',
-	                        description: '',
-	                        values: (0, _moment2.default)(new Date(this.props.currentYear, this.props.currentMonth, 0)).format('MMMM') }),
-	                    '/ ',
-	                    this.props.currentYear
-	                ),
-	                _react2.default.createElement(
-	                    _Button2.default,
-	                    { className: 'btn btn-info',
-	                        onClick: function onClick() {
-	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 12 ? 1 : _this2.props.currentMonth + 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear + 1 : _this2.props.currentYear);
-	                        } },
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.next', defaultMessage: 'Next', description: '' })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return MonthNavigation;
-	}(_react.Component);
-
-	exports.default = MonthNavigation;
-	//
-	// <FormattedMessage id="calendar.test"
-	//                   defaultMessage="Clients"
-	//                   description=""
-	//                   values={{ month:  new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", {month: "long"})} }/>
-
-/***/ }),
-/* 317 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {/*
 	 * Copyright 2019, Yahoo Inc.
 	 * Copyrights licensed under the New BSD License.
@@ -46249,15 +46036,15 @@
 
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-	var allLocaleData = _interopDefault(__webpack_require__(318));
-	var IntlMessageFormat = _interopDefault(__webpack_require__(319));
-	var IntlRelativeFormat = _interopDefault(__webpack_require__(329));
+	var allLocaleData = _interopDefault(__webpack_require__(316));
+	var IntlMessageFormat = _interopDefault(__webpack_require__(317));
+	var IntlRelativeFormat = _interopDefault(__webpack_require__(327));
 	var PropTypes = _interopDefault(__webpack_require__(28));
 	var React = __webpack_require__(1);
 	var React__default = _interopDefault(React);
-	var hoistNonReactStatics = _interopDefault(__webpack_require__(336));
+	var hoistNonReactStatics = _interopDefault(__webpack_require__(334));
 	var invariant = _interopDefault(__webpack_require__(38));
-	var memoizeIntlConstructor = _interopDefault(__webpack_require__(337));
+	var memoizeIntlConstructor = _interopDefault(__webpack_require__(335));
 
 	// GENERATED FILE
 	var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
@@ -48043,24 +47830,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 318 */
+/* 316 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }),
-/* 319 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* jshint node:true */
 
 	'use strict';
 
-	var IntlMessageFormat = __webpack_require__(320)['default'];
+	var IntlMessageFormat = __webpack_require__(318)['default'];
 
 	// Add all locale data to `IntlMessageFormat`. This module will be ignored when
 	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(328);
+	__webpack_require__(326);
 
 	// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
 	// locale data registered, and with English set as the default locale. Define
@@ -48070,13 +47857,13 @@
 
 
 /***/ }),
-/* 320 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$core$$ = __webpack_require__(321), src$en$$ = __webpack_require__(327);
+	var src$core$$ = __webpack_require__(319), src$en$$ = __webpack_require__(325);
 
 	src$core$$["default"].__addLocaleData(src$en$$["default"]);
 	src$core$$["default"].defaultLocale = 'en';
@@ -48086,7 +47873,7 @@
 	//# sourceMappingURL=main.js.map
 
 /***/ }),
-/* 321 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -48098,7 +47885,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$utils$$ = __webpack_require__(322), src$es5$$ = __webpack_require__(323), src$compiler$$ = __webpack_require__(324), intl$messageformat$parser$$ = __webpack_require__(325);
+	var src$utils$$ = __webpack_require__(320), src$es5$$ = __webpack_require__(321), src$compiler$$ = __webpack_require__(322), intl$messageformat$parser$$ = __webpack_require__(323);
 	exports["default"] = MessageFormat;
 
 	// -- MessageFormat --------------------------------------------------------
@@ -48368,7 +48155,7 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ }),
-/* 322 */
+/* 320 */
 /***/ (function(module, exports) {
 
 	/*
@@ -48405,7 +48192,7 @@
 	//# sourceMappingURL=utils.js.map
 
 /***/ }),
-/* 323 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -48417,7 +48204,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$utils$$ = __webpack_require__(322);
+	var src$utils$$ = __webpack_require__(320);
 
 	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
 	// Copyright 2013 Andy Earnshaw, MIT License
@@ -48460,7 +48247,7 @@
 	//# sourceMappingURL=es5.js.map
 
 /***/ }),
-/* 324 */
+/* 322 */
 /***/ (function(module, exports) {
 
 	/*
@@ -48674,17 +48461,17 @@
 	//# sourceMappingURL=compiler.js.map
 
 /***/ }),
-/* 325 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports = module.exports = __webpack_require__(326)['default'];
+	exports = module.exports = __webpack_require__(324)['default'];
 	exports['default'] = exports;
 
 
 /***/ }),
-/* 326 */
+/* 324 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -50090,7 +49877,7 @@
 	//# sourceMappingURL=parser.js.map
 
 /***/ }),
-/* 327 */
+/* 325 */
 /***/ (function(module, exports) {
 
 	// GENERATED FILE
@@ -50100,24 +49887,24 @@
 	//# sourceMappingURL=en.js.map
 
 /***/ }),
-/* 328 */
+/* 326 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }),
-/* 329 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* jshint node:true */
 
 	'use strict';
 
-	var IntlRelativeFormat = __webpack_require__(330)['default'];
+	var IntlRelativeFormat = __webpack_require__(328)['default'];
 
 	// Add all locale data to `IntlRelativeFormat`. This module will be ignored when
 	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(335);
+	__webpack_require__(333);
 
 	// Re-export `IntlRelativeFormat` as the CommonJS default exports with all the
 	// locale data registered, and with English set as the default locale. Define
@@ -50127,13 +49914,13 @@
 
 
 /***/ }),
-/* 330 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* jslint esnext: true */
 
 	"use strict";
-	var src$core$$ = __webpack_require__(331), src$en$$ = __webpack_require__(334);
+	var src$core$$ = __webpack_require__(329), src$en$$ = __webpack_require__(332);
 
 	src$core$$["default"].__addLocaleData(src$en$$["default"]);
 	src$core$$["default"].defaultLocale = 'en';
@@ -50143,7 +49930,7 @@
 	//# sourceMappingURL=main.js.map
 
 /***/ }),
-/* 331 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -50155,7 +49942,7 @@
 	/* jslint esnext: true */
 
 	"use strict";
-	var intl$messageformat$$ = __webpack_require__(319), src$diff$$ = __webpack_require__(332), src$es5$$ = __webpack_require__(333);
+	var intl$messageformat$$ = __webpack_require__(317), src$diff$$ = __webpack_require__(330), src$es5$$ = __webpack_require__(331);
 	exports["default"] = RelativeFormat;
 
 	// -----------------------------------------------------------------------------
@@ -50455,7 +50242,7 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ }),
-/* 332 */
+/* 330 */
 /***/ (function(module, exports) {
 
 	/*
@@ -50513,7 +50300,7 @@
 	//# sourceMappingURL=diff.js.map
 
 /***/ }),
-/* 333 */
+/* 331 */
 /***/ (function(module, exports) {
 
 	/*
@@ -50594,7 +50381,7 @@
 	//# sourceMappingURL=es5.js.map
 
 /***/ }),
-/* 334 */
+/* 332 */
 /***/ (function(module, exports) {
 
 	// GENERATED FILE
@@ -50604,13 +50391,13 @@
 	//# sourceMappingURL=en.js.map
 
 /***/ }),
-/* 335 */
+/* 333 */
 /***/ (function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }),
-/* 336 */
+/* 334 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -50684,17 +50471,17 @@
 
 
 /***/ }),
-/* 337 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports = module.exports = __webpack_require__(338)['default'];
+	exports = module.exports = __webpack_require__(336)['default'];
 	exports['default'] = exports;
 
 
 /***/ }),
-/* 338 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -50706,7 +50493,7 @@
 	/* jshint esnext: true */
 
 	"use strict";
-	var src$es5$$ = __webpack_require__(339);
+	var src$es5$$ = __webpack_require__(337);
 	exports["default"] = createFormatCache;
 
 	// -----------------------------------------------------------------------------
@@ -50782,7 +50569,7 @@
 	//# sourceMappingURL=memoizer.js.map
 
 /***/ }),
-/* 339 */
+/* 337 */
 /***/ (function(module, exports) {
 
 	/*
@@ -50865,6 +50652,216 @@
 	exports.bind = bind, exports.defineProperty = defineProperty, exports.objCreate = objCreate;
 
 	//# sourceMappingURL=es5.js.map
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _FormControl = __webpack_require__(174);
+
+	var _FormControl2 = _interopRequireDefault(_FormControl);
+
+	var _Button = __webpack_require__(72);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _methods = __webpack_require__(178);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LoginForm = function (_Component) {
+	    _inherits(LoginForm, _Component);
+
+	    function LoginForm(props) {
+	        _classCallCheck(this, LoginForm);
+
+	        var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
+
+	        _this.state = {
+	            name: '',
+	            password: '',
+	            servantData: {},
+	            isOpen: false //true
+
+	        };
+	        _this.closeLoginForm = _this.closeLoginForm.bind(_this);
+	        _this.handleChange = _this.handleChange.bind(_this);
+	        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
+	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(LoginForm, [{
+	        key: 'closeLoginForm',
+	        value: function closeLoginForm() {}
+	    }, {
+	        key: 'handleChange',
+	        value: function handleChange(event) {
+	            this.setState({ name: event.target.value });
+	        }
+	    }, {
+	        key: 'handlePasswordChange',
+	        value: function handlePasswordChange(event) {
+	            this.setState({ password: event.target.value });
+	        }
+	    }, {
+	        key: 'handleSubmit',
+	        value: function handleSubmit(event) {
+	            event.preventDefault();
+	            if (this.state.name && this.state.password) {
+	                var servantDataArray = this.state.servantData;
+	                servantDataArray.name = this.state.name;
+	                servantDataArray.password = this.state.password;
+	                this.setState({ servantData: servantDataArray });
+	                //sendData(this.state.servantData,"/addRegister");
+	                this.refs.registerForm.reset();
+	                this.setState({ isOpen: false });
+	            } else {
+	                alert("Enter name");
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            if (!this.state.isOpen) {
+	                return null;
+	            }
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'login_overlay' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'login_form', onSubmit: this.handleSubmit, ref: 'registerForm' },
+	                        _react2.default.createElement(_FormControl2.default, { type: 'text', value: this.state.value, onChange: this.handleChange, placeholder: 'Name' }),
+	                        _react2.default.createElement(_FormControl2.default, { type: 'password', value: this.state.value, onChange: this.handlePasswordChange,
+	                            placeholder: 'Password' }),
+	                        _react2.default.createElement(
+	                            _Button2.default,
+	                            { type: 'submit', onClick: this.handleSubmit },
+	                            'Login'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return LoginForm;
+	}(_react.Component);
+
+	exports.default = LoginForm;
+
+/***/ }),
+/* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactIntl = __webpack_require__(315);
+
+	var _moment = __webpack_require__(180);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Button = __webpack_require__(72);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MonthNavigation = function (_Component) {
+	    _inherits(MonthNavigation, _Component);
+
+	    function MonthNavigation(props) {
+	        _classCallCheck(this, MonthNavigation);
+
+	        var _this = _possibleConstructorReturn(this, (MonthNavigation.__proto__ || Object.getPrototypeOf(MonthNavigation)).call(this, props));
+
+	        _this.state = {};
+	        return _this;
+	    }
+
+	    _createClass(MonthNavigation, [{
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'nav-centered' },
+	                _react2.default.createElement(
+	                    _Button2.default,
+	                    { className: 'btn btn-info',
+	                        onClick: function onClick() {
+	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 1 ? 12 : _this2.props.currentMonth - 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear - 1 : _this2.props.currentYear);
+	                        } },
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.previous', defaultMessage: 'Previous', description: '' })
+	                ),
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.' + this.props.currentMonth.toString(),
+	                        defaultMessage: 'Clients',
+	                        description: '',
+	                        values: (0, _moment2.default)(new Date(this.props.currentYear, this.props.currentMonth, 0)).format('MMMM') }),
+	                    '/ ',
+	                    this.props.currentYear
+	                ),
+	                _react2.default.createElement(
+	                    _Button2.default,
+	                    { className: 'btn btn-info',
+	                        onClick: function onClick() {
+	                            _this2.props.updateMonthCount(_this2.props.currentMonth === 12 ? 1 : _this2.props.currentMonth + 1, _this2.props.currentMonth === 12 ? _this2.props.currentYear + 1 : _this2.props.currentYear);
+	                        } },
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.next', defaultMessage: 'Next', description: '' })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return MonthNavigation;
+	}(_react.Component);
+
+	exports.default = MonthNavigation;
 
 /***/ }),
 /* 340 */

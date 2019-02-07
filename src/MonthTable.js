@@ -4,13 +4,14 @@ import DayList from './DayList.js';
 
 import Table from 'react-bootstrap/lib/Table';
 import Button from 'react-bootstrap/lib/Button';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 class MonthTable extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            daysOfWeek: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
             daysArray: [],
             showWeekends: true,
             hideWeekendsBtnContent: ' → ',
@@ -200,8 +201,8 @@ class MonthTable extends Component {
                     <thead>
                     <tr>
                         {
-                            this.state.trHead.map(function (day, index) {
-                                return (index < 5) ? <th>{day}</th> : <th className="day_weekend">{day}</th>;
+                            this.state.daysOfWeek.map(function (day, index) {
+                                return (index < 5) ? <th><FormattedMessage id={"calendar."+day} defaultMessage={day} description=""/></th> : <th className="day_weekend"><FormattedMessage id={"calendar."+day} defaultMessage={day} description=""/></th>;
                             })
                         }
                     </tr>

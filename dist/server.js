@@ -390,7 +390,7 @@ module.exports =
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _reactIntl = __webpack_require__(24);
+	var _reactIntl = __webpack_require__(22);
 
 	var _en = __webpack_require__(29);
 
@@ -1373,15 +1373,15 @@ module.exports =
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(22);
+	var _LoginForm = __webpack_require__(23);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(23);
+	var _MonthNavigation = __webpack_require__(24);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
-	var _reactIntl = __webpack_require__(24);
+	var _reactIntl = __webpack_require__(22);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1501,6 +1501,8 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
+	var _reactIntl = __webpack_require__(22);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1518,7 +1520,7 @@ module.exports =
 	        var _this = _possibleConstructorReturn(this, (MonthTable.__proto__ || Object.getPrototypeOf(MonthTable)).call(this, props));
 
 	        _this.state = {
-	            trHead: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+	            daysOfWeek: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
 	            daysArray: [],
 	            showWeekends: true,
 	            hideWeekendsBtnContent: ' → ',
@@ -1758,15 +1760,15 @@ module.exports =
 	                        _react2.default.createElement(
 	                            'tr',
 	                            null,
-	                            this.state.trHead.map(function (day, index) {
+	                            this.state.daysOfWeek.map(function (day, index) {
 	                                return index < 5 ? _react2.default.createElement(
 	                                    'th',
 	                                    null,
-	                                    day
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
 	                                ) : _react2.default.createElement(
 	                                    'th',
 	                                    { className: 'day_weekend' },
-	                                    day
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
 	                                );
 	                            })
 	                        )
@@ -2241,6 +2243,12 @@ module.exports =
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-intl");
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2361,7 +2369,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2376,7 +2384,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactIntl = __webpack_require__(24);
+	var _reactIntl = __webpack_require__(22);
 
 	var _moment = __webpack_require__(11);
 
@@ -2448,17 +2456,6 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = MonthNavigation;
-	//
-	// <FormattedMessage id="calendar.test"
-	//                   defaultMessage="Clients"
-	//                   description=""
-	//                   values={{ month:  new Date(this.props.currentYear, this.props.currentMonth, 0).toLocaleString("en-us", {month: "long"})} }/>
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-intl");
 
 /***/ }),
 /* 25 */
