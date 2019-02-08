@@ -202,7 +202,11 @@ class MonthTable extends Component {
                     <tr>
                         {
                             this.state.daysOfWeek.map(function (day, index) {
-                                return (index < 5) ? <th><FormattedMessage id={"calendar."+day} defaultMessage={day} description=""/></th> : <th className="day_weekend"><FormattedMessage id={"calendar."+day} defaultMessage={day} description=""/></th>;
+                                return (index < 5) ?
+                                    <th><FormattedMessage id={"calendar."+day} defaultMessage={day} description=""/>
+                                    </th> : <th className="day_weekend"><FormattedMessage id={"calendar."+day}
+                                                                                          defaultMessage={day}
+                                                                                          description=""/></th>;
                             })
                         }
                     </tr>

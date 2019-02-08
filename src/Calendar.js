@@ -58,10 +58,6 @@ class Calendar extends Component {
 
         return (
             <div>
-                <FormattedMessage id="calendar.test"
-                                  defaultMessage="Clients"
-                                  description=""
-                                  values={{ what: 'logo' }}/>
                 <MonthNavigation updateMonthCount={this.updateMonthCount}
                                  currentMonth={this.state.currentDate.currentMonth}
                                  currentYear={this.state.currentDate.currentYear}/>

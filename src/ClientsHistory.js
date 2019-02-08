@@ -44,15 +44,16 @@ class ClientsHistory extends Component {
         var sortedArr = sortByKey(this.props.VISITS, 'datetime');
         return (
             <div>
-                <h2> <FormattedMessage id="client.ршыещкн" defaultMessage="Client history" description=""/></h2>
-                <label><FormattedMessage id="client.visits" defaultMessage="Visits of" description=""/> {this.props.client.name}</label>
+                <h2><FormattedMessage id="client.ршыещкн" defaultMessage="Client history" description=""/></h2>
+                <label><FormattedMessage id="client.visits" defaultMessage="Visits of"
+                                         description=""/> {this.props.client.name}</label>
                 <Table responsive>
                     <thead>
                     <tr>
-                    <th><FormattedMessage id="client.date" defaultMessage="Date" description=""/></th>
-                    <th><FormattedMessage id="client.status" defaultMessage="Status" description=""/></th>
-                    <th><FormattedMessage id="client.isPaid" defaultMessage="Is paid" description=""/></th>
-                        </tr>
+                        <th><FormattedMessage id="client.date" defaultMessage="Date" description=""/></th>
+                        <th><FormattedMessage id="client.status" defaultMessage="Status" description=""/></th>
+                        <th><FormattedMessage id="client.isPaid" defaultMessage="Is paid" description=""/></th>
+                    </tr>
                     </thead>
                     <tbody>
                     {Object.keys(sortedArr).map(function (key) {
