@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Button from 'react-bootstrap/lib/Button';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
 import {sendData} from './methods.js';
@@ -137,18 +138,18 @@ class ClientsCard extends Component {
         return (
             <div>
 
-                <h2> Clients card {client.name}</h2>
+                <h2> <FormattedMessage id="client.card" defaultMessage="Card of" description=""/> {client.name}</h2>
 
                 <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
-                    <label>Name</label>
+                    <label><FormattedMessage id="client.name" defaultMessage="Name" description=""/></label>
                     <FieldGroup required type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
                                 id="clientName" name="clientName"/>
                     <div className="col-xs-6 client_col_left">
-                        <label>Desease</label>
+                        <label><FormattedMessage id="client.desease" defaultMessage="Desease" description=""/></label>
                         <FieldGroup type="text" label="Desease" placeholder={client.desease}
                                     onChange={this.handleInputChange} id="clientDesease" name="clientDesease"/>
 
-                        <label>Date of birth</label>
+                        <label><FormattedMessage id="client.birthdate" defaultMessage="Date of birth" description=""/></label>
                         <FieldGroup type="date" label="Date of birth" className={birthdateDateInput}
                                     onChange={this.handleInputChange} id="clientBirthdate" name="clientBirthdate"/>
                         <FieldGroup type="text" label="Date of birth" className={birthdateTextInput}
@@ -156,18 +157,18 @@ class ClientsCard extends Component {
 
                     </div>
                     <div className="col-xs-6 client_col_right">
-                        <label>Phone</label>
+                        <label><FormattedMessage id="client.phone" defaultMessage="Mobile phone" description=""/></label>
                         <FieldGroup type="phone" label="Phone" placeholder={client.phone}
                                     onChange={this.handleInputChange} id="clientPhone" name="clientPhone"/>
-                        <label>Email</label>
+                        <label><FormattedMessage id="client.email" defaultMessage="Email" description=""/></label>
                         <FieldGroup type="email" label="Email address" placeholder={client.email}
                                     onChange={this.handleInputChange} id="clientEmail" name="clientEmail"/>
                     </div>
-                    <label>Description</label>
+                    <label><FormattedMessage id="client.description" defaultMessage="Coments" description=""/></label>
                     <FieldGroup componentClass="textarea" placeholder={client.description} rows="15"
                                 onChange={this.handleInputChange} id="clientDescription" name="clientDescription"/>
                     <Button bsStyle="success" type="submit" value="Add" className={showSaveBtn}>
-                        Save changes
+                        <FormattedMessage id="client.save" defaultMessage="Save changes" description=""/>
                     </Button>
                 </form>
             </div>

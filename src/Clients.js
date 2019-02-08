@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Button from 'react-bootstrap/lib/Button';
 import ClientsCard from './ClientsCard.js';
 import ClientsHistory from './ClientsHistory.js';
@@ -104,10 +105,10 @@ class Client extends Component {
                 <div className="col-sm-3"><ClientsList switchClient={this.switchClient} CLIENTS={this.state.CLIENTS}/>
                     <div className="btn-row">
                         <Button bsStyle="success" value="Add" onClick={(()=>{this.setState({editable:true});
-        this.setState({isAdded:true});this.setState({client:{}})})}>Add new</Button>
+        this.setState({isAdded:true});this.setState({client:{}})})}> <FormattedMessage id="client.add" defaultMessage="Add client" description=""/></Button>
                         <Button bsStyle="success" className={showEditBtn} value="Edit" onClick={(()=>{ this.setState({isAdded: false});
         this.setState({editable: true});this.fillForm()})}>
-                            Edit client
+                            <FormattedMessage id="client.edit" defaultMessage="Edit client" description=""/>
                         </Button>
                     </div>
                 </div>

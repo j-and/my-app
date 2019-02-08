@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Table from 'react-bootstrap/lib/Table';
 import Button from 'react-bootstrap/lib/Button';
 import {sortByKey} from './methods.js';
@@ -43,14 +44,14 @@ class ClientsHistory extends Component {
         var sortedArr = sortByKey(this.props.VISITS, 'datetime');
         return (
             <div>
-                <h2> Clients history</h2>
-                <label>Visits of {this.props.client.name}</label>
+                <h2> <FormattedMessage id="client.ршыещкн" defaultMessage="Client history" description=""/></h2>
+                <label><FormattedMessage id="client.visits" defaultMessage="Visits of" description=""/> {this.props.client.name}</label>
                 <Table responsive>
                     <thead>
                     <tr>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Is Paid</th>
+                    <th><FormattedMessage id="client.date" defaultMessage="Date" description=""/></th>
+                    <th><FormattedMessage id="client.status" defaultMessage="Status" description=""/></th>
+                    <th><FormattedMessage id="client.isPaid" defaultMessage="Is paid" description=""/></th>
                         </tr>
                     </thead>
                     <tbody>

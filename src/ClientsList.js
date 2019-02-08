@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {sortByKey} from './methods.js';
 import {LocaleContext}  from './Context';
 
@@ -22,7 +23,7 @@ class ClientsList extends Component {
         );
         return (
             <div>
-                <h2> Clients list</h2>
+                <h2><FormattedMessage id="client.list" defaultMessage="Client list" description=""/></h2>
                 <ul className='clients_list'>
                     {listItems}
                 </ul>

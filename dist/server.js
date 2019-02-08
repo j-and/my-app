@@ -372,7 +372,7 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(16);
+	var _Calendar = __webpack_require__(17);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
@@ -390,7 +390,7 @@ module.exports =
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _reactIntl = __webpack_require__(22);
+	var _reactIntl = __webpack_require__(6);
 
 	var _en = __webpack_require__(29);
 
@@ -400,7 +400,7 @@ module.exports =
 
 	var _ru2 = _interopRequireDefault(_ru);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -571,23 +571,25 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(6);
+	var _reactIntl = __webpack_require__(6);
+
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ClientsCard = __webpack_require__(7);
+	var _ClientsCard = __webpack_require__(8);
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(12);
+	var _ClientsHistory = __webpack_require__(13);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(14);
+	var _ClientsList = __webpack_require__(15);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
-	var _moment = __webpack_require__(11);
+	var _moment = __webpack_require__(12);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -721,7 +723,8 @@ module.exports =
 	                                    _this4.setState({ editable: true });
 	                                    _this4.setState({ isAdded: true });_this4.setState({ client: {} });
 	                                } },
-	                            'Add new'
+	                            ' ',
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add', defaultMessage: 'Add client', description: '' })
 	                        ),
 	                        _react2.default.createElement(
 	                            _Button2.default,
@@ -729,7 +732,7 @@ module.exports =
 	                                    _this4.setState({ isAdded: false });
 	                                    _this4.setState({ editable: true });_this4.fillForm();
 	                                } },
-	                            'Edit client'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.edit', defaultMessage: 'Edit client', description: '' })
 	                        )
 	                    )
 	                ),
@@ -761,10 +764,16 @@ module.exports =
 /* 6 */
 /***/ (function(module, exports) {
 
-	module.exports = require("react-bootstrap/lib/Button");
+	module.exports = require("react-intl");
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+	module.exports = require("react-bootstrap/lib/Button");
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -779,17 +788,19 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(6);
+	var _reactIntl = __webpack_require__(6);
+
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _FormControl = __webpack_require__(8);
+	var _FormControl = __webpack_require__(9);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
-	var _moment = __webpack_require__(11);
+	var _moment = __webpack_require__(12);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -946,7 +957,9 @@ module.exports =
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients card ',
+	                    ' ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.card', defaultMessage: 'Card of', description: '' }),
+	                    ' ',
 	                    client.name
 	                ),
 	                _react2.default.createElement(
@@ -955,7 +968,7 @@ module.exports =
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
-	                        'Name'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.name', defaultMessage: 'Name', description: '' })
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { required: true, type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
 	                        id: 'clientName', name: 'clientName' }),
@@ -965,14 +978,14 @@ module.exports =
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Desease'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.desease', defaultMessage: 'Desease', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: client.desease,
 	                            onChange: this.handleInputChange, id: 'clientDesease', name: 'clientDesease' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Date of birth'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.birthdate', defaultMessage: 'Date of birth', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', className: birthdateDateInput,
 	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' }),
@@ -985,14 +998,14 @@ module.exports =
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Phone'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.phone', defaultMessage: 'Mobile phone', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: client.phone,
 	                            onChange: this.handleInputChange, id: 'clientPhone', name: 'clientPhone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Email'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.email', defaultMessage: 'Email', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: client.email,
 	                            onChange: this.handleInputChange, id: 'clientEmail', name: 'clientEmail' })
@@ -1000,14 +1013,14 @@ module.exports =
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
-	                        'Description'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.description', defaultMessage: 'Coments', description: '' })
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: client.description, rows: '15',
 	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', type: 'submit', value: 'Add', className: showSaveBtn },
-	                        'Save changes'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.save', defaultMessage: 'Save changes', description: '' })
 	                    )
 	                )
 	            );
@@ -1020,13 +1033,13 @@ module.exports =
 	exports.default = ClientsCard;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/FormControl");
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1036,7 +1049,7 @@ module.exports =
 	});
 	exports.sortByKey = exports.dateToTimestamp = exports.sendData = undefined;
 
-	var _nodeFetch = __webpack_require__(10);
+	var _nodeFetch = __webpack_require__(11);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -1072,19 +1085,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	module.exports = require("moment");
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1099,17 +1112,19 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Table = __webpack_require__(13);
+	var _reactIntl = __webpack_require__(6);
+
+	var _Table = __webpack_require__(14);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
-	var _moment = __webpack_require__(11);
+	var _moment = __webpack_require__(12);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -1173,12 +1188,14 @@ module.exports =
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients history'
+	                    ' ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.\u0440\u0448\u044B\u0435\u0449\u043A\u043D', defaultMessage: 'Client history', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    'Visits of ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of', description: '' }),
+	                    ' ',
 	                    this.props.client.name
 	                ),
 	                _react2.default.createElement(
@@ -1193,17 +1210,17 @@ module.exports =
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Date'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.date', defaultMessage: 'Date', description: '' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Status'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.status', defaultMessage: 'Status', description: '' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Is Paid'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.isPaid', defaultMessage: 'Is paid', description: '' })
 	                            )
 	                        )
 	                    ),
@@ -1243,13 +1260,13 @@ module.exports =
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Table");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1264,9 +1281,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _methods = __webpack_require__(9);
+	var _reactIntl = __webpack_require__(6);
 
-	var _Context = __webpack_require__(15);
+	var _methods = __webpack_require__(10);
+
+	var _Context = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1315,7 +1334,7 @@ module.exports =
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients list'
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.list', defaultMessage: 'Client list', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'ul',
@@ -1332,7 +1351,7 @@ module.exports =
 	exports.default = ClientsList;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1354,7 +1373,7 @@ module.exports =
 	var FamilyConsumer = exports.FamilyConsumer = FamilyContext.Consumer;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1369,7 +1388,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(17);
+	var _MonthTable = __webpack_require__(18);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
@@ -1381,7 +1400,7 @@ module.exports =
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
-	var _reactIntl = __webpack_require__(22);
+	var _reactIntl = __webpack_require__(6);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1474,7 +1493,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1489,19 +1508,19 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(18);
+	var _DayList = __webpack_require__(19);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(13);
+	var _Table = __webpack_require__(14);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _reactIntl = __webpack_require__(22);
+	var _reactIntl = __webpack_require__(6);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1833,7 +1852,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1848,15 +1867,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(19);
+	var _RegisterList = __webpack_require__(20);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(21);
+	var _ClientNameInput = __webpack_require__(22);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1866,7 +1885,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var fetch = __webpack_require__(10);
+	var fetch = __webpack_require__(11);
 
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
@@ -1982,7 +2001,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1997,17 +2016,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(20);
+	var _Glyphicon = __webpack_require__(21);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
-	var _Context = __webpack_require__(15);
+	var _Context = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2099,13 +2118,13 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2120,15 +2139,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(20);
+	var _Glyphicon = __webpack_require__(21);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2242,12 +2261,6 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-	module.exports = require("react-intl");
-
-/***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2263,15 +2276,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(8);
+	var _FormControl = __webpack_require__(9);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(9);
+	var _methods = __webpack_require__(10);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2384,13 +2397,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactIntl = __webpack_require__(22);
+	var _reactIntl = __webpack_require__(6);
 
-	var _moment = __webpack_require__(11);
+	var _moment = __webpack_require__(12);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _Button = __webpack_require__(6);
+	var _Button = __webpack_require__(7);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -2497,13 +2510,13 @@ module.exports =
 /* 31 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье"}
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
 
 /***/ }),
 /* 33 */

@@ -24386,7 +24386,7 @@
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(310);
+	var _Calendar = __webpack_require__(333);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
@@ -24404,7 +24404,7 @@
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
-	var _reactIntl = __webpack_require__(315);
+	var _reactIntl = __webpack_require__(72);
 
 	var _en = __webpack_require__(368);
 
@@ -24414,7 +24414,7 @@
 
 	var _ru2 = _interopRequireDefault(_ru);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -24585,23 +24585,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(72);
+	var _reactIntl = __webpack_require__(72);
+
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ClientsCard = __webpack_require__(173);
+	var _ClientsCard = __webpack_require__(196);
 
 	var _ClientsCard2 = _interopRequireDefault(_ClientsCard);
 
-	var _ClientsHistory = __webpack_require__(306);
+	var _ClientsHistory = __webpack_require__(329);
 
 	var _ClientsHistory2 = _interopRequireDefault(_ClientsHistory);
 
-	var _ClientsList = __webpack_require__(308);
+	var _ClientsList = __webpack_require__(331);
 
 	var _ClientsList2 = _interopRequireDefault(_ClientsList);
 
-	var _moment = __webpack_require__(180);
+	var _moment = __webpack_require__(203);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -24735,7 +24737,8 @@
 	                                    _this4.setState({ editable: true });
 	                                    _this4.setState({ isAdded: true });_this4.setState({ client: {} });
 	                                } },
-	                            'Add new'
+	                            ' ',
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add', defaultMessage: 'Add client', description: '' })
 	                        ),
 	                        _react2.default.createElement(
 	                            _Button2.default,
@@ -24743,7 +24746,7 @@
 	                                    _this4.setState({ isAdded: false });
 	                                    _this4.setState({ editable: true });_this4.fillForm();
 	                                } },
-	                            'Edit client'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.edit', defaultMessage: 'Edit client', description: '' })
 	                        )
 	                    )
 	                ),
@@ -24775,35 +24778,4668 @@
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(process) {/*
+	 * Copyright 2019, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', { value: true });
+
+	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+	var allLocaleData = _interopDefault(__webpack_require__(73));
+	var IntlMessageFormat = _interopDefault(__webpack_require__(74));
+	var IntlRelativeFormat = _interopDefault(__webpack_require__(84));
+	var PropTypes = _interopDefault(__webpack_require__(28));
+	var React = __webpack_require__(1);
+	var React__default = _interopDefault(React);
+	var hoistNonReactStatics = _interopDefault(__webpack_require__(91));
+	var invariant = _interopDefault(__webpack_require__(38));
+	var memoizeIntlConstructor = _interopDefault(__webpack_require__(92));
+
+	// GENERATED FILE
+	var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
+	    var s = String(n).split("."),
+	        v0 = !s[1],
+	        t0 = Number(s[0]) == n,
+	        n10 = t0 && s[0].slice(-1),
+	        n100 = t0 && s[0].slice(-2);if (ord) return n10 == 1 && n100 != 11 ? "one" : n10 == 2 && n100 != 12 ? "two" : n10 == 3 && n100 != 13 ? "few" : "other";return n == 1 && v0 ? "one" : "other";
+	  }, "fields": { "year": { "displayName": "year", "relative": { "0": "this year", "1": "next year", "-1": "last year" }, "relativeTime": { "future": { "one": "in {0} year", "other": "in {0} years" }, "past": { "one": "{0} year ago", "other": "{0} years ago" } } }, "year-short": { "displayName": "yr.", "relative": { "0": "this yr.", "1": "next yr.", "-1": "last yr." }, "relativeTime": { "future": { "one": "in {0} yr.", "other": "in {0} yr." }, "past": { "one": "{0} yr. ago", "other": "{0} yr. ago" } } }, "month": { "displayName": "month", "relative": { "0": "this month", "1": "next month", "-1": "last month" }, "relativeTime": { "future": { "one": "in {0} month", "other": "in {0} months" }, "past": { "one": "{0} month ago", "other": "{0} months ago" } } }, "month-short": { "displayName": "mo.", "relative": { "0": "this mo.", "1": "next mo.", "-1": "last mo." }, "relativeTime": { "future": { "one": "in {0} mo.", "other": "in {0} mo." }, "past": { "one": "{0} mo. ago", "other": "{0} mo. ago" } } }, "day": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "day-short": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "hour": { "displayName": "hour", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hour", "other": "in {0} hours" }, "past": { "one": "{0} hour ago", "other": "{0} hours ago" } } }, "hour-short": { "displayName": "hr.", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hr.", "other": "in {0} hr." }, "past": { "one": "{0} hr. ago", "other": "{0} hr. ago" } } }, "minute": { "displayName": "minute", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} minute", "other": "in {0} minutes" }, "past": { "one": "{0} minute ago", "other": "{0} minutes ago" } } }, "minute-short": { "displayName": "min.", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} min.", "other": "in {0} min." }, "past": { "one": "{0} min. ago", "other": "{0} min. ago" } } }, "second": { "displayName": "second", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} second", "other": "in {0} seconds" }, "past": { "one": "{0} second ago", "other": "{0} seconds ago" } } }, "second-short": { "displayName": "sec.", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} sec.", "other": "in {0} sec." }, "past": { "one": "{0} sec. ago", "other": "{0} sec. ago" } } } } };
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	function addLocaleData() {
+	  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+	  var locales = Array.isArray(data) ? data : [data];
+
+	  locales.forEach(function (localeData) {
+	    if (localeData && localeData.locale) {
+	      IntlMessageFormat.__addLocaleData(localeData);
+	      IntlRelativeFormat.__addLocaleData(localeData);
+	    }
+	  });
+	}
+
+	function hasLocaleData(locale) {
+	  var localeParts = (locale || '').split('-');
+
+	  while (localeParts.length > 0) {
+	    if (hasIMFAndIRFLocaleData(localeParts.join('-'))) {
+	      return true;
+	    }
+
+	    localeParts.pop();
+	  }
+
+	  return false;
+	}
+
+	function hasIMFAndIRFLocaleData(locale) {
+	  var normalizedLocale = locale && locale.toLowerCase();
+
+	  return !!(IntlMessageFormat.__localeData__[normalizedLocale] && IntlRelativeFormat.__localeData__[normalizedLocale]);
+	}
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+	  return typeof obj;
+	} : function (obj) {
+	  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	};
+
+
+
+
+
+	var asyncGenerator = function () {
+	  function AwaitValue(value) {
+	    this.value = value;
+	  }
+
+	  function AsyncGenerator(gen) {
+	    var front, back;
+
+	    function send(key, arg) {
+	      return new Promise(function (resolve, reject) {
+	        var request = {
+	          key: key,
+	          arg: arg,
+	          resolve: resolve,
+	          reject: reject,
+	          next: null
+	        };
+
+	        if (back) {
+	          back = back.next = request;
+	        } else {
+	          front = back = request;
+	          resume(key, arg);
+	        }
+	      });
+	    }
+
+	    function resume(key, arg) {
+	      try {
+	        var result = gen[key](arg);
+	        var value = result.value;
+
+	        if (value instanceof AwaitValue) {
+	          Promise.resolve(value.value).then(function (arg) {
+	            resume("next", arg);
+	          }, function (arg) {
+	            resume("throw", arg);
+	          });
+	        } else {
+	          settle(result.done ? "return" : "normal", result.value);
+	        }
+	      } catch (err) {
+	        settle("throw", err);
+	      }
+	    }
+
+	    function settle(type, value) {
+	      switch (type) {
+	        case "return":
+	          front.resolve({
+	            value: value,
+	            done: true
+	          });
+	          break;
+
+	        case "throw":
+	          front.reject(value);
+	          break;
+
+	        default:
+	          front.resolve({
+	            value: value,
+	            done: false
+	          });
+	          break;
+	      }
+
+	      front = front.next;
+
+	      if (front) {
+	        resume(front.key, front.arg);
+	      } else {
+	        back = null;
+	      }
+	    }
+
+	    this._invoke = send;
+
+	    if (typeof gen.return !== "function") {
+	      this.return = undefined;
+	    }
+	  }
+
+	  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+	    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+	      return this;
+	    };
+	  }
+
+	  AsyncGenerator.prototype.next = function (arg) {
+	    return this._invoke("next", arg);
+	  };
+
+	  AsyncGenerator.prototype.throw = function (arg) {
+	    return this._invoke("throw", arg);
+	  };
+
+	  AsyncGenerator.prototype.return = function (arg) {
+	    return this._invoke("return", arg);
+	  };
+
+	  return {
+	    wrap: function (fn) {
+	      return function () {
+	        return new AsyncGenerator(fn.apply(this, arguments));
+	      };
+	    },
+	    await: function (value) {
+	      return new AwaitValue(value);
+	    }
+	  };
+	}();
+
+
+
+
+
+	var classCallCheck = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+
+	var createClass = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      Object.defineProperty(target, descriptor.key, descriptor);
+	    }
+	  }
+
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
+
+
+
+
+	var defineProperty = function (obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+
+	  return obj;
+	};
+
+	var _extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+
+	  return target;
+	};
+
+
+
+	var inherits = function (subClass, superClass) {
+	  if (typeof superClass !== "function" && superClass !== null) {
+	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	  }
+
+	  subClass.prototype = Object.create(superClass && superClass.prototype, {
+	    constructor: {
+	      value: subClass,
+	      enumerable: false,
+	      writable: true,
+	      configurable: true
+	    }
+	  });
+	  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	};
+
+
+
+
+
+
+
+
+
+	var objectWithoutProperties = function (obj, keys) {
+	  var target = {};
+
+	  for (var i in obj) {
+	    if (keys.indexOf(i) >= 0) continue;
+	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+	    target[i] = obj[i];
+	  }
+
+	  return target;
+	};
+
+	var possibleConstructorReturn = function (self, call) {
+	  if (!self) {
+	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	  }
+
+	  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	var toConsumableArray = function (arr) {
+	  if (Array.isArray(arr)) {
+	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+	    return arr2;
+	  } else {
+	    return Array.from(arr);
+	  }
+	};
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var bool = PropTypes.bool;
+	var number = PropTypes.number;
+	var string = PropTypes.string;
+	var func = PropTypes.func;
+	var object = PropTypes.object;
+	var oneOf = PropTypes.oneOf;
+	var shape = PropTypes.shape;
+	var any = PropTypes.any;
+	var oneOfType = PropTypes.oneOfType;
+
+	var localeMatcher = oneOf(['best fit', 'lookup']);
+	var narrowShortLong = oneOf(['narrow', 'short', 'long']);
+	var numeric2digit = oneOf(['numeric', '2-digit']);
+	var funcReq = func.isRequired;
+
+	var intlConfigPropTypes = {
+	  locale: string,
+	  timeZone: string,
+	  formats: object,
+	  messages: object,
+	  textComponent: any,
+
+	  defaultLocale: string,
+	  defaultFormats: object,
+
+	  onError: func
+	};
+
+	var intlFormatPropTypes = {
+	  formatDate: funcReq,
+	  formatTime: funcReq,
+	  formatRelative: funcReq,
+	  formatNumber: funcReq,
+	  formatPlural: funcReq,
+	  formatMessage: funcReq,
+	  formatHTMLMessage: funcReq
+	};
+
+	var intlShape = shape(_extends({}, intlConfigPropTypes, intlFormatPropTypes, {
+	  formatters: object,
+	  now: funcReq
+	}));
+
+	var messageDescriptorPropTypes = {
+	  id: string.isRequired,
+	  description: oneOfType([string, object]),
+	  defaultMessage: string
+	};
+
+	var dateTimeFormatPropTypes = {
+	  localeMatcher: localeMatcher,
+	  formatMatcher: oneOf(['basic', 'best fit']),
+
+	  timeZone: string,
+	  hour12: bool,
+
+	  weekday: narrowShortLong,
+	  era: narrowShortLong,
+	  year: numeric2digit,
+	  month: oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
+	  day: numeric2digit,
+	  hour: numeric2digit,
+	  minute: numeric2digit,
+	  second: numeric2digit,
+	  timeZoneName: oneOf(['short', 'long'])
+	};
+
+	var numberFormatPropTypes = {
+	  localeMatcher: localeMatcher,
+
+	  style: oneOf(['decimal', 'currency', 'percent']),
+	  currency: string,
+	  currencyDisplay: oneOf(['symbol', 'code', 'name']),
+	  useGrouping: bool,
+
+	  minimumIntegerDigits: number,
+	  minimumFractionDigits: number,
+	  maximumFractionDigits: number,
+	  minimumSignificantDigits: number,
+	  maximumSignificantDigits: number
+	};
+
+	var relativeFormatPropTypes = {
+	  style: oneOf(['best fit', 'numeric']),
+	  units: oneOf(['second', 'minute', 'hour', 'day', 'month', 'year', 'second-short', 'minute-short', 'hour-short', 'day-short', 'month-short', 'year-short'])
+	};
+
+	var pluralFormatPropTypes = {
+	  style: oneOf(['cardinal', 'ordinal'])
+	};
+
+	/*
+	HTML escaping and shallow-equals implementations are the same as React's
+	(on purpose.) Therefore, it has the following Copyright and Licensing:
+
+	Copyright 2013-2014, Facebook, Inc.
+	All rights reserved.
+
+	This source code is licensed under the BSD-style license found in the LICENSE
+	file in the root directory of React's source tree.
+	*/
+
+	var intlConfigPropNames = Object.keys(intlConfigPropTypes);
+
+	var ESCAPED_CHARS = {
+	  '&': '&amp;',
+	  '>': '&gt;',
+	  '<': '&lt;',
+	  '"': '&quot;',
+	  "'": '&#x27;'
+	};
+
+	var UNSAFE_CHARS_REGEX = /[&><"']/g;
+
+	function escape(str) {
+	  return ('' + str).replace(UNSAFE_CHARS_REGEX, function (match) {
+	    return ESCAPED_CHARS[match];
+	  });
+	}
+
+	function filterProps(props, whitelist) {
+	  var defaults$$1 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+	  return whitelist.reduce(function (filtered, name) {
+	    if (props.hasOwnProperty(name)) {
+	      filtered[name] = props[name];
+	    } else if (defaults$$1.hasOwnProperty(name)) {
+	      filtered[name] = defaults$$1[name];
+	    }
+
+	    return filtered;
+	  }, {});
+	}
+
+	function invariantIntlContext() {
+	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+	      intl = _ref.intl;
+
+	  invariant(intl, '[React Intl] Could not find required `intl` object. ' + '<IntlProvider> needs to exist in the component ancestry.');
+	}
+
+	function shallowEquals(objA, objB) {
+	  if (objA === objB) {
+	    return true;
+	  }
+
+	  if ((typeof objA === 'undefined' ? 'undefined' : _typeof(objA)) !== 'object' || objA === null || (typeof objB === 'undefined' ? 'undefined' : _typeof(objB)) !== 'object' || objB === null) {
+	    return false;
+	  }
+
+	  var keysA = Object.keys(objA);
+	  var keysB = Object.keys(objB);
+
+	  if (keysA.length !== keysB.length) {
+	    return false;
+	  }
+
+	  // Test for A's keys different from B.
+	  var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
+	  for (var i = 0; i < keysA.length; i++) {
+	    if (!bHasOwnProperty(keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
+	      return false;
+	    }
+	  }
+
+	  return true;
+	}
+
+	function shouldIntlComponentUpdate(_ref2, nextProps, nextState) {
+	  var props = _ref2.props,
+	      state = _ref2.state,
+	      _ref2$context = _ref2.context,
+	      context = _ref2$context === undefined ? {} : _ref2$context;
+	  var nextContext = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var _context$intl = context.intl,
+	      intl = _context$intl === undefined ? {} : _context$intl;
+	  var _nextContext$intl = nextContext.intl,
+	      nextIntl = _nextContext$intl === undefined ? {} : _nextContext$intl;
+
+
+	  return !shallowEquals(nextProps, props) || !shallowEquals(nextState, state) || !(nextIntl === intl || shallowEquals(filterProps(nextIntl, intlConfigPropNames), filterProps(intl, intlConfigPropNames)));
+	}
+
+	function createError(message, exception) {
+	  var eMsg = exception ? '\n' + exception : '';
+	  return '[React Intl] ' + message + eMsg;
+	}
+
+	function defaultErrorHandler(error) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    console.error(error);
+	  }
+	}
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	// Inspired by react-redux's `connect()` HOC factory function implementation:
+	// https://github.com/rackt/react-redux
+
+	function getDisplayName(Component$$1) {
+	  return Component$$1.displayName || Component$$1.name || 'Component';
+	}
+
+	function injectIntl(WrappedComponent) {
+	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _options$intlPropName = options.intlPropName,
+	      intlPropName = _options$intlPropName === undefined ? 'intl' : _options$intlPropName,
+	      _options$withRef = options.withRef,
+	      withRef = _options$withRef === undefined ? false : _options$withRef;
+
+	  var InjectIntl = function (_Component) {
+	    inherits(InjectIntl, _Component);
+
+	    function InjectIntl(props, context) {
+	      classCallCheck(this, InjectIntl);
+
+	      var _this = possibleConstructorReturn(this, (InjectIntl.__proto__ || Object.getPrototypeOf(InjectIntl)).call(this, props, context));
+
+	      invariantIntlContext(context);
+	      return _this;
+	    }
+
+	    createClass(InjectIntl, [{
+	      key: 'getWrappedInstance',
+	      value: function getWrappedInstance() {
+	        invariant(withRef, '[React Intl] To access the wrapped instance, ' + 'the `{withRef: true}` option must be set when calling: ' + '`injectIntl()`');
+
+	        return this._wrappedInstance;
+	      }
+	    }, {
+	      key: 'render',
+	      value: function render() {
+	        var _this2 = this;
+
+	        return React__default.createElement(WrappedComponent, _extends({}, this.props, defineProperty({}, intlPropName, this.context.intl), {
+	          ref: withRef ? /* istanbul ignore next */function (ref) {
+	            return _this2._wrappedInstance = ref;
+	          } : null
+	        }));
+	      }
+	    }]);
+	    return InjectIntl;
+	  }(React.Component);
+
+	  InjectIntl.displayName = 'InjectIntl(' + getDisplayName(WrappedComponent) + ')';
+	  InjectIntl.contextTypes = {
+	    intl: intlShape
+	  };
+	  InjectIntl.WrappedComponent = WrappedComponent;
+
+
+	  return hoistNonReactStatics(InjectIntl, WrappedComponent);
+	}
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	function defineMessages(messageDescriptors) {
+	  // This simply returns what's passed-in because it's meant to be a hook for
+	  // babel-plugin-react-intl.
+	  return messageDescriptors;
+	}
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	// This is a "hack" until a proper `intl-pluralformat` package is created.
+
+	function resolveLocale(locales) {
+	  // IntlMessageFormat#_resolveLocale() does not depend on `this`.
+	  return IntlMessageFormat.prototype._resolveLocale(locales);
+	}
+
+	function findPluralFunction(locale) {
+	  // IntlMessageFormat#_findPluralFunction() does not depend on `this`.
+	  return IntlMessageFormat.prototype._findPluralRuleFunction(locale);
+	}
+
+	var IntlPluralFormat = function IntlPluralFormat(locales) {
+	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  classCallCheck(this, IntlPluralFormat);
+
+	  var useOrdinal = options.style === 'ordinal';
+	  var pluralFn = findPluralFunction(resolveLocale(locales));
+
+	  this.format = function (value) {
+	    return pluralFn(value, useOrdinal);
+	  };
+	};
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var DATE_TIME_FORMAT_OPTIONS = Object.keys(dateTimeFormatPropTypes);
+	var NUMBER_FORMAT_OPTIONS = Object.keys(numberFormatPropTypes);
+	var RELATIVE_FORMAT_OPTIONS = Object.keys(relativeFormatPropTypes);
+	var PLURAL_FORMAT_OPTIONS = Object.keys(pluralFormatPropTypes);
+
+	var RELATIVE_FORMAT_THRESHOLDS = {
+	  second: 60, // seconds to minute
+	  minute: 60, // minutes to hour
+	  hour: 24, // hours to day
+	  day: 30, // days to month
+	  month: 12 };
+
+	function updateRelativeFormatThresholds(newThresholds) {
+	  var thresholds = IntlRelativeFormat.thresholds;
+	  thresholds.second = newThresholds.second;
+	  thresholds.minute = newThresholds.minute;
+	  thresholds.hour = newThresholds.hour;
+	  thresholds.day = newThresholds.day;
+	  thresholds.month = newThresholds.month;
+	  thresholds['second-short'] = newThresholds['second-short'];
+	  thresholds['minute-short'] = newThresholds['minute-short'];
+	  thresholds['hour-short'] = newThresholds['hour-short'];
+	  thresholds['day-short'] = newThresholds['day-short'];
+	  thresholds['month-short'] = newThresholds['month-short'];
+	}
+
+	function getNamedFormat(formats, type, name, onError) {
+	  var format = formats && formats[type] && formats[type][name];
+	  if (format) {
+	    return format;
+	  }
+
+	  onError(createError('No ' + type + ' format named: ' + name));
+	}
+
+	function formatDate(config, state, value) {
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale,
+	      formats = config.formats,
+	      timeZone = config.timeZone;
+	  var format = options.format;
+
+
+	  var onError = config.onError || defaultErrorHandler;
+	  var date = new Date(value);
+	  var defaults$$1 = _extends({}, timeZone && { timeZone: timeZone }, format && getNamedFormat(formats, 'date', format, onError));
+	  var filteredOptions = filterProps(options, DATE_TIME_FORMAT_OPTIONS, defaults$$1);
+
+	  try {
+	    return state.getDateTimeFormat(locale, filteredOptions).format(date);
+	  } catch (e) {
+	    onError(createError('Error formatting date.', e));
+	  }
+
+	  return String(date);
+	}
+
+	function formatTime(config, state, value) {
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale,
+	      formats = config.formats,
+	      timeZone = config.timeZone;
+	  var format = options.format;
+
+
+	  var onError = config.onError || defaultErrorHandler;
+	  var date = new Date(value);
+	  var defaults$$1 = _extends({}, timeZone && { timeZone: timeZone }, format && getNamedFormat(formats, 'time', format, onError));
+	  var filteredOptions = filterProps(options, DATE_TIME_FORMAT_OPTIONS, defaults$$1);
+
+	  if (!filteredOptions.hour && !filteredOptions.minute && !filteredOptions.second) {
+	    // Add default formatting options if hour, minute, or second isn't defined.
+	    filteredOptions = _extends({}, filteredOptions, { hour: 'numeric', minute: 'numeric' });
+	  }
+
+	  try {
+	    return state.getDateTimeFormat(locale, filteredOptions).format(date);
+	  } catch (e) {
+	    onError(createError('Error formatting time.', e));
+	  }
+
+	  return String(date);
+	}
+
+	function formatRelative(config, state, value) {
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale,
+	      formats = config.formats;
+	  var format = options.format;
+
+
+	  var onError = config.onError || defaultErrorHandler;
+	  var date = new Date(value);
+	  var now = new Date(options.now);
+	  var defaults$$1 = format && getNamedFormat(formats, 'relative', format, onError);
+	  var filteredOptions = filterProps(options, RELATIVE_FORMAT_OPTIONS, defaults$$1);
+
+	  // Capture the current threshold values, then temporarily override them with
+	  // specific values just for this render.
+	  var oldThresholds = _extends({}, IntlRelativeFormat.thresholds);
+	  updateRelativeFormatThresholds(RELATIVE_FORMAT_THRESHOLDS);
+
+	  try {
+	    return state.getRelativeFormat(locale, filteredOptions).format(date, {
+	      now: isFinite(now) ? now : state.now()
+	    });
+	  } catch (e) {
+	    onError(createError('Error formatting relative time.', e));
+	  } finally {
+	    updateRelativeFormatThresholds(oldThresholds);
+	  }
+
+	  return String(date);
+	}
+
+	function formatNumber(config, state, value) {
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale,
+	      formats = config.formats;
+	  var format = options.format;
+
+
+	  var onError = config.onError || defaultErrorHandler;
+	  var defaults$$1 = format && getNamedFormat(formats, 'number', format, onError);
+	  var filteredOptions = filterProps(options, NUMBER_FORMAT_OPTIONS, defaults$$1);
+
+	  try {
+	    return state.getNumberFormat(locale, filteredOptions).format(value);
+	  } catch (e) {
+	    onError(createError('Error formatting number.', e));
+	  }
+
+	  return String(value);
+	}
+
+	function formatPlural(config, state, value) {
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale;
+
+
+	  var filteredOptions = filterProps(options, PLURAL_FORMAT_OPTIONS);
+	  var onError = config.onError || defaultErrorHandler;
+
+	  try {
+	    return state.getPluralFormat(locale, filteredOptions).format(value);
+	  } catch (e) {
+	    onError(createError('Error formatting plural.', e));
+	  }
+
+	  return 'other';
+	}
+
+	function formatMessage(config, state) {
+	  var messageDescriptor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	  var values = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  var locale = config.locale,
+	      formats = config.formats,
+	      messages = config.messages,
+	      defaultLocale = config.defaultLocale,
+	      defaultFormats = config.defaultFormats;
+	  var id = messageDescriptor.id,
+	      defaultMessage = messageDescriptor.defaultMessage;
+
+	  // Produce a better error if the user calls `intl.formatMessage(element)`
+
+	  if (process.env.NODE_ENV !== 'production') {
+	    invariant(!React.isValidElement(config), '[React Intl] Don\'t pass React elements to ' + 'formatMessage(), pass `.props`.');
+	  }
+
+	  // `id` is a required field of a Message Descriptor.
+	  invariant(id, '[React Intl] An `id` must be provided to format a message.');
+
+	  var message = messages && messages[id];
+	  var hasValues = Object.keys(values).length > 0;
+
+	  // Avoid expensive message formatting for simple messages without values. In
+	  // development messages will always be formatted in case of missing values.
+	  if (!hasValues && process.env.NODE_ENV === 'production') {
+	    return message || defaultMessage || id;
+	  }
+
+	  var formattedMessage = void 0;
+	  var onError = config.onError || defaultErrorHandler;
+
+	  if (message) {
+	    try {
+	      var formatter = state.getMessageFormat(message, locale, formats);
+
+	      formattedMessage = formatter.format(values);
+	    } catch (e) {
+	      onError(createError('Error formatting message: "' + id + '" for locale: "' + locale + '"' + (defaultMessage ? ', using default message as fallback.' : ''), e));
+	    }
+	  } else {
+	    // This prevents warnings from littering the console in development
+	    // when no `messages` are passed into the <IntlProvider> for the
+	    // default locale, and a default message is in the source.
+	    if (!defaultMessage || locale && locale.toLowerCase() !== defaultLocale.toLowerCase()) {
+	      onError(createError('Missing message: "' + id + '" for locale: "' + locale + '"' + (defaultMessage ? ', using default message as fallback.' : '')));
+	    }
+	  }
+
+	  if (!formattedMessage && defaultMessage) {
+	    try {
+	      var _formatter = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats);
+
+	      formattedMessage = _formatter.format(values);
+	    } catch (e) {
+	      onError(createError('Error formatting the default message for: "' + id + '"', e));
+	    }
+	  }
+
+	  if (!formattedMessage) {
+	    onError(createError('Cannot format message: "' + id + '", ' + ('using message ' + (message || defaultMessage ? 'source' : 'id') + ' as fallback.')));
+	  }
+
+	  return formattedMessage || message || defaultMessage || id;
+	}
+
+	function formatHTMLMessage(config, state, messageDescriptor) {
+	  var rawValues = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+	  // Process all the values before they are used when formatting the ICU
+	  // Message string. Since the formatted message might be injected via
+	  // `innerHTML`, all String-based values need to be HTML-escaped.
+	  var escapedValues = Object.keys(rawValues).reduce(function (escaped, name) {
+	    var value = rawValues[name];
+	    escaped[name] = typeof value === 'string' ? escape(value) : value;
+	    return escaped;
+	  }, {});
+
+	  return formatMessage(config, state, messageDescriptor, escapedValues);
+	}
+
+
+
+	var format = Object.freeze({
+		formatDate: formatDate,
+		formatTime: formatTime,
+		formatRelative: formatRelative,
+		formatNumber: formatNumber,
+		formatPlural: formatPlural,
+		formatMessage: formatMessage,
+		formatHTMLMessage: formatHTMLMessage
+	});
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var intlConfigPropNames$1 = Object.keys(intlConfigPropTypes);
+	var intlFormatPropNames = Object.keys(intlFormatPropTypes);
+
+	// These are not a static property on the `IntlProvider` class so the intl
+	// config values can be inherited from an <IntlProvider> ancestor.
+	var defaultProps = {
+	  formats: {},
+	  messages: {},
+	  timeZone: null,
+	  textComponent: 'span',
+
+	  defaultLocale: 'en',
+	  defaultFormats: {},
+
+	  onError: defaultErrorHandler
+	};
+
+	var IntlProvider = function (_Component) {
+	  inherits(IntlProvider, _Component);
+
+	  function IntlProvider(props) {
+	    var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	    classCallCheck(this, IntlProvider);
+
+	    var _this = possibleConstructorReturn(this, (IntlProvider.__proto__ || Object.getPrototypeOf(IntlProvider)).call(this, props, context));
+
+	    invariant(typeof Intl !== 'undefined', '[React Intl] The `Intl` APIs must be available in the runtime, ' + 'and do not appear to be built-in. An `Intl` polyfill should be loaded.\n' + 'See: http://formatjs.io/guides/runtime-environments/');
+
+	    var intlContext = context.intl;
+
+	    // Used to stabilize time when performing an initial rendering so that
+	    // all relative times use the same reference "now" time.
+
+	    var initialNow = void 0;
+	    if (isFinite(props.initialNow)) {
+	      initialNow = Number(props.initialNow);
+	    } else {
+	      // When an `initialNow` isn't provided via `props`, look to see an
+	      // <IntlProvider> exists in the ancestry and call its `now()`
+	      // function to propagate its value for "now".
+	      initialNow = intlContext ? intlContext.now() : Date.now();
+	    }
+
+	    // Creating `Intl*` formatters is expensive. If there's a parent
+	    // `<IntlProvider>`, then its formatters will be used. Otherwise, this
+	    // memoize the `Intl*` constructors and cache them for the lifecycle of
+	    // this IntlProvider instance.
+
+	    var _ref = intlContext || {},
+	        _ref$formatters = _ref.formatters,
+	        formatters = _ref$formatters === undefined ? {
+	      getDateTimeFormat: memoizeIntlConstructor(Intl.DateTimeFormat),
+	      getNumberFormat: memoizeIntlConstructor(Intl.NumberFormat),
+	      getMessageFormat: memoizeIntlConstructor(IntlMessageFormat),
+	      getRelativeFormat: memoizeIntlConstructor(IntlRelativeFormat),
+	      getPluralFormat: memoizeIntlConstructor(IntlPluralFormat)
+	    } : _ref$formatters;
+
+	    _this.state = _extends({}, formatters, {
+
+	      // Wrapper to provide stable "now" time for initial render.
+	      now: function now() {
+	        return _this._didDisplay ? Date.now() : initialNow;
+	      }
+	    });
+	    return _this;
+	  }
+
+	  createClass(IntlProvider, [{
+	    key: 'getConfig',
+	    value: function getConfig() {
+	      var intlContext = this.context.intl;
+
+	      // Build a whitelisted config object from `props`, defaults, and
+	      // `context.intl`, if an <IntlProvider> exists in the ancestry.
+
+	      var config = filterProps(this.props, intlConfigPropNames$1, intlContext);
+
+	      // Apply default props. This must be applied last after the props have
+	      // been resolved and inherited from any <IntlProvider> in the ancestry.
+	      // This matches how React resolves `defaultProps`.
+	      for (var propName in defaultProps) {
+	        if (config[propName] === undefined) {
+	          config[propName] = defaultProps[propName];
+	        }
+	      }
+
+	      if (!hasLocaleData(config.locale)) {
+	        var _config = config,
+	            locale = _config.locale,
+	            defaultLocale = _config.defaultLocale,
+	            defaultFormats = _config.defaultFormats,
+	            onError = _config.onError;
+
+
+	        onError(createError('Missing locale data for locale: "' + locale + '". ' + ('Using default locale: "' + defaultLocale + '" as fallback.')));
+
+	        // Since there's no registered locale data for `locale`, this will
+	        // fallback to the `defaultLocale` to make sure things can render.
+	        // The `messages` are overridden to the `defaultProps` empty object
+	        // to maintain referential equality across re-renders. It's assumed
+	        // each <FormattedMessage> contains a `defaultMessage` prop.
+	        config = _extends({}, config, {
+	          locale: defaultLocale,
+	          formats: defaultFormats,
+	          messages: defaultProps.messages
+	        });
+	      }
+
+	      return config;
+	    }
+	  }, {
+	    key: 'getBoundFormatFns',
+	    value: function getBoundFormatFns(config, state) {
+	      return intlFormatPropNames.reduce(function (boundFormatFns, name) {
+	        boundFormatFns[name] = format[name].bind(null, config, state);
+	        return boundFormatFns;
+	      }, {});
+	    }
+	  }, {
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      var config = this.getConfig();
+
+	      // Bind intl factories and current config to the format functions.
+	      var boundFormatFns = this.getBoundFormatFns(config, this.state);
+
+	      var _state = this.state,
+	          now = _state.now,
+	          formatters = objectWithoutProperties(_state, ['now']);
+
+
+	      return {
+	        intl: _extends({}, config, boundFormatFns, {
+	          formatters: formatters,
+	          now: now
+	        })
+	      };
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this._didDisplay = true;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.Children.only(this.props.children);
+	    }
+	  }]);
+	  return IntlProvider;
+	}(React.Component);
+
+	IntlProvider.displayName = 'IntlProvider';
+	IntlProvider.contextTypes = {
+	  intl: intlShape
+	};
+	IntlProvider.childContextTypes = {
+	  intl: intlShape.isRequired
+	};
+	process.env.NODE_ENV !== "production" ? IntlProvider.propTypes = _extends({}, intlConfigPropTypes, {
+	  children: PropTypes.element.isRequired,
+	  initialNow: PropTypes.any
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var FormattedDate = function (_Component) {
+	  inherits(FormattedDate, _Component);
+
+	  function FormattedDate(props, context) {
+	    classCallCheck(this, FormattedDate);
+
+	    var _this = possibleConstructorReturn(this, (FormattedDate.__proto__ || Object.getPrototypeOf(FormattedDate)).call(this, props, context));
+
+	    invariantIntlContext(context);
+	    return _this;
+	  }
+
+	  createClass(FormattedDate, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatDate = _context$intl.formatDate,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          value = _props.value,
+	          children = _props.children;
+
+
+	      var formattedDate = formatDate(value, this.props);
+
+	      if (typeof children === 'function') {
+	        return children(formattedDate);
+	      }
+
+	      return React__default.createElement(
+	        Text,
+	        null,
+	        formattedDate
+	      );
+	    }
+	  }]);
+	  return FormattedDate;
+	}(React.Component);
+
+	FormattedDate.displayName = 'FormattedDate';
+	FormattedDate.contextTypes = {
+	  intl: intlShape
+	};
+	process.env.NODE_ENV !== "production" ? FormattedDate.propTypes = _extends({}, dateTimeFormatPropTypes, {
+	  value: PropTypes.any.isRequired,
+	  format: PropTypes.string,
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var FormattedTime = function (_Component) {
+	  inherits(FormattedTime, _Component);
+
+	  function FormattedTime(props, context) {
+	    classCallCheck(this, FormattedTime);
+
+	    var _this = possibleConstructorReturn(this, (FormattedTime.__proto__ || Object.getPrototypeOf(FormattedTime)).call(this, props, context));
+
+	    invariantIntlContext(context);
+	    return _this;
+	  }
+
+	  createClass(FormattedTime, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatTime = _context$intl.formatTime,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          value = _props.value,
+	          children = _props.children;
+
+
+	      var formattedTime = formatTime(value, this.props);
+
+	      if (typeof children === 'function') {
+	        return children(formattedTime);
+	      }
+
+	      return React__default.createElement(
+	        Text,
+	        null,
+	        formattedTime
+	      );
+	    }
+	  }]);
+	  return FormattedTime;
+	}(React.Component);
+
+	FormattedTime.displayName = 'FormattedTime';
+	FormattedTime.contextTypes = {
+	  intl: intlShape
+	};
+	process.env.NODE_ENV !== "production" ? FormattedTime.propTypes = _extends({}, dateTimeFormatPropTypes, {
+	  value: PropTypes.any.isRequired,
+	  format: PropTypes.string,
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var SECOND = 1000;
+	var MINUTE = 1000 * 60;
+	var HOUR = 1000 * 60 * 60;
+	var DAY = 1000 * 60 * 60 * 24;
+
+	// The maximum timer delay value is a 32-bit signed integer.
+	// See: https://mdn.io/setTimeout
+	var MAX_TIMER_DELAY = 2147483647;
+
+	function selectUnits(delta) {
+	  var absDelta = Math.abs(delta);
+
+	  if (absDelta < MINUTE) {
+	    return 'second';
+	  }
+
+	  if (absDelta < HOUR) {
+	    return 'minute';
+	  }
+
+	  if (absDelta < DAY) {
+	    return 'hour';
+	  }
+
+	  // The maximum scheduled delay will be measured in days since the maximum
+	  // timer delay is less than the number of milliseconds in 25 days.
+	  return 'day';
+	}
+
+	function getUnitDelay(units) {
+	  switch (units) {
+	    case 'second':
+	      return SECOND;
+	    case 'minute':
+	      return MINUTE;
+	    case 'hour':
+	      return HOUR;
+	    case 'day':
+	      return DAY;
+	    default:
+	      return MAX_TIMER_DELAY;
+	  }
+	}
+
+	function isSameDate(a, b) {
+	  if (a === b) {
+	    return true;
+	  }
+
+	  var aTime = new Date(a).getTime();
+	  var bTime = new Date(b).getTime();
+
+	  return isFinite(aTime) && isFinite(bTime) && aTime === bTime;
+	}
+
+	var FormattedRelative = function (_Component) {
+	  inherits(FormattedRelative, _Component);
+
+	  function FormattedRelative(props, context) {
+	    classCallCheck(this, FormattedRelative);
+
+	    var _this = possibleConstructorReturn(this, (FormattedRelative.__proto__ || Object.getPrototypeOf(FormattedRelative)).call(this, props, context));
+
+	    invariantIntlContext(context);
+
+	    var now = isFinite(props.initialNow) ? Number(props.initialNow) : context.intl.now();
+
+	    // `now` is stored as state so that `render()` remains a function of
+	    // props + state, instead of accessing `Date.now()` inside `render()`.
+	    _this.state = { now: now };
+	    return _this;
+	  }
+
+	  createClass(FormattedRelative, [{
+	    key: 'scheduleNextUpdate',
+	    value: function scheduleNextUpdate(props, state) {
+	      var _this2 = this;
+
+	      // Cancel and pending update because we're scheduling a new update.
+	      clearTimeout(this._timer);
+
+	      var value = props.value,
+	          units = props.units,
+	          updateInterval = props.updateInterval;
+
+	      var time = new Date(value).getTime();
+
+	      // If the `updateInterval` is falsy, including `0` or we don't have a
+	      // valid date, then auto updates have been turned off, so we bail and
+	      // skip scheduling an update.
+	      if (!updateInterval || !isFinite(time)) {
+	        return;
+	      }
+
+	      var delta = time - state.now;
+	      var unitDelay = getUnitDelay(units || selectUnits(delta));
+	      var unitRemainder = Math.abs(delta % unitDelay);
+
+	      // We want the largest possible timer delay which will still display
+	      // accurate information while reducing unnecessary re-renders. The delay
+	      // should be until the next "interesting" moment, like a tick from
+	      // "1 minute ago" to "2 minutes ago" when the delta is 120,000ms.
+	      var delay = delta < 0 ? Math.max(updateInterval, unitDelay - unitRemainder) : Math.max(updateInterval, unitRemainder);
+
+	      this._timer = setTimeout(function () {
+	        _this2.setState({ now: _this2.context.intl.now() });
+	      }, delay);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.scheduleNextUpdate(this.props, this.state);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(_ref) {
+	      var nextValue = _ref.value;
+
+	      // When the `props.value` date changes, `state.now` needs to be updated,
+	      // and the next update can be rescheduled.
+	      if (!isSameDate(nextValue, this.props.value)) {
+	        this.setState({ now: this.context.intl.now() });
+	      }
+	    }
+	  }, {
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'componentWillUpdate',
+	    value: function componentWillUpdate(nextProps, nextState) {
+	      this.scheduleNextUpdate(nextProps, nextState);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this._timer);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatRelative = _context$intl.formatRelative,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          value = _props.value,
+	          children = _props.children;
+
+
+	      var formattedRelative = formatRelative(value, _extends({}, this.props, this.state));
+
+	      if (typeof children === 'function') {
+	        return children(formattedRelative);
+	      }
+
+	      return React__default.createElement(
+	        Text,
+	        null,
+	        formattedRelative
+	      );
+	    }
+	  }]);
+	  return FormattedRelative;
+	}(React.Component);
+
+	FormattedRelative.displayName = 'FormattedRelative';
+	FormattedRelative.contextTypes = {
+	  intl: intlShape
+	};
+	FormattedRelative.defaultProps = {
+	  updateInterval: 1000 * 10
+	};
+	process.env.NODE_ENV !== "production" ? FormattedRelative.propTypes = _extends({}, relativeFormatPropTypes, {
+	  value: PropTypes.any.isRequired,
+	  format: PropTypes.string,
+	  updateInterval: PropTypes.number,
+	  initialNow: PropTypes.any,
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var FormattedNumber = function (_Component) {
+	  inherits(FormattedNumber, _Component);
+
+	  function FormattedNumber(props, context) {
+	    classCallCheck(this, FormattedNumber);
+
+	    var _this = possibleConstructorReturn(this, (FormattedNumber.__proto__ || Object.getPrototypeOf(FormattedNumber)).call(this, props, context));
+
+	    invariantIntlContext(context);
+	    return _this;
+	  }
+
+	  createClass(FormattedNumber, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatNumber = _context$intl.formatNumber,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          value = _props.value,
+	          children = _props.children;
+
+
+	      var formattedNumber = formatNumber(value, this.props);
+
+	      if (typeof children === 'function') {
+	        return children(formattedNumber);
+	      }
+
+	      return React__default.createElement(
+	        Text,
+	        null,
+	        formattedNumber
+	      );
+	    }
+	  }]);
+	  return FormattedNumber;
+	}(React.Component);
+
+	FormattedNumber.displayName = 'FormattedNumber';
+	FormattedNumber.contextTypes = {
+	  intl: intlShape
+	};
+	process.env.NODE_ENV !== "production" ? FormattedNumber.propTypes = _extends({}, numberFormatPropTypes, {
+	  value: PropTypes.any.isRequired,
+	  format: PropTypes.string,
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var FormattedPlural = function (_Component) {
+	  inherits(FormattedPlural, _Component);
+
+	  function FormattedPlural(props, context) {
+	    classCallCheck(this, FormattedPlural);
+
+	    var _this = possibleConstructorReturn(this, (FormattedPlural.__proto__ || Object.getPrototypeOf(FormattedPlural)).call(this, props, context));
+
+	    invariantIntlContext(context);
+	    return _this;
+	  }
+
+	  createClass(FormattedPlural, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
+	        next[_key] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatPlural = _context$intl.formatPlural,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          value = _props.value,
+	          other = _props.other,
+	          children = _props.children;
+
+
+	      var pluralCategory = formatPlural(value, this.props);
+	      var formattedPlural = this.props[pluralCategory] || other;
+
+	      if (typeof children === 'function') {
+	        return children(formattedPlural);
+	      }
+
+	      return React__default.createElement(
+	        Text,
+	        null,
+	        formattedPlural
+	      );
+	    }
+	  }]);
+	  return FormattedPlural;
+	}(React.Component);
+
+	FormattedPlural.displayName = 'FormattedPlural';
+	FormattedPlural.contextTypes = {
+	  intl: intlShape
+	};
+	FormattedPlural.defaultProps = {
+	  style: 'cardinal'
+	};
+	process.env.NODE_ENV !== "production" ? FormattedPlural.propTypes = _extends({}, pluralFormatPropTypes, {
+	  value: PropTypes.any.isRequired,
+
+	  other: PropTypes.node.isRequired,
+	  zero: PropTypes.node,
+	  one: PropTypes.node,
+	  two: PropTypes.node,
+	  few: PropTypes.node,
+	  many: PropTypes.node,
+
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var defaultFormatMessage = function defaultFormatMessage(descriptor, values) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    console.error('[React Intl] Could not find required `intl` object. <IntlProvider> needs to exist in the component ancestry. Using default message as fallback.');
+	  }
+	  return formatMessage({}, { getMessageFormat: memoizeIntlConstructor(IntlMessageFormat) }, descriptor, values);
+	};
+
+	var FormattedMessage = function (_Component) {
+	  inherits(FormattedMessage, _Component);
+
+	  function FormattedMessage(props, context) {
+	    classCallCheck(this, FormattedMessage);
+
+	    var _this = possibleConstructorReturn(this, (FormattedMessage.__proto__ || Object.getPrototypeOf(FormattedMessage)).call(this, props, context));
+
+	    if (!props.defaultMessage) {
+	      invariantIntlContext(context);
+	    }
+	    return _this;
+	  }
+
+	  createClass(FormattedMessage, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps) {
+	      var values = this.props.values;
+	      var nextValues = nextProps.values;
+
+
+	      if (!shallowEquals(nextValues, values)) {
+	        return true;
+	      }
+
+	      // Since `values` has already been checked, we know they're not
+	      // different, so the current `values` are carried over so the shallow
+	      // equals comparison on the other props isn't affected by the `values`.
+	      var nextPropsToCheck = _extends({}, nextProps, {
+	        values: values
+	      });
+
+	      for (var _len = arguments.length, next = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        next[_key - 1] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this, nextPropsToCheck].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _ref = this.context.intl || {},
+	          _ref$formatMessage = _ref.formatMessage,
+	          formatMessage$$1 = _ref$formatMessage === undefined ? defaultFormatMessage : _ref$formatMessage,
+	          _ref$textComponent = _ref.textComponent,
+	          Text = _ref$textComponent === undefined ? 'span' : _ref$textComponent;
+
+	      var _props = this.props,
+	          id = _props.id,
+	          description = _props.description,
+	          defaultMessage = _props.defaultMessage,
+	          values = _props.values,
+	          _props$tagName = _props.tagName,
+	          Component$$1 = _props$tagName === undefined ? Text : _props$tagName,
+	          children = _props.children;
+
+
+	      var tokenDelimiter = void 0;
+	      var tokenizedValues = void 0;
+	      var elements = void 0;
+
+	      var hasValues = values && Object.keys(values).length > 0;
+	      if (hasValues) {
+	        // Creates a token with a random UID that should not be guessable or
+	        // conflict with other parts of the `message` string.
+	        var uid = Math.floor(Math.random() * 0x10000000000).toString(16);
+
+	        var generateToken = function () {
+	          var counter = 0;
+	          return function () {
+	            return 'ELEMENT-' + uid + '-' + (counter += 1);
+	          };
+	        }();
+
+	        // Splitting with a delimiter to support IE8. When using a regex
+	        // with a capture group IE8 does not include the capture group in
+	        // the resulting array.
+	        tokenDelimiter = '@__' + uid + '__@';
+	        tokenizedValues = {};
+	        elements = {};
+
+	        // Iterates over the `props` to keep track of any React Element
+	        // values so they can be represented by the `token` as a placeholder
+	        // when the `message` is formatted. This allows the formatted
+	        // message to then be broken-up into parts with references to the
+	        // React Elements inserted back in.
+	        Object.keys(values).forEach(function (name) {
+	          var value = values[name];
+
+	          if (React.isValidElement(value)) {
+	            var token = generateToken();
+	            tokenizedValues[name] = tokenDelimiter + token + tokenDelimiter;
+	            elements[token] = value;
+	          } else {
+	            tokenizedValues[name] = value;
+	          }
+	        });
+	      }
+
+	      var descriptor = { id: id, description: description, defaultMessage: defaultMessage };
+	      var formattedMessage = formatMessage$$1(descriptor, tokenizedValues || values);
+
+	      var nodes = void 0;
+
+	      var hasElements = elements && Object.keys(elements).length > 0;
+	      if (hasElements) {
+	        // Split the message into parts so the React Element values captured
+	        // above can be inserted back into the rendered message. This
+	        // approach allows messages to render with React Elements while
+	        // keeping React's virtual diffing working properly.
+	        nodes = formattedMessage.split(tokenDelimiter).filter(function (part) {
+	          return !!part;
+	        }).map(function (part) {
+	          return elements[part] || part;
+	        });
+	      } else {
+	        nodes = [formattedMessage];
+	      }
+
+	      if (typeof children === 'function') {
+	        return children.apply(undefined, toConsumableArray(nodes));
+	      }
+
+	      // Needs to use `createElement()` instead of JSX, otherwise React will
+	      // warn about a missing `key` prop with rich-text message formatting.
+	      return React.createElement.apply(undefined, [Component$$1, null].concat(toConsumableArray(nodes)));
+	    }
+	  }]);
+	  return FormattedMessage;
+	}(React.Component);
+
+	FormattedMessage.displayName = 'FormattedMessage';
+	FormattedMessage.contextTypes = {
+	  intl: intlShape
+	};
+	FormattedMessage.defaultProps = {
+	  values: {}
+	};
+	process.env.NODE_ENV !== "production" ? FormattedMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
+	  values: PropTypes.object,
+	  tagName: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	var FormattedHTMLMessage = function (_Component) {
+	  inherits(FormattedHTMLMessage, _Component);
+
+	  function FormattedHTMLMessage(props, context) {
+	    classCallCheck(this, FormattedHTMLMessage);
+
+	    var _this = possibleConstructorReturn(this, (FormattedHTMLMessage.__proto__ || Object.getPrototypeOf(FormattedHTMLMessage)).call(this, props, context));
+
+	    invariantIntlContext(context);
+	    return _this;
+	  }
+
+	  createClass(FormattedHTMLMessage, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps) {
+	      var values = this.props.values;
+	      var nextValues = nextProps.values;
+
+
+	      if (!shallowEquals(nextValues, values)) {
+	        return true;
+	      }
+
+	      // Since `values` has already been checked, we know they're not
+	      // different, so the current `values` are carried over so the shallow
+	      // equals comparison on the other props isn't affected by the `values`.
+	      var nextPropsToCheck = _extends({}, nextProps, {
+	        values: values
+	      });
+
+	      for (var _len = arguments.length, next = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        next[_key - 1] = arguments[_key];
+	      }
+
+	      return shouldIntlComponentUpdate.apply(undefined, [this, nextPropsToCheck].concat(next));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _context$intl = this.context.intl,
+	          formatHTMLMessage = _context$intl.formatHTMLMessage,
+	          Text = _context$intl.textComponent;
+	      var _props = this.props,
+	          id = _props.id,
+	          description = _props.description,
+	          defaultMessage = _props.defaultMessage,
+	          rawValues = _props.values,
+	          _props$tagName = _props.tagName,
+	          Component$$1 = _props$tagName === undefined ? Text : _props$tagName,
+	          children = _props.children;
+
+
+	      var descriptor = { id: id, description: description, defaultMessage: defaultMessage };
+	      var formattedHTMLMessage = formatHTMLMessage(descriptor, rawValues);
+
+	      if (typeof children === 'function') {
+	        return children(formattedHTMLMessage);
+	      }
+
+	      // Since the message presumably has HTML in it, we need to set
+	      // `innerHTML` in order for it to be rendered and not escaped by React.
+	      // To be safe, all string prop values were escaped when formatting the
+	      // message. It is assumed that the message is not UGC, and came from the
+	      // developer making it more like a template.
+	      //
+	      // Note: There's a perf impact of using this component since there's no
+	      // way for React to do its virtual DOM diffing.
+	      var html = { __html: formattedHTMLMessage };
+	      return React__default.createElement(Component$$1, { dangerouslySetInnerHTML: html });
+	    }
+	  }]);
+	  return FormattedHTMLMessage;
+	}(React.Component);
+
+	FormattedHTMLMessage.displayName = 'FormattedHTMLMessage';
+	FormattedHTMLMessage.contextTypes = {
+	  intl: intlShape
+	};
+	FormattedHTMLMessage.defaultProps = {
+	  values: {}
+	};
+	process.env.NODE_ENV !== "production" ? FormattedHTMLMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
+	  values: PropTypes.object,
+	  tagName: PropTypes.string,
+	  children: PropTypes.func
+	}) : void 0;
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	addLocaleData(defaultLocaleData);
+
+	/*
+	 * Copyright 2015, Yahoo Inc.
+	 * Copyrights licensed under the New BSD License.
+	 * See the accompanying LICENSE file for terms.
+	 */
+
+	addLocaleData(allLocaleData);
+
+	exports.addLocaleData = addLocaleData;
+	exports.intlShape = intlShape;
+	exports.injectIntl = injectIntl;
+	exports.defineMessages = defineMessages;
+	exports.IntlProvider = IntlProvider;
+	exports.FormattedDate = FormattedDate;
+	exports.FormattedTime = FormattedTime;
+	exports.FormattedRelative = FormattedRelative;
+	exports.FormattedNumber = FormattedNumber;
+	exports.FormattedPlural = FormattedPlural;
+	exports.FormattedMessage = FormattedMessage;
+	exports.FormattedHTMLMessage = FormattedHTMLMessage;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+	/* (ignored) */
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* jshint node:true */
+
+	'use strict';
+
+	var IntlMessageFormat = __webpack_require__(75)['default'];
+
+	// Add all locale data to `IntlMessageFormat`. This module will be ignored when
+	// bundling for the browser with Browserify/Webpack.
+	__webpack_require__(83);
+
+	// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
+	// locale data registered, and with English set as the default locale. Define
+	// the `default` prop for use with other compiled ES6 Modules.
+	exports = module.exports = IntlMessageFormat;
+	exports['default'] = exports;
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* jslint esnext: true */
+
+	"use strict";
+	var src$core$$ = __webpack_require__(76), src$en$$ = __webpack_require__(82);
+
+	src$core$$["default"].__addLocaleData(src$en$$["default"]);
+	src$core$$["default"].defaultLocale = 'en';
+
+	exports["default"] = src$core$$["default"];
+
+	//# sourceMappingURL=main.js.map
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+	var src$utils$$ = __webpack_require__(77), src$es5$$ = __webpack_require__(78), src$compiler$$ = __webpack_require__(79), intl$messageformat$parser$$ = __webpack_require__(80);
+	exports["default"] = MessageFormat;
+
+	// -- MessageFormat --------------------------------------------------------
+
+	function MessageFormat(message, locales, formats) {
+	    // Parse string messages into an AST.
+	    var ast = typeof message === 'string' ?
+	            MessageFormat.__parse(message) : message;
+
+	    if (!(ast && ast.type === 'messageFormatPattern')) {
+	        throw new TypeError('A message must be provided as a String or AST.');
+	    }
+
+	    // Creates a new object with the specified `formats` merged with the default
+	    // formats.
+	    formats = this._mergeFormats(MessageFormat.formats, formats);
+
+	    // Defined first because it's used to build the format pattern.
+	    src$es5$$.defineProperty(this, '_locale',  {value: this._resolveLocale(locales)});
+
+	    // Compile the `ast` to a pattern that is highly optimized for repeated
+	    // `format()` invocations. **Note:** This passes the `locales` set provided
+	    // to the constructor instead of just the resolved locale.
+	    var pluralFn = this._findPluralRuleFunction(this._locale);
+	    var pattern  = this._compilePattern(ast, locales, formats, pluralFn);
+
+	    // "Bind" `format()` method to `this` so it can be passed by reference like
+	    // the other `Intl` APIs.
+	    var messageFormat = this;
+	    this.format = function (values) {
+	      try {
+	        return messageFormat._format(pattern, values);
+	      } catch (e) {
+	        if (e.variableId) {
+	          throw new Error(
+	            'The intl string context variable \'' + e.variableId + '\'' +
+	            ' was not provided to the string \'' + message + '\''
+	          );
+	        } else {
+	          throw e;
+	        }
+	      }
+	    };
+	}
+
+	// Default format options used as the prototype of the `formats` provided to the
+	// constructor. These are used when constructing the internal Intl.NumberFormat
+	// and Intl.DateTimeFormat instances.
+	src$es5$$.defineProperty(MessageFormat, 'formats', {
+	    enumerable: true,
+
+	    value: {
+	        number: {
+	            'currency': {
+	                style: 'currency'
+	            },
+
+	            'percent': {
+	                style: 'percent'
+	            }
+	        },
+
+	        date: {
+	            'short': {
+	                month: 'numeric',
+	                day  : 'numeric',
+	                year : '2-digit'
+	            },
+
+	            'medium': {
+	                month: 'short',
+	                day  : 'numeric',
+	                year : 'numeric'
+	            },
+
+	            'long': {
+	                month: 'long',
+	                day  : 'numeric',
+	                year : 'numeric'
+	            },
+
+	            'full': {
+	                weekday: 'long',
+	                month  : 'long',
+	                day    : 'numeric',
+	                year   : 'numeric'
+	            }
+	        },
+
+	        time: {
+	            'short': {
+	                hour  : 'numeric',
+	                minute: 'numeric'
+	            },
+
+	            'medium':  {
+	                hour  : 'numeric',
+	                minute: 'numeric',
+	                second: 'numeric'
+	            },
+
+	            'long': {
+	                hour        : 'numeric',
+	                minute      : 'numeric',
+	                second      : 'numeric',
+	                timeZoneName: 'short'
+	            },
+
+	            'full': {
+	                hour        : 'numeric',
+	                minute      : 'numeric',
+	                second      : 'numeric',
+	                timeZoneName: 'short'
+	            }
+	        }
+	    }
+	});
+
+	// Define internal private properties for dealing with locale data.
+	src$es5$$.defineProperty(MessageFormat, '__localeData__', {value: src$es5$$.objCreate(null)});
+	src$es5$$.defineProperty(MessageFormat, '__addLocaleData', {value: function (data) {
+	    if (!(data && data.locale)) {
+	        throw new Error(
+	            'Locale data provided to IntlMessageFormat is missing a ' +
+	            '`locale` property'
+	        );
+	    }
+
+	    MessageFormat.__localeData__[data.locale.toLowerCase()] = data;
+	}});
+
+	// Defines `__parse()` static method as an exposed private.
+	src$es5$$.defineProperty(MessageFormat, '__parse', {value: intl$messageformat$parser$$["default"].parse});
+
+	// Define public `defaultLocale` property which defaults to English, but can be
+	// set by the developer.
+	src$es5$$.defineProperty(MessageFormat, 'defaultLocale', {
+	    enumerable: true,
+	    writable  : true,
+	    value     : undefined
+	});
+
+	MessageFormat.prototype.resolvedOptions = function () {
+	    // TODO: Provide anything else?
+	    return {
+	        locale: this._locale
+	    };
+	};
+
+	MessageFormat.prototype._compilePattern = function (ast, locales, formats, pluralFn) {
+	    var compiler = new src$compiler$$["default"](locales, formats, pluralFn);
+	    return compiler.compile(ast);
+	};
+
+	MessageFormat.prototype._findPluralRuleFunction = function (locale) {
+	    var localeData = MessageFormat.__localeData__;
+	    var data       = localeData[locale.toLowerCase()];
+
+	    // The locale data is de-duplicated, so we have to traverse the locale's
+	    // hierarchy until we find a `pluralRuleFunction` to return.
+	    while (data) {
+	        if (data.pluralRuleFunction) {
+	            return data.pluralRuleFunction;
+	        }
+
+	        data = data.parentLocale && localeData[data.parentLocale.toLowerCase()];
+	    }
+
+	    throw new Error(
+	        'Locale data added to IntlMessageFormat is missing a ' +
+	        '`pluralRuleFunction` for :' + locale
+	    );
+	};
+
+	MessageFormat.prototype._format = function (pattern, values) {
+	    var result = '',
+	        i, len, part, id, value, err;
+
+	    for (i = 0, len = pattern.length; i < len; i += 1) {
+	        part = pattern[i];
+
+	        // Exist early for string parts.
+	        if (typeof part === 'string') {
+	            result += part;
+	            continue;
+	        }
+
+	        id = part.id;
+
+	        // Enforce that all required values are provided by the caller.
+	        if (!(values && src$utils$$.hop.call(values, id))) {
+	          err = new Error('A value must be provided for: ' + id);
+	          err.variableId = id;
+	          throw err;
+	        }
+
+	        value = values[id];
+
+	        // Recursively format plural and select parts' option — which can be a
+	        // nested pattern structure. The choosing of the option to use is
+	        // abstracted-by and delegated-to the part helper object.
+	        if (part.options) {
+	            result += this._format(part.getOption(value), values);
+	        } else {
+	            result += part.format(value);
+	        }
+	    }
+
+	    return result;
+	};
+
+	MessageFormat.prototype._mergeFormats = function (defaults, formats) {
+	    var mergedFormats = {},
+	        type, mergedType;
+
+	    for (type in defaults) {
+	        if (!src$utils$$.hop.call(defaults, type)) { continue; }
+
+	        mergedFormats[type] = mergedType = src$es5$$.objCreate(defaults[type]);
+
+	        if (formats && src$utils$$.hop.call(formats, type)) {
+	            src$utils$$.extend(mergedType, formats[type]);
+	        }
+	    }
+
+	    return mergedFormats;
+	};
+
+	MessageFormat.prototype._resolveLocale = function (locales) {
+	    if (typeof locales === 'string') {
+	        locales = [locales];
+	    }
+
+	    // Create a copy of the array so we can push on the default locale.
+	    locales = (locales || []).concat(MessageFormat.defaultLocale);
+
+	    var localeData = MessageFormat.__localeData__;
+	    var i, len, localeParts, data;
+
+	    // Using the set of locales + the default locale, we look for the first one
+	    // which that has been registered. When data does not exist for a locale, we
+	    // traverse its ancestors to find something that's been registered within
+	    // its hierarchy of locales. Since we lack the proper `parentLocale` data
+	    // here, we must take a naive approach to traversal.
+	    for (i = 0, len = locales.length; i < len; i += 1) {
+	        localeParts = locales[i].toLowerCase().split('-');
+
+	        while (localeParts.length) {
+	            data = localeData[localeParts.join('-')];
+	            if (data) {
+	                // Return the normalized locale string; e.g., we return "en-US",
+	                // instead of "en-us".
+	                return data.locale;
+	            }
+
+	            localeParts.pop();
+	        }
+	    }
+
+	    var defaultLocale = locales.pop();
+	    throw new Error(
+	        'No locale data has been added to IntlMessageFormat for: ' +
+	        locales.join(', ') + ', or the default locale: ' + defaultLocale
+	    );
+	};
+
+	//# sourceMappingURL=core.js.map
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+	exports.extend = extend;
+	var hop = Object.prototype.hasOwnProperty;
+
+	function extend(obj) {
+	    var sources = Array.prototype.slice.call(arguments, 1),
+	        i, len, source, key;
+
+	    for (i = 0, len = sources.length; i < len; i += 1) {
+	        source = sources[i];
+	        if (!source) { continue; }
+
+	        for (key in source) {
+	            if (hop.call(source, key)) {
+	                obj[key] = source[key];
+	            }
+	        }
+	    }
+
+	    return obj;
+	}
+	exports.hop = hop;
+
+	//# sourceMappingURL=utils.js.map
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+	var src$utils$$ = __webpack_require__(77);
+
+	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
+	// Copyright 2013 Andy Earnshaw, MIT License
+
+	var realDefineProp = (function () {
+	    try { return !!Object.defineProperty({}, 'a', {}); }
+	    catch (e) { return false; }
+	})();
+
+	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
+
+	var defineProperty = realDefineProp ? Object.defineProperty :
+	        function (obj, name, desc) {
+
+	    if ('get' in desc && obj.__defineGetter__) {
+	        obj.__defineGetter__(name, desc.get);
+	    } else if (!src$utils$$.hop.call(obj, name) || 'value' in desc) {
+	        obj[name] = desc.value;
+	    }
+	};
+
+	var objCreate = Object.create || function (proto, props) {
+	    var obj, k;
+
+	    function F() {}
+	    F.prototype = proto;
+	    obj = new F();
+
+	    for (k in props) {
+	        if (src$utils$$.hop.call(props, k)) {
+	            defineProperty(obj, k, props[k]);
+	        }
+	    }
+
+	    return obj;
+	};
+
+	exports.defineProperty = defineProperty, exports.objCreate = objCreate;
+
+	//# sourceMappingURL=es5.js.map
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+	exports["default"] = Compiler;
+
+	function Compiler(locales, formats, pluralFn) {
+	    this.locales  = locales;
+	    this.formats  = formats;
+	    this.pluralFn = pluralFn;
+	}
+
+	Compiler.prototype.compile = function (ast) {
+	    this.pluralStack        = [];
+	    this.currentPlural      = null;
+	    this.pluralNumberFormat = null;
+
+	    return this.compileMessage(ast);
+	};
+
+	Compiler.prototype.compileMessage = function (ast) {
+	    if (!(ast && ast.type === 'messageFormatPattern')) {
+	        throw new Error('Message AST is not of type: "messageFormatPattern"');
+	    }
+
+	    var elements = ast.elements,
+	        pattern  = [];
+
+	    var i, len, element;
+
+	    for (i = 0, len = elements.length; i < len; i += 1) {
+	        element = elements[i];
+
+	        switch (element.type) {
+	            case 'messageTextElement':
+	                pattern.push(this.compileMessageText(element));
+	                break;
+
+	            case 'argumentElement':
+	                pattern.push(this.compileArgument(element));
+	                break;
+
+	            default:
+	                throw new Error('Message element does not have a valid type');
+	        }
+	    }
+
+	    return pattern;
+	};
+
+	Compiler.prototype.compileMessageText = function (element) {
+	    // When this `element` is part of plural sub-pattern and its value contains
+	    // an unescaped '#', use a `PluralOffsetString` helper to properly output
+	    // the number with the correct offset in the string.
+	    if (this.currentPlural && /(^|[^\\])#/g.test(element.value)) {
+	        // Create a cache a NumberFormat instance that can be reused for any
+	        // PluralOffsetString instance in this message.
+	        if (!this.pluralNumberFormat) {
+	            this.pluralNumberFormat = new Intl.NumberFormat(this.locales);
+	        }
+
+	        return new PluralOffsetString(
+	                this.currentPlural.id,
+	                this.currentPlural.format.offset,
+	                this.pluralNumberFormat,
+	                element.value);
+	    }
+
+	    // Unescape the escaped '#'s in the message text.
+	    return element.value.replace(/\\#/g, '#');
+	};
+
+	Compiler.prototype.compileArgument = function (element) {
+	    var format = element.format;
+
+	    if (!format) {
+	        return new StringFormat(element.id);
+	    }
+
+	    var formats  = this.formats,
+	        locales  = this.locales,
+	        pluralFn = this.pluralFn,
+	        options;
+
+	    switch (format.type) {
+	        case 'numberFormat':
+	            options = formats.number[format.style];
+	            return {
+	                id    : element.id,
+	                format: new Intl.NumberFormat(locales, options).format
+	            };
+
+	        case 'dateFormat':
+	            options = formats.date[format.style];
+	            return {
+	                id    : element.id,
+	                format: new Intl.DateTimeFormat(locales, options).format
+	            };
+
+	        case 'timeFormat':
+	            options = formats.time[format.style];
+	            return {
+	                id    : element.id,
+	                format: new Intl.DateTimeFormat(locales, options).format
+	            };
+
+	        case 'pluralFormat':
+	            options = this.compileOptions(element);
+	            return new PluralFormat(
+	                element.id, format.ordinal, format.offset, options, pluralFn
+	            );
+
+	        case 'selectFormat':
+	            options = this.compileOptions(element);
+	            return new SelectFormat(element.id, options);
+
+	        default:
+	            throw new Error('Message element does not have a valid format type');
+	    }
+	};
+
+	Compiler.prototype.compileOptions = function (element) {
+	    var format      = element.format,
+	        options     = format.options,
+	        optionsHash = {};
+
+	    // Save the current plural element, if any, then set it to a new value when
+	    // compiling the options sub-patterns. This conforms the spec's algorithm
+	    // for handling `"#"` syntax in message text.
+	    this.pluralStack.push(this.currentPlural);
+	    this.currentPlural = format.type === 'pluralFormat' ? element : null;
+
+	    var i, len, option;
+
+	    for (i = 0, len = options.length; i < len; i += 1) {
+	        option = options[i];
+
+	        // Compile the sub-pattern and save it under the options's selector.
+	        optionsHash[option.selector] = this.compileMessage(option.value);
+	    }
+
+	    // Pop the plural stack to put back the original current plural value.
+	    this.currentPlural = this.pluralStack.pop();
+
+	    return optionsHash;
+	};
+
+	// -- Compiler Helper Classes --------------------------------------------------
+
+	function StringFormat(id) {
+	    this.id = id;
+	}
+
+	StringFormat.prototype.format = function (value) {
+	    if (!value && typeof value !== 'number') {
+	        return '';
+	    }
+
+	    return typeof value === 'string' ? value : String(value);
+	};
+
+	function PluralFormat(id, useOrdinal, offset, options, pluralFn) {
+	    this.id         = id;
+	    this.useOrdinal = useOrdinal;
+	    this.offset     = offset;
+	    this.options    = options;
+	    this.pluralFn   = pluralFn;
+	}
+
+	PluralFormat.prototype.getOption = function (value) {
+	    var options = this.options;
+
+	    var option = options['=' + value] ||
+	            options[this.pluralFn(value - this.offset, this.useOrdinal)];
+
+	    return option || options.other;
+	};
+
+	function PluralOffsetString(id, offset, numberFormat, string) {
+	    this.id           = id;
+	    this.offset       = offset;
+	    this.numberFormat = numberFormat;
+	    this.string       = string;
+	}
+
+	PluralOffsetString.prototype.format = function (value) {
+	    var number = this.numberFormat.format(value - this.offset);
+
+	    return this.string
+	            .replace(/(^|[^\\])#/g, '$1' + number)
+	            .replace(/\\#/g, '#');
+	};
+
+	function SelectFormat(id, options) {
+	    this.id      = id;
+	    this.options = options;
+	}
+
+	SelectFormat.prototype.getOption = function (value) {
+	    var options = this.options;
+	    return options[value] || options.other;
+	};
+
+	//# sourceMappingURL=compiler.js.map
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports = module.exports = __webpack_require__(81)['default'];
+	exports['default'] = exports;
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	exports["default"] = (function() {
+	  "use strict";
+
+	  /*
+	   * Generated by PEG.js 0.9.0.
+	   *
+	   * http://pegjs.org/
+	   */
+
+	  function peg$subclass(child, parent) {
+	    function ctor() { this.constructor = child; }
+	    ctor.prototype = parent.prototype;
+	    child.prototype = new ctor();
+	  }
+
+	  function peg$SyntaxError(message, expected, found, location) {
+	    this.message  = message;
+	    this.expected = expected;
+	    this.found    = found;
+	    this.location = location;
+	    this.name     = "SyntaxError";
+
+	    if (typeof Error.captureStackTrace === "function") {
+	      Error.captureStackTrace(this, peg$SyntaxError);
+	    }
+	  }
+
+	  peg$subclass(peg$SyntaxError, Error);
+
+	  function peg$parse(input) {
+	    var options = arguments.length > 1 ? arguments[1] : {},
+	        parser  = this,
+
+	        peg$FAILED = {},
+
+	        peg$startRuleFunctions = { start: peg$parsestart },
+	        peg$startRuleFunction  = peg$parsestart,
+
+	        peg$c0 = function(elements) {
+	                return {
+	                    type    : 'messageFormatPattern',
+	                    elements: elements,
+	                    location: location()
+	                };
+	            },
+	        peg$c1 = function(text) {
+	                var string = '',
+	                    i, j, outerLen, inner, innerLen;
+
+	                for (i = 0, outerLen = text.length; i < outerLen; i += 1) {
+	                    inner = text[i];
+
+	                    for (j = 0, innerLen = inner.length; j < innerLen; j += 1) {
+	                        string += inner[j];
+	                    }
+	                }
+
+	                return string;
+	            },
+	        peg$c2 = function(messageText) {
+	                return {
+	                    type : 'messageTextElement',
+	                    value: messageText,
+	                    location: location()
+	                };
+	            },
+	        peg$c3 = /^[^ \t\n\r,.+={}#]/,
+	        peg$c4 = { type: "class", value: "[^ \\t\\n\\r,.+={}#]", description: "[^ \\t\\n\\r,.+={}#]" },
+	        peg$c5 = "{",
+	        peg$c6 = { type: "literal", value: "{", description: "\"{\"" },
+	        peg$c7 = ",",
+	        peg$c8 = { type: "literal", value: ",", description: "\",\"" },
+	        peg$c9 = "}",
+	        peg$c10 = { type: "literal", value: "}", description: "\"}\"" },
+	        peg$c11 = function(id, format) {
+	                return {
+	                    type  : 'argumentElement',
+	                    id    : id,
+	                    format: format && format[2],
+	                    location: location()
+	                };
+	            },
+	        peg$c12 = "number",
+	        peg$c13 = { type: "literal", value: "number", description: "\"number\"" },
+	        peg$c14 = "date",
+	        peg$c15 = { type: "literal", value: "date", description: "\"date\"" },
+	        peg$c16 = "time",
+	        peg$c17 = { type: "literal", value: "time", description: "\"time\"" },
+	        peg$c18 = function(type, style) {
+	                return {
+	                    type : type + 'Format',
+	                    style: style && style[2],
+	                    location: location()
+	                };
+	            },
+	        peg$c19 = "plural",
+	        peg$c20 = { type: "literal", value: "plural", description: "\"plural\"" },
+	        peg$c21 = function(pluralStyle) {
+	                return {
+	                    type   : pluralStyle.type,
+	                    ordinal: false,
+	                    offset : pluralStyle.offset || 0,
+	                    options: pluralStyle.options,
+	                    location: location()
+	                };
+	            },
+	        peg$c22 = "selectordinal",
+	        peg$c23 = { type: "literal", value: "selectordinal", description: "\"selectordinal\"" },
+	        peg$c24 = function(pluralStyle) {
+	                return {
+	                    type   : pluralStyle.type,
+	                    ordinal: true,
+	                    offset : pluralStyle.offset || 0,
+	                    options: pluralStyle.options,
+	                    location: location()
+	                }
+	            },
+	        peg$c25 = "select",
+	        peg$c26 = { type: "literal", value: "select", description: "\"select\"" },
+	        peg$c27 = function(options) {
+	                return {
+	                    type   : 'selectFormat',
+	                    options: options,
+	                    location: location()
+	                };
+	            },
+	        peg$c28 = "=",
+	        peg$c29 = { type: "literal", value: "=", description: "\"=\"" },
+	        peg$c30 = function(selector, pattern) {
+	                return {
+	                    type    : 'optionalFormatPattern',
+	                    selector: selector,
+	                    value   : pattern,
+	                    location: location()
+	                };
+	            },
+	        peg$c31 = "offset:",
+	        peg$c32 = { type: "literal", value: "offset:", description: "\"offset:\"" },
+	        peg$c33 = function(number) {
+	                return number;
+	            },
+	        peg$c34 = function(offset, options) {
+	                return {
+	                    type   : 'pluralFormat',
+	                    offset : offset,
+	                    options: options,
+	                    location: location()
+	                };
+	            },
+	        peg$c35 = { type: "other", description: "whitespace" },
+	        peg$c36 = /^[ \t\n\r]/,
+	        peg$c37 = { type: "class", value: "[ \\t\\n\\r]", description: "[ \\t\\n\\r]" },
+	        peg$c38 = { type: "other", description: "optionalWhitespace" },
+	        peg$c39 = /^[0-9]/,
+	        peg$c40 = { type: "class", value: "[0-9]", description: "[0-9]" },
+	        peg$c41 = /^[0-9a-f]/i,
+	        peg$c42 = { type: "class", value: "[0-9a-f]i", description: "[0-9a-f]i" },
+	        peg$c43 = "0",
+	        peg$c44 = { type: "literal", value: "0", description: "\"0\"" },
+	        peg$c45 = /^[1-9]/,
+	        peg$c46 = { type: "class", value: "[1-9]", description: "[1-9]" },
+	        peg$c47 = function(digits) {
+	            return parseInt(digits, 10);
+	        },
+	        peg$c48 = /^[^{}\\\0-\x1F \t\n\r]/,
+	        peg$c49 = { type: "class", value: "[^{}\\\\\\0-\\x1F\\x7f \\t\\n\\r]", description: "[^{}\\\\\\0-\\x1F\\x7f \\t\\n\\r]" },
+	        peg$c50 = "\\\\",
+	        peg$c51 = { type: "literal", value: "\\\\", description: "\"\\\\\\\\\"" },
+	        peg$c52 = function() { return '\\'; },
+	        peg$c53 = "\\#",
+	        peg$c54 = { type: "literal", value: "\\#", description: "\"\\\\#\"" },
+	        peg$c55 = function() { return '\\#'; },
+	        peg$c56 = "\\{",
+	        peg$c57 = { type: "literal", value: "\\{", description: "\"\\\\{\"" },
+	        peg$c58 = function() { return '\u007B'; },
+	        peg$c59 = "\\}",
+	        peg$c60 = { type: "literal", value: "\\}", description: "\"\\\\}\"" },
+	        peg$c61 = function() { return '\u007D'; },
+	        peg$c62 = "\\u",
+	        peg$c63 = { type: "literal", value: "\\u", description: "\"\\\\u\"" },
+	        peg$c64 = function(digits) {
+	                return String.fromCharCode(parseInt(digits, 16));
+	            },
+	        peg$c65 = function(chars) { return chars.join(''); },
+
+	        peg$currPos          = 0,
+	        peg$savedPos         = 0,
+	        peg$posDetailsCache  = [{ line: 1, column: 1, seenCR: false }],
+	        peg$maxFailPos       = 0,
+	        peg$maxFailExpected  = [],
+	        peg$silentFails      = 0,
+
+	        peg$result;
+
+	    if ("startRule" in options) {
+	      if (!(options.startRule in peg$startRuleFunctions)) {
+	        throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
+	      }
+
+	      peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
+	    }
+
+	    function text() {
+	      return input.substring(peg$savedPos, peg$currPos);
+	    }
+
+	    function location() {
+	      return peg$computeLocation(peg$savedPos, peg$currPos);
+	    }
+
+	    function expected(description) {
+	      throw peg$buildException(
+	        null,
+	        [{ type: "other", description: description }],
+	        input.substring(peg$savedPos, peg$currPos),
+	        peg$computeLocation(peg$savedPos, peg$currPos)
+	      );
+	    }
+
+	    function error(message) {
+	      throw peg$buildException(
+	        message,
+	        null,
+	        input.substring(peg$savedPos, peg$currPos),
+	        peg$computeLocation(peg$savedPos, peg$currPos)
+	      );
+	    }
+
+	    function peg$computePosDetails(pos) {
+	      var details = peg$posDetailsCache[pos],
+	          p, ch;
+
+	      if (details) {
+	        return details;
+	      } else {
+	        p = pos - 1;
+	        while (!peg$posDetailsCache[p]) {
+	          p--;
+	        }
+
+	        details = peg$posDetailsCache[p];
+	        details = {
+	          line:   details.line,
+	          column: details.column,
+	          seenCR: details.seenCR
+	        };
+
+	        while (p < pos) {
+	          ch = input.charAt(p);
+	          if (ch === "\n") {
+	            if (!details.seenCR) { details.line++; }
+	            details.column = 1;
+	            details.seenCR = false;
+	          } else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
+	            details.line++;
+	            details.column = 1;
+	            details.seenCR = true;
+	          } else {
+	            details.column++;
+	            details.seenCR = false;
+	          }
+
+	          p++;
+	        }
+
+	        peg$posDetailsCache[pos] = details;
+	        return details;
+	      }
+	    }
+
+	    function peg$computeLocation(startPos, endPos) {
+	      var startPosDetails = peg$computePosDetails(startPos),
+	          endPosDetails   = peg$computePosDetails(endPos);
+
+	      return {
+	        start: {
+	          offset: startPos,
+	          line:   startPosDetails.line,
+	          column: startPosDetails.column
+	        },
+	        end: {
+	          offset: endPos,
+	          line:   endPosDetails.line,
+	          column: endPosDetails.column
+	        }
+	      };
+	    }
+
+	    function peg$fail(expected) {
+	      if (peg$currPos < peg$maxFailPos) { return; }
+
+	      if (peg$currPos > peg$maxFailPos) {
+	        peg$maxFailPos = peg$currPos;
+	        peg$maxFailExpected = [];
+	      }
+
+	      peg$maxFailExpected.push(expected);
+	    }
+
+	    function peg$buildException(message, expected, found, location) {
+	      function cleanupExpected(expected) {
+	        var i = 1;
+
+	        expected.sort(function(a, b) {
+	          if (a.description < b.description) {
+	            return -1;
+	          } else if (a.description > b.description) {
+	            return 1;
+	          } else {
+	            return 0;
+	          }
+	        });
+
+	        while (i < expected.length) {
+	          if (expected[i - 1] === expected[i]) {
+	            expected.splice(i, 1);
+	          } else {
+	            i++;
+	          }
+	        }
+	      }
+
+	      function buildMessage(expected, found) {
+	        function stringEscape(s) {
+	          function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }
+
+	          return s
+	            .replace(/\\/g,   '\\\\')
+	            .replace(/"/g,    '\\"')
+	            .replace(/\x08/g, '\\b')
+	            .replace(/\t/g,   '\\t')
+	            .replace(/\n/g,   '\\n')
+	            .replace(/\f/g,   '\\f')
+	            .replace(/\r/g,   '\\r')
+	            .replace(/[\x00-\x07\x0B\x0E\x0F]/g, function(ch) { return '\\x0' + hex(ch); })
+	            .replace(/[\x10-\x1F\x80-\xFF]/g,    function(ch) { return '\\x'  + hex(ch); })
+	            .replace(/[\u0100-\u0FFF]/g,         function(ch) { return '\\u0' + hex(ch); })
+	            .replace(/[\u1000-\uFFFF]/g,         function(ch) { return '\\u'  + hex(ch); });
+	        }
+
+	        var expectedDescs = new Array(expected.length),
+	            expectedDesc, foundDesc, i;
+
+	        for (i = 0; i < expected.length; i++) {
+	          expectedDescs[i] = expected[i].description;
+	        }
+
+	        expectedDesc = expected.length > 1
+	          ? expectedDescs.slice(0, -1).join(", ")
+	              + " or "
+	              + expectedDescs[expected.length - 1]
+	          : expectedDescs[0];
+
+	        foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
+
+	        return "Expected " + expectedDesc + " but " + foundDesc + " found.";
+	      }
+
+	      if (expected !== null) {
+	        cleanupExpected(expected);
+	      }
+
+	      return new peg$SyntaxError(
+	        message !== null ? message : buildMessage(expected, found),
+	        expected,
+	        found,
+	        location
+	      );
+	    }
+
+	    function peg$parsestart() {
+	      var s0;
+
+	      s0 = peg$parsemessageFormatPattern();
+
+	      return s0;
+	    }
+
+	    function peg$parsemessageFormatPattern() {
+	      var s0, s1, s2;
+
+	      s0 = peg$currPos;
+	      s1 = [];
+	      s2 = peg$parsemessageFormatElement();
+	      while (s2 !== peg$FAILED) {
+	        s1.push(s2);
+	        s2 = peg$parsemessageFormatElement();
+	      }
+	      if (s1 !== peg$FAILED) {
+	        peg$savedPos = s0;
+	        s1 = peg$c0(s1);
+	      }
+	      s0 = s1;
+
+	      return s0;
+	    }
+
+	    function peg$parsemessageFormatElement() {
+	      var s0;
+
+	      s0 = peg$parsemessageTextElement();
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$parseargumentElement();
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsemessageText() {
+	      var s0, s1, s2, s3, s4, s5;
+
+	      s0 = peg$currPos;
+	      s1 = [];
+	      s2 = peg$currPos;
+	      s3 = peg$parse_();
+	      if (s3 !== peg$FAILED) {
+	        s4 = peg$parsechars();
+	        if (s4 !== peg$FAILED) {
+	          s5 = peg$parse_();
+	          if (s5 !== peg$FAILED) {
+	            s3 = [s3, s4, s5];
+	            s2 = s3;
+	          } else {
+	            peg$currPos = s2;
+	            s2 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s2;
+	          s2 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s2;
+	        s2 = peg$FAILED;
+	      }
+	      if (s2 !== peg$FAILED) {
+	        while (s2 !== peg$FAILED) {
+	          s1.push(s2);
+	          s2 = peg$currPos;
+	          s3 = peg$parse_();
+	          if (s3 !== peg$FAILED) {
+	            s4 = peg$parsechars();
+	            if (s4 !== peg$FAILED) {
+	              s5 = peg$parse_();
+	              if (s5 !== peg$FAILED) {
+	                s3 = [s3, s4, s5];
+	                s2 = s3;
+	              } else {
+	                peg$currPos = s2;
+	                s2 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s2;
+	              s2 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s2;
+	            s2 = peg$FAILED;
+	          }
+	        }
+	      } else {
+	        s1 = peg$FAILED;
+	      }
+	      if (s1 !== peg$FAILED) {
+	        peg$savedPos = s0;
+	        s1 = peg$c1(s1);
+	      }
+	      s0 = s1;
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$currPos;
+	        s1 = peg$parsews();
+	        if (s1 !== peg$FAILED) {
+	          s0 = input.substring(s0, peg$currPos);
+	        } else {
+	          s0 = s1;
+	        }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsemessageTextElement() {
+	      var s0, s1;
+
+	      s0 = peg$currPos;
+	      s1 = peg$parsemessageText();
+	      if (s1 !== peg$FAILED) {
+	        peg$savedPos = s0;
+	        s1 = peg$c2(s1);
+	      }
+	      s0 = s1;
+
+	      return s0;
+	    }
+
+	    function peg$parseargument() {
+	      var s0, s1, s2;
+
+	      s0 = peg$parsenumber();
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$currPos;
+	        s1 = [];
+	        if (peg$c3.test(input.charAt(peg$currPos))) {
+	          s2 = input.charAt(peg$currPos);
+	          peg$currPos++;
+	        } else {
+	          s2 = peg$FAILED;
+	          if (peg$silentFails === 0) { peg$fail(peg$c4); }
+	        }
+	        if (s2 !== peg$FAILED) {
+	          while (s2 !== peg$FAILED) {
+	            s1.push(s2);
+	            if (peg$c3.test(input.charAt(peg$currPos))) {
+	              s2 = input.charAt(peg$currPos);
+	              peg$currPos++;
+	            } else {
+	              s2 = peg$FAILED;
+	              if (peg$silentFails === 0) { peg$fail(peg$c4); }
+	            }
+	          }
+	        } else {
+	          s1 = peg$FAILED;
+	        }
+	        if (s1 !== peg$FAILED) {
+	          s0 = input.substring(s0, peg$currPos);
+	        } else {
+	          s0 = s1;
+	        }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseargumentElement() {
+	      var s0, s1, s2, s3, s4, s5, s6, s7, s8;
+
+	      s0 = peg$currPos;
+	      if (input.charCodeAt(peg$currPos) === 123) {
+	        s1 = peg$c5;
+	        peg$currPos++;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c6); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          s3 = peg$parseargument();
+	          if (s3 !== peg$FAILED) {
+	            s4 = peg$parse_();
+	            if (s4 !== peg$FAILED) {
+	              s5 = peg$currPos;
+	              if (input.charCodeAt(peg$currPos) === 44) {
+	                s6 = peg$c7;
+	                peg$currPos++;
+	              } else {
+	                s6 = peg$FAILED;
+	                if (peg$silentFails === 0) { peg$fail(peg$c8); }
+	              }
+	              if (s6 !== peg$FAILED) {
+	                s7 = peg$parse_();
+	                if (s7 !== peg$FAILED) {
+	                  s8 = peg$parseelementFormat();
+	                  if (s8 !== peg$FAILED) {
+	                    s6 = [s6, s7, s8];
+	                    s5 = s6;
+	                  } else {
+	                    peg$currPos = s5;
+	                    s5 = peg$FAILED;
+	                  }
+	                } else {
+	                  peg$currPos = s5;
+	                  s5 = peg$FAILED;
+	                }
+	              } else {
+	                peg$currPos = s5;
+	                s5 = peg$FAILED;
+	              }
+	              if (s5 === peg$FAILED) {
+	                s5 = null;
+	              }
+	              if (s5 !== peg$FAILED) {
+	                s6 = peg$parse_();
+	                if (s6 !== peg$FAILED) {
+	                  if (input.charCodeAt(peg$currPos) === 125) {
+	                    s7 = peg$c9;
+	                    peg$currPos++;
+	                  } else {
+	                    s7 = peg$FAILED;
+	                    if (peg$silentFails === 0) { peg$fail(peg$c10); }
+	                  }
+	                  if (s7 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c11(s3, s5);
+	                    s0 = s1;
+	                  } else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                  }
+	                } else {
+	                  peg$currPos = s0;
+	                  s0 = peg$FAILED;
+	                }
+	              } else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s0;
+	              s0 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseelementFormat() {
+	      var s0;
+
+	      s0 = peg$parsesimpleFormat();
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$parsepluralFormat();
+	        if (s0 === peg$FAILED) {
+	          s0 = peg$parseselectOrdinalFormat();
+	          if (s0 === peg$FAILED) {
+	            s0 = peg$parseselectFormat();
+	          }
+	        }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsesimpleFormat() {
+	      var s0, s1, s2, s3, s4, s5, s6;
+
+	      s0 = peg$currPos;
+	      if (input.substr(peg$currPos, 6) === peg$c12) {
+	        s1 = peg$c12;
+	        peg$currPos += 6;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c13); }
+	      }
+	      if (s1 === peg$FAILED) {
+	        if (input.substr(peg$currPos, 4) === peg$c14) {
+	          s1 = peg$c14;
+	          peg$currPos += 4;
+	        } else {
+	          s1 = peg$FAILED;
+	          if (peg$silentFails === 0) { peg$fail(peg$c15); }
+	        }
+	        if (s1 === peg$FAILED) {
+	          if (input.substr(peg$currPos, 4) === peg$c16) {
+	            s1 = peg$c16;
+	            peg$currPos += 4;
+	          } else {
+	            s1 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c17); }
+	          }
+	        }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          s3 = peg$currPos;
+	          if (input.charCodeAt(peg$currPos) === 44) {
+	            s4 = peg$c7;
+	            peg$currPos++;
+	          } else {
+	            s4 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
+	          }
+	          if (s4 !== peg$FAILED) {
+	            s5 = peg$parse_();
+	            if (s5 !== peg$FAILED) {
+	              s6 = peg$parsechars();
+	              if (s6 !== peg$FAILED) {
+	                s4 = [s4, s5, s6];
+	                s3 = s4;
+	              } else {
+	                peg$currPos = s3;
+	                s3 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s3;
+	              s3 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s3;
+	            s3 = peg$FAILED;
+	          }
+	          if (s3 === peg$FAILED) {
+	            s3 = null;
+	          }
+	          if (s3 !== peg$FAILED) {
+	            peg$savedPos = s0;
+	            s1 = peg$c18(s1, s3);
+	            s0 = s1;
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsepluralFormat() {
+	      var s0, s1, s2, s3, s4, s5;
+
+	      s0 = peg$currPos;
+	      if (input.substr(peg$currPos, 6) === peg$c19) {
+	        s1 = peg$c19;
+	        peg$currPos += 6;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c20); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          if (input.charCodeAt(peg$currPos) === 44) {
+	            s3 = peg$c7;
+	            peg$currPos++;
+	          } else {
+	            s3 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
+	          }
+	          if (s3 !== peg$FAILED) {
+	            s4 = peg$parse_();
+	            if (s4 !== peg$FAILED) {
+	              s5 = peg$parsepluralStyle();
+	              if (s5 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c21(s5);
+	                s0 = s1;
+	              } else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s0;
+	              s0 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseselectOrdinalFormat() {
+	      var s0, s1, s2, s3, s4, s5;
+
+	      s0 = peg$currPos;
+	      if (input.substr(peg$currPos, 13) === peg$c22) {
+	        s1 = peg$c22;
+	        peg$currPos += 13;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c23); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          if (input.charCodeAt(peg$currPos) === 44) {
+	            s3 = peg$c7;
+	            peg$currPos++;
+	          } else {
+	            s3 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
+	          }
+	          if (s3 !== peg$FAILED) {
+	            s4 = peg$parse_();
+	            if (s4 !== peg$FAILED) {
+	              s5 = peg$parsepluralStyle();
+	              if (s5 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c24(s5);
+	                s0 = s1;
+	              } else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s0;
+	              s0 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseselectFormat() {
+	      var s0, s1, s2, s3, s4, s5, s6;
+
+	      s0 = peg$currPos;
+	      if (input.substr(peg$currPos, 6) === peg$c25) {
+	        s1 = peg$c25;
+	        peg$currPos += 6;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c26); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          if (input.charCodeAt(peg$currPos) === 44) {
+	            s3 = peg$c7;
+	            peg$currPos++;
+	          } else {
+	            s3 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
+	          }
+	          if (s3 !== peg$FAILED) {
+	            s4 = peg$parse_();
+	            if (s4 !== peg$FAILED) {
+	              s5 = [];
+	              s6 = peg$parseoptionalFormatPattern();
+	              if (s6 !== peg$FAILED) {
+	                while (s6 !== peg$FAILED) {
+	                  s5.push(s6);
+	                  s6 = peg$parseoptionalFormatPattern();
+	                }
+	              } else {
+	                s5 = peg$FAILED;
+	              }
+	              if (s5 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c27(s5);
+	                s0 = s1;
+	              } else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s0;
+	              s0 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseselector() {
+	      var s0, s1, s2, s3;
+
+	      s0 = peg$currPos;
+	      s1 = peg$currPos;
+	      if (input.charCodeAt(peg$currPos) === 61) {
+	        s2 = peg$c28;
+	        peg$currPos++;
+	      } else {
+	        s2 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c29); }
+	      }
+	      if (s2 !== peg$FAILED) {
+	        s3 = peg$parsenumber();
+	        if (s3 !== peg$FAILED) {
+	          s2 = [s2, s3];
+	          s1 = s2;
+	        } else {
+	          peg$currPos = s1;
+	          s1 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s1;
+	        s1 = peg$FAILED;
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s0 = input.substring(s0, peg$currPos);
+	      } else {
+	        s0 = s1;
+	      }
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$parsechars();
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseoptionalFormatPattern() {
+	      var s0, s1, s2, s3, s4, s5, s6, s7, s8;
+
+	      s0 = peg$currPos;
+	      s1 = peg$parse_();
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parseselector();
+	        if (s2 !== peg$FAILED) {
+	          s3 = peg$parse_();
+	          if (s3 !== peg$FAILED) {
+	            if (input.charCodeAt(peg$currPos) === 123) {
+	              s4 = peg$c5;
+	              peg$currPos++;
+	            } else {
+	              s4 = peg$FAILED;
+	              if (peg$silentFails === 0) { peg$fail(peg$c6); }
+	            }
+	            if (s4 !== peg$FAILED) {
+	              s5 = peg$parse_();
+	              if (s5 !== peg$FAILED) {
+	                s6 = peg$parsemessageFormatPattern();
+	                if (s6 !== peg$FAILED) {
+	                  s7 = peg$parse_();
+	                  if (s7 !== peg$FAILED) {
+	                    if (input.charCodeAt(peg$currPos) === 125) {
+	                      s8 = peg$c9;
+	                      peg$currPos++;
+	                    } else {
+	                      s8 = peg$FAILED;
+	                      if (peg$silentFails === 0) { peg$fail(peg$c10); }
+	                    }
+	                    if (s8 !== peg$FAILED) {
+	                      peg$savedPos = s0;
+	                      s1 = peg$c30(s2, s6);
+	                      s0 = s1;
+	                    } else {
+	                      peg$currPos = s0;
+	                      s0 = peg$FAILED;
+	                    }
+	                  } else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                  }
+	                } else {
+	                  peg$currPos = s0;
+	                  s0 = peg$FAILED;
+	                }
+	              } else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	              }
+	            } else {
+	              peg$currPos = s0;
+	              s0 = peg$FAILED;
+	            }
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parseoffset() {
+	      var s0, s1, s2, s3;
+
+	      s0 = peg$currPos;
+	      if (input.substr(peg$currPos, 7) === peg$c31) {
+	        s1 = peg$c31;
+	        peg$currPos += 7;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c32); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          s3 = peg$parsenumber();
+	          if (s3 !== peg$FAILED) {
+	            peg$savedPos = s0;
+	            s1 = peg$c33(s3);
+	            s0 = s1;
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsepluralStyle() {
+	      var s0, s1, s2, s3, s4;
+
+	      s0 = peg$currPos;
+	      s1 = peg$parseoffset();
+	      if (s1 === peg$FAILED) {
+	        s1 = null;
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s2 = peg$parse_();
+	        if (s2 !== peg$FAILED) {
+	          s3 = [];
+	          s4 = peg$parseoptionalFormatPattern();
+	          if (s4 !== peg$FAILED) {
+	            while (s4 !== peg$FAILED) {
+	              s3.push(s4);
+	              s4 = peg$parseoptionalFormatPattern();
+	            }
+	          } else {
+	            s3 = peg$FAILED;
+	          }
+	          if (s3 !== peg$FAILED) {
+	            peg$savedPos = s0;
+	            s1 = peg$c34(s1, s3);
+	            s0 = s1;
+	          } else {
+	            peg$currPos = s0;
+	            s0 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s0;
+	          s0 = peg$FAILED;
+	        }
+	      } else {
+	        peg$currPos = s0;
+	        s0 = peg$FAILED;
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsews() {
+	      var s0, s1;
+
+	      peg$silentFails++;
+	      s0 = [];
+	      if (peg$c36.test(input.charAt(peg$currPos))) {
+	        s1 = input.charAt(peg$currPos);
+	        peg$currPos++;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c37); }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        while (s1 !== peg$FAILED) {
+	          s0.push(s1);
+	          if (peg$c36.test(input.charAt(peg$currPos))) {
+	            s1 = input.charAt(peg$currPos);
+	            peg$currPos++;
+	          } else {
+	            s1 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c37); }
+	          }
+	        }
+	      } else {
+	        s0 = peg$FAILED;
+	      }
+	      peg$silentFails--;
+	      if (s0 === peg$FAILED) {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c35); }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parse_() {
+	      var s0, s1, s2;
+
+	      peg$silentFails++;
+	      s0 = peg$currPos;
+	      s1 = [];
+	      s2 = peg$parsews();
+	      while (s2 !== peg$FAILED) {
+	        s1.push(s2);
+	        s2 = peg$parsews();
+	      }
+	      if (s1 !== peg$FAILED) {
+	        s0 = input.substring(s0, peg$currPos);
+	      } else {
+	        s0 = s1;
+	      }
+	      peg$silentFails--;
+	      if (s0 === peg$FAILED) {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c38); }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsedigit() {
+	      var s0;
+
+	      if (peg$c39.test(input.charAt(peg$currPos))) {
+	        s0 = input.charAt(peg$currPos);
+	        peg$currPos++;
+	      } else {
+	        s0 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c40); }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsehexDigit() {
+	      var s0;
+
+	      if (peg$c41.test(input.charAt(peg$currPos))) {
+	        s0 = input.charAt(peg$currPos);
+	        peg$currPos++;
+	      } else {
+	        s0 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c42); }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsenumber() {
+	      var s0, s1, s2, s3, s4, s5;
+
+	      s0 = peg$currPos;
+	      if (input.charCodeAt(peg$currPos) === 48) {
+	        s1 = peg$c43;
+	        peg$currPos++;
+	      } else {
+	        s1 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c44); }
+	      }
+	      if (s1 === peg$FAILED) {
+	        s1 = peg$currPos;
+	        s2 = peg$currPos;
+	        if (peg$c45.test(input.charAt(peg$currPos))) {
+	          s3 = input.charAt(peg$currPos);
+	          peg$currPos++;
+	        } else {
+	          s3 = peg$FAILED;
+	          if (peg$silentFails === 0) { peg$fail(peg$c46); }
+	        }
+	        if (s3 !== peg$FAILED) {
+	          s4 = [];
+	          s5 = peg$parsedigit();
+	          while (s5 !== peg$FAILED) {
+	            s4.push(s5);
+	            s5 = peg$parsedigit();
+	          }
+	          if (s4 !== peg$FAILED) {
+	            s3 = [s3, s4];
+	            s2 = s3;
+	          } else {
+	            peg$currPos = s2;
+	            s2 = peg$FAILED;
+	          }
+	        } else {
+	          peg$currPos = s2;
+	          s2 = peg$FAILED;
+	        }
+	        if (s2 !== peg$FAILED) {
+	          s1 = input.substring(s1, peg$currPos);
+	        } else {
+	          s1 = s2;
+	        }
+	      }
+	      if (s1 !== peg$FAILED) {
+	        peg$savedPos = s0;
+	        s1 = peg$c47(s1);
+	      }
+	      s0 = s1;
+
+	      return s0;
+	    }
+
+	    function peg$parsechar() {
+	      var s0, s1, s2, s3, s4, s5, s6, s7;
+
+	      if (peg$c48.test(input.charAt(peg$currPos))) {
+	        s0 = input.charAt(peg$currPos);
+	        peg$currPos++;
+	      } else {
+	        s0 = peg$FAILED;
+	        if (peg$silentFails === 0) { peg$fail(peg$c49); }
+	      }
+	      if (s0 === peg$FAILED) {
+	        s0 = peg$currPos;
+	        if (input.substr(peg$currPos, 2) === peg$c50) {
+	          s1 = peg$c50;
+	          peg$currPos += 2;
+	        } else {
+	          s1 = peg$FAILED;
+	          if (peg$silentFails === 0) { peg$fail(peg$c51); }
+	        }
+	        if (s1 !== peg$FAILED) {
+	          peg$savedPos = s0;
+	          s1 = peg$c52();
+	        }
+	        s0 = s1;
+	        if (s0 === peg$FAILED) {
+	          s0 = peg$currPos;
+	          if (input.substr(peg$currPos, 2) === peg$c53) {
+	            s1 = peg$c53;
+	            peg$currPos += 2;
+	          } else {
+	            s1 = peg$FAILED;
+	            if (peg$silentFails === 0) { peg$fail(peg$c54); }
+	          }
+	          if (s1 !== peg$FAILED) {
+	            peg$savedPos = s0;
+	            s1 = peg$c55();
+	          }
+	          s0 = s1;
+	          if (s0 === peg$FAILED) {
+	            s0 = peg$currPos;
+	            if (input.substr(peg$currPos, 2) === peg$c56) {
+	              s1 = peg$c56;
+	              peg$currPos += 2;
+	            } else {
+	              s1 = peg$FAILED;
+	              if (peg$silentFails === 0) { peg$fail(peg$c57); }
+	            }
+	            if (s1 !== peg$FAILED) {
+	              peg$savedPos = s0;
+	              s1 = peg$c58();
+	            }
+	            s0 = s1;
+	            if (s0 === peg$FAILED) {
+	              s0 = peg$currPos;
+	              if (input.substr(peg$currPos, 2) === peg$c59) {
+	                s1 = peg$c59;
+	                peg$currPos += 2;
+	              } else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) { peg$fail(peg$c60); }
+	              }
+	              if (s1 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c61();
+	              }
+	              s0 = s1;
+	              if (s0 === peg$FAILED) {
+	                s0 = peg$currPos;
+	                if (input.substr(peg$currPos, 2) === peg$c62) {
+	                  s1 = peg$c62;
+	                  peg$currPos += 2;
+	                } else {
+	                  s1 = peg$FAILED;
+	                  if (peg$silentFails === 0) { peg$fail(peg$c63); }
+	                }
+	                if (s1 !== peg$FAILED) {
+	                  s2 = peg$currPos;
+	                  s3 = peg$currPos;
+	                  s4 = peg$parsehexDigit();
+	                  if (s4 !== peg$FAILED) {
+	                    s5 = peg$parsehexDigit();
+	                    if (s5 !== peg$FAILED) {
+	                      s6 = peg$parsehexDigit();
+	                      if (s6 !== peg$FAILED) {
+	                        s7 = peg$parsehexDigit();
+	                        if (s7 !== peg$FAILED) {
+	                          s4 = [s4, s5, s6, s7];
+	                          s3 = s4;
+	                        } else {
+	                          peg$currPos = s3;
+	                          s3 = peg$FAILED;
+	                        }
+	                      } else {
+	                        peg$currPos = s3;
+	                        s3 = peg$FAILED;
+	                      }
+	                    } else {
+	                      peg$currPos = s3;
+	                      s3 = peg$FAILED;
+	                    }
+	                  } else {
+	                    peg$currPos = s3;
+	                    s3 = peg$FAILED;
+	                  }
+	                  if (s3 !== peg$FAILED) {
+	                    s2 = input.substring(s2, peg$currPos);
+	                  } else {
+	                    s2 = s3;
+	                  }
+	                  if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c64(s2);
+	                    s0 = s1;
+	                  } else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                  }
+	                } else {
+	                  peg$currPos = s0;
+	                  s0 = peg$FAILED;
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+
+	      return s0;
+	    }
+
+	    function peg$parsechars() {
+	      var s0, s1, s2;
+
+	      s0 = peg$currPos;
+	      s1 = [];
+	      s2 = peg$parsechar();
+	      if (s2 !== peg$FAILED) {
+	        while (s2 !== peg$FAILED) {
+	          s1.push(s2);
+	          s2 = peg$parsechar();
+	        }
+	      } else {
+	        s1 = peg$FAILED;
+	      }
+	      if (s1 !== peg$FAILED) {
+	        peg$savedPos = s0;
+	        s1 = peg$c65(s1);
+	      }
+	      s0 = s1;
+
+	      return s0;
+	    }
+
+	    peg$result = peg$startRuleFunction();
+
+	    if (peg$result !== peg$FAILED && peg$currPos === input.length) {
+	      return peg$result;
+	    } else {
+	      if (peg$result !== peg$FAILED && peg$currPos < input.length) {
+	        peg$fail({ type: "end", description: "end of input" });
+	      }
+
+	      throw peg$buildException(
+	        null,
+	        peg$maxFailExpected,
+	        peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null,
+	        peg$maxFailPos < input.length
+	          ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1)
+	          : peg$computeLocation(peg$maxFailPos, peg$maxFailPos)
+	      );
+	    }
+	  }
+
+	  return {
+	    SyntaxError: peg$SyntaxError,
+	    parse:       peg$parse
+	  };
+	})();
+
+	//# sourceMappingURL=parser.js.map
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports) {
+
+	// GENERATED FILE
+	"use strict";
+	exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=String(n).split("."),v0=!s[1],t0=Number(s[0])==n,n10=t0&&s[0].slice(-1),n100=t0&&s[0].slice(-2);if(ord)return n10==1&&n100!=11?"one":n10==2&&n100!=12?"two":n10==3&&n100!=13?"few":"other";return n==1&&v0?"one":"other"}};
+
+	//# sourceMappingURL=en.js.map
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+	/* (ignored) */
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* jshint node:true */
+
+	'use strict';
+
+	var IntlRelativeFormat = __webpack_require__(85)['default'];
+
+	// Add all locale data to `IntlRelativeFormat`. This module will be ignored when
+	// bundling for the browser with Browserify/Webpack.
+	__webpack_require__(90);
+
+	// Re-export `IntlRelativeFormat` as the CommonJS default exports with all the
+	// locale data registered, and with English set as the default locale. Define
+	// the `default` prop for use with other compiled ES6 Modules.
+	exports = module.exports = IntlRelativeFormat;
+	exports['default'] = exports;
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* jslint esnext: true */
+
+	"use strict";
+	var src$core$$ = __webpack_require__(86), src$en$$ = __webpack_require__(89);
+
+	src$core$$["default"].__addLocaleData(src$en$$["default"]);
+	src$core$$["default"].defaultLocale = 'en';
+
+	exports["default"] = src$core$$["default"];
+
+	//# sourceMappingURL=main.js.map
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+	var intl$messageformat$$ = __webpack_require__(74), src$diff$$ = __webpack_require__(87), src$es5$$ = __webpack_require__(88);
+	exports["default"] = RelativeFormat;
+
+	// -----------------------------------------------------------------------------
+
+	var FIELDS = [
+	    'second', 'second-short',
+	    'minute', 'minute-short',
+	    'hour', 'hour-short',
+	    'day', 'day-short',
+	    'month', 'month-short',
+	    'year', 'year-short'
+	];
+	var STYLES = ['best fit', 'numeric'];
+
+	// -- RelativeFormat -----------------------------------------------------------
+
+	function RelativeFormat(locales, options) {
+	    options = options || {};
+
+	    // Make a copy of `locales` if it's an array, so that it doesn't change
+	    // since it's used lazily.
+	    if (src$es5$$.isArray(locales)) {
+	        locales = locales.concat();
+	    }
+
+	    src$es5$$.defineProperty(this, '_locale', {value: this._resolveLocale(locales)});
+	    src$es5$$.defineProperty(this, '_options', {value: {
+	        style: this._resolveStyle(options.style),
+	        units: this._isValidUnits(options.units) && options.units
+	    }});
+
+	    src$es5$$.defineProperty(this, '_locales', {value: locales});
+	    src$es5$$.defineProperty(this, '_fields', {value: this._findFields(this._locale)});
+	    src$es5$$.defineProperty(this, '_messages', {value: src$es5$$.objCreate(null)});
+
+	    // "Bind" `format()` method to `this` so it can be passed by reference like
+	    // the other `Intl` APIs.
+	    var relativeFormat = this;
+	    this.format = function format(date, options) {
+	        return relativeFormat._format(date, options);
+	    };
+	}
+
+	// Define internal private properties for dealing with locale data.
+	src$es5$$.defineProperty(RelativeFormat, '__localeData__', {value: src$es5$$.objCreate(null)});
+	src$es5$$.defineProperty(RelativeFormat, '__addLocaleData', {value: function (data) {
+	    if (!(data && data.locale)) {
+	        throw new Error(
+	            'Locale data provided to IntlRelativeFormat is missing a ' +
+	            '`locale` property value'
+	        );
+	    }
+
+	    RelativeFormat.__localeData__[data.locale.toLowerCase()] = data;
+
+	    // Add data to IntlMessageFormat.
+	    intl$messageformat$$["default"].__addLocaleData(data);
+	}});
+
+	// Define public `defaultLocale` property which can be set by the developer, or
+	// it will be set when the first RelativeFormat instance is created by
+	// leveraging the resolved locale from `Intl`.
+	src$es5$$.defineProperty(RelativeFormat, 'defaultLocale', {
+	    enumerable: true,
+	    writable  : true,
+	    value     : undefined
+	});
+
+	// Define public `thresholds` property which can be set by the developer, and
+	// defaults to relative time thresholds from moment.js.
+	src$es5$$.defineProperty(RelativeFormat, 'thresholds', {
+	    enumerable: true,
+
+	    value: {
+	        second: 45, 'second-short': 45,  // seconds to minute
+	        minute: 45, 'minute-short': 45, // minutes to hour
+	        hour  : 22, 'hour-short': 22, // hours to day
+	        day   : 26, 'day-short': 26, // days to month
+	        month : 11, 'month-short': 11 // months to year
+	    }
+	});
+
+	RelativeFormat.prototype.resolvedOptions = function () {
+	    return {
+	        locale: this._locale,
+	        style : this._options.style,
+	        units : this._options.units
+	    };
+	};
+
+	RelativeFormat.prototype._compileMessage = function (units) {
+	    // `this._locales` is the original set of locales the user specified to the
+	    // constructor, while `this._locale` is the resolved root locale.
+	    var locales        = this._locales;
+	    var resolvedLocale = this._locale;
+
+	    var field        = this._fields[units];
+	    var relativeTime = field.relativeTime;
+	    var future       = '';
+	    var past         = '';
+	    var i;
+
+	    for (i in relativeTime.future) {
+	        if (relativeTime.future.hasOwnProperty(i)) {
+	            future += ' ' + i + ' {' +
+	                relativeTime.future[i].replace('{0}', '#') + '}';
+	        }
+	    }
+
+	    for (i in relativeTime.past) {
+	        if (relativeTime.past.hasOwnProperty(i)) {
+	            past += ' ' + i + ' {' +
+	                relativeTime.past[i].replace('{0}', '#') + '}';
+	        }
+	    }
+
+	    var message = '{when, select, future {{0, plural, ' + future + '}}' +
+	                                 'past {{0, plural, ' + past + '}}}';
+
+	    // Create the synthetic IntlMessageFormat instance using the original
+	    // locales value specified by the user when constructing the the parent
+	    // IntlRelativeFormat instance.
+	    return new intl$messageformat$$["default"](message, locales);
+	};
+
+	RelativeFormat.prototype._getMessage = function (units) {
+	    var messages = this._messages;
+
+	    // Create a new synthetic message based on the locale data from CLDR.
+	    if (!messages[units]) {
+	        messages[units] = this._compileMessage(units);
+	    }
+
+	    return messages[units];
+	};
+
+	RelativeFormat.prototype._getRelativeUnits = function (diff, units) {
+	    var field = this._fields[units];
+
+	    if (field.relative) {
+	        return field.relative[diff];
+	    }
+	};
+
+	RelativeFormat.prototype._findFields = function (locale) {
+	    var localeData = RelativeFormat.__localeData__;
+	    var data       = localeData[locale.toLowerCase()];
+
+	    // The locale data is de-duplicated, so we have to traverse the locale's
+	    // hierarchy until we find `fields` to return.
+	    while (data) {
+	        if (data.fields) {
+	            return data.fields;
+	        }
+
+	        data = data.parentLocale && localeData[data.parentLocale.toLowerCase()];
+	    }
+
+	    throw new Error(
+	        'Locale data added to IntlRelativeFormat is missing `fields` for :' +
+	        locale
+	    );
+	};
+
+	RelativeFormat.prototype._format = function (date, options) {
+	    var now = options && options.now !== undefined ? options.now : src$es5$$.dateNow();
+
+	    if (date === undefined) {
+	        date = now;
+	    }
+
+	    // Determine if the `date` and optional `now` values are valid, and throw a
+	    // similar error to what `Intl.DateTimeFormat#format()` would throw.
+	    if (!isFinite(now)) {
+	        throw new RangeError(
+	            'The `now` option provided to IntlRelativeFormat#format() is not ' +
+	            'in valid range.'
+	        );
+	    }
+
+	    if (!isFinite(date)) {
+	        throw new RangeError(
+	            'The date value provided to IntlRelativeFormat#format() is not ' +
+	            'in valid range.'
+	        );
+	    }
+
+	    var diffReport  = src$diff$$["default"](now, date);
+	    var units       = this._options.units || this._selectUnits(diffReport);
+	    var diffInUnits = diffReport[units];
+
+	    if (this._options.style !== 'numeric') {
+	        var relativeUnits = this._getRelativeUnits(diffInUnits, units);
+	        if (relativeUnits) {
+	            return relativeUnits;
+	        }
+	    }
+
+	    return this._getMessage(units).format({
+	        '0' : Math.abs(diffInUnits),
+	        when: diffInUnits < 0 ? 'past' : 'future'
+	    });
+	};
+
+	RelativeFormat.prototype._isValidUnits = function (units) {
+	    if (!units || src$es5$$.arrIndexOf.call(FIELDS, units) >= 0) {
+	        return true;
+	    }
+
+	    if (typeof units === 'string') {
+	        var suggestion = /s$/.test(units) && units.substr(0, units.length - 1);
+	        if (suggestion && src$es5$$.arrIndexOf.call(FIELDS, suggestion) >= 0) {
+	            throw new Error(
+	                '"' + units + '" is not a valid IntlRelativeFormat `units` ' +
+	                'value, did you mean: ' + suggestion
+	            );
+	        }
+	    }
+
+	    throw new Error(
+	        '"' + units + '" is not a valid IntlRelativeFormat `units` value, it ' +
+	        'must be one of: "' + FIELDS.join('", "') + '"'
+	    );
+	};
+
+	RelativeFormat.prototype._resolveLocale = function (locales) {
+	    if (typeof locales === 'string') {
+	        locales = [locales];
+	    }
+
+	    // Create a copy of the array so we can push on the default locale.
+	    locales = (locales || []).concat(RelativeFormat.defaultLocale);
+
+	    var localeData = RelativeFormat.__localeData__;
+	    var i, len, localeParts, data;
+
+	    // Using the set of locales + the default locale, we look for the first one
+	    // which that has been registered. When data does not exist for a locale, we
+	    // traverse its ancestors to find something that's been registered within
+	    // its hierarchy of locales. Since we lack the proper `parentLocale` data
+	    // here, we must take a naive approach to traversal.
+	    for (i = 0, len = locales.length; i < len; i += 1) {
+	        localeParts = locales[i].toLowerCase().split('-');
+
+	        while (localeParts.length) {
+	            data = localeData[localeParts.join('-')];
+	            if (data) {
+	                // Return the normalized locale string; e.g., we return "en-US",
+	                // instead of "en-us".
+	                return data.locale;
+	            }
+
+	            localeParts.pop();
+	        }
+	    }
+
+	    var defaultLocale = locales.pop();
+	    throw new Error(
+	        'No locale data has been added to IntlRelativeFormat for: ' +
+	        locales.join(', ') + ', or the default locale: ' + defaultLocale
+	    );
+	};
+
+	RelativeFormat.prototype._resolveStyle = function (style) {
+	    // Default to "best fit" style.
+	    if (!style) {
+	        return STYLES[0];
+	    }
+
+	    if (src$es5$$.arrIndexOf.call(STYLES, style) >= 0) {
+	        return style;
+	    }
+
+	    throw new Error(
+	        '"' + style + '" is not a valid IntlRelativeFormat `style` value, it ' +
+	        'must be one of: "' + STYLES.join('", "') + '"'
+	    );
+	};
+
+	RelativeFormat.prototype._selectUnits = function (diffReport) {
+	    var i, l, units;
+	    var fields = FIELDS.filter(function(field) {
+	        return field.indexOf('-short') < 1;
+	    });
+
+	    for (i = 0, l = fields.length; i < l; i += 1) {
+	        units = fields[i];
+
+	        if (Math.abs(diffReport[units]) < RelativeFormat.thresholds[units]) {
+	            break;
+	        }
+	    }
+
+	    return units;
+	};
+
+	//# sourceMappingURL=core.js.map
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	"use strict";
+
+	var round = Math.round;
+
+	function daysToYears(days) {
+	    // 400 years have 146097 days (taking into account leap year rules)
+	    return days * 400 / 146097;
+	}
+
+	exports["default"] = function (from, to) {
+	    // Convert to ms timestamps.
+	    from = +from;
+	    to   = +to;
+
+	    var millisecond = round(to - from),
+	        second      = round(millisecond / 1000),
+	        minute      = round(second / 60),
+	        hour        = round(minute / 60),
+	        day         = round(hour / 24),
+	        week        = round(day / 7);
+
+	    var rawYears = daysToYears(day),
+	        month    = round(rawYears * 12),
+	        year     = round(rawYears);
+
+	    return {
+	        millisecond    : millisecond,
+	        second         : second,
+	        'second-short' : second,
+	        minute         : minute,
+	        'minute-short' : minute,
+	        hour           : hour,
+	        'hour-short'   : hour,
+	        day            : day,
+	        'day-short'    : day,
+	        week           : week,
+	        'week-short'   : week,
+	        month          : month,
+	        'month-short'  : month,
+	        year           : year,
+	        'year-short'   : year
+	    };
+	};
+
+	//# sourceMappingURL=diff.js.map
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
+	// Copyright 2013 Andy Earnshaw, MIT License
+
+	"use strict";
+
+	var hop = Object.prototype.hasOwnProperty;
+	var toString = Object.prototype.toString;
+
+	var realDefineProp = (function () {
+	    try { return !!Object.defineProperty({}, 'a', {}); }
+	    catch (e) { return false; }
+	})();
+
+	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
+
+	var defineProperty = realDefineProp ? Object.defineProperty :
+	        function (obj, name, desc) {
+
+	    if ('get' in desc && obj.__defineGetter__) {
+	        obj.__defineGetter__(name, desc.get);
+	    } else if (!hop.call(obj, name) || 'value' in desc) {
+	        obj[name] = desc.value;
+	    }
+	};
+
+	var objCreate = Object.create || function (proto, props) {
+	    var obj, k;
+
+	    function F() {}
+	    F.prototype = proto;
+	    obj = new F();
+
+	    for (k in props) {
+	        if (hop.call(props, k)) {
+	            defineProperty(obj, k, props[k]);
+	        }
+	    }
+
+	    return obj;
+	};
+
+	var arrIndexOf = Array.prototype.indexOf || function (search, fromIndex) {
+	    /*jshint validthis:true */
+	    var arr = this;
+	    if (!arr.length) {
+	        return -1;
+	    }
+
+	    for (var i = fromIndex || 0, max = arr.length; i < max; i++) {
+	        if (arr[i] === search) {
+	            return i;
+	        }
+	    }
+
+	    return -1;
+	};
+
+	var isArray = Array.isArray || function (obj) {
+	    return toString.call(obj) === '[object Array]';
+	};
+
+	var dateNow = Date.now || function () {
+	    return new Date().getTime();
+	};
+
+	exports.defineProperty = defineProperty, exports.objCreate = objCreate, exports.arrIndexOf = arrIndexOf, exports.isArray = isArray, exports.dateNow = dateNow;
+
+	//# sourceMappingURL=es5.js.map
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports) {
+
+	// GENERATED FILE
+	"use strict";
+	exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=String(n).split("."),v0=!s[1],t0=Number(s[0])==n,n10=t0&&s[0].slice(-1),n100=t0&&s[0].slice(-2);if(ord)return n10==1&&n100!=11?"one":n10==2&&n100!=12?"two":n10==3&&n100!=13?"few":"other";return n==1&&v0?"one":"other"},"fields":{"year":{"displayName":"year","relative":{"0":"this year","1":"next year","-1":"last year"},"relativeTime":{"future":{"one":"in {0} year","other":"in {0} years"},"past":{"one":"{0} year ago","other":"{0} years ago"}}},"year-short":{"displayName":"yr.","relative":{"0":"this yr.","1":"next yr.","-1":"last yr."},"relativeTime":{"future":{"one":"in {0} yr.","other":"in {0} yr."},"past":{"one":"{0} yr. ago","other":"{0} yr. ago"}}},"month":{"displayName":"month","relative":{"0":"this month","1":"next month","-1":"last month"},"relativeTime":{"future":{"one":"in {0} month","other":"in {0} months"},"past":{"one":"{0} month ago","other":"{0} months ago"}}},"month-short":{"displayName":"mo.","relative":{"0":"this mo.","1":"next mo.","-1":"last mo."},"relativeTime":{"future":{"one":"in {0} mo.","other":"in {0} mo."},"past":{"one":"{0} mo. ago","other":"{0} mo. ago"}}},"day":{"displayName":"day","relative":{"0":"today","1":"tomorrow","-1":"yesterday"},"relativeTime":{"future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"}}},"day-short":{"displayName":"day","relative":{"0":"today","1":"tomorrow","-1":"yesterday"},"relativeTime":{"future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"}}},"hour":{"displayName":"hour","relative":{"0":"this hour"},"relativeTime":{"future":{"one":"in {0} hour","other":"in {0} hours"},"past":{"one":"{0} hour ago","other":"{0} hours ago"}}},"hour-short":{"displayName":"hr.","relative":{"0":"this hour"},"relativeTime":{"future":{"one":"in {0} hr.","other":"in {0} hr."},"past":{"one":"{0} hr. ago","other":"{0} hr. ago"}}},"minute":{"displayName":"minute","relative":{"0":"this minute"},"relativeTime":{"future":{"one":"in {0} minute","other":"in {0} minutes"},"past":{"one":"{0} minute ago","other":"{0} minutes ago"}}},"minute-short":{"displayName":"min.","relative":{"0":"this minute"},"relativeTime":{"future":{"one":"in {0} min.","other":"in {0} min."},"past":{"one":"{0} min. ago","other":"{0} min. ago"}}},"second":{"displayName":"second","relative":{"0":"now"},"relativeTime":{"future":{"one":"in {0} second","other":"in {0} seconds"},"past":{"one":"{0} second ago","other":"{0} seconds ago"}}},"second-short":{"displayName":"sec.","relative":{"0":"now"},"relativeTime":{"future":{"one":"in {0} sec.","other":"in {0} sec."},"past":{"one":"{0} sec. ago","other":"{0} sec. ago"}}}}};
+
+	//# sourceMappingURL=en.js.map
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+	/* (ignored) */
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Copyright 2015, Yahoo! Inc.
+	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+	 */
+	var REACT_STATICS = {
+	    childContextTypes: true,
+	    contextTypes: true,
+	    defaultProps: true,
+	    displayName: true,
+	    getDefaultProps: true,
+	    getDerivedStateFromProps: true,
+	    mixins: true,
+	    propTypes: true,
+	    type: true
+	};
+
+	var KNOWN_STATICS = {
+	    name: true,
+	    length: true,
+	    prototype: true,
+	    caller: true,
+	    callee: true,
+	    arguments: true,
+	    arity: true
+	};
+
+	var defineProperty = Object.defineProperty;
+	var getOwnPropertyNames = Object.getOwnPropertyNames;
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+	var getPrototypeOf = Object.getPrototypeOf;
+	var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
+
+	function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+
+	        if (objectPrototype) {
+	            var inheritedComponent = getPrototypeOf(sourceComponent);
+	            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+	                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+	            }
+	        }
+
+	        var keys = getOwnPropertyNames(sourceComponent);
+
+	        if (getOwnPropertySymbols) {
+	            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+	        }
+
+	        for (var i = 0; i < keys.length; ++i) {
+	            var key = keys[i];
+	            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
+	                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+	                try { // Avoid failures from read-only properties
+	                    defineProperty(targetComponent, key, descriptor);
+	                } catch (e) {}
+	            }
+	        }
+
+	        return targetComponent;
+	    }
+
+	    return targetComponent;
+	}
+
+	module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports = module.exports = __webpack_require__(93)['default'];
+	exports['default'] = exports;
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jshint esnext: true */
+
+	"use strict";
+	var src$es5$$ = __webpack_require__(94);
+	exports["default"] = createFormatCache;
+
+	// -----------------------------------------------------------------------------
+
+	function createFormatCache(FormatConstructor) {
+	    var cache = src$es5$$.objCreate(null);
+
+	    return function () {
+	        var args    = Array.prototype.slice.call(arguments);
+	        var cacheId = getCacheId(args);
+	        var format  = cacheId && cache[cacheId];
+
+	        if (!format) {
+	            format = new (src$es5$$.bind.apply(FormatConstructor, [null].concat(args)))();
+
+	            if (cacheId) {
+	                cache[cacheId] = format;
+	            }
+	        }
+
+	        return format;
+	    };
+	}
+
+	// -- Utilities ----------------------------------------------------------------
+
+	function getCacheId(inputs) {
+	    // When JSON is not available in the runtime, we will not create a cache id.
+	    if (typeof JSON === 'undefined') { return; }
+
+	    var cacheId = [];
+
+	    var i, len, input;
+
+	    for (i = 0, len = inputs.length; i < len; i += 1) {
+	        input = inputs[i];
+
+	        if (input && typeof input === 'object') {
+	            cacheId.push(orderedProps(input));
+	        } else {
+	            cacheId.push(input);
+	        }
+	    }
+
+	    return JSON.stringify(cacheId);
+	}
+
+	function orderedProps(obj) {
+	    var props = [],
+	        keys  = [];
+
+	    var key, i, len, prop;
+
+	    for (key in obj) {
+	        if (obj.hasOwnProperty(key)) {
+	            keys.push(key);
+	        }
+	    }
+
+	    var orderedKeys = keys.sort();
+
+	    for (i = 0, len = orderedKeys.length; i < len; i += 1) {
+	        key  = orderedKeys[i];
+	        prop = {};
+
+	        prop[key] = obj[key];
+	        props[i]  = prop;
+	    }
+
+	    return props;
+	}
+
+	//# sourceMappingURL=memoizer.js.map
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports) {
+
+	/*
+	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+	Copyrights licensed under the New BSD License.
+	See the accompanying LICENSE file for terms.
+	*/
+
+	/* jslint esnext: true */
+
+	// Function.prototype.bind implementation from Mozilla Developer Network:
+	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Polyfill
+
+	"use strict";
+
+	var bind = Function.prototype.bind || function (oThis) {
+	    if (typeof this !== 'function') {
+	      // closest thing possible to the ECMAScript 5
+	      // internal IsCallable function
+	      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+	    }
+
+	    var aArgs   = Array.prototype.slice.call(arguments, 1),
+	        fToBind = this,
+	        fNOP    = function() {},
+	        fBound  = function() {
+	          return fToBind.apply(this instanceof fNOP
+	                 ? this
+	                 : oThis,
+	                 aArgs.concat(Array.prototype.slice.call(arguments)));
+	        };
+
+	    if (this.prototype) {
+	      // native functions don't have a prototype
+	      fNOP.prototype = this.prototype;
+	    }
+	    fBound.prototype = new fNOP();
+
+	    return fBound;
+	};
+
+	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
+	// Copyright 2013 Andy Earnshaw, MIT License
+
+	var hop = Object.prototype.hasOwnProperty;
+
+	var realDefineProp = (function () {
+	    try { return !!Object.defineProperty({}, 'a', {}); }
+	    catch (e) { return false; }
+	})();
+
+	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
+
+	var defineProperty = realDefineProp ? Object.defineProperty :
+	        function (obj, name, desc) {
+
+	    if ('get' in desc && obj.__defineGetter__) {
+	        obj.__defineGetter__(name, desc.get);
+	    } else if (!hop.call(obj, name) || 'value' in desc) {
+	        obj[name] = desc.value;
+	    }
+	};
+
+	var objCreate = Object.create || function (proto, props) {
+	    var obj, k;
+
+	    function F() {}
+	    F.prototype = proto;
+	    obj = new F();
+
+	    for (k in props) {
+	        if (hop.call(props, k)) {
+	            defineProperty(obj, k, props[k]);
+	        }
+	    }
+
+	    return obj;
+	};
+
+	exports.bind = bind, exports.defineProperty = defineProperty, exports.objCreate = objCreate;
+
+	//# sourceMappingURL=es5.js.map
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _values = __webpack_require__(73);
+	var _values = __webpack_require__(96);
 
 	var _values2 = _interopRequireDefault(_values);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _extends3 = __webpack_require__(110);
+	var _extends3 = __webpack_require__(133);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -24815,15 +29451,15 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
-	var _StyleConfig = __webpack_require__(170);
+	var _StyleConfig = __webpack_require__(193);
 
-	var _SafeAnchor = __webpack_require__(171);
+	var _SafeAnchor = __webpack_require__(194);
 
 	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
 
@@ -24910,26 +29546,26 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 73 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(74), __esModule: true };
+	module.exports = { "default": __webpack_require__(97), __esModule: true };
 
 /***/ }),
-/* 74 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(75);
-	module.exports = __webpack_require__(78).Object.values;
+	__webpack_require__(98);
+	module.exports = __webpack_require__(101).Object.values;
 
 
 /***/ }),
-/* 75 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
-	var $export = __webpack_require__(76);
-	var $values = __webpack_require__(92)(false);
+	var $export = __webpack_require__(99);
+	var $values = __webpack_require__(115)(false);
 
 	$export($export.S, 'Object', {
 	  values: function values(it) {
@@ -24939,14 +29575,14 @@
 
 
 /***/ }),
-/* 76 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(77);
-	var core = __webpack_require__(78);
-	var ctx = __webpack_require__(79);
-	var hide = __webpack_require__(81);
-	var has = __webpack_require__(91);
+	var global = __webpack_require__(100);
+	var core = __webpack_require__(101);
+	var ctx = __webpack_require__(102);
+	var hide = __webpack_require__(104);
+	var has = __webpack_require__(114);
 	var PROTOTYPE = 'prototype';
 
 	var $export = function (type, name, source) {
@@ -25007,7 +29643,7 @@
 
 
 /***/ }),
-/* 77 */
+/* 100 */
 /***/ (function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -25019,7 +29655,7 @@
 
 
 /***/ }),
-/* 78 */
+/* 101 */
 /***/ (function(module, exports) {
 
 	var core = module.exports = { version: '2.5.6' };
@@ -25027,11 +29663,11 @@
 
 
 /***/ }),
-/* 79 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(80);
+	var aFunction = __webpack_require__(103);
 	module.exports = function (fn, that, length) {
 	  aFunction(fn);
 	  if (that === undefined) return fn;
@@ -25053,7 +29689,7 @@
 
 
 /***/ }),
-/* 80 */
+/* 103 */
 /***/ (function(module, exports) {
 
 	module.exports = function (it) {
@@ -25063,12 +29699,12 @@
 
 
 /***/ }),
-/* 81 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var dP = __webpack_require__(82);
-	var createDesc = __webpack_require__(90);
-	module.exports = __webpack_require__(86) ? function (object, key, value) {
+	var dP = __webpack_require__(105);
+	var createDesc = __webpack_require__(113);
+	module.exports = __webpack_require__(109) ? function (object, key, value) {
 	  return dP.f(object, key, createDesc(1, value));
 	} : function (object, key, value) {
 	  object[key] = value;
@@ -25077,15 +29713,15 @@
 
 
 /***/ }),
-/* 82 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var anObject = __webpack_require__(83);
-	var IE8_DOM_DEFINE = __webpack_require__(85);
-	var toPrimitive = __webpack_require__(89);
+	var anObject = __webpack_require__(106);
+	var IE8_DOM_DEFINE = __webpack_require__(108);
+	var toPrimitive = __webpack_require__(112);
 	var dP = Object.defineProperty;
 
-	exports.f = __webpack_require__(86) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+	exports.f = __webpack_require__(109) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
@@ -25099,10 +29735,10 @@
 
 
 /***/ }),
-/* 83 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(84);
+	var isObject = __webpack_require__(107);
 	module.exports = function (it) {
 	  if (!isObject(it)) throw TypeError(it + ' is not an object!');
 	  return it;
@@ -25110,7 +29746,7 @@
 
 
 /***/ }),
-/* 84 */
+/* 107 */
 /***/ (function(module, exports) {
 
 	module.exports = function (it) {
@@ -25119,26 +29755,26 @@
 
 
 /***/ }),
-/* 85 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = !__webpack_require__(86) && !__webpack_require__(87)(function () {
-	  return Object.defineProperty(__webpack_require__(88)('div'), 'a', { get: function () { return 7; } }).a != 7;
+	module.exports = !__webpack_require__(109) && !__webpack_require__(110)(function () {
+	  return Object.defineProperty(__webpack_require__(111)('div'), 'a', { get: function () { return 7; } }).a != 7;
 	});
 
 
 /***/ }),
-/* 86 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(87)(function () {
+	module.exports = !__webpack_require__(110)(function () {
 	  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 	});
 
 
 /***/ }),
-/* 87 */
+/* 110 */
 /***/ (function(module, exports) {
 
 	module.exports = function (exec) {
@@ -25151,11 +29787,11 @@
 
 
 /***/ }),
-/* 88 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(84);
-	var document = __webpack_require__(77).document;
+	var isObject = __webpack_require__(107);
+	var document = __webpack_require__(100).document;
 	// typeof document.createElement is 'object' in old IE
 	var is = isObject(document) && isObject(document.createElement);
 	module.exports = function (it) {
@@ -25164,11 +29800,11 @@
 
 
 /***/ }),
-/* 89 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
-	var isObject = __webpack_require__(84);
+	var isObject = __webpack_require__(107);
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
 	module.exports = function (it, S) {
@@ -25182,7 +29818,7 @@
 
 
 /***/ }),
-/* 90 */
+/* 113 */
 /***/ (function(module, exports) {
 
 	module.exports = function (bitmap, value) {
@@ -25196,7 +29832,7 @@
 
 
 /***/ }),
-/* 91 */
+/* 114 */
 /***/ (function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
@@ -25206,12 +29842,12 @@
 
 
 /***/ }),
-/* 92 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getKeys = __webpack_require__(93);
-	var toIObject = __webpack_require__(95);
-	var isEnum = __webpack_require__(108).f;
+	var getKeys = __webpack_require__(116);
+	var toIObject = __webpack_require__(118);
+	var isEnum = __webpack_require__(131).f;
 	module.exports = function (isEntries) {
 	  return function (it) {
 	    var O = toIObject(it);
@@ -25228,12 +29864,12 @@
 
 
 /***/ }),
-/* 93 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys = __webpack_require__(94);
-	var enumBugKeys = __webpack_require__(107);
+	var $keys = __webpack_require__(117);
+	var enumBugKeys = __webpack_require__(130);
 
 	module.exports = Object.keys || function keys(O) {
 	  return $keys(O, enumBugKeys);
@@ -25241,13 +29877,13 @@
 
 
 /***/ }),
-/* 94 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var has = __webpack_require__(91);
-	var toIObject = __webpack_require__(95);
-	var arrayIndexOf = __webpack_require__(99)(false);
-	var IE_PROTO = __webpack_require__(103)('IE_PROTO');
+	var has = __webpack_require__(114);
+	var toIObject = __webpack_require__(118);
+	var arrayIndexOf = __webpack_require__(122)(false);
+	var IE_PROTO = __webpack_require__(126)('IE_PROTO');
 
 	module.exports = function (object, names) {
 	  var O = toIObject(object);
@@ -25264,23 +29900,23 @@
 
 
 /***/ }),
-/* 95 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(96);
-	var defined = __webpack_require__(98);
+	var IObject = __webpack_require__(119);
+	var defined = __webpack_require__(121);
 	module.exports = function (it) {
 	  return IObject(defined(it));
 	};
 
 
 /***/ }),
-/* 96 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
-	var cof = __webpack_require__(97);
+	var cof = __webpack_require__(120);
 	// eslint-disable-next-line no-prototype-builtins
 	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 	  return cof(it) == 'String' ? it.split('') : Object(it);
@@ -25288,7 +29924,7 @@
 
 
 /***/ }),
-/* 97 */
+/* 120 */
 /***/ (function(module, exports) {
 
 	var toString = {}.toString;
@@ -25299,7 +29935,7 @@
 
 
 /***/ }),
-/* 98 */
+/* 121 */
 /***/ (function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -25310,14 +29946,14 @@
 
 
 /***/ }),
-/* 99 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(95);
-	var toLength = __webpack_require__(100);
-	var toAbsoluteIndex = __webpack_require__(102);
+	var toIObject = __webpack_require__(118);
+	var toLength = __webpack_require__(123);
+	var toAbsoluteIndex = __webpack_require__(125);
 	module.exports = function (IS_INCLUDES) {
 	  return function ($this, el, fromIndex) {
 	    var O = toIObject($this);
@@ -25339,11 +29975,11 @@
 
 
 /***/ }),
-/* 100 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(101);
+	var toInteger = __webpack_require__(124);
 	var min = Math.min;
 	module.exports = function (it) {
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -25351,7 +29987,7 @@
 
 
 /***/ }),
-/* 101 */
+/* 124 */
 /***/ (function(module, exports) {
 
 	// 7.1.4 ToInteger
@@ -25363,10 +29999,10 @@
 
 
 /***/ }),
-/* 102 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(101);
+	var toInteger = __webpack_require__(124);
 	var max = Math.max;
 	var min = Math.min;
 	module.exports = function (index, length) {
@@ -25376,22 +30012,22 @@
 
 
 /***/ }),
-/* 103 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var shared = __webpack_require__(104)('keys');
-	var uid = __webpack_require__(106);
+	var shared = __webpack_require__(127)('keys');
+	var uid = __webpack_require__(129);
 	module.exports = function (key) {
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
 
 /***/ }),
-/* 104 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var core = __webpack_require__(78);
-	var global = __webpack_require__(77);
+	var core = __webpack_require__(101);
+	var global = __webpack_require__(100);
 	var SHARED = '__core-js_shared__';
 	var store = global[SHARED] || (global[SHARED] = {});
 
@@ -25399,20 +30035,20 @@
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
 	  version: core.version,
-	  mode: __webpack_require__(105) ? 'pure' : 'global',
+	  mode: __webpack_require__(128) ? 'pure' : 'global',
 	  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 	});
 
 
 /***/ }),
-/* 105 */
+/* 128 */
 /***/ (function(module, exports) {
 
 	module.exports = true;
 
 
 /***/ }),
-/* 106 */
+/* 129 */
 /***/ (function(module, exports) {
 
 	var id = 0;
@@ -25423,7 +30059,7 @@
 
 
 /***/ }),
-/* 107 */
+/* 130 */
 /***/ (function(module, exports) {
 
 	// IE 8- don't enum bug keys
@@ -25433,14 +30069,14 @@
 
 
 /***/ }),
-/* 108 */
+/* 131 */
 /***/ (function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 109 */
+/* 132 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -25460,14 +30096,14 @@
 	};
 
 /***/ }),
-/* 110 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _assign = __webpack_require__(111);
+	var _assign = __webpack_require__(134);
 
 	var _assign2 = _interopRequireDefault(_assign);
 
@@ -25488,44 +30124,44 @@
 	};
 
 /***/ }),
-/* 111 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(112), __esModule: true };
+	module.exports = { "default": __webpack_require__(135), __esModule: true };
 
 /***/ }),
-/* 112 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(113);
-	module.exports = __webpack_require__(78).Object.assign;
+	__webpack_require__(136);
+	module.exports = __webpack_require__(101).Object.assign;
 
 
 /***/ }),
-/* 113 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
-	var $export = __webpack_require__(76);
+	var $export = __webpack_require__(99);
 
-	$export($export.S + $export.F, 'Object', { assign: __webpack_require__(114) });
+	$export($export.S + $export.F, 'Object', { assign: __webpack_require__(137) });
 
 
 /***/ }),
-/* 114 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var getKeys = __webpack_require__(93);
-	var gOPS = __webpack_require__(115);
-	var pIE = __webpack_require__(108);
-	var toObject = __webpack_require__(116);
-	var IObject = __webpack_require__(96);
+	var getKeys = __webpack_require__(116);
+	var gOPS = __webpack_require__(138);
+	var pIE = __webpack_require__(131);
+	var toObject = __webpack_require__(139);
+	var IObject = __webpack_require__(119);
 	var $assign = Object.assign;
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = !$assign || __webpack_require__(87)(function () {
+	module.exports = !$assign || __webpack_require__(110)(function () {
 	  var A = {};
 	  var B = {};
 	  // eslint-disable-next-line no-undef
@@ -25552,25 +30188,25 @@
 
 
 /***/ }),
-/* 115 */
+/* 138 */
 /***/ (function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 116 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(98);
+	var defined = __webpack_require__(121);
 	module.exports = function (it) {
 	  return Object(defined(it));
 	};
 
 
 /***/ }),
-/* 117 */
+/* 140 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -25584,14 +30220,14 @@
 	};
 
 /***/ }),
-/* 118 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _typeof2 = __webpack_require__(119);
+	var _typeof2 = __webpack_require__(142);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -25606,18 +30242,18 @@
 	};
 
 /***/ }),
-/* 119 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _iterator = __webpack_require__(120);
+	var _iterator = __webpack_require__(143);
 
 	var _iterator2 = _interopRequireDefault(_iterator);
 
-	var _symbol = __webpack_require__(139);
+	var _symbol = __webpack_require__(162);
 
 	var _symbol2 = _interopRequireDefault(_symbol);
 
@@ -25632,29 +30268,29 @@
 	};
 
 /***/ }),
-/* 120 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(121), __esModule: true };
+	module.exports = { "default": __webpack_require__(144), __esModule: true };
 
 /***/ }),
-/* 121 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(122);
-	__webpack_require__(134);
-	module.exports = __webpack_require__(138).f('iterator');
+	__webpack_require__(145);
+	__webpack_require__(157);
+	module.exports = __webpack_require__(161).f('iterator');
 
 
 /***/ }),
-/* 122 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $at = __webpack_require__(123)(true);
+	var $at = __webpack_require__(146)(true);
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(124)(String, 'String', function (iterated) {
+	__webpack_require__(147)(String, 'String', function (iterated) {
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -25670,11 +30306,11 @@
 
 
 /***/ }),
-/* 123 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(101);
-	var defined = __webpack_require__(98);
+	var toInteger = __webpack_require__(124);
+	var defined = __webpack_require__(121);
 	// true  -> String#at
 	// false -> String#codePointAt
 	module.exports = function (TO_STRING) {
@@ -25693,19 +30329,19 @@
 
 
 /***/ }),
-/* 124 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var LIBRARY = __webpack_require__(105);
-	var $export = __webpack_require__(76);
-	var redefine = __webpack_require__(125);
-	var hide = __webpack_require__(81);
-	var Iterators = __webpack_require__(126);
-	var $iterCreate = __webpack_require__(127);
-	var setToStringTag = __webpack_require__(131);
-	var getPrototypeOf = __webpack_require__(133);
-	var ITERATOR = __webpack_require__(132)('iterator');
+	var LIBRARY = __webpack_require__(128);
+	var $export = __webpack_require__(99);
+	var redefine = __webpack_require__(148);
+	var hide = __webpack_require__(104);
+	var Iterators = __webpack_require__(149);
+	var $iterCreate = __webpack_require__(150);
+	var setToStringTag = __webpack_require__(154);
+	var getPrototypeOf = __webpack_require__(156);
+	var ITERATOR = __webpack_require__(155)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
 	var KEYS = 'keys';
@@ -25768,31 +30404,31 @@
 
 
 /***/ }),
-/* 125 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(81);
+	module.exports = __webpack_require__(104);
 
 
 /***/ }),
-/* 126 */
+/* 149 */
 /***/ (function(module, exports) {
 
 	module.exports = {};
 
 
 /***/ }),
-/* 127 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var create = __webpack_require__(128);
-	var descriptor = __webpack_require__(90);
-	var setToStringTag = __webpack_require__(131);
+	var create = __webpack_require__(151);
+	var descriptor = __webpack_require__(113);
+	var setToStringTag = __webpack_require__(154);
 	var IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(81)(IteratorPrototype, __webpack_require__(132)('iterator'), function () { return this; });
+	__webpack_require__(104)(IteratorPrototype, __webpack_require__(155)('iterator'), function () { return this; });
 
 	module.exports = function (Constructor, NAME, next) {
 	  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -25801,27 +30437,27 @@
 
 
 /***/ }),
-/* 128 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	var anObject = __webpack_require__(83);
-	var dPs = __webpack_require__(129);
-	var enumBugKeys = __webpack_require__(107);
-	var IE_PROTO = __webpack_require__(103)('IE_PROTO');
+	var anObject = __webpack_require__(106);
+	var dPs = __webpack_require__(152);
+	var enumBugKeys = __webpack_require__(130);
+	var IE_PROTO = __webpack_require__(126)('IE_PROTO');
 	var Empty = function () { /* empty */ };
 	var PROTOTYPE = 'prototype';
 
 	// Create object with fake `null` prototype: use iframe Object with cleared prototype
 	var createDict = function () {
 	  // Thrash, waste and sodomy: IE GC bug
-	  var iframe = __webpack_require__(88)('iframe');
+	  var iframe = __webpack_require__(111)('iframe');
 	  var i = enumBugKeys.length;
 	  var lt = '<';
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(130).appendChild(iframe);
+	  __webpack_require__(153).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -25848,14 +30484,14 @@
 
 
 /***/ }),
-/* 129 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var dP = __webpack_require__(82);
-	var anObject = __webpack_require__(83);
-	var getKeys = __webpack_require__(93);
+	var dP = __webpack_require__(105);
+	var anObject = __webpack_require__(106);
+	var getKeys = __webpack_require__(116);
 
-	module.exports = __webpack_require__(86) ? Object.defineProperties : function defineProperties(O, Properties) {
+	module.exports = __webpack_require__(109) ? Object.defineProperties : function defineProperties(O, Properties) {
 	  anObject(O);
 	  var keys = getKeys(Properties);
 	  var length = keys.length;
@@ -25867,20 +30503,20 @@
 
 
 /***/ }),
-/* 130 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var document = __webpack_require__(77).document;
+	var document = __webpack_require__(100).document;
 	module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 131 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(82).f;
-	var has = __webpack_require__(91);
-	var TAG = __webpack_require__(132)('toStringTag');
+	var def = __webpack_require__(105).f;
+	var has = __webpack_require__(114);
+	var TAG = __webpack_require__(155)('toStringTag');
 
 	module.exports = function (it, tag, stat) {
 	  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
@@ -25888,12 +30524,12 @@
 
 
 /***/ }),
-/* 132 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var store = __webpack_require__(104)('wks');
-	var uid = __webpack_require__(106);
-	var Symbol = __webpack_require__(77).Symbol;
+	var store = __webpack_require__(127)('wks');
+	var uid = __webpack_require__(129);
+	var Symbol = __webpack_require__(100).Symbol;
 	var USE_SYMBOL = typeof Symbol == 'function';
 
 	var $exports = module.exports = function (name) {
@@ -25905,13 +30541,13 @@
 
 
 /***/ }),
-/* 133 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-	var has = __webpack_require__(91);
-	var toObject = __webpack_require__(116);
-	var IE_PROTO = __webpack_require__(103)('IE_PROTO');
+	var has = __webpack_require__(114);
+	var toObject = __webpack_require__(139);
+	var IE_PROTO = __webpack_require__(126)('IE_PROTO');
 	var ObjectProto = Object.prototype;
 
 	module.exports = Object.getPrototypeOf || function (O) {
@@ -25924,14 +30560,14 @@
 
 
 /***/ }),
-/* 134 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(135);
-	var global = __webpack_require__(77);
-	var hide = __webpack_require__(81);
-	var Iterators = __webpack_require__(126);
-	var TO_STRING_TAG = __webpack_require__(132)('toStringTag');
+	__webpack_require__(158);
+	var global = __webpack_require__(100);
+	var hide = __webpack_require__(104);
+	var Iterators = __webpack_require__(149);
+	var TO_STRING_TAG = __webpack_require__(155)('toStringTag');
 
 	var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
 	  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
@@ -25949,20 +30585,20 @@
 
 
 /***/ }),
-/* 135 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var addToUnscopables = __webpack_require__(136);
-	var step = __webpack_require__(137);
-	var Iterators = __webpack_require__(126);
-	var toIObject = __webpack_require__(95);
+	var addToUnscopables = __webpack_require__(159);
+	var step = __webpack_require__(160);
+	var Iterators = __webpack_require__(149);
+	var toIObject = __webpack_require__(118);
 
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(124)(Array, 'Array', function (iterated, kind) {
+	module.exports = __webpack_require__(147)(Array, 'Array', function (iterated, kind) {
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
@@ -25989,14 +30625,14 @@
 
 
 /***/ }),
-/* 136 */
+/* 159 */
 /***/ (function(module, exports) {
 
 	module.exports = function () { /* empty */ };
 
 
 /***/ }),
-/* 137 */
+/* 160 */
 /***/ (function(module, exports) {
 
 	module.exports = function (done, value) {
@@ -26005,60 +30641,60 @@
 
 
 /***/ }),
-/* 138 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports.f = __webpack_require__(132);
+	exports.f = __webpack_require__(155);
 
 
 /***/ }),
-/* 139 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(140), __esModule: true };
+	module.exports = { "default": __webpack_require__(163), __esModule: true };
 
 /***/ }),
-/* 140 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(141);
-	__webpack_require__(149);
-	__webpack_require__(150);
-	__webpack_require__(151);
-	module.exports = __webpack_require__(78).Symbol;
+	__webpack_require__(164);
+	__webpack_require__(172);
+	__webpack_require__(173);
+	__webpack_require__(174);
+	module.exports = __webpack_require__(101).Symbol;
 
 
 /***/ }),
-/* 141 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var global = __webpack_require__(77);
-	var has = __webpack_require__(91);
-	var DESCRIPTORS = __webpack_require__(86);
-	var $export = __webpack_require__(76);
-	var redefine = __webpack_require__(125);
-	var META = __webpack_require__(142).KEY;
-	var $fails = __webpack_require__(87);
-	var shared = __webpack_require__(104);
-	var setToStringTag = __webpack_require__(131);
-	var uid = __webpack_require__(106);
-	var wks = __webpack_require__(132);
-	var wksExt = __webpack_require__(138);
-	var wksDefine = __webpack_require__(143);
-	var enumKeys = __webpack_require__(144);
-	var isArray = __webpack_require__(145);
-	var anObject = __webpack_require__(83);
-	var isObject = __webpack_require__(84);
-	var toIObject = __webpack_require__(95);
-	var toPrimitive = __webpack_require__(89);
-	var createDesc = __webpack_require__(90);
-	var _create = __webpack_require__(128);
-	var gOPNExt = __webpack_require__(146);
-	var $GOPD = __webpack_require__(148);
-	var $DP = __webpack_require__(82);
-	var $keys = __webpack_require__(93);
+	var global = __webpack_require__(100);
+	var has = __webpack_require__(114);
+	var DESCRIPTORS = __webpack_require__(109);
+	var $export = __webpack_require__(99);
+	var redefine = __webpack_require__(148);
+	var META = __webpack_require__(165).KEY;
+	var $fails = __webpack_require__(110);
+	var shared = __webpack_require__(127);
+	var setToStringTag = __webpack_require__(154);
+	var uid = __webpack_require__(129);
+	var wks = __webpack_require__(155);
+	var wksExt = __webpack_require__(161);
+	var wksDefine = __webpack_require__(166);
+	var enumKeys = __webpack_require__(167);
+	var isArray = __webpack_require__(168);
+	var anObject = __webpack_require__(106);
+	var isObject = __webpack_require__(107);
+	var toIObject = __webpack_require__(118);
+	var toPrimitive = __webpack_require__(112);
+	var createDesc = __webpack_require__(113);
+	var _create = __webpack_require__(151);
+	var gOPNExt = __webpack_require__(169);
+	var $GOPD = __webpack_require__(171);
+	var $DP = __webpack_require__(105);
+	var $keys = __webpack_require__(116);
 	var gOPD = $GOPD.f;
 	var dP = $DP.f;
 	var gOPN = gOPNExt.f;
@@ -26181,11 +30817,11 @@
 
 	  $GOPD.f = $getOwnPropertyDescriptor;
 	  $DP.f = $defineProperty;
-	  __webpack_require__(147).f = gOPNExt.f = $getOwnPropertyNames;
-	  __webpack_require__(108).f = $propertyIsEnumerable;
-	  __webpack_require__(115).f = $getOwnPropertySymbols;
+	  __webpack_require__(170).f = gOPNExt.f = $getOwnPropertyNames;
+	  __webpack_require__(131).f = $propertyIsEnumerable;
+	  __webpack_require__(138).f = $getOwnPropertySymbols;
 
-	  if (DESCRIPTORS && !__webpack_require__(105)) {
+	  if (DESCRIPTORS && !__webpack_require__(128)) {
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 
@@ -26259,7 +30895,7 @@
 	});
 
 	// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(81)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(104)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 	// 19.4.3.5 Symbol.prototype[@@toStringTag]
 	setToStringTag($Symbol, 'Symbol');
 	// 20.2.1.9 Math[@@toStringTag]
@@ -26269,18 +30905,18 @@
 
 
 /***/ }),
-/* 142 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var META = __webpack_require__(106)('meta');
-	var isObject = __webpack_require__(84);
-	var has = __webpack_require__(91);
-	var setDesc = __webpack_require__(82).f;
+	var META = __webpack_require__(129)('meta');
+	var isObject = __webpack_require__(107);
+	var has = __webpack_require__(114);
+	var setDesc = __webpack_require__(105).f;
 	var id = 0;
 	var isExtensible = Object.isExtensible || function () {
 	  return true;
 	};
-	var FREEZE = !__webpack_require__(87)(function () {
+	var FREEZE = !__webpack_require__(110)(function () {
 	  return isExtensible(Object.preventExtensions({}));
 	});
 	var setMeta = function (it) {
@@ -26328,14 +30964,14 @@
 
 
 /***/ }),
-/* 143 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(77);
-	var core = __webpack_require__(78);
-	var LIBRARY = __webpack_require__(105);
-	var wksExt = __webpack_require__(138);
-	var defineProperty = __webpack_require__(82).f;
+	var global = __webpack_require__(100);
+	var core = __webpack_require__(101);
+	var LIBRARY = __webpack_require__(128);
+	var wksExt = __webpack_require__(161);
+	var defineProperty = __webpack_require__(105).f;
 	module.exports = function (name) {
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
 	  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
@@ -26343,13 +30979,13 @@
 
 
 /***/ }),
-/* 144 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
-	var getKeys = __webpack_require__(93);
-	var gOPS = __webpack_require__(115);
-	var pIE = __webpack_require__(108);
+	var getKeys = __webpack_require__(116);
+	var gOPS = __webpack_require__(138);
+	var pIE = __webpack_require__(131);
 	module.exports = function (it) {
 	  var result = getKeys(it);
 	  var getSymbols = gOPS.f;
@@ -26364,23 +31000,23 @@
 
 
 /***/ }),
-/* 145 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
-	var cof = __webpack_require__(97);
+	var cof = __webpack_require__(120);
 	module.exports = Array.isArray || function isArray(arg) {
 	  return cof(arg) == 'Array';
 	};
 
 
 /***/ }),
-/* 146 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-	var toIObject = __webpack_require__(95);
-	var gOPN = __webpack_require__(147).f;
+	var toIObject = __webpack_require__(118);
+	var gOPN = __webpack_require__(170).f;
 	var toString = {}.toString;
 
 	var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -26400,12 +31036,12 @@
 
 
 /***/ }),
-/* 147 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-	var $keys = __webpack_require__(94);
-	var hiddenKeys = __webpack_require__(107).concat('length', 'prototype');
+	var $keys = __webpack_require__(117);
+	var hiddenKeys = __webpack_require__(130).concat('length', 'prototype');
 
 	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 	  return $keys(O, hiddenKeys);
@@ -26413,18 +31049,18 @@
 
 
 /***/ }),
-/* 148 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var pIE = __webpack_require__(108);
-	var createDesc = __webpack_require__(90);
-	var toIObject = __webpack_require__(95);
-	var toPrimitive = __webpack_require__(89);
-	var has = __webpack_require__(91);
-	var IE8_DOM_DEFINE = __webpack_require__(85);
+	var pIE = __webpack_require__(131);
+	var createDesc = __webpack_require__(113);
+	var toIObject = __webpack_require__(118);
+	var toPrimitive = __webpack_require__(112);
+	var has = __webpack_require__(114);
+	var IE8_DOM_DEFINE = __webpack_require__(108);
 	var gOPD = Object.getOwnPropertyDescriptor;
 
-	exports.f = __webpack_require__(86) ? gOPD : function getOwnPropertyDescriptor(O, P) {
+	exports.f = __webpack_require__(109) ? gOPD : function getOwnPropertyDescriptor(O, P) {
 	  O = toIObject(O);
 	  P = toPrimitive(P, true);
 	  if (IE8_DOM_DEFINE) try {
@@ -26435,42 +31071,42 @@
 
 
 /***/ }),
-/* 149 */
+/* 172 */
 /***/ (function(module, exports) {
 
 	
 
 /***/ }),
-/* 150 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(143)('asyncIterator');
+	__webpack_require__(166)('asyncIterator');
 
 
 /***/ }),
-/* 151 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(143)('observable');
+	__webpack_require__(166)('observable');
 
 
 /***/ }),
-/* 152 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _setPrototypeOf = __webpack_require__(153);
+	var _setPrototypeOf = __webpack_require__(176);
 
 	var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-	var _create = __webpack_require__(157);
+	var _create = __webpack_require__(180);
 
 	var _create2 = _interopRequireDefault(_create);
 
-	var _typeof2 = __webpack_require__(119);
+	var _typeof2 = __webpack_require__(142);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -26493,36 +31129,36 @@
 	};
 
 /***/ }),
-/* 153 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(154), __esModule: true };
+	module.exports = { "default": __webpack_require__(177), __esModule: true };
 
 /***/ }),
-/* 154 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(155);
-	module.exports = __webpack_require__(78).Object.setPrototypeOf;
+	__webpack_require__(178);
+	module.exports = __webpack_require__(101).Object.setPrototypeOf;
 
 
 /***/ }),
-/* 155 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
-	var $export = __webpack_require__(76);
-	$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(156).set });
+	var $export = __webpack_require__(99);
+	$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(179).set });
 
 
 /***/ }),
-/* 156 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var isObject = __webpack_require__(84);
-	var anObject = __webpack_require__(83);
+	var isObject = __webpack_require__(107);
+	var anObject = __webpack_require__(106);
 	var check = function (O, proto) {
 	  anObject(O);
 	  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
@@ -26531,7 +31167,7 @@
 	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
 	    function (test, buggy, set) {
 	      try {
-	        set = __webpack_require__(79)(Function.call, __webpack_require__(148).f(Object.prototype, '__proto__').set, 2);
+	        set = __webpack_require__(102)(Function.call, __webpack_require__(171).f(Object.prototype, '__proto__').set, 2);
 	        set(test, []);
 	        buggy = !(test instanceof Array);
 	      } catch (e) { buggy = true; }
@@ -26547,33 +31183,33 @@
 
 
 /***/ }),
-/* 157 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(158), __esModule: true };
+	module.exports = { "default": __webpack_require__(181), __esModule: true };
 
 /***/ }),
-/* 158 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(159);
-	var $Object = __webpack_require__(78).Object;
+	__webpack_require__(182);
+	var $Object = __webpack_require__(101).Object;
 	module.exports = function create(P, D) {
 	  return $Object.create(P, D);
 	};
 
 
 /***/ }),
-/* 159 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(76);
+	var $export = __webpack_require__(99);
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	$export($export.S, 'Object', { create: __webpack_require__(128) });
+	$export($export.S, 'Object', { create: __webpack_require__(151) });
 
 
 /***/ }),
-/* 160 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -26627,7 +31263,7 @@
 
 
 /***/ }),
-/* 161 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26640,9 +31276,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactIs = __webpack_require__(162);
+	var _reactIs = __webpack_require__(185);
 
-	var _createChainableTypeChecker = __webpack_require__(165);
+	var _createChainableTypeChecker = __webpack_require__(188);
 
 	var _createChainableTypeChecker2 = _interopRequireDefault(_createChainableTypeChecker);
 
@@ -26666,21 +31302,21 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 162 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	if (process.env.NODE_ENV === 'production') {
-	  module.exports = __webpack_require__(163);
+	  module.exports = __webpack_require__(186);
 	} else {
-	  module.exports = __webpack_require__(164);
+	  module.exports = __webpack_require__(187);
 	}
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 163 */
+/* 186 */
 /***/ (function(module, exports) {
 
 	/** @license React v16.3.2
@@ -26699,7 +31335,7 @@
 
 
 /***/ }),
-/* 164 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/** @license React v16.3.2
@@ -26833,7 +31469,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 165 */
+/* 188 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -26881,7 +31517,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 166 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -26889,11 +31525,11 @@
 	exports.__esModule = true;
 	exports._curry = exports.bsSizes = exports.bsStyles = exports.bsClass = undefined;
 
-	var _entries = __webpack_require__(167);
+	var _entries = __webpack_require__(190);
 
 	var _entries2 = _interopRequireDefault(_entries);
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
@@ -26911,7 +31547,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _StyleConfig = __webpack_require__(170);
+	var _StyleConfig = __webpack_require__(193);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27104,26 +31740,26 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 167 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(168), __esModule: true };
+	module.exports = { "default": __webpack_require__(191), __esModule: true };
 
 /***/ }),
-/* 168 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(169);
-	module.exports = __webpack_require__(78).Object.entries;
+	__webpack_require__(192);
+	module.exports = __webpack_require__(101).Object.entries;
 
 
 /***/ }),
-/* 169 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
-	var $export = __webpack_require__(76);
-	var $entries = __webpack_require__(92)(true);
+	var $export = __webpack_require__(99);
+	var $entries = __webpack_require__(115)(true);
 
 	$export($export.S, 'Object', {
 	  entries: function entries(it) {
@@ -27133,7 +31769,7 @@
 
 
 /***/ }),
-/* 170 */
+/* 193 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -27173,30 +31809,30 @@
 	};
 
 /***/ }),
-/* 171 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -27208,11 +31844,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -27324,7 +31960,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 172 */
+/* 195 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -27370,7 +32006,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 173 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27385,17 +32021,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(72);
+	var _reactIntl = __webpack_require__(72);
+
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _FormControl = __webpack_require__(174);
+	var _FormControl = __webpack_require__(197);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
-	var _moment = __webpack_require__(180);
+	var _moment = __webpack_require__(203);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -27552,7 +32190,9 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients card ',
+	                    ' ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.card', defaultMessage: 'Card of', description: '' }),
+	                    ' ',
 	                    client.name
 	                ),
 	                _react2.default.createElement(
@@ -27561,7 +32201,7 @@
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
-	                        'Name'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.name', defaultMessage: 'Name', description: '' })
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { required: true, type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
 	                        id: 'clientName', name: 'clientName' }),
@@ -27571,14 +32211,14 @@
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Desease'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.desease', defaultMessage: 'Desease', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'text', label: 'Desease', placeholder: client.desease,
 	                            onChange: this.handleInputChange, id: 'clientDesease', name: 'clientDesease' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Date of birth'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.birthdate', defaultMessage: 'Date of birth', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', className: birthdateDateInput,
 	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' }),
@@ -27591,14 +32231,14 @@
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Phone'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.phone', defaultMessage: 'Mobile phone', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: client.phone,
 	                            onChange: this.handleInputChange, id: 'clientPhone', name: 'clientPhone' }),
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            'Email'
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.email', defaultMessage: 'Email', description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'email', label: 'Email address', placeholder: client.email,
 	                            onChange: this.handleInputChange, id: 'clientEmail', name: 'clientEmail' })
@@ -27606,14 +32246,14 @@
 	                    _react2.default.createElement(
 	                        'label',
 	                        null,
-	                        'Description'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.description', defaultMessage: 'Coments', description: '' })
 	                    ),
 	                    _react2.default.createElement(_FormControl2.default, { componentClass: 'textarea', placeholder: client.description, rows: '15',
 	                        onChange: this.handleInputChange, id: 'clientDescription', name: 'clientDescription' }),
 	                    _react2.default.createElement(
 	                        _Button2.default,
 	                        { bsStyle: 'success', type: 'submit', value: 'Add', className: showSaveBtn },
-	                        'Save changes'
+	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.save', defaultMessage: 'Save changes', description: '' })
 	                    )
 	                )
 	            );
@@ -27626,34 +32266,34 @@
 	exports.default = ClientsCard;
 
 /***/ }),
-/* 174 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27665,7 +32305,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
@@ -27673,17 +32313,17 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _FormControlFeedback = __webpack_require__(175);
+	var _FormControlFeedback = __webpack_require__(198);
 
 	var _FormControlFeedback2 = _interopRequireDefault(_FormControlFeedback);
 
-	var _FormControlStatic = __webpack_require__(177);
+	var _FormControlStatic = __webpack_require__(200);
 
 	var _FormControlStatic2 = _interopRequireDefault(_FormControlStatic);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
-	var _StyleConfig = __webpack_require__(170);
+	var _StyleConfig = __webpack_require__(193);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27779,34 +32419,34 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 175 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27818,11 +32458,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Glyphicon = __webpack_require__(176);
+	var _Glyphicon = __webpack_require__(199);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27899,34 +32539,34 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 176 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends3 = __webpack_require__(110);
+	var _extends3 = __webpack_require__(133);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -27938,7 +32578,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27983,34 +32623,34 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 177 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -28018,11 +32658,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28067,7 +32707,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 178 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28077,7 +32717,7 @@
 	});
 	exports.sortByKey = exports.dateToTimestamp = exports.sendData = undefined;
 
-	var _nodeFetch = __webpack_require__(179);
+	var _nodeFetch = __webpack_require__(202);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -28113,7 +32753,7 @@
 	};
 
 /***/ }),
-/* 179 */
+/* 202 */
 /***/ (function(module, exports) {
 
 	module.exports = exports = window.fetch;
@@ -28127,7 +32767,7 @@
 
 
 /***/ }),
-/* 180 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var require;/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -29965,7 +34605,7 @@
 	            try {
 	                oldLocale = globalLocale._abbr;
 	                var aliasedRequire = require;
-	                __webpack_require__(182)("./" + name);
+	                __webpack_require__(205)("./" + name);
 	                getSetGlobalLocale(oldLocale);
 	            } catch (e) {}
 	        }
@@ -32637,10 +37277,10 @@
 
 	})));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(181)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(204)(module)))
 
 /***/ }),
-/* 181 */
+/* 204 */
 /***/ (function(module, exports) {
 
 	module.exports = function(module) {
@@ -32656,256 +37296,256 @@
 
 
 /***/ }),
-/* 182 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 183,
-		"./af.js": 183,
-		"./ar": 184,
-		"./ar-dz": 185,
-		"./ar-dz.js": 185,
-		"./ar-kw": 186,
-		"./ar-kw.js": 186,
-		"./ar-ly": 187,
-		"./ar-ly.js": 187,
-		"./ar-ma": 188,
-		"./ar-ma.js": 188,
-		"./ar-sa": 189,
-		"./ar-sa.js": 189,
-		"./ar-tn": 190,
-		"./ar-tn.js": 190,
-		"./ar.js": 184,
-		"./az": 191,
-		"./az.js": 191,
-		"./be": 192,
-		"./be.js": 192,
-		"./bg": 193,
-		"./bg.js": 193,
-		"./bm": 194,
-		"./bm.js": 194,
-		"./bn": 195,
-		"./bn.js": 195,
-		"./bo": 196,
-		"./bo.js": 196,
-		"./br": 197,
-		"./br.js": 197,
-		"./bs": 198,
-		"./bs.js": 198,
-		"./ca": 199,
-		"./ca.js": 199,
-		"./cs": 200,
-		"./cs.js": 200,
-		"./cv": 201,
-		"./cv.js": 201,
-		"./cy": 202,
-		"./cy.js": 202,
-		"./da": 203,
-		"./da.js": 203,
-		"./de": 204,
-		"./de-at": 205,
-		"./de-at.js": 205,
-		"./de-ch": 206,
-		"./de-ch.js": 206,
-		"./de.js": 204,
-		"./dv": 207,
-		"./dv.js": 207,
-		"./el": 208,
-		"./el.js": 208,
-		"./en-au": 209,
-		"./en-au.js": 209,
-		"./en-ca": 210,
-		"./en-ca.js": 210,
-		"./en-gb": 211,
-		"./en-gb.js": 211,
-		"./en-ie": 212,
-		"./en-ie.js": 212,
-		"./en-il": 213,
-		"./en-il.js": 213,
-		"./en-nz": 214,
-		"./en-nz.js": 214,
-		"./eo": 215,
-		"./eo.js": 215,
-		"./es": 216,
-		"./es-do": 217,
-		"./es-do.js": 217,
-		"./es-us": 218,
-		"./es-us.js": 218,
-		"./es.js": 216,
-		"./et": 219,
-		"./et.js": 219,
-		"./eu": 220,
-		"./eu.js": 220,
-		"./fa": 221,
-		"./fa.js": 221,
-		"./fi": 222,
-		"./fi.js": 222,
-		"./fo": 223,
-		"./fo.js": 223,
-		"./fr": 224,
-		"./fr-ca": 225,
-		"./fr-ca.js": 225,
-		"./fr-ch": 226,
-		"./fr-ch.js": 226,
-		"./fr.js": 224,
-		"./fy": 227,
-		"./fy.js": 227,
-		"./gd": 228,
-		"./gd.js": 228,
-		"./gl": 229,
-		"./gl.js": 229,
-		"./gom-latn": 230,
-		"./gom-latn.js": 230,
-		"./gu": 231,
-		"./gu.js": 231,
-		"./he": 232,
-		"./he.js": 232,
-		"./hi": 233,
-		"./hi.js": 233,
-		"./hr": 234,
-		"./hr.js": 234,
-		"./hu": 235,
-		"./hu.js": 235,
-		"./hy-am": 236,
-		"./hy-am.js": 236,
-		"./id": 237,
-		"./id.js": 237,
-		"./is": 238,
-		"./is.js": 238,
-		"./it": 239,
-		"./it.js": 239,
-		"./ja": 240,
-		"./ja.js": 240,
-		"./jv": 241,
-		"./jv.js": 241,
-		"./ka": 242,
-		"./ka.js": 242,
-		"./kk": 243,
-		"./kk.js": 243,
-		"./km": 244,
-		"./km.js": 244,
-		"./kn": 245,
-		"./kn.js": 245,
-		"./ko": 246,
-		"./ko.js": 246,
-		"./ky": 247,
-		"./ky.js": 247,
-		"./lb": 248,
-		"./lb.js": 248,
-		"./lo": 249,
-		"./lo.js": 249,
-		"./lt": 250,
-		"./lt.js": 250,
-		"./lv": 251,
-		"./lv.js": 251,
-		"./me": 252,
-		"./me.js": 252,
-		"./mi": 253,
-		"./mi.js": 253,
-		"./mk": 254,
-		"./mk.js": 254,
-		"./ml": 255,
-		"./ml.js": 255,
-		"./mn": 256,
-		"./mn.js": 256,
-		"./mr": 257,
-		"./mr.js": 257,
-		"./ms": 258,
-		"./ms-my": 259,
-		"./ms-my.js": 259,
-		"./ms.js": 258,
-		"./mt": 260,
-		"./mt.js": 260,
-		"./my": 261,
-		"./my.js": 261,
-		"./nb": 262,
-		"./nb.js": 262,
-		"./ne": 263,
-		"./ne.js": 263,
-		"./nl": 264,
-		"./nl-be": 265,
-		"./nl-be.js": 265,
-		"./nl.js": 264,
-		"./nn": 266,
-		"./nn.js": 266,
-		"./pa-in": 267,
-		"./pa-in.js": 267,
-		"./pl": 268,
-		"./pl.js": 268,
-		"./pt": 269,
-		"./pt-br": 270,
-		"./pt-br.js": 270,
-		"./pt.js": 269,
-		"./ro": 271,
-		"./ro.js": 271,
-		"./ru": 272,
-		"./ru.js": 272,
-		"./sd": 273,
-		"./sd.js": 273,
-		"./se": 274,
-		"./se.js": 274,
-		"./si": 275,
-		"./si.js": 275,
-		"./sk": 276,
-		"./sk.js": 276,
-		"./sl": 277,
-		"./sl.js": 277,
-		"./sq": 278,
-		"./sq.js": 278,
-		"./sr": 279,
-		"./sr-cyrl": 280,
-		"./sr-cyrl.js": 280,
-		"./sr.js": 279,
-		"./ss": 281,
-		"./ss.js": 281,
-		"./sv": 282,
-		"./sv.js": 282,
-		"./sw": 283,
-		"./sw.js": 283,
-		"./ta": 284,
-		"./ta.js": 284,
-		"./te": 285,
-		"./te.js": 285,
-		"./tet": 286,
-		"./tet.js": 286,
-		"./tg": 287,
-		"./tg.js": 287,
-		"./th": 288,
-		"./th.js": 288,
-		"./tl-ph": 289,
-		"./tl-ph.js": 289,
-		"./tlh": 290,
-		"./tlh.js": 290,
-		"./tr": 291,
-		"./tr.js": 291,
-		"./tzl": 292,
-		"./tzl.js": 292,
-		"./tzm": 293,
-		"./tzm-latn": 294,
-		"./tzm-latn.js": 294,
-		"./tzm.js": 293,
-		"./ug-cn": 295,
-		"./ug-cn.js": 295,
-		"./uk": 296,
-		"./uk.js": 296,
-		"./ur": 297,
-		"./ur.js": 297,
-		"./uz": 298,
-		"./uz-latn": 299,
-		"./uz-latn.js": 299,
-		"./uz.js": 298,
-		"./vi": 300,
-		"./vi.js": 300,
-		"./x-pseudo": 301,
-		"./x-pseudo.js": 301,
-		"./yo": 302,
-		"./yo.js": 302,
-		"./zh-cn": 303,
-		"./zh-cn.js": 303,
-		"./zh-hk": 304,
-		"./zh-hk.js": 304,
-		"./zh-tw": 305,
-		"./zh-tw.js": 305
+		"./af": 206,
+		"./af.js": 206,
+		"./ar": 207,
+		"./ar-dz": 208,
+		"./ar-dz.js": 208,
+		"./ar-kw": 209,
+		"./ar-kw.js": 209,
+		"./ar-ly": 210,
+		"./ar-ly.js": 210,
+		"./ar-ma": 211,
+		"./ar-ma.js": 211,
+		"./ar-sa": 212,
+		"./ar-sa.js": 212,
+		"./ar-tn": 213,
+		"./ar-tn.js": 213,
+		"./ar.js": 207,
+		"./az": 214,
+		"./az.js": 214,
+		"./be": 215,
+		"./be.js": 215,
+		"./bg": 216,
+		"./bg.js": 216,
+		"./bm": 217,
+		"./bm.js": 217,
+		"./bn": 218,
+		"./bn.js": 218,
+		"./bo": 219,
+		"./bo.js": 219,
+		"./br": 220,
+		"./br.js": 220,
+		"./bs": 221,
+		"./bs.js": 221,
+		"./ca": 222,
+		"./ca.js": 222,
+		"./cs": 223,
+		"./cs.js": 223,
+		"./cv": 224,
+		"./cv.js": 224,
+		"./cy": 225,
+		"./cy.js": 225,
+		"./da": 226,
+		"./da.js": 226,
+		"./de": 227,
+		"./de-at": 228,
+		"./de-at.js": 228,
+		"./de-ch": 229,
+		"./de-ch.js": 229,
+		"./de.js": 227,
+		"./dv": 230,
+		"./dv.js": 230,
+		"./el": 231,
+		"./el.js": 231,
+		"./en-au": 232,
+		"./en-au.js": 232,
+		"./en-ca": 233,
+		"./en-ca.js": 233,
+		"./en-gb": 234,
+		"./en-gb.js": 234,
+		"./en-ie": 235,
+		"./en-ie.js": 235,
+		"./en-il": 236,
+		"./en-il.js": 236,
+		"./en-nz": 237,
+		"./en-nz.js": 237,
+		"./eo": 238,
+		"./eo.js": 238,
+		"./es": 239,
+		"./es-do": 240,
+		"./es-do.js": 240,
+		"./es-us": 241,
+		"./es-us.js": 241,
+		"./es.js": 239,
+		"./et": 242,
+		"./et.js": 242,
+		"./eu": 243,
+		"./eu.js": 243,
+		"./fa": 244,
+		"./fa.js": 244,
+		"./fi": 245,
+		"./fi.js": 245,
+		"./fo": 246,
+		"./fo.js": 246,
+		"./fr": 247,
+		"./fr-ca": 248,
+		"./fr-ca.js": 248,
+		"./fr-ch": 249,
+		"./fr-ch.js": 249,
+		"./fr.js": 247,
+		"./fy": 250,
+		"./fy.js": 250,
+		"./gd": 251,
+		"./gd.js": 251,
+		"./gl": 252,
+		"./gl.js": 252,
+		"./gom-latn": 253,
+		"./gom-latn.js": 253,
+		"./gu": 254,
+		"./gu.js": 254,
+		"./he": 255,
+		"./he.js": 255,
+		"./hi": 256,
+		"./hi.js": 256,
+		"./hr": 257,
+		"./hr.js": 257,
+		"./hu": 258,
+		"./hu.js": 258,
+		"./hy-am": 259,
+		"./hy-am.js": 259,
+		"./id": 260,
+		"./id.js": 260,
+		"./is": 261,
+		"./is.js": 261,
+		"./it": 262,
+		"./it.js": 262,
+		"./ja": 263,
+		"./ja.js": 263,
+		"./jv": 264,
+		"./jv.js": 264,
+		"./ka": 265,
+		"./ka.js": 265,
+		"./kk": 266,
+		"./kk.js": 266,
+		"./km": 267,
+		"./km.js": 267,
+		"./kn": 268,
+		"./kn.js": 268,
+		"./ko": 269,
+		"./ko.js": 269,
+		"./ky": 270,
+		"./ky.js": 270,
+		"./lb": 271,
+		"./lb.js": 271,
+		"./lo": 272,
+		"./lo.js": 272,
+		"./lt": 273,
+		"./lt.js": 273,
+		"./lv": 274,
+		"./lv.js": 274,
+		"./me": 275,
+		"./me.js": 275,
+		"./mi": 276,
+		"./mi.js": 276,
+		"./mk": 277,
+		"./mk.js": 277,
+		"./ml": 278,
+		"./ml.js": 278,
+		"./mn": 279,
+		"./mn.js": 279,
+		"./mr": 280,
+		"./mr.js": 280,
+		"./ms": 281,
+		"./ms-my": 282,
+		"./ms-my.js": 282,
+		"./ms.js": 281,
+		"./mt": 283,
+		"./mt.js": 283,
+		"./my": 284,
+		"./my.js": 284,
+		"./nb": 285,
+		"./nb.js": 285,
+		"./ne": 286,
+		"./ne.js": 286,
+		"./nl": 287,
+		"./nl-be": 288,
+		"./nl-be.js": 288,
+		"./nl.js": 287,
+		"./nn": 289,
+		"./nn.js": 289,
+		"./pa-in": 290,
+		"./pa-in.js": 290,
+		"./pl": 291,
+		"./pl.js": 291,
+		"./pt": 292,
+		"./pt-br": 293,
+		"./pt-br.js": 293,
+		"./pt.js": 292,
+		"./ro": 294,
+		"./ro.js": 294,
+		"./ru": 295,
+		"./ru.js": 295,
+		"./sd": 296,
+		"./sd.js": 296,
+		"./se": 297,
+		"./se.js": 297,
+		"./si": 298,
+		"./si.js": 298,
+		"./sk": 299,
+		"./sk.js": 299,
+		"./sl": 300,
+		"./sl.js": 300,
+		"./sq": 301,
+		"./sq.js": 301,
+		"./sr": 302,
+		"./sr-cyrl": 303,
+		"./sr-cyrl.js": 303,
+		"./sr.js": 302,
+		"./ss": 304,
+		"./ss.js": 304,
+		"./sv": 305,
+		"./sv.js": 305,
+		"./sw": 306,
+		"./sw.js": 306,
+		"./ta": 307,
+		"./ta.js": 307,
+		"./te": 308,
+		"./te.js": 308,
+		"./tet": 309,
+		"./tet.js": 309,
+		"./tg": 310,
+		"./tg.js": 310,
+		"./th": 311,
+		"./th.js": 311,
+		"./tl-ph": 312,
+		"./tl-ph.js": 312,
+		"./tlh": 313,
+		"./tlh.js": 313,
+		"./tr": 314,
+		"./tr.js": 314,
+		"./tzl": 315,
+		"./tzl.js": 315,
+		"./tzm": 316,
+		"./tzm-latn": 317,
+		"./tzm-latn.js": 317,
+		"./tzm.js": 316,
+		"./ug-cn": 318,
+		"./ug-cn.js": 318,
+		"./uk": 319,
+		"./uk.js": 319,
+		"./ur": 320,
+		"./ur.js": 320,
+		"./uz": 321,
+		"./uz-latn": 322,
+		"./uz-latn.js": 322,
+		"./uz.js": 321,
+		"./vi": 323,
+		"./vi.js": 323,
+		"./x-pseudo": 324,
+		"./x-pseudo.js": 324,
+		"./yo": 325,
+		"./yo.js": 325,
+		"./zh-cn": 326,
+		"./zh-cn.js": 326,
+		"./zh-hk": 327,
+		"./zh-hk.js": 327,
+		"./zh-tw": 328,
+		"./zh-tw.js": 328
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -32918,17 +37558,17 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 182;
+	webpackContext.id = 205;
 
 
 /***/ }),
-/* 183 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -32999,13 +37639,13 @@
 
 
 /***/ }),
-/* 184 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33138,13 +37778,13 @@
 
 
 /***/ }),
-/* 185 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33201,13 +37841,13 @@
 
 
 /***/ }),
-/* 186 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33264,13 +37904,13 @@
 
 
 /***/ }),
-/* 187 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33390,13 +38030,13 @@
 
 
 /***/ }),
-/* 188 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33453,13 +38093,13 @@
 
 
 /***/ }),
-/* 189 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33561,13 +38201,13 @@
 
 
 /***/ }),
-/* 190 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33624,13 +38264,13 @@
 
 
 /***/ }),
-/* 191 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33733,13 +38373,13 @@
 
 
 /***/ }),
-/* 192 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33869,13 +38509,13 @@
 
 
 /***/ }),
-/* 193 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -33963,13 +38603,13 @@
 
 
 /***/ }),
-/* 194 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34025,13 +38665,13 @@
 
 
 /***/ }),
-/* 195 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34148,13 +38788,13 @@
 
 
 /***/ }),
-/* 196 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34271,13 +38911,13 @@
 
 
 /***/ }),
-/* 197 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34383,13 +39023,13 @@
 
 
 /***/ }),
-/* 198 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34538,13 +39178,13 @@
 
 
 /***/ }),
-/* 199 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34630,13 +39270,13 @@
 
 
 /***/ }),
-/* 200 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34813,13 +39453,13 @@
 
 
 /***/ }),
-/* 201 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34880,13 +39520,13 @@
 
 
 /***/ }),
-/* 202 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -34964,13 +39604,13 @@
 
 
 /***/ }),
-/* 203 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35028,13 +39668,13 @@
 
 
 /***/ }),
-/* 204 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35108,13 +39748,13 @@
 
 
 /***/ }),
-/* 205 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35188,13 +39828,13 @@
 
 
 /***/ }),
-/* 206 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35268,13 +39908,13 @@
 
 
 /***/ }),
-/* 207 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35371,13 +40011,13 @@
 
 
 /***/ }),
-/* 208 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35475,13 +40115,13 @@
 
 
 /***/ }),
-/* 209 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35546,13 +40186,13 @@
 
 
 /***/ }),
-/* 210 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35613,13 +40253,13 @@
 
 
 /***/ }),
-/* 211 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35684,13 +40324,13 @@
 
 
 /***/ }),
-/* 212 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35755,13 +40395,13 @@
 
 
 /***/ }),
-/* 213 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35821,13 +40461,13 @@
 
 
 /***/ }),
-/* 214 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35892,13 +40532,13 @@
 
 
 /***/ }),
-/* 215 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -35967,13 +40607,13 @@
 
 
 /***/ }),
-/* 216 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36063,13 +40703,13 @@
 
 
 /***/ }),
-/* 217 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36159,13 +40799,13 @@
 
 
 /***/ }),
-/* 218 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36246,13 +40886,13 @@
 
 
 /***/ }),
-/* 219 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36330,13 +40970,13 @@
 
 
 /***/ }),
-/* 220 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36400,13 +41040,13 @@
 
 
 /***/ }),
-/* 221 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36510,13 +41150,13 @@
 
 
 /***/ }),
-/* 222 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36623,13 +41263,13 @@
 
 
 /***/ }),
-/* 223 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36687,13 +41327,13 @@
 
 
 /***/ }),
-/* 224 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36774,13 +41414,13 @@
 
 
 /***/ }),
-/* 225 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36852,13 +41492,13 @@
 
 
 /***/ }),
-/* 226 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36934,13 +41574,13 @@
 
 
 /***/ }),
-/* 227 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37013,13 +41653,13 @@
 
 
 /***/ }),
-/* 228 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37093,13 +41733,13 @@
 
 
 /***/ }),
-/* 229 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37174,13 +41814,13 @@
 
 
 /***/ }),
-/* 230 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37301,13 +41941,13 @@
 
 
 /***/ }),
-/* 231 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37429,13 +42069,13 @@
 
 
 /***/ }),
-/* 232 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37530,13 +42170,13 @@
 
 
 /***/ }),
-/* 233 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37658,13 +42298,13 @@
 
 
 /***/ }),
-/* 234 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37816,13 +42456,13 @@
 
 
 /***/ }),
-/* 235 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37930,13 +42570,13 @@
 
 
 /***/ }),
-/* 236 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38029,13 +42669,13 @@
 
 
 /***/ }),
-/* 237 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38115,13 +42755,13 @@
 
 
 /***/ }),
-/* 238 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38251,13 +42891,13 @@
 
 
 /***/ }),
-/* 239 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38324,13 +42964,13 @@
 
 
 /***/ }),
-/* 240 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38420,13 +43060,13 @@
 
 
 /***/ }),
-/* 241 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38506,13 +43146,13 @@
 
 
 /***/ }),
-/* 242 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38599,13 +43239,13 @@
 
 
 /***/ }),
-/* 243 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38690,13 +43330,13 @@
 
 
 /***/ }),
-/* 244 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38804,13 +43444,13 @@
 
 
 /***/ }),
-/* 245 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38934,13 +43574,13 @@
 
 
 /***/ }),
-/* 246 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39019,13 +43659,13 @@
 
 
 /***/ }),
-/* 247 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39110,13 +43750,13 @@
 
 
 /***/ }),
-/* 248 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39250,13 +43890,13 @@
 
 
 /***/ }),
-/* 249 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39324,13 +43964,13 @@
 
 
 /***/ }),
-/* 250 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39446,13 +44086,13 @@
 
 
 /***/ }),
-/* 251 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39547,13 +44187,13 @@
 
 
 /***/ }),
-/* 252 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39663,13 +44303,13 @@
 
 
 /***/ }),
-/* 253 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39731,13 +44371,13 @@
 
 
 /***/ }),
-/* 254 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39825,13 +44465,13 @@
 
 
 /***/ }),
-/* 255 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39910,13 +44550,13 @@
 
 
 /***/ }),
-/* 256 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40018,13 +44658,13 @@
 
 
 /***/ }),
-/* 257 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40182,13 +44822,13 @@
 
 
 /***/ }),
-/* 258 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40268,13 +44908,13 @@
 
 
 /***/ }),
-/* 259 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40354,13 +44994,13 @@
 
 
 /***/ }),
-/* 260 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40418,13 +45058,13 @@
 
 
 /***/ }),
-/* 261 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40515,13 +45155,13 @@
 
 
 /***/ }),
-/* 262 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40581,13 +45221,13 @@
 
 
 /***/ }),
-/* 263 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40708,13 +45348,13 @@
 
 
 /***/ }),
-/* 264 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40799,13 +45439,13 @@
 
 
 /***/ }),
-/* 265 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40890,13 +45530,13 @@
 
 
 /***/ }),
-/* 266 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40954,13 +45594,13 @@
 
 
 /***/ }),
-/* 267 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41082,13 +45722,13 @@
 
 
 /***/ }),
-/* 268 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41212,13 +45852,13 @@
 
 
 /***/ }),
-/* 269 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41281,13 +45921,13 @@
 
 
 /***/ }),
-/* 270 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41346,13 +45986,13 @@
 
 
 /***/ }),
-/* 271 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41425,13 +46065,13 @@
 
 
 /***/ }),
-/* 272 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41611,13 +46251,13 @@
 
 
 /***/ }),
-/* 273 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41713,13 +46353,13 @@
 
 
 /***/ }),
-/* 274 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41777,13 +46417,13 @@
 
 
 /***/ }),
-/* 275 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41852,13 +46492,13 @@
 
 
 /***/ }),
-/* 276 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42012,13 +46652,13 @@
 
 
 /***/ }),
-/* 277 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42189,13 +46829,13 @@
 
 
 /***/ }),
-/* 278 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42261,13 +46901,13 @@
 
 
 /***/ }),
-/* 279 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42376,13 +47016,13 @@
 
 
 /***/ }),
-/* 280 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42491,13 +47131,13 @@
 
 
 /***/ }),
-/* 281 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42583,13 +47223,13 @@
 
 
 /***/ }),
-/* 282 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42656,13 +47296,13 @@
 
 
 /***/ }),
-/* 283 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42719,13 +47359,13 @@
 
 
 /***/ }),
-/* 284 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42852,13 +47492,13 @@
 
 
 /***/ }),
-/* 285 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42945,13 +47585,13 @@
 
 
 /***/ }),
-/* 286 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43016,13 +47656,13 @@
 
 
 /***/ }),
-/* 287 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43136,13 +47776,13 @@
 
 
 /***/ }),
-/* 288 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43207,13 +47847,13 @@
 
 
 /***/ }),
-/* 289 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43273,13 +47913,13 @@
 
 
 /***/ }),
-/* 290 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43399,12 +48039,12 @@
 
 
 /***/ }),
-/* 291 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43497,13 +48137,13 @@
 
 
 /***/ }),
-/* 292 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43592,13 +48232,13 @@
 
 
 /***/ }),
-/* 293 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43654,13 +48294,13 @@
 
 
 /***/ }),
-/* 294 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43716,13 +48356,13 @@
 
 
 /***/ }),
-/* 295 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js language configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43839,13 +48479,13 @@
 
 
 /***/ }),
-/* 296 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43994,13 +48634,13 @@
 
 
 /***/ }),
-/* 297 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44096,13 +48736,13 @@
 
 
 /***/ }),
-/* 298 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44158,13 +48798,13 @@
 
 
 /***/ }),
-/* 299 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44220,13 +48860,13 @@
 
 
 /***/ }),
-/* 300 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44303,13 +48943,13 @@
 
 
 /***/ }),
-/* 301 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44375,13 +49015,13 @@
 
 
 /***/ }),
-/* 302 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44439,13 +49079,13 @@
 
 
 /***/ }),
-/* 303 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44553,13 +49193,13 @@
 
 
 /***/ }),
-/* 304 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44660,13 +49300,13 @@
 
 
 /***/ }),
-/* 305 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(180)) :
+	    true ? factory(__webpack_require__(203)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44767,7 +49407,7 @@
 
 
 /***/ }),
-/* 306 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44782,17 +49422,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Table = __webpack_require__(307);
+	var _reactIntl = __webpack_require__(72);
+
+	var _Table = __webpack_require__(330);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
-	var _moment = __webpack_require__(180);
+	var _moment = __webpack_require__(203);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -44856,12 +49498,14 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients history'
+	                    ' ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.\u0440\u0448\u044B\u0435\u0449\u043A\u043D', defaultMessage: 'Client history', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    'Visits of ',
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of', description: '' }),
+	                    ' ',
 	                    this.props.client.name
 	                ),
 	                _react2.default.createElement(
@@ -44876,17 +49520,17 @@
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Date'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.date', defaultMessage: 'Date', description: '' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Status'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.status', defaultMessage: 'Status', description: '' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'th',
 	                                null,
-	                                'Is Paid'
+	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.isPaid', defaultMessage: 'Is paid', description: '' })
 	                            )
 	                        )
 	                    ),
@@ -44926,34 +49570,34 @@
 	exports.default = ClientsHistory;
 
 /***/ }),
-/* 307 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends3 = __webpack_require__(110);
+	var _extends3 = __webpack_require__(133);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -44965,7 +49609,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45034,7 +49678,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 308 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45049,9 +49693,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _methods = __webpack_require__(178);
+	var _reactIntl = __webpack_require__(72);
 
-	var _Context = __webpack_require__(309);
+	var _methods = __webpack_require__(201);
+
+	var _Context = __webpack_require__(332);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45100,7 +49746,7 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' Clients list'
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.list', defaultMessage: 'Client list', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'ul',
@@ -45117,7 +49763,7 @@
 	exports.default = ClientsList;
 
 /***/ }),
-/* 309 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45139,7 +49785,7 @@
 	var FamilyConsumer = exports.FamilyConsumer = FamilyContext.Consumer;
 
 /***/ }),
-/* 310 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45154,7 +49800,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(311);
+	var _MonthTable = __webpack_require__(334);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
@@ -45166,7 +49812,7 @@
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
-	var _reactIntl = __webpack_require__(315);
+	var _reactIntl = __webpack_require__(72);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45259,7 +49905,7 @@
 	exports.default = Calendar;
 
 /***/ }),
-/* 311 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45274,19 +49920,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(312);
+	var _DayList = __webpack_require__(335);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
-	var _Table = __webpack_require__(307);
+	var _Table = __webpack_require__(330);
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _reactIntl = __webpack_require__(315);
+	var _reactIntl = __webpack_require__(72);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45618,7 +50264,7 @@
 	exports.default = MonthTable;
 
 /***/ }),
-/* 312 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45633,15 +50279,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(313);
+	var _RegisterList = __webpack_require__(336);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(314);
+	var _ClientNameInput = __webpack_require__(337);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45651,7 +50297,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var fetch = __webpack_require__(179);
+	var fetch = __webpack_require__(202);
 
 	var DayList = function (_Component) {
 	    _inherits(DayList, _Component);
@@ -45767,7 +50413,7 @@
 	exports.default = DayList;
 
 /***/ }),
-/* 313 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45782,17 +50428,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(176);
+	var _Glyphicon = __webpack_require__(199);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
-	var _Context = __webpack_require__(309);
+	var _Context = __webpack_require__(332);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45884,7 +50530,7 @@
 	exports.default = RegisterList;
 
 /***/ }),
-/* 314 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45899,15 +50545,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(176);
+	var _Glyphicon = __webpack_require__(199);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46021,4639 +50667,6 @@
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 315 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/*
-	 * Copyright 2019, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', { value: true });
-
-	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-	var allLocaleData = _interopDefault(__webpack_require__(316));
-	var IntlMessageFormat = _interopDefault(__webpack_require__(317));
-	var IntlRelativeFormat = _interopDefault(__webpack_require__(327));
-	var PropTypes = _interopDefault(__webpack_require__(28));
-	var React = __webpack_require__(1);
-	var React__default = _interopDefault(React);
-	var hoistNonReactStatics = _interopDefault(__webpack_require__(334));
-	var invariant = _interopDefault(__webpack_require__(38));
-	var memoizeIntlConstructor = _interopDefault(__webpack_require__(335));
-
-	// GENERATED FILE
-	var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
-	    var s = String(n).split("."),
-	        v0 = !s[1],
-	        t0 = Number(s[0]) == n,
-	        n10 = t0 && s[0].slice(-1),
-	        n100 = t0 && s[0].slice(-2);if (ord) return n10 == 1 && n100 != 11 ? "one" : n10 == 2 && n100 != 12 ? "two" : n10 == 3 && n100 != 13 ? "few" : "other";return n == 1 && v0 ? "one" : "other";
-	  }, "fields": { "year": { "displayName": "year", "relative": { "0": "this year", "1": "next year", "-1": "last year" }, "relativeTime": { "future": { "one": "in {0} year", "other": "in {0} years" }, "past": { "one": "{0} year ago", "other": "{0} years ago" } } }, "year-short": { "displayName": "yr.", "relative": { "0": "this yr.", "1": "next yr.", "-1": "last yr." }, "relativeTime": { "future": { "one": "in {0} yr.", "other": "in {0} yr." }, "past": { "one": "{0} yr. ago", "other": "{0} yr. ago" } } }, "month": { "displayName": "month", "relative": { "0": "this month", "1": "next month", "-1": "last month" }, "relativeTime": { "future": { "one": "in {0} month", "other": "in {0} months" }, "past": { "one": "{0} month ago", "other": "{0} months ago" } } }, "month-short": { "displayName": "mo.", "relative": { "0": "this mo.", "1": "next mo.", "-1": "last mo." }, "relativeTime": { "future": { "one": "in {0} mo.", "other": "in {0} mo." }, "past": { "one": "{0} mo. ago", "other": "{0} mo. ago" } } }, "day": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "day-short": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "hour": { "displayName": "hour", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hour", "other": "in {0} hours" }, "past": { "one": "{0} hour ago", "other": "{0} hours ago" } } }, "hour-short": { "displayName": "hr.", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hr.", "other": "in {0} hr." }, "past": { "one": "{0} hr. ago", "other": "{0} hr. ago" } } }, "minute": { "displayName": "minute", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} minute", "other": "in {0} minutes" }, "past": { "one": "{0} minute ago", "other": "{0} minutes ago" } } }, "minute-short": { "displayName": "min.", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} min.", "other": "in {0} min." }, "past": { "one": "{0} min. ago", "other": "{0} min. ago" } } }, "second": { "displayName": "second", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} second", "other": "in {0} seconds" }, "past": { "one": "{0} second ago", "other": "{0} seconds ago" } } }, "second-short": { "displayName": "sec.", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} sec.", "other": "in {0} sec." }, "past": { "one": "{0} sec. ago", "other": "{0} sec. ago" } } } } };
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	function addLocaleData() {
-	  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-	  var locales = Array.isArray(data) ? data : [data];
-
-	  locales.forEach(function (localeData) {
-	    if (localeData && localeData.locale) {
-	      IntlMessageFormat.__addLocaleData(localeData);
-	      IntlRelativeFormat.__addLocaleData(localeData);
-	    }
-	  });
-	}
-
-	function hasLocaleData(locale) {
-	  var localeParts = (locale || '').split('-');
-
-	  while (localeParts.length > 0) {
-	    if (hasIMFAndIRFLocaleData(localeParts.join('-'))) {
-	      return true;
-	    }
-
-	    localeParts.pop();
-	  }
-
-	  return false;
-	}
-
-	function hasIMFAndIRFLocaleData(locale) {
-	  var normalizedLocale = locale && locale.toLowerCase();
-
-	  return !!(IntlMessageFormat.__localeData__[normalizedLocale] && IntlRelativeFormat.__localeData__[normalizedLocale]);
-	}
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-	  return typeof obj;
-	} : function (obj) {
-	  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-	};
-
-
-
-
-
-	var asyncGenerator = function () {
-	  function AwaitValue(value) {
-	    this.value = value;
-	  }
-
-	  function AsyncGenerator(gen) {
-	    var front, back;
-
-	    function send(key, arg) {
-	      return new Promise(function (resolve, reject) {
-	        var request = {
-	          key: key,
-	          arg: arg,
-	          resolve: resolve,
-	          reject: reject,
-	          next: null
-	        };
-
-	        if (back) {
-	          back = back.next = request;
-	        } else {
-	          front = back = request;
-	          resume(key, arg);
-	        }
-	      });
-	    }
-
-	    function resume(key, arg) {
-	      try {
-	        var result = gen[key](arg);
-	        var value = result.value;
-
-	        if (value instanceof AwaitValue) {
-	          Promise.resolve(value.value).then(function (arg) {
-	            resume("next", arg);
-	          }, function (arg) {
-	            resume("throw", arg);
-	          });
-	        } else {
-	          settle(result.done ? "return" : "normal", result.value);
-	        }
-	      } catch (err) {
-	        settle("throw", err);
-	      }
-	    }
-
-	    function settle(type, value) {
-	      switch (type) {
-	        case "return":
-	          front.resolve({
-	            value: value,
-	            done: true
-	          });
-	          break;
-
-	        case "throw":
-	          front.reject(value);
-	          break;
-
-	        default:
-	          front.resolve({
-	            value: value,
-	            done: false
-	          });
-	          break;
-	      }
-
-	      front = front.next;
-
-	      if (front) {
-	        resume(front.key, front.arg);
-	      } else {
-	        back = null;
-	      }
-	    }
-
-	    this._invoke = send;
-
-	    if (typeof gen.return !== "function") {
-	      this.return = undefined;
-	    }
-	  }
-
-	  if (typeof Symbol === "function" && Symbol.asyncIterator) {
-	    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
-	      return this;
-	    };
-	  }
-
-	  AsyncGenerator.prototype.next = function (arg) {
-	    return this._invoke("next", arg);
-	  };
-
-	  AsyncGenerator.prototype.throw = function (arg) {
-	    return this._invoke("throw", arg);
-	  };
-
-	  AsyncGenerator.prototype.return = function (arg) {
-	    return this._invoke("return", arg);
-	  };
-
-	  return {
-	    wrap: function (fn) {
-	      return function () {
-	        return new AsyncGenerator(fn.apply(this, arguments));
-	      };
-	    },
-	    await: function (value) {
-	      return new AwaitValue(value);
-	    }
-	  };
-	}();
-
-
-
-
-
-	var classCallCheck = function (instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	};
-
-	var createClass = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];
-	      descriptor.enumerable = descriptor.enumerable || false;
-	      descriptor.configurable = true;
-	      if ("value" in descriptor) descriptor.writable = true;
-	      Object.defineProperty(target, descriptor.key, descriptor);
-	    }
-	  }
-
-	  return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-	    if (staticProps) defineProperties(Constructor, staticProps);
-	    return Constructor;
-	  };
-	}();
-
-
-
-
-
-	var defineProperty = function (obj, key, value) {
-	  if (key in obj) {
-	    Object.defineProperty(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
-	};
-
-	var _extends = Object.assign || function (target) {
-	  for (var i = 1; i < arguments.length; i++) {
-	    var source = arguments[i];
-
-	    for (var key in source) {
-	      if (Object.prototype.hasOwnProperty.call(source, key)) {
-	        target[key] = source[key];
-	      }
-	    }
-	  }
-
-	  return target;
-	};
-
-
-
-	var inherits = function (subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-	  }
-
-	  subClass.prototype = Object.create(superClass && superClass.prototype, {
-	    constructor: {
-	      value: subClass,
-	      enumerable: false,
-	      writable: true,
-	      configurable: true
-	    }
-	  });
-	  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-	};
-
-
-
-
-
-
-
-
-
-	var objectWithoutProperties = function (obj, keys) {
-	  var target = {};
-
-	  for (var i in obj) {
-	    if (keys.indexOf(i) >= 0) continue;
-	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-	    target[i] = obj[i];
-	  }
-
-	  return target;
-	};
-
-	var possibleConstructorReturn = function (self, call) {
-	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	  }
-
-	  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	var toConsumableArray = function (arr) {
-	  if (Array.isArray(arr)) {
-	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-	    return arr2;
-	  } else {
-	    return Array.from(arr);
-	  }
-	};
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var bool = PropTypes.bool;
-	var number = PropTypes.number;
-	var string = PropTypes.string;
-	var func = PropTypes.func;
-	var object = PropTypes.object;
-	var oneOf = PropTypes.oneOf;
-	var shape = PropTypes.shape;
-	var any = PropTypes.any;
-	var oneOfType = PropTypes.oneOfType;
-
-	var localeMatcher = oneOf(['best fit', 'lookup']);
-	var narrowShortLong = oneOf(['narrow', 'short', 'long']);
-	var numeric2digit = oneOf(['numeric', '2-digit']);
-	var funcReq = func.isRequired;
-
-	var intlConfigPropTypes = {
-	  locale: string,
-	  timeZone: string,
-	  formats: object,
-	  messages: object,
-	  textComponent: any,
-
-	  defaultLocale: string,
-	  defaultFormats: object,
-
-	  onError: func
-	};
-
-	var intlFormatPropTypes = {
-	  formatDate: funcReq,
-	  formatTime: funcReq,
-	  formatRelative: funcReq,
-	  formatNumber: funcReq,
-	  formatPlural: funcReq,
-	  formatMessage: funcReq,
-	  formatHTMLMessage: funcReq
-	};
-
-	var intlShape = shape(_extends({}, intlConfigPropTypes, intlFormatPropTypes, {
-	  formatters: object,
-	  now: funcReq
-	}));
-
-	var messageDescriptorPropTypes = {
-	  id: string.isRequired,
-	  description: oneOfType([string, object]),
-	  defaultMessage: string
-	};
-
-	var dateTimeFormatPropTypes = {
-	  localeMatcher: localeMatcher,
-	  formatMatcher: oneOf(['basic', 'best fit']),
-
-	  timeZone: string,
-	  hour12: bool,
-
-	  weekday: narrowShortLong,
-	  era: narrowShortLong,
-	  year: numeric2digit,
-	  month: oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
-	  day: numeric2digit,
-	  hour: numeric2digit,
-	  minute: numeric2digit,
-	  second: numeric2digit,
-	  timeZoneName: oneOf(['short', 'long'])
-	};
-
-	var numberFormatPropTypes = {
-	  localeMatcher: localeMatcher,
-
-	  style: oneOf(['decimal', 'currency', 'percent']),
-	  currency: string,
-	  currencyDisplay: oneOf(['symbol', 'code', 'name']),
-	  useGrouping: bool,
-
-	  minimumIntegerDigits: number,
-	  minimumFractionDigits: number,
-	  maximumFractionDigits: number,
-	  minimumSignificantDigits: number,
-	  maximumSignificantDigits: number
-	};
-
-	var relativeFormatPropTypes = {
-	  style: oneOf(['best fit', 'numeric']),
-	  units: oneOf(['second', 'minute', 'hour', 'day', 'month', 'year', 'second-short', 'minute-short', 'hour-short', 'day-short', 'month-short', 'year-short'])
-	};
-
-	var pluralFormatPropTypes = {
-	  style: oneOf(['cardinal', 'ordinal'])
-	};
-
-	/*
-	HTML escaping and shallow-equals implementations are the same as React's
-	(on purpose.) Therefore, it has the following Copyright and Licensing:
-
-	Copyright 2013-2014, Facebook, Inc.
-	All rights reserved.
-
-	This source code is licensed under the BSD-style license found in the LICENSE
-	file in the root directory of React's source tree.
-	*/
-
-	var intlConfigPropNames = Object.keys(intlConfigPropTypes);
-
-	var ESCAPED_CHARS = {
-	  '&': '&amp;',
-	  '>': '&gt;',
-	  '<': '&lt;',
-	  '"': '&quot;',
-	  "'": '&#x27;'
-	};
-
-	var UNSAFE_CHARS_REGEX = /[&><"']/g;
-
-	function escape(str) {
-	  return ('' + str).replace(UNSAFE_CHARS_REGEX, function (match) {
-	    return ESCAPED_CHARS[match];
-	  });
-	}
-
-	function filterProps(props, whitelist) {
-	  var defaults$$1 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-	  return whitelist.reduce(function (filtered, name) {
-	    if (props.hasOwnProperty(name)) {
-	      filtered[name] = props[name];
-	    } else if (defaults$$1.hasOwnProperty(name)) {
-	      filtered[name] = defaults$$1[name];
-	    }
-
-	    return filtered;
-	  }, {});
-	}
-
-	function invariantIntlContext() {
-	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-	      intl = _ref.intl;
-
-	  invariant(intl, '[React Intl] Could not find required `intl` object. ' + '<IntlProvider> needs to exist in the component ancestry.');
-	}
-
-	function shallowEquals(objA, objB) {
-	  if (objA === objB) {
-	    return true;
-	  }
-
-	  if ((typeof objA === 'undefined' ? 'undefined' : _typeof(objA)) !== 'object' || objA === null || (typeof objB === 'undefined' ? 'undefined' : _typeof(objB)) !== 'object' || objB === null) {
-	    return false;
-	  }
-
-	  var keysA = Object.keys(objA);
-	  var keysB = Object.keys(objB);
-
-	  if (keysA.length !== keysB.length) {
-	    return false;
-	  }
-
-	  // Test for A's keys different from B.
-	  var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
-	  for (var i = 0; i < keysA.length; i++) {
-	    if (!bHasOwnProperty(keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
-	      return false;
-	    }
-	  }
-
-	  return true;
-	}
-
-	function shouldIntlComponentUpdate(_ref2, nextProps, nextState) {
-	  var props = _ref2.props,
-	      state = _ref2.state,
-	      _ref2$context = _ref2.context,
-	      context = _ref2$context === undefined ? {} : _ref2$context;
-	  var nextContext = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var _context$intl = context.intl,
-	      intl = _context$intl === undefined ? {} : _context$intl;
-	  var _nextContext$intl = nextContext.intl,
-	      nextIntl = _nextContext$intl === undefined ? {} : _nextContext$intl;
-
-
-	  return !shallowEquals(nextProps, props) || !shallowEquals(nextState, state) || !(nextIntl === intl || shallowEquals(filterProps(nextIntl, intlConfigPropNames), filterProps(intl, intlConfigPropNames)));
-	}
-
-	function createError(message, exception) {
-	  var eMsg = exception ? '\n' + exception : '';
-	  return '[React Intl] ' + message + eMsg;
-	}
-
-	function defaultErrorHandler(error) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    console.error(error);
-	  }
-	}
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	// Inspired by react-redux's `connect()` HOC factory function implementation:
-	// https://github.com/rackt/react-redux
-
-	function getDisplayName(Component$$1) {
-	  return Component$$1.displayName || Component$$1.name || 'Component';
-	}
-
-	function injectIntl(WrappedComponent) {
-	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	  var _options$intlPropName = options.intlPropName,
-	      intlPropName = _options$intlPropName === undefined ? 'intl' : _options$intlPropName,
-	      _options$withRef = options.withRef,
-	      withRef = _options$withRef === undefined ? false : _options$withRef;
-
-	  var InjectIntl = function (_Component) {
-	    inherits(InjectIntl, _Component);
-
-	    function InjectIntl(props, context) {
-	      classCallCheck(this, InjectIntl);
-
-	      var _this = possibleConstructorReturn(this, (InjectIntl.__proto__ || Object.getPrototypeOf(InjectIntl)).call(this, props, context));
-
-	      invariantIntlContext(context);
-	      return _this;
-	    }
-
-	    createClass(InjectIntl, [{
-	      key: 'getWrappedInstance',
-	      value: function getWrappedInstance() {
-	        invariant(withRef, '[React Intl] To access the wrapped instance, ' + 'the `{withRef: true}` option must be set when calling: ' + '`injectIntl()`');
-
-	        return this._wrappedInstance;
-	      }
-	    }, {
-	      key: 'render',
-	      value: function render() {
-	        var _this2 = this;
-
-	        return React__default.createElement(WrappedComponent, _extends({}, this.props, defineProperty({}, intlPropName, this.context.intl), {
-	          ref: withRef ? /* istanbul ignore next */function (ref) {
-	            return _this2._wrappedInstance = ref;
-	          } : null
-	        }));
-	      }
-	    }]);
-	    return InjectIntl;
-	  }(React.Component);
-
-	  InjectIntl.displayName = 'InjectIntl(' + getDisplayName(WrappedComponent) + ')';
-	  InjectIntl.contextTypes = {
-	    intl: intlShape
-	  };
-	  InjectIntl.WrappedComponent = WrappedComponent;
-
-
-	  return hoistNonReactStatics(InjectIntl, WrappedComponent);
-	}
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	function defineMessages(messageDescriptors) {
-	  // This simply returns what's passed-in because it's meant to be a hook for
-	  // babel-plugin-react-intl.
-	  return messageDescriptors;
-	}
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	// This is a "hack" until a proper `intl-pluralformat` package is created.
-
-	function resolveLocale(locales) {
-	  // IntlMessageFormat#_resolveLocale() does not depend on `this`.
-	  return IntlMessageFormat.prototype._resolveLocale(locales);
-	}
-
-	function findPluralFunction(locale) {
-	  // IntlMessageFormat#_findPluralFunction() does not depend on `this`.
-	  return IntlMessageFormat.prototype._findPluralRuleFunction(locale);
-	}
-
-	var IntlPluralFormat = function IntlPluralFormat(locales) {
-	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	  classCallCheck(this, IntlPluralFormat);
-
-	  var useOrdinal = options.style === 'ordinal';
-	  var pluralFn = findPluralFunction(resolveLocale(locales));
-
-	  this.format = function (value) {
-	    return pluralFn(value, useOrdinal);
-	  };
-	};
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var DATE_TIME_FORMAT_OPTIONS = Object.keys(dateTimeFormatPropTypes);
-	var NUMBER_FORMAT_OPTIONS = Object.keys(numberFormatPropTypes);
-	var RELATIVE_FORMAT_OPTIONS = Object.keys(relativeFormatPropTypes);
-	var PLURAL_FORMAT_OPTIONS = Object.keys(pluralFormatPropTypes);
-
-	var RELATIVE_FORMAT_THRESHOLDS = {
-	  second: 60, // seconds to minute
-	  minute: 60, // minutes to hour
-	  hour: 24, // hours to day
-	  day: 30, // days to month
-	  month: 12 };
-
-	function updateRelativeFormatThresholds(newThresholds) {
-	  var thresholds = IntlRelativeFormat.thresholds;
-	  thresholds.second = newThresholds.second;
-	  thresholds.minute = newThresholds.minute;
-	  thresholds.hour = newThresholds.hour;
-	  thresholds.day = newThresholds.day;
-	  thresholds.month = newThresholds.month;
-	  thresholds['second-short'] = newThresholds['second-short'];
-	  thresholds['minute-short'] = newThresholds['minute-short'];
-	  thresholds['hour-short'] = newThresholds['hour-short'];
-	  thresholds['day-short'] = newThresholds['day-short'];
-	  thresholds['month-short'] = newThresholds['month-short'];
-	}
-
-	function getNamedFormat(formats, type, name, onError) {
-	  var format = formats && formats[type] && formats[type][name];
-	  if (format) {
-	    return format;
-	  }
-
-	  onError(createError('No ' + type + ' format named: ' + name));
-	}
-
-	function formatDate(config, state, value) {
-	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale,
-	      formats = config.formats,
-	      timeZone = config.timeZone;
-	  var format = options.format;
-
-
-	  var onError = config.onError || defaultErrorHandler;
-	  var date = new Date(value);
-	  var defaults$$1 = _extends({}, timeZone && { timeZone: timeZone }, format && getNamedFormat(formats, 'date', format, onError));
-	  var filteredOptions = filterProps(options, DATE_TIME_FORMAT_OPTIONS, defaults$$1);
-
-	  try {
-	    return state.getDateTimeFormat(locale, filteredOptions).format(date);
-	  } catch (e) {
-	    onError(createError('Error formatting date.', e));
-	  }
-
-	  return String(date);
-	}
-
-	function formatTime(config, state, value) {
-	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale,
-	      formats = config.formats,
-	      timeZone = config.timeZone;
-	  var format = options.format;
-
-
-	  var onError = config.onError || defaultErrorHandler;
-	  var date = new Date(value);
-	  var defaults$$1 = _extends({}, timeZone && { timeZone: timeZone }, format && getNamedFormat(formats, 'time', format, onError));
-	  var filteredOptions = filterProps(options, DATE_TIME_FORMAT_OPTIONS, defaults$$1);
-
-	  if (!filteredOptions.hour && !filteredOptions.minute && !filteredOptions.second) {
-	    // Add default formatting options if hour, minute, or second isn't defined.
-	    filteredOptions = _extends({}, filteredOptions, { hour: 'numeric', minute: 'numeric' });
-	  }
-
-	  try {
-	    return state.getDateTimeFormat(locale, filteredOptions).format(date);
-	  } catch (e) {
-	    onError(createError('Error formatting time.', e));
-	  }
-
-	  return String(date);
-	}
-
-	function formatRelative(config, state, value) {
-	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale,
-	      formats = config.formats;
-	  var format = options.format;
-
-
-	  var onError = config.onError || defaultErrorHandler;
-	  var date = new Date(value);
-	  var now = new Date(options.now);
-	  var defaults$$1 = format && getNamedFormat(formats, 'relative', format, onError);
-	  var filteredOptions = filterProps(options, RELATIVE_FORMAT_OPTIONS, defaults$$1);
-
-	  // Capture the current threshold values, then temporarily override them with
-	  // specific values just for this render.
-	  var oldThresholds = _extends({}, IntlRelativeFormat.thresholds);
-	  updateRelativeFormatThresholds(RELATIVE_FORMAT_THRESHOLDS);
-
-	  try {
-	    return state.getRelativeFormat(locale, filteredOptions).format(date, {
-	      now: isFinite(now) ? now : state.now()
-	    });
-	  } catch (e) {
-	    onError(createError('Error formatting relative time.', e));
-	  } finally {
-	    updateRelativeFormatThresholds(oldThresholds);
-	  }
-
-	  return String(date);
-	}
-
-	function formatNumber(config, state, value) {
-	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale,
-	      formats = config.formats;
-	  var format = options.format;
-
-
-	  var onError = config.onError || defaultErrorHandler;
-	  var defaults$$1 = format && getNamedFormat(formats, 'number', format, onError);
-	  var filteredOptions = filterProps(options, NUMBER_FORMAT_OPTIONS, defaults$$1);
-
-	  try {
-	    return state.getNumberFormat(locale, filteredOptions).format(value);
-	  } catch (e) {
-	    onError(createError('Error formatting number.', e));
-	  }
-
-	  return String(value);
-	}
-
-	function formatPlural(config, state, value) {
-	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale;
-
-
-	  var filteredOptions = filterProps(options, PLURAL_FORMAT_OPTIONS);
-	  var onError = config.onError || defaultErrorHandler;
-
-	  try {
-	    return state.getPluralFormat(locale, filteredOptions).format(value);
-	  } catch (e) {
-	    onError(createError('Error formatting plural.', e));
-	  }
-
-	  return 'other';
-	}
-
-	function formatMessage(config, state) {
-	  var messageDescriptor = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-	  var values = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-	  var locale = config.locale,
-	      formats = config.formats,
-	      messages = config.messages,
-	      defaultLocale = config.defaultLocale,
-	      defaultFormats = config.defaultFormats;
-	  var id = messageDescriptor.id,
-	      defaultMessage = messageDescriptor.defaultMessage;
-
-	  // Produce a better error if the user calls `intl.formatMessage(element)`
-
-	  if (process.env.NODE_ENV !== 'production') {
-	    invariant(!React.isValidElement(config), '[React Intl] Don\'t pass React elements to ' + 'formatMessage(), pass `.props`.');
-	  }
-
-	  // `id` is a required field of a Message Descriptor.
-	  invariant(id, '[React Intl] An `id` must be provided to format a message.');
-
-	  var message = messages && messages[id];
-	  var hasValues = Object.keys(values).length > 0;
-
-	  // Avoid expensive message formatting for simple messages without values. In
-	  // development messages will always be formatted in case of missing values.
-	  if (!hasValues && process.env.NODE_ENV === 'production') {
-	    return message || defaultMessage || id;
-	  }
-
-	  var formattedMessage = void 0;
-	  var onError = config.onError || defaultErrorHandler;
-
-	  if (message) {
-	    try {
-	      var formatter = state.getMessageFormat(message, locale, formats);
-
-	      formattedMessage = formatter.format(values);
-	    } catch (e) {
-	      onError(createError('Error formatting message: "' + id + '" for locale: "' + locale + '"' + (defaultMessage ? ', using default message as fallback.' : ''), e));
-	    }
-	  } else {
-	    // This prevents warnings from littering the console in development
-	    // when no `messages` are passed into the <IntlProvider> for the
-	    // default locale, and a default message is in the source.
-	    if (!defaultMessage || locale && locale.toLowerCase() !== defaultLocale.toLowerCase()) {
-	      onError(createError('Missing message: "' + id + '" for locale: "' + locale + '"' + (defaultMessage ? ', using default message as fallback.' : '')));
-	    }
-	  }
-
-	  if (!formattedMessage && defaultMessage) {
-	    try {
-	      var _formatter = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats);
-
-	      formattedMessage = _formatter.format(values);
-	    } catch (e) {
-	      onError(createError('Error formatting the default message for: "' + id + '"', e));
-	    }
-	  }
-
-	  if (!formattedMessage) {
-	    onError(createError('Cannot format message: "' + id + '", ' + ('using message ' + (message || defaultMessage ? 'source' : 'id') + ' as fallback.')));
-	  }
-
-	  return formattedMessage || message || defaultMessage || id;
-	}
-
-	function formatHTMLMessage(config, state, messageDescriptor) {
-	  var rawValues = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-
-	  // Process all the values before they are used when formatting the ICU
-	  // Message string. Since the formatted message might be injected via
-	  // `innerHTML`, all String-based values need to be HTML-escaped.
-	  var escapedValues = Object.keys(rawValues).reduce(function (escaped, name) {
-	    var value = rawValues[name];
-	    escaped[name] = typeof value === 'string' ? escape(value) : value;
-	    return escaped;
-	  }, {});
-
-	  return formatMessage(config, state, messageDescriptor, escapedValues);
-	}
-
-
-
-	var format = Object.freeze({
-		formatDate: formatDate,
-		formatTime: formatTime,
-		formatRelative: formatRelative,
-		formatNumber: formatNumber,
-		formatPlural: formatPlural,
-		formatMessage: formatMessage,
-		formatHTMLMessage: formatHTMLMessage
-	});
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var intlConfigPropNames$1 = Object.keys(intlConfigPropTypes);
-	var intlFormatPropNames = Object.keys(intlFormatPropTypes);
-
-	// These are not a static property on the `IntlProvider` class so the intl
-	// config values can be inherited from an <IntlProvider> ancestor.
-	var defaultProps = {
-	  formats: {},
-	  messages: {},
-	  timeZone: null,
-	  textComponent: 'span',
-
-	  defaultLocale: 'en',
-	  defaultFormats: {},
-
-	  onError: defaultErrorHandler
-	};
-
-	var IntlProvider = function (_Component) {
-	  inherits(IntlProvider, _Component);
-
-	  function IntlProvider(props) {
-	    var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	    classCallCheck(this, IntlProvider);
-
-	    var _this = possibleConstructorReturn(this, (IntlProvider.__proto__ || Object.getPrototypeOf(IntlProvider)).call(this, props, context));
-
-	    invariant(typeof Intl !== 'undefined', '[React Intl] The `Intl` APIs must be available in the runtime, ' + 'and do not appear to be built-in. An `Intl` polyfill should be loaded.\n' + 'See: http://formatjs.io/guides/runtime-environments/');
-
-	    var intlContext = context.intl;
-
-	    // Used to stabilize time when performing an initial rendering so that
-	    // all relative times use the same reference "now" time.
-
-	    var initialNow = void 0;
-	    if (isFinite(props.initialNow)) {
-	      initialNow = Number(props.initialNow);
-	    } else {
-	      // When an `initialNow` isn't provided via `props`, look to see an
-	      // <IntlProvider> exists in the ancestry and call its `now()`
-	      // function to propagate its value for "now".
-	      initialNow = intlContext ? intlContext.now() : Date.now();
-	    }
-
-	    // Creating `Intl*` formatters is expensive. If there's a parent
-	    // `<IntlProvider>`, then its formatters will be used. Otherwise, this
-	    // memoize the `Intl*` constructors and cache them for the lifecycle of
-	    // this IntlProvider instance.
-
-	    var _ref = intlContext || {},
-	        _ref$formatters = _ref.formatters,
-	        formatters = _ref$formatters === undefined ? {
-	      getDateTimeFormat: memoizeIntlConstructor(Intl.DateTimeFormat),
-	      getNumberFormat: memoizeIntlConstructor(Intl.NumberFormat),
-	      getMessageFormat: memoizeIntlConstructor(IntlMessageFormat),
-	      getRelativeFormat: memoizeIntlConstructor(IntlRelativeFormat),
-	      getPluralFormat: memoizeIntlConstructor(IntlPluralFormat)
-	    } : _ref$formatters;
-
-	    _this.state = _extends({}, formatters, {
-
-	      // Wrapper to provide stable "now" time for initial render.
-	      now: function now() {
-	        return _this._didDisplay ? Date.now() : initialNow;
-	      }
-	    });
-	    return _this;
-	  }
-
-	  createClass(IntlProvider, [{
-	    key: 'getConfig',
-	    value: function getConfig() {
-	      var intlContext = this.context.intl;
-
-	      // Build a whitelisted config object from `props`, defaults, and
-	      // `context.intl`, if an <IntlProvider> exists in the ancestry.
-
-	      var config = filterProps(this.props, intlConfigPropNames$1, intlContext);
-
-	      // Apply default props. This must be applied last after the props have
-	      // been resolved and inherited from any <IntlProvider> in the ancestry.
-	      // This matches how React resolves `defaultProps`.
-	      for (var propName in defaultProps) {
-	        if (config[propName] === undefined) {
-	          config[propName] = defaultProps[propName];
-	        }
-	      }
-
-	      if (!hasLocaleData(config.locale)) {
-	        var _config = config,
-	            locale = _config.locale,
-	            defaultLocale = _config.defaultLocale,
-	            defaultFormats = _config.defaultFormats,
-	            onError = _config.onError;
-
-
-	        onError(createError('Missing locale data for locale: "' + locale + '". ' + ('Using default locale: "' + defaultLocale + '" as fallback.')));
-
-	        // Since there's no registered locale data for `locale`, this will
-	        // fallback to the `defaultLocale` to make sure things can render.
-	        // The `messages` are overridden to the `defaultProps` empty object
-	        // to maintain referential equality across re-renders. It's assumed
-	        // each <FormattedMessage> contains a `defaultMessage` prop.
-	        config = _extends({}, config, {
-	          locale: defaultLocale,
-	          formats: defaultFormats,
-	          messages: defaultProps.messages
-	        });
-	      }
-
-	      return config;
-	    }
-	  }, {
-	    key: 'getBoundFormatFns',
-	    value: function getBoundFormatFns(config, state) {
-	      return intlFormatPropNames.reduce(function (boundFormatFns, name) {
-	        boundFormatFns[name] = format[name].bind(null, config, state);
-	        return boundFormatFns;
-	      }, {});
-	    }
-	  }, {
-	    key: 'getChildContext',
-	    value: function getChildContext() {
-	      var config = this.getConfig();
-
-	      // Bind intl factories and current config to the format functions.
-	      var boundFormatFns = this.getBoundFormatFns(config, this.state);
-
-	      var _state = this.state,
-	          now = _state.now,
-	          formatters = objectWithoutProperties(_state, ['now']);
-
-
-	      return {
-	        intl: _extends({}, config, boundFormatFns, {
-	          formatters: formatters,
-	          now: now
-	        })
-	      };
-	    }
-	  }, {
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this._didDisplay = true;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return React.Children.only(this.props.children);
-	    }
-	  }]);
-	  return IntlProvider;
-	}(React.Component);
-
-	IntlProvider.displayName = 'IntlProvider';
-	IntlProvider.contextTypes = {
-	  intl: intlShape
-	};
-	IntlProvider.childContextTypes = {
-	  intl: intlShape.isRequired
-	};
-	process.env.NODE_ENV !== "production" ? IntlProvider.propTypes = _extends({}, intlConfigPropTypes, {
-	  children: PropTypes.element.isRequired,
-	  initialNow: PropTypes.any
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var FormattedDate = function (_Component) {
-	  inherits(FormattedDate, _Component);
-
-	  function FormattedDate(props, context) {
-	    classCallCheck(this, FormattedDate);
-
-	    var _this = possibleConstructorReturn(this, (FormattedDate.__proto__ || Object.getPrototypeOf(FormattedDate)).call(this, props, context));
-
-	    invariantIntlContext(context);
-	    return _this;
-	  }
-
-	  createClass(FormattedDate, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatDate = _context$intl.formatDate,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          value = _props.value,
-	          children = _props.children;
-
-
-	      var formattedDate = formatDate(value, this.props);
-
-	      if (typeof children === 'function') {
-	        return children(formattedDate);
-	      }
-
-	      return React__default.createElement(
-	        Text,
-	        null,
-	        formattedDate
-	      );
-	    }
-	  }]);
-	  return FormattedDate;
-	}(React.Component);
-
-	FormattedDate.displayName = 'FormattedDate';
-	FormattedDate.contextTypes = {
-	  intl: intlShape
-	};
-	process.env.NODE_ENV !== "production" ? FormattedDate.propTypes = _extends({}, dateTimeFormatPropTypes, {
-	  value: PropTypes.any.isRequired,
-	  format: PropTypes.string,
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var FormattedTime = function (_Component) {
-	  inherits(FormattedTime, _Component);
-
-	  function FormattedTime(props, context) {
-	    classCallCheck(this, FormattedTime);
-
-	    var _this = possibleConstructorReturn(this, (FormattedTime.__proto__ || Object.getPrototypeOf(FormattedTime)).call(this, props, context));
-
-	    invariantIntlContext(context);
-	    return _this;
-	  }
-
-	  createClass(FormattedTime, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatTime = _context$intl.formatTime,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          value = _props.value,
-	          children = _props.children;
-
-
-	      var formattedTime = formatTime(value, this.props);
-
-	      if (typeof children === 'function') {
-	        return children(formattedTime);
-	      }
-
-	      return React__default.createElement(
-	        Text,
-	        null,
-	        formattedTime
-	      );
-	    }
-	  }]);
-	  return FormattedTime;
-	}(React.Component);
-
-	FormattedTime.displayName = 'FormattedTime';
-	FormattedTime.contextTypes = {
-	  intl: intlShape
-	};
-	process.env.NODE_ENV !== "production" ? FormattedTime.propTypes = _extends({}, dateTimeFormatPropTypes, {
-	  value: PropTypes.any.isRequired,
-	  format: PropTypes.string,
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var SECOND = 1000;
-	var MINUTE = 1000 * 60;
-	var HOUR = 1000 * 60 * 60;
-	var DAY = 1000 * 60 * 60 * 24;
-
-	// The maximum timer delay value is a 32-bit signed integer.
-	// See: https://mdn.io/setTimeout
-	var MAX_TIMER_DELAY = 2147483647;
-
-	function selectUnits(delta) {
-	  var absDelta = Math.abs(delta);
-
-	  if (absDelta < MINUTE) {
-	    return 'second';
-	  }
-
-	  if (absDelta < HOUR) {
-	    return 'minute';
-	  }
-
-	  if (absDelta < DAY) {
-	    return 'hour';
-	  }
-
-	  // The maximum scheduled delay will be measured in days since the maximum
-	  // timer delay is less than the number of milliseconds in 25 days.
-	  return 'day';
-	}
-
-	function getUnitDelay(units) {
-	  switch (units) {
-	    case 'second':
-	      return SECOND;
-	    case 'minute':
-	      return MINUTE;
-	    case 'hour':
-	      return HOUR;
-	    case 'day':
-	      return DAY;
-	    default:
-	      return MAX_TIMER_DELAY;
-	  }
-	}
-
-	function isSameDate(a, b) {
-	  if (a === b) {
-	    return true;
-	  }
-
-	  var aTime = new Date(a).getTime();
-	  var bTime = new Date(b).getTime();
-
-	  return isFinite(aTime) && isFinite(bTime) && aTime === bTime;
-	}
-
-	var FormattedRelative = function (_Component) {
-	  inherits(FormattedRelative, _Component);
-
-	  function FormattedRelative(props, context) {
-	    classCallCheck(this, FormattedRelative);
-
-	    var _this = possibleConstructorReturn(this, (FormattedRelative.__proto__ || Object.getPrototypeOf(FormattedRelative)).call(this, props, context));
-
-	    invariantIntlContext(context);
-
-	    var now = isFinite(props.initialNow) ? Number(props.initialNow) : context.intl.now();
-
-	    // `now` is stored as state so that `render()` remains a function of
-	    // props + state, instead of accessing `Date.now()` inside `render()`.
-	    _this.state = { now: now };
-	    return _this;
-	  }
-
-	  createClass(FormattedRelative, [{
-	    key: 'scheduleNextUpdate',
-	    value: function scheduleNextUpdate(props, state) {
-	      var _this2 = this;
-
-	      // Cancel and pending update because we're scheduling a new update.
-	      clearTimeout(this._timer);
-
-	      var value = props.value,
-	          units = props.units,
-	          updateInterval = props.updateInterval;
-
-	      var time = new Date(value).getTime();
-
-	      // If the `updateInterval` is falsy, including `0` or we don't have a
-	      // valid date, then auto updates have been turned off, so we bail and
-	      // skip scheduling an update.
-	      if (!updateInterval || !isFinite(time)) {
-	        return;
-	      }
-
-	      var delta = time - state.now;
-	      var unitDelay = getUnitDelay(units || selectUnits(delta));
-	      var unitRemainder = Math.abs(delta % unitDelay);
-
-	      // We want the largest possible timer delay which will still display
-	      // accurate information while reducing unnecessary re-renders. The delay
-	      // should be until the next "interesting" moment, like a tick from
-	      // "1 minute ago" to "2 minutes ago" when the delta is 120,000ms.
-	      var delay = delta < 0 ? Math.max(updateInterval, unitDelay - unitRemainder) : Math.max(updateInterval, unitRemainder);
-
-	      this._timer = setTimeout(function () {
-	        _this2.setState({ now: _this2.context.intl.now() });
-	      }, delay);
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.scheduleNextUpdate(this.props, this.state);
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(_ref) {
-	      var nextValue = _ref.value;
-
-	      // When the `props.value` date changes, `state.now` needs to be updated,
-	      // and the next update can be rescheduled.
-	      if (!isSameDate(nextValue, this.props.value)) {
-	        this.setState({ now: this.context.intl.now() });
-	      }
-	    }
-	  }, {
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'componentWillUpdate',
-	    value: function componentWillUpdate(nextProps, nextState) {
-	      this.scheduleNextUpdate(nextProps, nextState);
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      clearTimeout(this._timer);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatRelative = _context$intl.formatRelative,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          value = _props.value,
-	          children = _props.children;
-
-
-	      var formattedRelative = formatRelative(value, _extends({}, this.props, this.state));
-
-	      if (typeof children === 'function') {
-	        return children(formattedRelative);
-	      }
-
-	      return React__default.createElement(
-	        Text,
-	        null,
-	        formattedRelative
-	      );
-	    }
-	  }]);
-	  return FormattedRelative;
-	}(React.Component);
-
-	FormattedRelative.displayName = 'FormattedRelative';
-	FormattedRelative.contextTypes = {
-	  intl: intlShape
-	};
-	FormattedRelative.defaultProps = {
-	  updateInterval: 1000 * 10
-	};
-	process.env.NODE_ENV !== "production" ? FormattedRelative.propTypes = _extends({}, relativeFormatPropTypes, {
-	  value: PropTypes.any.isRequired,
-	  format: PropTypes.string,
-	  updateInterval: PropTypes.number,
-	  initialNow: PropTypes.any,
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var FormattedNumber = function (_Component) {
-	  inherits(FormattedNumber, _Component);
-
-	  function FormattedNumber(props, context) {
-	    classCallCheck(this, FormattedNumber);
-
-	    var _this = possibleConstructorReturn(this, (FormattedNumber.__proto__ || Object.getPrototypeOf(FormattedNumber)).call(this, props, context));
-
-	    invariantIntlContext(context);
-	    return _this;
-	  }
-
-	  createClass(FormattedNumber, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatNumber = _context$intl.formatNumber,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          value = _props.value,
-	          children = _props.children;
-
-
-	      var formattedNumber = formatNumber(value, this.props);
-
-	      if (typeof children === 'function') {
-	        return children(formattedNumber);
-	      }
-
-	      return React__default.createElement(
-	        Text,
-	        null,
-	        formattedNumber
-	      );
-	    }
-	  }]);
-	  return FormattedNumber;
-	}(React.Component);
-
-	FormattedNumber.displayName = 'FormattedNumber';
-	FormattedNumber.contextTypes = {
-	  intl: intlShape
-	};
-	process.env.NODE_ENV !== "production" ? FormattedNumber.propTypes = _extends({}, numberFormatPropTypes, {
-	  value: PropTypes.any.isRequired,
-	  format: PropTypes.string,
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var FormattedPlural = function (_Component) {
-	  inherits(FormattedPlural, _Component);
-
-	  function FormattedPlural(props, context) {
-	    classCallCheck(this, FormattedPlural);
-
-	    var _this = possibleConstructorReturn(this, (FormattedPlural.__proto__ || Object.getPrototypeOf(FormattedPlural)).call(this, props, context));
-
-	    invariantIntlContext(context);
-	    return _this;
-	  }
-
-	  createClass(FormattedPlural, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate() {
-	      for (var _len = arguments.length, next = Array(_len), _key = 0; _key < _len; _key++) {
-	        next[_key] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatPlural = _context$intl.formatPlural,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          value = _props.value,
-	          other = _props.other,
-	          children = _props.children;
-
-
-	      var pluralCategory = formatPlural(value, this.props);
-	      var formattedPlural = this.props[pluralCategory] || other;
-
-	      if (typeof children === 'function') {
-	        return children(formattedPlural);
-	      }
-
-	      return React__default.createElement(
-	        Text,
-	        null,
-	        formattedPlural
-	      );
-	    }
-	  }]);
-	  return FormattedPlural;
-	}(React.Component);
-
-	FormattedPlural.displayName = 'FormattedPlural';
-	FormattedPlural.contextTypes = {
-	  intl: intlShape
-	};
-	FormattedPlural.defaultProps = {
-	  style: 'cardinal'
-	};
-	process.env.NODE_ENV !== "production" ? FormattedPlural.propTypes = _extends({}, pluralFormatPropTypes, {
-	  value: PropTypes.any.isRequired,
-
-	  other: PropTypes.node.isRequired,
-	  zero: PropTypes.node,
-	  one: PropTypes.node,
-	  two: PropTypes.node,
-	  few: PropTypes.node,
-	  many: PropTypes.node,
-
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var defaultFormatMessage = function defaultFormatMessage(descriptor, values) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    console.error('[React Intl] Could not find required `intl` object. <IntlProvider> needs to exist in the component ancestry. Using default message as fallback.');
-	  }
-	  return formatMessage({}, { getMessageFormat: memoizeIntlConstructor(IntlMessageFormat) }, descriptor, values);
-	};
-
-	var FormattedMessage = function (_Component) {
-	  inherits(FormattedMessage, _Component);
-
-	  function FormattedMessage(props, context) {
-	    classCallCheck(this, FormattedMessage);
-
-	    var _this = possibleConstructorReturn(this, (FormattedMessage.__proto__ || Object.getPrototypeOf(FormattedMessage)).call(this, props, context));
-
-	    if (!props.defaultMessage) {
-	      invariantIntlContext(context);
-	    }
-	    return _this;
-	  }
-
-	  createClass(FormattedMessage, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate(nextProps) {
-	      var values = this.props.values;
-	      var nextValues = nextProps.values;
-
-
-	      if (!shallowEquals(nextValues, values)) {
-	        return true;
-	      }
-
-	      // Since `values` has already been checked, we know they're not
-	      // different, so the current `values` are carried over so the shallow
-	      // equals comparison on the other props isn't affected by the `values`.
-	      var nextPropsToCheck = _extends({}, nextProps, {
-	        values: values
-	      });
-
-	      for (var _len = arguments.length, next = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        next[_key - 1] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this, nextPropsToCheck].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _ref = this.context.intl || {},
-	          _ref$formatMessage = _ref.formatMessage,
-	          formatMessage$$1 = _ref$formatMessage === undefined ? defaultFormatMessage : _ref$formatMessage,
-	          _ref$textComponent = _ref.textComponent,
-	          Text = _ref$textComponent === undefined ? 'span' : _ref$textComponent;
-
-	      var _props = this.props,
-	          id = _props.id,
-	          description = _props.description,
-	          defaultMessage = _props.defaultMessage,
-	          values = _props.values,
-	          _props$tagName = _props.tagName,
-	          Component$$1 = _props$tagName === undefined ? Text : _props$tagName,
-	          children = _props.children;
-
-
-	      var tokenDelimiter = void 0;
-	      var tokenizedValues = void 0;
-	      var elements = void 0;
-
-	      var hasValues = values && Object.keys(values).length > 0;
-	      if (hasValues) {
-	        // Creates a token with a random UID that should not be guessable or
-	        // conflict with other parts of the `message` string.
-	        var uid = Math.floor(Math.random() * 0x10000000000).toString(16);
-
-	        var generateToken = function () {
-	          var counter = 0;
-	          return function () {
-	            return 'ELEMENT-' + uid + '-' + (counter += 1);
-	          };
-	        }();
-
-	        // Splitting with a delimiter to support IE8. When using a regex
-	        // with a capture group IE8 does not include the capture group in
-	        // the resulting array.
-	        tokenDelimiter = '@__' + uid + '__@';
-	        tokenizedValues = {};
-	        elements = {};
-
-	        // Iterates over the `props` to keep track of any React Element
-	        // values so they can be represented by the `token` as a placeholder
-	        // when the `message` is formatted. This allows the formatted
-	        // message to then be broken-up into parts with references to the
-	        // React Elements inserted back in.
-	        Object.keys(values).forEach(function (name) {
-	          var value = values[name];
-
-	          if (React.isValidElement(value)) {
-	            var token = generateToken();
-	            tokenizedValues[name] = tokenDelimiter + token + tokenDelimiter;
-	            elements[token] = value;
-	          } else {
-	            tokenizedValues[name] = value;
-	          }
-	        });
-	      }
-
-	      var descriptor = { id: id, description: description, defaultMessage: defaultMessage };
-	      var formattedMessage = formatMessage$$1(descriptor, tokenizedValues || values);
-
-	      var nodes = void 0;
-
-	      var hasElements = elements && Object.keys(elements).length > 0;
-	      if (hasElements) {
-	        // Split the message into parts so the React Element values captured
-	        // above can be inserted back into the rendered message. This
-	        // approach allows messages to render with React Elements while
-	        // keeping React's virtual diffing working properly.
-	        nodes = formattedMessage.split(tokenDelimiter).filter(function (part) {
-	          return !!part;
-	        }).map(function (part) {
-	          return elements[part] || part;
-	        });
-	      } else {
-	        nodes = [formattedMessage];
-	      }
-
-	      if (typeof children === 'function') {
-	        return children.apply(undefined, toConsumableArray(nodes));
-	      }
-
-	      // Needs to use `createElement()` instead of JSX, otherwise React will
-	      // warn about a missing `key` prop with rich-text message formatting.
-	      return React.createElement.apply(undefined, [Component$$1, null].concat(toConsumableArray(nodes)));
-	    }
-	  }]);
-	  return FormattedMessage;
-	}(React.Component);
-
-	FormattedMessage.displayName = 'FormattedMessage';
-	FormattedMessage.contextTypes = {
-	  intl: intlShape
-	};
-	FormattedMessage.defaultProps = {
-	  values: {}
-	};
-	process.env.NODE_ENV !== "production" ? FormattedMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
-	  values: PropTypes.object,
-	  tagName: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	var FormattedHTMLMessage = function (_Component) {
-	  inherits(FormattedHTMLMessage, _Component);
-
-	  function FormattedHTMLMessage(props, context) {
-	    classCallCheck(this, FormattedHTMLMessage);
-
-	    var _this = possibleConstructorReturn(this, (FormattedHTMLMessage.__proto__ || Object.getPrototypeOf(FormattedHTMLMessage)).call(this, props, context));
-
-	    invariantIntlContext(context);
-	    return _this;
-	  }
-
-	  createClass(FormattedHTMLMessage, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate(nextProps) {
-	      var values = this.props.values;
-	      var nextValues = nextProps.values;
-
-
-	      if (!shallowEquals(nextValues, values)) {
-	        return true;
-	      }
-
-	      // Since `values` has already been checked, we know they're not
-	      // different, so the current `values` are carried over so the shallow
-	      // equals comparison on the other props isn't affected by the `values`.
-	      var nextPropsToCheck = _extends({}, nextProps, {
-	        values: values
-	      });
-
-	      for (var _len = arguments.length, next = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        next[_key - 1] = arguments[_key];
-	      }
-
-	      return shouldIntlComponentUpdate.apply(undefined, [this, nextPropsToCheck].concat(next));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _context$intl = this.context.intl,
-	          formatHTMLMessage = _context$intl.formatHTMLMessage,
-	          Text = _context$intl.textComponent;
-	      var _props = this.props,
-	          id = _props.id,
-	          description = _props.description,
-	          defaultMessage = _props.defaultMessage,
-	          rawValues = _props.values,
-	          _props$tagName = _props.tagName,
-	          Component$$1 = _props$tagName === undefined ? Text : _props$tagName,
-	          children = _props.children;
-
-
-	      var descriptor = { id: id, description: description, defaultMessage: defaultMessage };
-	      var formattedHTMLMessage = formatHTMLMessage(descriptor, rawValues);
-
-	      if (typeof children === 'function') {
-	        return children(formattedHTMLMessage);
-	      }
-
-	      // Since the message presumably has HTML in it, we need to set
-	      // `innerHTML` in order for it to be rendered and not escaped by React.
-	      // To be safe, all string prop values were escaped when formatting the
-	      // message. It is assumed that the message is not UGC, and came from the
-	      // developer making it more like a template.
-	      //
-	      // Note: There's a perf impact of using this component since there's no
-	      // way for React to do its virtual DOM diffing.
-	      var html = { __html: formattedHTMLMessage };
-	      return React__default.createElement(Component$$1, { dangerouslySetInnerHTML: html });
-	    }
-	  }]);
-	  return FormattedHTMLMessage;
-	}(React.Component);
-
-	FormattedHTMLMessage.displayName = 'FormattedHTMLMessage';
-	FormattedHTMLMessage.contextTypes = {
-	  intl: intlShape
-	};
-	FormattedHTMLMessage.defaultProps = {
-	  values: {}
-	};
-	process.env.NODE_ENV !== "production" ? FormattedHTMLMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
-	  values: PropTypes.object,
-	  tagName: PropTypes.string,
-	  children: PropTypes.func
-	}) : void 0;
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	addLocaleData(defaultLocaleData);
-
-	/*
-	 * Copyright 2015, Yahoo Inc.
-	 * Copyrights licensed under the New BSD License.
-	 * See the accompanying LICENSE file for terms.
-	 */
-
-	addLocaleData(allLocaleData);
-
-	exports.addLocaleData = addLocaleData;
-	exports.intlShape = intlShape;
-	exports.injectIntl = injectIntl;
-	exports.defineMessages = defineMessages;
-	exports.IntlProvider = IntlProvider;
-	exports.FormattedDate = FormattedDate;
-	exports.FormattedTime = FormattedTime;
-	exports.FormattedRelative = FormattedRelative;
-	exports.FormattedNumber = FormattedNumber;
-	exports.FormattedPlural = FormattedPlural;
-	exports.FormattedMessage = FormattedMessage;
-	exports.FormattedHTMLMessage = FormattedHTMLMessage;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 316 */
-/***/ (function(module, exports) {
-
-	/* (ignored) */
-
-/***/ }),
-/* 317 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* jshint node:true */
-
-	'use strict';
-
-	var IntlMessageFormat = __webpack_require__(318)['default'];
-
-	// Add all locale data to `IntlMessageFormat`. This module will be ignored when
-	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(326);
-
-	// Re-export `IntlMessageFormat` as the CommonJS default exports with all the
-	// locale data registered, and with English set as the default locale. Define
-	// the `default` prop for use with other compiled ES6 Modules.
-	exports = module.exports = IntlMessageFormat;
-	exports['default'] = exports;
-
-
-/***/ }),
-/* 318 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* jslint esnext: true */
-
-	"use strict";
-	var src$core$$ = __webpack_require__(319), src$en$$ = __webpack_require__(325);
-
-	src$core$$["default"].__addLocaleData(src$en$$["default"]);
-	src$core$$["default"].defaultLocale = 'en';
-
-	exports["default"] = src$core$$["default"];
-
-	//# sourceMappingURL=main.js.map
-
-/***/ }),
-/* 319 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-	var src$utils$$ = __webpack_require__(320), src$es5$$ = __webpack_require__(321), src$compiler$$ = __webpack_require__(322), intl$messageformat$parser$$ = __webpack_require__(323);
-	exports["default"] = MessageFormat;
-
-	// -- MessageFormat --------------------------------------------------------
-
-	function MessageFormat(message, locales, formats) {
-	    // Parse string messages into an AST.
-	    var ast = typeof message === 'string' ?
-	            MessageFormat.__parse(message) : message;
-
-	    if (!(ast && ast.type === 'messageFormatPattern')) {
-	        throw new TypeError('A message must be provided as a String or AST.');
-	    }
-
-	    // Creates a new object with the specified `formats` merged with the default
-	    // formats.
-	    formats = this._mergeFormats(MessageFormat.formats, formats);
-
-	    // Defined first because it's used to build the format pattern.
-	    src$es5$$.defineProperty(this, '_locale',  {value: this._resolveLocale(locales)});
-
-	    // Compile the `ast` to a pattern that is highly optimized for repeated
-	    // `format()` invocations. **Note:** This passes the `locales` set provided
-	    // to the constructor instead of just the resolved locale.
-	    var pluralFn = this._findPluralRuleFunction(this._locale);
-	    var pattern  = this._compilePattern(ast, locales, formats, pluralFn);
-
-	    // "Bind" `format()` method to `this` so it can be passed by reference like
-	    // the other `Intl` APIs.
-	    var messageFormat = this;
-	    this.format = function (values) {
-	      try {
-	        return messageFormat._format(pattern, values);
-	      } catch (e) {
-	        if (e.variableId) {
-	          throw new Error(
-	            'The intl string context variable \'' + e.variableId + '\'' +
-	            ' was not provided to the string \'' + message + '\''
-	          );
-	        } else {
-	          throw e;
-	        }
-	      }
-	    };
-	}
-
-	// Default format options used as the prototype of the `formats` provided to the
-	// constructor. These are used when constructing the internal Intl.NumberFormat
-	// and Intl.DateTimeFormat instances.
-	src$es5$$.defineProperty(MessageFormat, 'formats', {
-	    enumerable: true,
-
-	    value: {
-	        number: {
-	            'currency': {
-	                style: 'currency'
-	            },
-
-	            'percent': {
-	                style: 'percent'
-	            }
-	        },
-
-	        date: {
-	            'short': {
-	                month: 'numeric',
-	                day  : 'numeric',
-	                year : '2-digit'
-	            },
-
-	            'medium': {
-	                month: 'short',
-	                day  : 'numeric',
-	                year : 'numeric'
-	            },
-
-	            'long': {
-	                month: 'long',
-	                day  : 'numeric',
-	                year : 'numeric'
-	            },
-
-	            'full': {
-	                weekday: 'long',
-	                month  : 'long',
-	                day    : 'numeric',
-	                year   : 'numeric'
-	            }
-	        },
-
-	        time: {
-	            'short': {
-	                hour  : 'numeric',
-	                minute: 'numeric'
-	            },
-
-	            'medium':  {
-	                hour  : 'numeric',
-	                minute: 'numeric',
-	                second: 'numeric'
-	            },
-
-	            'long': {
-	                hour        : 'numeric',
-	                minute      : 'numeric',
-	                second      : 'numeric',
-	                timeZoneName: 'short'
-	            },
-
-	            'full': {
-	                hour        : 'numeric',
-	                minute      : 'numeric',
-	                second      : 'numeric',
-	                timeZoneName: 'short'
-	            }
-	        }
-	    }
-	});
-
-	// Define internal private properties for dealing with locale data.
-	src$es5$$.defineProperty(MessageFormat, '__localeData__', {value: src$es5$$.objCreate(null)});
-	src$es5$$.defineProperty(MessageFormat, '__addLocaleData', {value: function (data) {
-	    if (!(data && data.locale)) {
-	        throw new Error(
-	            'Locale data provided to IntlMessageFormat is missing a ' +
-	            '`locale` property'
-	        );
-	    }
-
-	    MessageFormat.__localeData__[data.locale.toLowerCase()] = data;
-	}});
-
-	// Defines `__parse()` static method as an exposed private.
-	src$es5$$.defineProperty(MessageFormat, '__parse', {value: intl$messageformat$parser$$["default"].parse});
-
-	// Define public `defaultLocale` property which defaults to English, but can be
-	// set by the developer.
-	src$es5$$.defineProperty(MessageFormat, 'defaultLocale', {
-	    enumerable: true,
-	    writable  : true,
-	    value     : undefined
-	});
-
-	MessageFormat.prototype.resolvedOptions = function () {
-	    // TODO: Provide anything else?
-	    return {
-	        locale: this._locale
-	    };
-	};
-
-	MessageFormat.prototype._compilePattern = function (ast, locales, formats, pluralFn) {
-	    var compiler = new src$compiler$$["default"](locales, formats, pluralFn);
-	    return compiler.compile(ast);
-	};
-
-	MessageFormat.prototype._findPluralRuleFunction = function (locale) {
-	    var localeData = MessageFormat.__localeData__;
-	    var data       = localeData[locale.toLowerCase()];
-
-	    // The locale data is de-duplicated, so we have to traverse the locale's
-	    // hierarchy until we find a `pluralRuleFunction` to return.
-	    while (data) {
-	        if (data.pluralRuleFunction) {
-	            return data.pluralRuleFunction;
-	        }
-
-	        data = data.parentLocale && localeData[data.parentLocale.toLowerCase()];
-	    }
-
-	    throw new Error(
-	        'Locale data added to IntlMessageFormat is missing a ' +
-	        '`pluralRuleFunction` for :' + locale
-	    );
-	};
-
-	MessageFormat.prototype._format = function (pattern, values) {
-	    var result = '',
-	        i, len, part, id, value, err;
-
-	    for (i = 0, len = pattern.length; i < len; i += 1) {
-	        part = pattern[i];
-
-	        // Exist early for string parts.
-	        if (typeof part === 'string') {
-	            result += part;
-	            continue;
-	        }
-
-	        id = part.id;
-
-	        // Enforce that all required values are provided by the caller.
-	        if (!(values && src$utils$$.hop.call(values, id))) {
-	          err = new Error('A value must be provided for: ' + id);
-	          err.variableId = id;
-	          throw err;
-	        }
-
-	        value = values[id];
-
-	        // Recursively format plural and select parts' option — which can be a
-	        // nested pattern structure. The choosing of the option to use is
-	        // abstracted-by and delegated-to the part helper object.
-	        if (part.options) {
-	            result += this._format(part.getOption(value), values);
-	        } else {
-	            result += part.format(value);
-	        }
-	    }
-
-	    return result;
-	};
-
-	MessageFormat.prototype._mergeFormats = function (defaults, formats) {
-	    var mergedFormats = {},
-	        type, mergedType;
-
-	    for (type in defaults) {
-	        if (!src$utils$$.hop.call(defaults, type)) { continue; }
-
-	        mergedFormats[type] = mergedType = src$es5$$.objCreate(defaults[type]);
-
-	        if (formats && src$utils$$.hop.call(formats, type)) {
-	            src$utils$$.extend(mergedType, formats[type]);
-	        }
-	    }
-
-	    return mergedFormats;
-	};
-
-	MessageFormat.prototype._resolveLocale = function (locales) {
-	    if (typeof locales === 'string') {
-	        locales = [locales];
-	    }
-
-	    // Create a copy of the array so we can push on the default locale.
-	    locales = (locales || []).concat(MessageFormat.defaultLocale);
-
-	    var localeData = MessageFormat.__localeData__;
-	    var i, len, localeParts, data;
-
-	    // Using the set of locales + the default locale, we look for the first one
-	    // which that has been registered. When data does not exist for a locale, we
-	    // traverse its ancestors to find something that's been registered within
-	    // its hierarchy of locales. Since we lack the proper `parentLocale` data
-	    // here, we must take a naive approach to traversal.
-	    for (i = 0, len = locales.length; i < len; i += 1) {
-	        localeParts = locales[i].toLowerCase().split('-');
-
-	        while (localeParts.length) {
-	            data = localeData[localeParts.join('-')];
-	            if (data) {
-	                // Return the normalized locale string; e.g., we return "en-US",
-	                // instead of "en-us".
-	                return data.locale;
-	            }
-
-	            localeParts.pop();
-	        }
-	    }
-
-	    var defaultLocale = locales.pop();
-	    throw new Error(
-	        'No locale data has been added to IntlMessageFormat for: ' +
-	        locales.join(', ') + ', or the default locale: ' + defaultLocale
-	    );
-	};
-
-	//# sourceMappingURL=core.js.map
-
-/***/ }),
-/* 320 */
-/***/ (function(module, exports) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-	exports.extend = extend;
-	var hop = Object.prototype.hasOwnProperty;
-
-	function extend(obj) {
-	    var sources = Array.prototype.slice.call(arguments, 1),
-	        i, len, source, key;
-
-	    for (i = 0, len = sources.length; i < len; i += 1) {
-	        source = sources[i];
-	        if (!source) { continue; }
-
-	        for (key in source) {
-	            if (hop.call(source, key)) {
-	                obj[key] = source[key];
-	            }
-	        }
-	    }
-
-	    return obj;
-	}
-	exports.hop = hop;
-
-	//# sourceMappingURL=utils.js.map
-
-/***/ }),
-/* 321 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-	var src$utils$$ = __webpack_require__(320);
-
-	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
-	// Copyright 2013 Andy Earnshaw, MIT License
-
-	var realDefineProp = (function () {
-	    try { return !!Object.defineProperty({}, 'a', {}); }
-	    catch (e) { return false; }
-	})();
-
-	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
-
-	var defineProperty = realDefineProp ? Object.defineProperty :
-	        function (obj, name, desc) {
-
-	    if ('get' in desc && obj.__defineGetter__) {
-	        obj.__defineGetter__(name, desc.get);
-	    } else if (!src$utils$$.hop.call(obj, name) || 'value' in desc) {
-	        obj[name] = desc.value;
-	    }
-	};
-
-	var objCreate = Object.create || function (proto, props) {
-	    var obj, k;
-
-	    function F() {}
-	    F.prototype = proto;
-	    obj = new F();
-
-	    for (k in props) {
-	        if (src$utils$$.hop.call(props, k)) {
-	            defineProperty(obj, k, props[k]);
-	        }
-	    }
-
-	    return obj;
-	};
-
-	exports.defineProperty = defineProperty, exports.objCreate = objCreate;
-
-	//# sourceMappingURL=es5.js.map
-
-/***/ }),
-/* 322 */
-/***/ (function(module, exports) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-	exports["default"] = Compiler;
-
-	function Compiler(locales, formats, pluralFn) {
-	    this.locales  = locales;
-	    this.formats  = formats;
-	    this.pluralFn = pluralFn;
-	}
-
-	Compiler.prototype.compile = function (ast) {
-	    this.pluralStack        = [];
-	    this.currentPlural      = null;
-	    this.pluralNumberFormat = null;
-
-	    return this.compileMessage(ast);
-	};
-
-	Compiler.prototype.compileMessage = function (ast) {
-	    if (!(ast && ast.type === 'messageFormatPattern')) {
-	        throw new Error('Message AST is not of type: "messageFormatPattern"');
-	    }
-
-	    var elements = ast.elements,
-	        pattern  = [];
-
-	    var i, len, element;
-
-	    for (i = 0, len = elements.length; i < len; i += 1) {
-	        element = elements[i];
-
-	        switch (element.type) {
-	            case 'messageTextElement':
-	                pattern.push(this.compileMessageText(element));
-	                break;
-
-	            case 'argumentElement':
-	                pattern.push(this.compileArgument(element));
-	                break;
-
-	            default:
-	                throw new Error('Message element does not have a valid type');
-	        }
-	    }
-
-	    return pattern;
-	};
-
-	Compiler.prototype.compileMessageText = function (element) {
-	    // When this `element` is part of plural sub-pattern and its value contains
-	    // an unescaped '#', use a `PluralOffsetString` helper to properly output
-	    // the number with the correct offset in the string.
-	    if (this.currentPlural && /(^|[^\\])#/g.test(element.value)) {
-	        // Create a cache a NumberFormat instance that can be reused for any
-	        // PluralOffsetString instance in this message.
-	        if (!this.pluralNumberFormat) {
-	            this.pluralNumberFormat = new Intl.NumberFormat(this.locales);
-	        }
-
-	        return new PluralOffsetString(
-	                this.currentPlural.id,
-	                this.currentPlural.format.offset,
-	                this.pluralNumberFormat,
-	                element.value);
-	    }
-
-	    // Unescape the escaped '#'s in the message text.
-	    return element.value.replace(/\\#/g, '#');
-	};
-
-	Compiler.prototype.compileArgument = function (element) {
-	    var format = element.format;
-
-	    if (!format) {
-	        return new StringFormat(element.id);
-	    }
-
-	    var formats  = this.formats,
-	        locales  = this.locales,
-	        pluralFn = this.pluralFn,
-	        options;
-
-	    switch (format.type) {
-	        case 'numberFormat':
-	            options = formats.number[format.style];
-	            return {
-	                id    : element.id,
-	                format: new Intl.NumberFormat(locales, options).format
-	            };
-
-	        case 'dateFormat':
-	            options = formats.date[format.style];
-	            return {
-	                id    : element.id,
-	                format: new Intl.DateTimeFormat(locales, options).format
-	            };
-
-	        case 'timeFormat':
-	            options = formats.time[format.style];
-	            return {
-	                id    : element.id,
-	                format: new Intl.DateTimeFormat(locales, options).format
-	            };
-
-	        case 'pluralFormat':
-	            options = this.compileOptions(element);
-	            return new PluralFormat(
-	                element.id, format.ordinal, format.offset, options, pluralFn
-	            );
-
-	        case 'selectFormat':
-	            options = this.compileOptions(element);
-	            return new SelectFormat(element.id, options);
-
-	        default:
-	            throw new Error('Message element does not have a valid format type');
-	    }
-	};
-
-	Compiler.prototype.compileOptions = function (element) {
-	    var format      = element.format,
-	        options     = format.options,
-	        optionsHash = {};
-
-	    // Save the current plural element, if any, then set it to a new value when
-	    // compiling the options sub-patterns. This conforms the spec's algorithm
-	    // for handling `"#"` syntax in message text.
-	    this.pluralStack.push(this.currentPlural);
-	    this.currentPlural = format.type === 'pluralFormat' ? element : null;
-
-	    var i, len, option;
-
-	    for (i = 0, len = options.length; i < len; i += 1) {
-	        option = options[i];
-
-	        // Compile the sub-pattern and save it under the options's selector.
-	        optionsHash[option.selector] = this.compileMessage(option.value);
-	    }
-
-	    // Pop the plural stack to put back the original current plural value.
-	    this.currentPlural = this.pluralStack.pop();
-
-	    return optionsHash;
-	};
-
-	// -- Compiler Helper Classes --------------------------------------------------
-
-	function StringFormat(id) {
-	    this.id = id;
-	}
-
-	StringFormat.prototype.format = function (value) {
-	    if (!value && typeof value !== 'number') {
-	        return '';
-	    }
-
-	    return typeof value === 'string' ? value : String(value);
-	};
-
-	function PluralFormat(id, useOrdinal, offset, options, pluralFn) {
-	    this.id         = id;
-	    this.useOrdinal = useOrdinal;
-	    this.offset     = offset;
-	    this.options    = options;
-	    this.pluralFn   = pluralFn;
-	}
-
-	PluralFormat.prototype.getOption = function (value) {
-	    var options = this.options;
-
-	    var option = options['=' + value] ||
-	            options[this.pluralFn(value - this.offset, this.useOrdinal)];
-
-	    return option || options.other;
-	};
-
-	function PluralOffsetString(id, offset, numberFormat, string) {
-	    this.id           = id;
-	    this.offset       = offset;
-	    this.numberFormat = numberFormat;
-	    this.string       = string;
-	}
-
-	PluralOffsetString.prototype.format = function (value) {
-	    var number = this.numberFormat.format(value - this.offset);
-
-	    return this.string
-	            .replace(/(^|[^\\])#/g, '$1' + number)
-	            .replace(/\\#/g, '#');
-	};
-
-	function SelectFormat(id, options) {
-	    this.id      = id;
-	    this.options = options;
-	}
-
-	SelectFormat.prototype.getOption = function (value) {
-	    var options = this.options;
-	    return options[value] || options.other;
-	};
-
-	//# sourceMappingURL=compiler.js.map
-
-/***/ }),
-/* 323 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports = module.exports = __webpack_require__(324)['default'];
-	exports['default'] = exports;
-
-
-/***/ }),
-/* 324 */
-/***/ (function(module, exports) {
-
-	"use strict";
-
-	exports["default"] = (function() {
-	  "use strict";
-
-	  /*
-	   * Generated by PEG.js 0.9.0.
-	   *
-	   * http://pegjs.org/
-	   */
-
-	  function peg$subclass(child, parent) {
-	    function ctor() { this.constructor = child; }
-	    ctor.prototype = parent.prototype;
-	    child.prototype = new ctor();
-	  }
-
-	  function peg$SyntaxError(message, expected, found, location) {
-	    this.message  = message;
-	    this.expected = expected;
-	    this.found    = found;
-	    this.location = location;
-	    this.name     = "SyntaxError";
-
-	    if (typeof Error.captureStackTrace === "function") {
-	      Error.captureStackTrace(this, peg$SyntaxError);
-	    }
-	  }
-
-	  peg$subclass(peg$SyntaxError, Error);
-
-	  function peg$parse(input) {
-	    var options = arguments.length > 1 ? arguments[1] : {},
-	        parser  = this,
-
-	        peg$FAILED = {},
-
-	        peg$startRuleFunctions = { start: peg$parsestart },
-	        peg$startRuleFunction  = peg$parsestart,
-
-	        peg$c0 = function(elements) {
-	                return {
-	                    type    : 'messageFormatPattern',
-	                    elements: elements,
-	                    location: location()
-	                };
-	            },
-	        peg$c1 = function(text) {
-	                var string = '',
-	                    i, j, outerLen, inner, innerLen;
-
-	                for (i = 0, outerLen = text.length; i < outerLen; i += 1) {
-	                    inner = text[i];
-
-	                    for (j = 0, innerLen = inner.length; j < innerLen; j += 1) {
-	                        string += inner[j];
-	                    }
-	                }
-
-	                return string;
-	            },
-	        peg$c2 = function(messageText) {
-	                return {
-	                    type : 'messageTextElement',
-	                    value: messageText,
-	                    location: location()
-	                };
-	            },
-	        peg$c3 = /^[^ \t\n\r,.+={}#]/,
-	        peg$c4 = { type: "class", value: "[^ \\t\\n\\r,.+={}#]", description: "[^ \\t\\n\\r,.+={}#]" },
-	        peg$c5 = "{",
-	        peg$c6 = { type: "literal", value: "{", description: "\"{\"" },
-	        peg$c7 = ",",
-	        peg$c8 = { type: "literal", value: ",", description: "\",\"" },
-	        peg$c9 = "}",
-	        peg$c10 = { type: "literal", value: "}", description: "\"}\"" },
-	        peg$c11 = function(id, format) {
-	                return {
-	                    type  : 'argumentElement',
-	                    id    : id,
-	                    format: format && format[2],
-	                    location: location()
-	                };
-	            },
-	        peg$c12 = "number",
-	        peg$c13 = { type: "literal", value: "number", description: "\"number\"" },
-	        peg$c14 = "date",
-	        peg$c15 = { type: "literal", value: "date", description: "\"date\"" },
-	        peg$c16 = "time",
-	        peg$c17 = { type: "literal", value: "time", description: "\"time\"" },
-	        peg$c18 = function(type, style) {
-	                return {
-	                    type : type + 'Format',
-	                    style: style && style[2],
-	                    location: location()
-	                };
-	            },
-	        peg$c19 = "plural",
-	        peg$c20 = { type: "literal", value: "plural", description: "\"plural\"" },
-	        peg$c21 = function(pluralStyle) {
-	                return {
-	                    type   : pluralStyle.type,
-	                    ordinal: false,
-	                    offset : pluralStyle.offset || 0,
-	                    options: pluralStyle.options,
-	                    location: location()
-	                };
-	            },
-	        peg$c22 = "selectordinal",
-	        peg$c23 = { type: "literal", value: "selectordinal", description: "\"selectordinal\"" },
-	        peg$c24 = function(pluralStyle) {
-	                return {
-	                    type   : pluralStyle.type,
-	                    ordinal: true,
-	                    offset : pluralStyle.offset || 0,
-	                    options: pluralStyle.options,
-	                    location: location()
-	                }
-	            },
-	        peg$c25 = "select",
-	        peg$c26 = { type: "literal", value: "select", description: "\"select\"" },
-	        peg$c27 = function(options) {
-	                return {
-	                    type   : 'selectFormat',
-	                    options: options,
-	                    location: location()
-	                };
-	            },
-	        peg$c28 = "=",
-	        peg$c29 = { type: "literal", value: "=", description: "\"=\"" },
-	        peg$c30 = function(selector, pattern) {
-	                return {
-	                    type    : 'optionalFormatPattern',
-	                    selector: selector,
-	                    value   : pattern,
-	                    location: location()
-	                };
-	            },
-	        peg$c31 = "offset:",
-	        peg$c32 = { type: "literal", value: "offset:", description: "\"offset:\"" },
-	        peg$c33 = function(number) {
-	                return number;
-	            },
-	        peg$c34 = function(offset, options) {
-	                return {
-	                    type   : 'pluralFormat',
-	                    offset : offset,
-	                    options: options,
-	                    location: location()
-	                };
-	            },
-	        peg$c35 = { type: "other", description: "whitespace" },
-	        peg$c36 = /^[ \t\n\r]/,
-	        peg$c37 = { type: "class", value: "[ \\t\\n\\r]", description: "[ \\t\\n\\r]" },
-	        peg$c38 = { type: "other", description: "optionalWhitespace" },
-	        peg$c39 = /^[0-9]/,
-	        peg$c40 = { type: "class", value: "[0-9]", description: "[0-9]" },
-	        peg$c41 = /^[0-9a-f]/i,
-	        peg$c42 = { type: "class", value: "[0-9a-f]i", description: "[0-9a-f]i" },
-	        peg$c43 = "0",
-	        peg$c44 = { type: "literal", value: "0", description: "\"0\"" },
-	        peg$c45 = /^[1-9]/,
-	        peg$c46 = { type: "class", value: "[1-9]", description: "[1-9]" },
-	        peg$c47 = function(digits) {
-	            return parseInt(digits, 10);
-	        },
-	        peg$c48 = /^[^{}\\\0-\x1F \t\n\r]/,
-	        peg$c49 = { type: "class", value: "[^{}\\\\\\0-\\x1F\\x7f \\t\\n\\r]", description: "[^{}\\\\\\0-\\x1F\\x7f \\t\\n\\r]" },
-	        peg$c50 = "\\\\",
-	        peg$c51 = { type: "literal", value: "\\\\", description: "\"\\\\\\\\\"" },
-	        peg$c52 = function() { return '\\'; },
-	        peg$c53 = "\\#",
-	        peg$c54 = { type: "literal", value: "\\#", description: "\"\\\\#\"" },
-	        peg$c55 = function() { return '\\#'; },
-	        peg$c56 = "\\{",
-	        peg$c57 = { type: "literal", value: "\\{", description: "\"\\\\{\"" },
-	        peg$c58 = function() { return '\u007B'; },
-	        peg$c59 = "\\}",
-	        peg$c60 = { type: "literal", value: "\\}", description: "\"\\\\}\"" },
-	        peg$c61 = function() { return '\u007D'; },
-	        peg$c62 = "\\u",
-	        peg$c63 = { type: "literal", value: "\\u", description: "\"\\\\u\"" },
-	        peg$c64 = function(digits) {
-	                return String.fromCharCode(parseInt(digits, 16));
-	            },
-	        peg$c65 = function(chars) { return chars.join(''); },
-
-	        peg$currPos          = 0,
-	        peg$savedPos         = 0,
-	        peg$posDetailsCache  = [{ line: 1, column: 1, seenCR: false }],
-	        peg$maxFailPos       = 0,
-	        peg$maxFailExpected  = [],
-	        peg$silentFails      = 0,
-
-	        peg$result;
-
-	    if ("startRule" in options) {
-	      if (!(options.startRule in peg$startRuleFunctions)) {
-	        throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
-	      }
-
-	      peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
-	    }
-
-	    function text() {
-	      return input.substring(peg$savedPos, peg$currPos);
-	    }
-
-	    function location() {
-	      return peg$computeLocation(peg$savedPos, peg$currPos);
-	    }
-
-	    function expected(description) {
-	      throw peg$buildException(
-	        null,
-	        [{ type: "other", description: description }],
-	        input.substring(peg$savedPos, peg$currPos),
-	        peg$computeLocation(peg$savedPos, peg$currPos)
-	      );
-	    }
-
-	    function error(message) {
-	      throw peg$buildException(
-	        message,
-	        null,
-	        input.substring(peg$savedPos, peg$currPos),
-	        peg$computeLocation(peg$savedPos, peg$currPos)
-	      );
-	    }
-
-	    function peg$computePosDetails(pos) {
-	      var details = peg$posDetailsCache[pos],
-	          p, ch;
-
-	      if (details) {
-	        return details;
-	      } else {
-	        p = pos - 1;
-	        while (!peg$posDetailsCache[p]) {
-	          p--;
-	        }
-
-	        details = peg$posDetailsCache[p];
-	        details = {
-	          line:   details.line,
-	          column: details.column,
-	          seenCR: details.seenCR
-	        };
-
-	        while (p < pos) {
-	          ch = input.charAt(p);
-	          if (ch === "\n") {
-	            if (!details.seenCR) { details.line++; }
-	            details.column = 1;
-	            details.seenCR = false;
-	          } else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
-	            details.line++;
-	            details.column = 1;
-	            details.seenCR = true;
-	          } else {
-	            details.column++;
-	            details.seenCR = false;
-	          }
-
-	          p++;
-	        }
-
-	        peg$posDetailsCache[pos] = details;
-	        return details;
-	      }
-	    }
-
-	    function peg$computeLocation(startPos, endPos) {
-	      var startPosDetails = peg$computePosDetails(startPos),
-	          endPosDetails   = peg$computePosDetails(endPos);
-
-	      return {
-	        start: {
-	          offset: startPos,
-	          line:   startPosDetails.line,
-	          column: startPosDetails.column
-	        },
-	        end: {
-	          offset: endPos,
-	          line:   endPosDetails.line,
-	          column: endPosDetails.column
-	        }
-	      };
-	    }
-
-	    function peg$fail(expected) {
-	      if (peg$currPos < peg$maxFailPos) { return; }
-
-	      if (peg$currPos > peg$maxFailPos) {
-	        peg$maxFailPos = peg$currPos;
-	        peg$maxFailExpected = [];
-	      }
-
-	      peg$maxFailExpected.push(expected);
-	    }
-
-	    function peg$buildException(message, expected, found, location) {
-	      function cleanupExpected(expected) {
-	        var i = 1;
-
-	        expected.sort(function(a, b) {
-	          if (a.description < b.description) {
-	            return -1;
-	          } else if (a.description > b.description) {
-	            return 1;
-	          } else {
-	            return 0;
-	          }
-	        });
-
-	        while (i < expected.length) {
-	          if (expected[i - 1] === expected[i]) {
-	            expected.splice(i, 1);
-	          } else {
-	            i++;
-	          }
-	        }
-	      }
-
-	      function buildMessage(expected, found) {
-	        function stringEscape(s) {
-	          function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }
-
-	          return s
-	            .replace(/\\/g,   '\\\\')
-	            .replace(/"/g,    '\\"')
-	            .replace(/\x08/g, '\\b')
-	            .replace(/\t/g,   '\\t')
-	            .replace(/\n/g,   '\\n')
-	            .replace(/\f/g,   '\\f')
-	            .replace(/\r/g,   '\\r')
-	            .replace(/[\x00-\x07\x0B\x0E\x0F]/g, function(ch) { return '\\x0' + hex(ch); })
-	            .replace(/[\x10-\x1F\x80-\xFF]/g,    function(ch) { return '\\x'  + hex(ch); })
-	            .replace(/[\u0100-\u0FFF]/g,         function(ch) { return '\\u0' + hex(ch); })
-	            .replace(/[\u1000-\uFFFF]/g,         function(ch) { return '\\u'  + hex(ch); });
-	        }
-
-	        var expectedDescs = new Array(expected.length),
-	            expectedDesc, foundDesc, i;
-
-	        for (i = 0; i < expected.length; i++) {
-	          expectedDescs[i] = expected[i].description;
-	        }
-
-	        expectedDesc = expected.length > 1
-	          ? expectedDescs.slice(0, -1).join(", ")
-	              + " or "
-	              + expectedDescs[expected.length - 1]
-	          : expectedDescs[0];
-
-	        foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
-
-	        return "Expected " + expectedDesc + " but " + foundDesc + " found.";
-	      }
-
-	      if (expected !== null) {
-	        cleanupExpected(expected);
-	      }
-
-	      return new peg$SyntaxError(
-	        message !== null ? message : buildMessage(expected, found),
-	        expected,
-	        found,
-	        location
-	      );
-	    }
-
-	    function peg$parsestart() {
-	      var s0;
-
-	      s0 = peg$parsemessageFormatPattern();
-
-	      return s0;
-	    }
-
-	    function peg$parsemessageFormatPattern() {
-	      var s0, s1, s2;
-
-	      s0 = peg$currPos;
-	      s1 = [];
-	      s2 = peg$parsemessageFormatElement();
-	      while (s2 !== peg$FAILED) {
-	        s1.push(s2);
-	        s2 = peg$parsemessageFormatElement();
-	      }
-	      if (s1 !== peg$FAILED) {
-	        peg$savedPos = s0;
-	        s1 = peg$c0(s1);
-	      }
-	      s0 = s1;
-
-	      return s0;
-	    }
-
-	    function peg$parsemessageFormatElement() {
-	      var s0;
-
-	      s0 = peg$parsemessageTextElement();
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$parseargumentElement();
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsemessageText() {
-	      var s0, s1, s2, s3, s4, s5;
-
-	      s0 = peg$currPos;
-	      s1 = [];
-	      s2 = peg$currPos;
-	      s3 = peg$parse_();
-	      if (s3 !== peg$FAILED) {
-	        s4 = peg$parsechars();
-	        if (s4 !== peg$FAILED) {
-	          s5 = peg$parse_();
-	          if (s5 !== peg$FAILED) {
-	            s3 = [s3, s4, s5];
-	            s2 = s3;
-	          } else {
-	            peg$currPos = s2;
-	            s2 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s2;
-	          s2 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s2;
-	        s2 = peg$FAILED;
-	      }
-	      if (s2 !== peg$FAILED) {
-	        while (s2 !== peg$FAILED) {
-	          s1.push(s2);
-	          s2 = peg$currPos;
-	          s3 = peg$parse_();
-	          if (s3 !== peg$FAILED) {
-	            s4 = peg$parsechars();
-	            if (s4 !== peg$FAILED) {
-	              s5 = peg$parse_();
-	              if (s5 !== peg$FAILED) {
-	                s3 = [s3, s4, s5];
-	                s2 = s3;
-	              } else {
-	                peg$currPos = s2;
-	                s2 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s2;
-	              s2 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s2;
-	            s2 = peg$FAILED;
-	          }
-	        }
-	      } else {
-	        s1 = peg$FAILED;
-	      }
-	      if (s1 !== peg$FAILED) {
-	        peg$savedPos = s0;
-	        s1 = peg$c1(s1);
-	      }
-	      s0 = s1;
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$currPos;
-	        s1 = peg$parsews();
-	        if (s1 !== peg$FAILED) {
-	          s0 = input.substring(s0, peg$currPos);
-	        } else {
-	          s0 = s1;
-	        }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsemessageTextElement() {
-	      var s0, s1;
-
-	      s0 = peg$currPos;
-	      s1 = peg$parsemessageText();
-	      if (s1 !== peg$FAILED) {
-	        peg$savedPos = s0;
-	        s1 = peg$c2(s1);
-	      }
-	      s0 = s1;
-
-	      return s0;
-	    }
-
-	    function peg$parseargument() {
-	      var s0, s1, s2;
-
-	      s0 = peg$parsenumber();
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$currPos;
-	        s1 = [];
-	        if (peg$c3.test(input.charAt(peg$currPos))) {
-	          s2 = input.charAt(peg$currPos);
-	          peg$currPos++;
-	        } else {
-	          s2 = peg$FAILED;
-	          if (peg$silentFails === 0) { peg$fail(peg$c4); }
-	        }
-	        if (s2 !== peg$FAILED) {
-	          while (s2 !== peg$FAILED) {
-	            s1.push(s2);
-	            if (peg$c3.test(input.charAt(peg$currPos))) {
-	              s2 = input.charAt(peg$currPos);
-	              peg$currPos++;
-	            } else {
-	              s2 = peg$FAILED;
-	              if (peg$silentFails === 0) { peg$fail(peg$c4); }
-	            }
-	          }
-	        } else {
-	          s1 = peg$FAILED;
-	        }
-	        if (s1 !== peg$FAILED) {
-	          s0 = input.substring(s0, peg$currPos);
-	        } else {
-	          s0 = s1;
-	        }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseargumentElement() {
-	      var s0, s1, s2, s3, s4, s5, s6, s7, s8;
-
-	      s0 = peg$currPos;
-	      if (input.charCodeAt(peg$currPos) === 123) {
-	        s1 = peg$c5;
-	        peg$currPos++;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c6); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          s3 = peg$parseargument();
-	          if (s3 !== peg$FAILED) {
-	            s4 = peg$parse_();
-	            if (s4 !== peg$FAILED) {
-	              s5 = peg$currPos;
-	              if (input.charCodeAt(peg$currPos) === 44) {
-	                s6 = peg$c7;
-	                peg$currPos++;
-	              } else {
-	                s6 = peg$FAILED;
-	                if (peg$silentFails === 0) { peg$fail(peg$c8); }
-	              }
-	              if (s6 !== peg$FAILED) {
-	                s7 = peg$parse_();
-	                if (s7 !== peg$FAILED) {
-	                  s8 = peg$parseelementFormat();
-	                  if (s8 !== peg$FAILED) {
-	                    s6 = [s6, s7, s8];
-	                    s5 = s6;
-	                  } else {
-	                    peg$currPos = s5;
-	                    s5 = peg$FAILED;
-	                  }
-	                } else {
-	                  peg$currPos = s5;
-	                  s5 = peg$FAILED;
-	                }
-	              } else {
-	                peg$currPos = s5;
-	                s5 = peg$FAILED;
-	              }
-	              if (s5 === peg$FAILED) {
-	                s5 = null;
-	              }
-	              if (s5 !== peg$FAILED) {
-	                s6 = peg$parse_();
-	                if (s6 !== peg$FAILED) {
-	                  if (input.charCodeAt(peg$currPos) === 125) {
-	                    s7 = peg$c9;
-	                    peg$currPos++;
-	                  } else {
-	                    s7 = peg$FAILED;
-	                    if (peg$silentFails === 0) { peg$fail(peg$c10); }
-	                  }
-	                  if (s7 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c11(s3, s5);
-	                    s0 = s1;
-	                  } else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                  }
-	                } else {
-	                  peg$currPos = s0;
-	                  s0 = peg$FAILED;
-	                }
-	              } else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s0;
-	              s0 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseelementFormat() {
-	      var s0;
-
-	      s0 = peg$parsesimpleFormat();
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$parsepluralFormat();
-	        if (s0 === peg$FAILED) {
-	          s0 = peg$parseselectOrdinalFormat();
-	          if (s0 === peg$FAILED) {
-	            s0 = peg$parseselectFormat();
-	          }
-	        }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsesimpleFormat() {
-	      var s0, s1, s2, s3, s4, s5, s6;
-
-	      s0 = peg$currPos;
-	      if (input.substr(peg$currPos, 6) === peg$c12) {
-	        s1 = peg$c12;
-	        peg$currPos += 6;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c13); }
-	      }
-	      if (s1 === peg$FAILED) {
-	        if (input.substr(peg$currPos, 4) === peg$c14) {
-	          s1 = peg$c14;
-	          peg$currPos += 4;
-	        } else {
-	          s1 = peg$FAILED;
-	          if (peg$silentFails === 0) { peg$fail(peg$c15); }
-	        }
-	        if (s1 === peg$FAILED) {
-	          if (input.substr(peg$currPos, 4) === peg$c16) {
-	            s1 = peg$c16;
-	            peg$currPos += 4;
-	          } else {
-	            s1 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c17); }
-	          }
-	        }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          s3 = peg$currPos;
-	          if (input.charCodeAt(peg$currPos) === 44) {
-	            s4 = peg$c7;
-	            peg$currPos++;
-	          } else {
-	            s4 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
-	          }
-	          if (s4 !== peg$FAILED) {
-	            s5 = peg$parse_();
-	            if (s5 !== peg$FAILED) {
-	              s6 = peg$parsechars();
-	              if (s6 !== peg$FAILED) {
-	                s4 = [s4, s5, s6];
-	                s3 = s4;
-	              } else {
-	                peg$currPos = s3;
-	                s3 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s3;
-	              s3 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s3;
-	            s3 = peg$FAILED;
-	          }
-	          if (s3 === peg$FAILED) {
-	            s3 = null;
-	          }
-	          if (s3 !== peg$FAILED) {
-	            peg$savedPos = s0;
-	            s1 = peg$c18(s1, s3);
-	            s0 = s1;
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsepluralFormat() {
-	      var s0, s1, s2, s3, s4, s5;
-
-	      s0 = peg$currPos;
-	      if (input.substr(peg$currPos, 6) === peg$c19) {
-	        s1 = peg$c19;
-	        peg$currPos += 6;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c20); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          if (input.charCodeAt(peg$currPos) === 44) {
-	            s3 = peg$c7;
-	            peg$currPos++;
-	          } else {
-	            s3 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
-	          }
-	          if (s3 !== peg$FAILED) {
-	            s4 = peg$parse_();
-	            if (s4 !== peg$FAILED) {
-	              s5 = peg$parsepluralStyle();
-	              if (s5 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c21(s5);
-	                s0 = s1;
-	              } else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s0;
-	              s0 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseselectOrdinalFormat() {
-	      var s0, s1, s2, s3, s4, s5;
-
-	      s0 = peg$currPos;
-	      if (input.substr(peg$currPos, 13) === peg$c22) {
-	        s1 = peg$c22;
-	        peg$currPos += 13;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c23); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          if (input.charCodeAt(peg$currPos) === 44) {
-	            s3 = peg$c7;
-	            peg$currPos++;
-	          } else {
-	            s3 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
-	          }
-	          if (s3 !== peg$FAILED) {
-	            s4 = peg$parse_();
-	            if (s4 !== peg$FAILED) {
-	              s5 = peg$parsepluralStyle();
-	              if (s5 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c24(s5);
-	                s0 = s1;
-	              } else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s0;
-	              s0 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseselectFormat() {
-	      var s0, s1, s2, s3, s4, s5, s6;
-
-	      s0 = peg$currPos;
-	      if (input.substr(peg$currPos, 6) === peg$c25) {
-	        s1 = peg$c25;
-	        peg$currPos += 6;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c26); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          if (input.charCodeAt(peg$currPos) === 44) {
-	            s3 = peg$c7;
-	            peg$currPos++;
-	          } else {
-	            s3 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c8); }
-	          }
-	          if (s3 !== peg$FAILED) {
-	            s4 = peg$parse_();
-	            if (s4 !== peg$FAILED) {
-	              s5 = [];
-	              s6 = peg$parseoptionalFormatPattern();
-	              if (s6 !== peg$FAILED) {
-	                while (s6 !== peg$FAILED) {
-	                  s5.push(s6);
-	                  s6 = peg$parseoptionalFormatPattern();
-	                }
-	              } else {
-	                s5 = peg$FAILED;
-	              }
-	              if (s5 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c27(s5);
-	                s0 = s1;
-	              } else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s0;
-	              s0 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseselector() {
-	      var s0, s1, s2, s3;
-
-	      s0 = peg$currPos;
-	      s1 = peg$currPos;
-	      if (input.charCodeAt(peg$currPos) === 61) {
-	        s2 = peg$c28;
-	        peg$currPos++;
-	      } else {
-	        s2 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c29); }
-	      }
-	      if (s2 !== peg$FAILED) {
-	        s3 = peg$parsenumber();
-	        if (s3 !== peg$FAILED) {
-	          s2 = [s2, s3];
-	          s1 = s2;
-	        } else {
-	          peg$currPos = s1;
-	          s1 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s1;
-	        s1 = peg$FAILED;
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s0 = input.substring(s0, peg$currPos);
-	      } else {
-	        s0 = s1;
-	      }
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$parsechars();
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseoptionalFormatPattern() {
-	      var s0, s1, s2, s3, s4, s5, s6, s7, s8;
-
-	      s0 = peg$currPos;
-	      s1 = peg$parse_();
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parseselector();
-	        if (s2 !== peg$FAILED) {
-	          s3 = peg$parse_();
-	          if (s3 !== peg$FAILED) {
-	            if (input.charCodeAt(peg$currPos) === 123) {
-	              s4 = peg$c5;
-	              peg$currPos++;
-	            } else {
-	              s4 = peg$FAILED;
-	              if (peg$silentFails === 0) { peg$fail(peg$c6); }
-	            }
-	            if (s4 !== peg$FAILED) {
-	              s5 = peg$parse_();
-	              if (s5 !== peg$FAILED) {
-	                s6 = peg$parsemessageFormatPattern();
-	                if (s6 !== peg$FAILED) {
-	                  s7 = peg$parse_();
-	                  if (s7 !== peg$FAILED) {
-	                    if (input.charCodeAt(peg$currPos) === 125) {
-	                      s8 = peg$c9;
-	                      peg$currPos++;
-	                    } else {
-	                      s8 = peg$FAILED;
-	                      if (peg$silentFails === 0) { peg$fail(peg$c10); }
-	                    }
-	                    if (s8 !== peg$FAILED) {
-	                      peg$savedPos = s0;
-	                      s1 = peg$c30(s2, s6);
-	                      s0 = s1;
-	                    } else {
-	                      peg$currPos = s0;
-	                      s0 = peg$FAILED;
-	                    }
-	                  } else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                  }
-	                } else {
-	                  peg$currPos = s0;
-	                  s0 = peg$FAILED;
-	                }
-	              } else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	              }
-	            } else {
-	              peg$currPos = s0;
-	              s0 = peg$FAILED;
-	            }
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parseoffset() {
-	      var s0, s1, s2, s3;
-
-	      s0 = peg$currPos;
-	      if (input.substr(peg$currPos, 7) === peg$c31) {
-	        s1 = peg$c31;
-	        peg$currPos += 7;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c32); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          s3 = peg$parsenumber();
-	          if (s3 !== peg$FAILED) {
-	            peg$savedPos = s0;
-	            s1 = peg$c33(s3);
-	            s0 = s1;
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsepluralStyle() {
-	      var s0, s1, s2, s3, s4;
-
-	      s0 = peg$currPos;
-	      s1 = peg$parseoffset();
-	      if (s1 === peg$FAILED) {
-	        s1 = null;
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s2 = peg$parse_();
-	        if (s2 !== peg$FAILED) {
-	          s3 = [];
-	          s4 = peg$parseoptionalFormatPattern();
-	          if (s4 !== peg$FAILED) {
-	            while (s4 !== peg$FAILED) {
-	              s3.push(s4);
-	              s4 = peg$parseoptionalFormatPattern();
-	            }
-	          } else {
-	            s3 = peg$FAILED;
-	          }
-	          if (s3 !== peg$FAILED) {
-	            peg$savedPos = s0;
-	            s1 = peg$c34(s1, s3);
-	            s0 = s1;
-	          } else {
-	            peg$currPos = s0;
-	            s0 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s0;
-	          s0 = peg$FAILED;
-	        }
-	      } else {
-	        peg$currPos = s0;
-	        s0 = peg$FAILED;
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsews() {
-	      var s0, s1;
-
-	      peg$silentFails++;
-	      s0 = [];
-	      if (peg$c36.test(input.charAt(peg$currPos))) {
-	        s1 = input.charAt(peg$currPos);
-	        peg$currPos++;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c37); }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        while (s1 !== peg$FAILED) {
-	          s0.push(s1);
-	          if (peg$c36.test(input.charAt(peg$currPos))) {
-	            s1 = input.charAt(peg$currPos);
-	            peg$currPos++;
-	          } else {
-	            s1 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c37); }
-	          }
-	        }
-	      } else {
-	        s0 = peg$FAILED;
-	      }
-	      peg$silentFails--;
-	      if (s0 === peg$FAILED) {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c35); }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parse_() {
-	      var s0, s1, s2;
-
-	      peg$silentFails++;
-	      s0 = peg$currPos;
-	      s1 = [];
-	      s2 = peg$parsews();
-	      while (s2 !== peg$FAILED) {
-	        s1.push(s2);
-	        s2 = peg$parsews();
-	      }
-	      if (s1 !== peg$FAILED) {
-	        s0 = input.substring(s0, peg$currPos);
-	      } else {
-	        s0 = s1;
-	      }
-	      peg$silentFails--;
-	      if (s0 === peg$FAILED) {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c38); }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsedigit() {
-	      var s0;
-
-	      if (peg$c39.test(input.charAt(peg$currPos))) {
-	        s0 = input.charAt(peg$currPos);
-	        peg$currPos++;
-	      } else {
-	        s0 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c40); }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsehexDigit() {
-	      var s0;
-
-	      if (peg$c41.test(input.charAt(peg$currPos))) {
-	        s0 = input.charAt(peg$currPos);
-	        peg$currPos++;
-	      } else {
-	        s0 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c42); }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsenumber() {
-	      var s0, s1, s2, s3, s4, s5;
-
-	      s0 = peg$currPos;
-	      if (input.charCodeAt(peg$currPos) === 48) {
-	        s1 = peg$c43;
-	        peg$currPos++;
-	      } else {
-	        s1 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c44); }
-	      }
-	      if (s1 === peg$FAILED) {
-	        s1 = peg$currPos;
-	        s2 = peg$currPos;
-	        if (peg$c45.test(input.charAt(peg$currPos))) {
-	          s3 = input.charAt(peg$currPos);
-	          peg$currPos++;
-	        } else {
-	          s3 = peg$FAILED;
-	          if (peg$silentFails === 0) { peg$fail(peg$c46); }
-	        }
-	        if (s3 !== peg$FAILED) {
-	          s4 = [];
-	          s5 = peg$parsedigit();
-	          while (s5 !== peg$FAILED) {
-	            s4.push(s5);
-	            s5 = peg$parsedigit();
-	          }
-	          if (s4 !== peg$FAILED) {
-	            s3 = [s3, s4];
-	            s2 = s3;
-	          } else {
-	            peg$currPos = s2;
-	            s2 = peg$FAILED;
-	          }
-	        } else {
-	          peg$currPos = s2;
-	          s2 = peg$FAILED;
-	        }
-	        if (s2 !== peg$FAILED) {
-	          s1 = input.substring(s1, peg$currPos);
-	        } else {
-	          s1 = s2;
-	        }
-	      }
-	      if (s1 !== peg$FAILED) {
-	        peg$savedPos = s0;
-	        s1 = peg$c47(s1);
-	      }
-	      s0 = s1;
-
-	      return s0;
-	    }
-
-	    function peg$parsechar() {
-	      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-	      if (peg$c48.test(input.charAt(peg$currPos))) {
-	        s0 = input.charAt(peg$currPos);
-	        peg$currPos++;
-	      } else {
-	        s0 = peg$FAILED;
-	        if (peg$silentFails === 0) { peg$fail(peg$c49); }
-	      }
-	      if (s0 === peg$FAILED) {
-	        s0 = peg$currPos;
-	        if (input.substr(peg$currPos, 2) === peg$c50) {
-	          s1 = peg$c50;
-	          peg$currPos += 2;
-	        } else {
-	          s1 = peg$FAILED;
-	          if (peg$silentFails === 0) { peg$fail(peg$c51); }
-	        }
-	        if (s1 !== peg$FAILED) {
-	          peg$savedPos = s0;
-	          s1 = peg$c52();
-	        }
-	        s0 = s1;
-	        if (s0 === peg$FAILED) {
-	          s0 = peg$currPos;
-	          if (input.substr(peg$currPos, 2) === peg$c53) {
-	            s1 = peg$c53;
-	            peg$currPos += 2;
-	          } else {
-	            s1 = peg$FAILED;
-	            if (peg$silentFails === 0) { peg$fail(peg$c54); }
-	          }
-	          if (s1 !== peg$FAILED) {
-	            peg$savedPos = s0;
-	            s1 = peg$c55();
-	          }
-	          s0 = s1;
-	          if (s0 === peg$FAILED) {
-	            s0 = peg$currPos;
-	            if (input.substr(peg$currPos, 2) === peg$c56) {
-	              s1 = peg$c56;
-	              peg$currPos += 2;
-	            } else {
-	              s1 = peg$FAILED;
-	              if (peg$silentFails === 0) { peg$fail(peg$c57); }
-	            }
-	            if (s1 !== peg$FAILED) {
-	              peg$savedPos = s0;
-	              s1 = peg$c58();
-	            }
-	            s0 = s1;
-	            if (s0 === peg$FAILED) {
-	              s0 = peg$currPos;
-	              if (input.substr(peg$currPos, 2) === peg$c59) {
-	                s1 = peg$c59;
-	                peg$currPos += 2;
-	              } else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) { peg$fail(peg$c60); }
-	              }
-	              if (s1 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c61();
-	              }
-	              s0 = s1;
-	              if (s0 === peg$FAILED) {
-	                s0 = peg$currPos;
-	                if (input.substr(peg$currPos, 2) === peg$c62) {
-	                  s1 = peg$c62;
-	                  peg$currPos += 2;
-	                } else {
-	                  s1 = peg$FAILED;
-	                  if (peg$silentFails === 0) { peg$fail(peg$c63); }
-	                }
-	                if (s1 !== peg$FAILED) {
-	                  s2 = peg$currPos;
-	                  s3 = peg$currPos;
-	                  s4 = peg$parsehexDigit();
-	                  if (s4 !== peg$FAILED) {
-	                    s5 = peg$parsehexDigit();
-	                    if (s5 !== peg$FAILED) {
-	                      s6 = peg$parsehexDigit();
-	                      if (s6 !== peg$FAILED) {
-	                        s7 = peg$parsehexDigit();
-	                        if (s7 !== peg$FAILED) {
-	                          s4 = [s4, s5, s6, s7];
-	                          s3 = s4;
-	                        } else {
-	                          peg$currPos = s3;
-	                          s3 = peg$FAILED;
-	                        }
-	                      } else {
-	                        peg$currPos = s3;
-	                        s3 = peg$FAILED;
-	                      }
-	                    } else {
-	                      peg$currPos = s3;
-	                      s3 = peg$FAILED;
-	                    }
-	                  } else {
-	                    peg$currPos = s3;
-	                    s3 = peg$FAILED;
-	                  }
-	                  if (s3 !== peg$FAILED) {
-	                    s2 = input.substring(s2, peg$currPos);
-	                  } else {
-	                    s2 = s3;
-	                  }
-	                  if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c64(s2);
-	                    s0 = s1;
-	                  } else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                  }
-	                } else {
-	                  peg$currPos = s0;
-	                  s0 = peg$FAILED;
-	                }
-	              }
-	            }
-	          }
-	        }
-	      }
-
-	      return s0;
-	    }
-
-	    function peg$parsechars() {
-	      var s0, s1, s2;
-
-	      s0 = peg$currPos;
-	      s1 = [];
-	      s2 = peg$parsechar();
-	      if (s2 !== peg$FAILED) {
-	        while (s2 !== peg$FAILED) {
-	          s1.push(s2);
-	          s2 = peg$parsechar();
-	        }
-	      } else {
-	        s1 = peg$FAILED;
-	      }
-	      if (s1 !== peg$FAILED) {
-	        peg$savedPos = s0;
-	        s1 = peg$c65(s1);
-	      }
-	      s0 = s1;
-
-	      return s0;
-	    }
-
-	    peg$result = peg$startRuleFunction();
-
-	    if (peg$result !== peg$FAILED && peg$currPos === input.length) {
-	      return peg$result;
-	    } else {
-	      if (peg$result !== peg$FAILED && peg$currPos < input.length) {
-	        peg$fail({ type: "end", description: "end of input" });
-	      }
-
-	      throw peg$buildException(
-	        null,
-	        peg$maxFailExpected,
-	        peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null,
-	        peg$maxFailPos < input.length
-	          ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1)
-	          : peg$computeLocation(peg$maxFailPos, peg$maxFailPos)
-	      );
-	    }
-	  }
-
-	  return {
-	    SyntaxError: peg$SyntaxError,
-	    parse:       peg$parse
-	  };
-	})();
-
-	//# sourceMappingURL=parser.js.map
-
-/***/ }),
-/* 325 */
-/***/ (function(module, exports) {
-
-	// GENERATED FILE
-	"use strict";
-	exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=String(n).split("."),v0=!s[1],t0=Number(s[0])==n,n10=t0&&s[0].slice(-1),n100=t0&&s[0].slice(-2);if(ord)return n10==1&&n100!=11?"one":n10==2&&n100!=12?"two":n10==3&&n100!=13?"few":"other";return n==1&&v0?"one":"other"}};
-
-	//# sourceMappingURL=en.js.map
-
-/***/ }),
-/* 326 */
-/***/ (function(module, exports) {
-
-	/* (ignored) */
-
-/***/ }),
-/* 327 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* jshint node:true */
-
-	'use strict';
-
-	var IntlRelativeFormat = __webpack_require__(328)['default'];
-
-	// Add all locale data to `IntlRelativeFormat`. This module will be ignored when
-	// bundling for the browser with Browserify/Webpack.
-	__webpack_require__(333);
-
-	// Re-export `IntlRelativeFormat` as the CommonJS default exports with all the
-	// locale data registered, and with English set as the default locale. Define
-	// the `default` prop for use with other compiled ES6 Modules.
-	exports = module.exports = IntlRelativeFormat;
-	exports['default'] = exports;
-
-
-/***/ }),
-/* 328 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* jslint esnext: true */
-
-	"use strict";
-	var src$core$$ = __webpack_require__(329), src$en$$ = __webpack_require__(332);
-
-	src$core$$["default"].__addLocaleData(src$en$$["default"]);
-	src$core$$["default"].defaultLocale = 'en';
-
-	exports["default"] = src$core$$["default"];
-
-	//# sourceMappingURL=main.js.map
-
-/***/ }),
-/* 329 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-	var intl$messageformat$$ = __webpack_require__(317), src$diff$$ = __webpack_require__(330), src$es5$$ = __webpack_require__(331);
-	exports["default"] = RelativeFormat;
-
-	// -----------------------------------------------------------------------------
-
-	var FIELDS = [
-	    'second', 'second-short',
-	    'minute', 'minute-short',
-	    'hour', 'hour-short',
-	    'day', 'day-short',
-	    'month', 'month-short',
-	    'year', 'year-short'
-	];
-	var STYLES = ['best fit', 'numeric'];
-
-	// -- RelativeFormat -----------------------------------------------------------
-
-	function RelativeFormat(locales, options) {
-	    options = options || {};
-
-	    // Make a copy of `locales` if it's an array, so that it doesn't change
-	    // since it's used lazily.
-	    if (src$es5$$.isArray(locales)) {
-	        locales = locales.concat();
-	    }
-
-	    src$es5$$.defineProperty(this, '_locale', {value: this._resolveLocale(locales)});
-	    src$es5$$.defineProperty(this, '_options', {value: {
-	        style: this._resolveStyle(options.style),
-	        units: this._isValidUnits(options.units) && options.units
-	    }});
-
-	    src$es5$$.defineProperty(this, '_locales', {value: locales});
-	    src$es5$$.defineProperty(this, '_fields', {value: this._findFields(this._locale)});
-	    src$es5$$.defineProperty(this, '_messages', {value: src$es5$$.objCreate(null)});
-
-	    // "Bind" `format()` method to `this` so it can be passed by reference like
-	    // the other `Intl` APIs.
-	    var relativeFormat = this;
-	    this.format = function format(date, options) {
-	        return relativeFormat._format(date, options);
-	    };
-	}
-
-	// Define internal private properties for dealing with locale data.
-	src$es5$$.defineProperty(RelativeFormat, '__localeData__', {value: src$es5$$.objCreate(null)});
-	src$es5$$.defineProperty(RelativeFormat, '__addLocaleData', {value: function (data) {
-	    if (!(data && data.locale)) {
-	        throw new Error(
-	            'Locale data provided to IntlRelativeFormat is missing a ' +
-	            '`locale` property value'
-	        );
-	    }
-
-	    RelativeFormat.__localeData__[data.locale.toLowerCase()] = data;
-
-	    // Add data to IntlMessageFormat.
-	    intl$messageformat$$["default"].__addLocaleData(data);
-	}});
-
-	// Define public `defaultLocale` property which can be set by the developer, or
-	// it will be set when the first RelativeFormat instance is created by
-	// leveraging the resolved locale from `Intl`.
-	src$es5$$.defineProperty(RelativeFormat, 'defaultLocale', {
-	    enumerable: true,
-	    writable  : true,
-	    value     : undefined
-	});
-
-	// Define public `thresholds` property which can be set by the developer, and
-	// defaults to relative time thresholds from moment.js.
-	src$es5$$.defineProperty(RelativeFormat, 'thresholds', {
-	    enumerable: true,
-
-	    value: {
-	        second: 45, 'second-short': 45,  // seconds to minute
-	        minute: 45, 'minute-short': 45, // minutes to hour
-	        hour  : 22, 'hour-short': 22, // hours to day
-	        day   : 26, 'day-short': 26, // days to month
-	        month : 11, 'month-short': 11 // months to year
-	    }
-	});
-
-	RelativeFormat.prototype.resolvedOptions = function () {
-	    return {
-	        locale: this._locale,
-	        style : this._options.style,
-	        units : this._options.units
-	    };
-	};
-
-	RelativeFormat.prototype._compileMessage = function (units) {
-	    // `this._locales` is the original set of locales the user specified to the
-	    // constructor, while `this._locale` is the resolved root locale.
-	    var locales        = this._locales;
-	    var resolvedLocale = this._locale;
-
-	    var field        = this._fields[units];
-	    var relativeTime = field.relativeTime;
-	    var future       = '';
-	    var past         = '';
-	    var i;
-
-	    for (i in relativeTime.future) {
-	        if (relativeTime.future.hasOwnProperty(i)) {
-	            future += ' ' + i + ' {' +
-	                relativeTime.future[i].replace('{0}', '#') + '}';
-	        }
-	    }
-
-	    for (i in relativeTime.past) {
-	        if (relativeTime.past.hasOwnProperty(i)) {
-	            past += ' ' + i + ' {' +
-	                relativeTime.past[i].replace('{0}', '#') + '}';
-	        }
-	    }
-
-	    var message = '{when, select, future {{0, plural, ' + future + '}}' +
-	                                 'past {{0, plural, ' + past + '}}}';
-
-	    // Create the synthetic IntlMessageFormat instance using the original
-	    // locales value specified by the user when constructing the the parent
-	    // IntlRelativeFormat instance.
-	    return new intl$messageformat$$["default"](message, locales);
-	};
-
-	RelativeFormat.prototype._getMessage = function (units) {
-	    var messages = this._messages;
-
-	    // Create a new synthetic message based on the locale data from CLDR.
-	    if (!messages[units]) {
-	        messages[units] = this._compileMessage(units);
-	    }
-
-	    return messages[units];
-	};
-
-	RelativeFormat.prototype._getRelativeUnits = function (diff, units) {
-	    var field = this._fields[units];
-
-	    if (field.relative) {
-	        return field.relative[diff];
-	    }
-	};
-
-	RelativeFormat.prototype._findFields = function (locale) {
-	    var localeData = RelativeFormat.__localeData__;
-	    var data       = localeData[locale.toLowerCase()];
-
-	    // The locale data is de-duplicated, so we have to traverse the locale's
-	    // hierarchy until we find `fields` to return.
-	    while (data) {
-	        if (data.fields) {
-	            return data.fields;
-	        }
-
-	        data = data.parentLocale && localeData[data.parentLocale.toLowerCase()];
-	    }
-
-	    throw new Error(
-	        'Locale data added to IntlRelativeFormat is missing `fields` for :' +
-	        locale
-	    );
-	};
-
-	RelativeFormat.prototype._format = function (date, options) {
-	    var now = options && options.now !== undefined ? options.now : src$es5$$.dateNow();
-
-	    if (date === undefined) {
-	        date = now;
-	    }
-
-	    // Determine if the `date` and optional `now` values are valid, and throw a
-	    // similar error to what `Intl.DateTimeFormat#format()` would throw.
-	    if (!isFinite(now)) {
-	        throw new RangeError(
-	            'The `now` option provided to IntlRelativeFormat#format() is not ' +
-	            'in valid range.'
-	        );
-	    }
-
-	    if (!isFinite(date)) {
-	        throw new RangeError(
-	            'The date value provided to IntlRelativeFormat#format() is not ' +
-	            'in valid range.'
-	        );
-	    }
-
-	    var diffReport  = src$diff$$["default"](now, date);
-	    var units       = this._options.units || this._selectUnits(diffReport);
-	    var diffInUnits = diffReport[units];
-
-	    if (this._options.style !== 'numeric') {
-	        var relativeUnits = this._getRelativeUnits(diffInUnits, units);
-	        if (relativeUnits) {
-	            return relativeUnits;
-	        }
-	    }
-
-	    return this._getMessage(units).format({
-	        '0' : Math.abs(diffInUnits),
-	        when: diffInUnits < 0 ? 'past' : 'future'
-	    });
-	};
-
-	RelativeFormat.prototype._isValidUnits = function (units) {
-	    if (!units || src$es5$$.arrIndexOf.call(FIELDS, units) >= 0) {
-	        return true;
-	    }
-
-	    if (typeof units === 'string') {
-	        var suggestion = /s$/.test(units) && units.substr(0, units.length - 1);
-	        if (suggestion && src$es5$$.arrIndexOf.call(FIELDS, suggestion) >= 0) {
-	            throw new Error(
-	                '"' + units + '" is not a valid IntlRelativeFormat `units` ' +
-	                'value, did you mean: ' + suggestion
-	            );
-	        }
-	    }
-
-	    throw new Error(
-	        '"' + units + '" is not a valid IntlRelativeFormat `units` value, it ' +
-	        'must be one of: "' + FIELDS.join('", "') + '"'
-	    );
-	};
-
-	RelativeFormat.prototype._resolveLocale = function (locales) {
-	    if (typeof locales === 'string') {
-	        locales = [locales];
-	    }
-
-	    // Create a copy of the array so we can push on the default locale.
-	    locales = (locales || []).concat(RelativeFormat.defaultLocale);
-
-	    var localeData = RelativeFormat.__localeData__;
-	    var i, len, localeParts, data;
-
-	    // Using the set of locales + the default locale, we look for the first one
-	    // which that has been registered. When data does not exist for a locale, we
-	    // traverse its ancestors to find something that's been registered within
-	    // its hierarchy of locales. Since we lack the proper `parentLocale` data
-	    // here, we must take a naive approach to traversal.
-	    for (i = 0, len = locales.length; i < len; i += 1) {
-	        localeParts = locales[i].toLowerCase().split('-');
-
-	        while (localeParts.length) {
-	            data = localeData[localeParts.join('-')];
-	            if (data) {
-	                // Return the normalized locale string; e.g., we return "en-US",
-	                // instead of "en-us".
-	                return data.locale;
-	            }
-
-	            localeParts.pop();
-	        }
-	    }
-
-	    var defaultLocale = locales.pop();
-	    throw new Error(
-	        'No locale data has been added to IntlRelativeFormat for: ' +
-	        locales.join(', ') + ', or the default locale: ' + defaultLocale
-	    );
-	};
-
-	RelativeFormat.prototype._resolveStyle = function (style) {
-	    // Default to "best fit" style.
-	    if (!style) {
-	        return STYLES[0];
-	    }
-
-	    if (src$es5$$.arrIndexOf.call(STYLES, style) >= 0) {
-	        return style;
-	    }
-
-	    throw new Error(
-	        '"' + style + '" is not a valid IntlRelativeFormat `style` value, it ' +
-	        'must be one of: "' + STYLES.join('", "') + '"'
-	    );
-	};
-
-	RelativeFormat.prototype._selectUnits = function (diffReport) {
-	    var i, l, units;
-	    var fields = FIELDS.filter(function(field) {
-	        return field.indexOf('-short') < 1;
-	    });
-
-	    for (i = 0, l = fields.length; i < l; i += 1) {
-	        units = fields[i];
-
-	        if (Math.abs(diffReport[units]) < RelativeFormat.thresholds[units]) {
-	            break;
-	        }
-	    }
-
-	    return units;
-	};
-
-	//# sourceMappingURL=core.js.map
-
-/***/ }),
-/* 330 */
-/***/ (function(module, exports) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	"use strict";
-
-	var round = Math.round;
-
-	function daysToYears(days) {
-	    // 400 years have 146097 days (taking into account leap year rules)
-	    return days * 400 / 146097;
-	}
-
-	exports["default"] = function (from, to) {
-	    // Convert to ms timestamps.
-	    from = +from;
-	    to   = +to;
-
-	    var millisecond = round(to - from),
-	        second      = round(millisecond / 1000),
-	        minute      = round(second / 60),
-	        hour        = round(minute / 60),
-	        day         = round(hour / 24),
-	        week        = round(day / 7);
-
-	    var rawYears = daysToYears(day),
-	        month    = round(rawYears * 12),
-	        year     = round(rawYears);
-
-	    return {
-	        millisecond    : millisecond,
-	        second         : second,
-	        'second-short' : second,
-	        minute         : minute,
-	        'minute-short' : minute,
-	        hour           : hour,
-	        'hour-short'   : hour,
-	        day            : day,
-	        'day-short'    : day,
-	        week           : week,
-	        'week-short'   : week,
-	        month          : month,
-	        'month-short'  : month,
-	        year           : year,
-	        'year-short'   : year
-	    };
-	};
-
-	//# sourceMappingURL=diff.js.map
-
-/***/ }),
-/* 331 */
-/***/ (function(module, exports) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
-	// Copyright 2013 Andy Earnshaw, MIT License
-
-	"use strict";
-
-	var hop = Object.prototype.hasOwnProperty;
-	var toString = Object.prototype.toString;
-
-	var realDefineProp = (function () {
-	    try { return !!Object.defineProperty({}, 'a', {}); }
-	    catch (e) { return false; }
-	})();
-
-	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
-
-	var defineProperty = realDefineProp ? Object.defineProperty :
-	        function (obj, name, desc) {
-
-	    if ('get' in desc && obj.__defineGetter__) {
-	        obj.__defineGetter__(name, desc.get);
-	    } else if (!hop.call(obj, name) || 'value' in desc) {
-	        obj[name] = desc.value;
-	    }
-	};
-
-	var objCreate = Object.create || function (proto, props) {
-	    var obj, k;
-
-	    function F() {}
-	    F.prototype = proto;
-	    obj = new F();
-
-	    for (k in props) {
-	        if (hop.call(props, k)) {
-	            defineProperty(obj, k, props[k]);
-	        }
-	    }
-
-	    return obj;
-	};
-
-	var arrIndexOf = Array.prototype.indexOf || function (search, fromIndex) {
-	    /*jshint validthis:true */
-	    var arr = this;
-	    if (!arr.length) {
-	        return -1;
-	    }
-
-	    for (var i = fromIndex || 0, max = arr.length; i < max; i++) {
-	        if (arr[i] === search) {
-	            return i;
-	        }
-	    }
-
-	    return -1;
-	};
-
-	var isArray = Array.isArray || function (obj) {
-	    return toString.call(obj) === '[object Array]';
-	};
-
-	var dateNow = Date.now || function () {
-	    return new Date().getTime();
-	};
-
-	exports.defineProperty = defineProperty, exports.objCreate = objCreate, exports.arrIndexOf = arrIndexOf, exports.isArray = isArray, exports.dateNow = dateNow;
-
-	//# sourceMappingURL=es5.js.map
-
-/***/ }),
-/* 332 */
-/***/ (function(module, exports) {
-
-	// GENERATED FILE
-	"use strict";
-	exports["default"] = {"locale":"en","pluralRuleFunction":function (n,ord){var s=String(n).split("."),v0=!s[1],t0=Number(s[0])==n,n10=t0&&s[0].slice(-1),n100=t0&&s[0].slice(-2);if(ord)return n10==1&&n100!=11?"one":n10==2&&n100!=12?"two":n10==3&&n100!=13?"few":"other";return n==1&&v0?"one":"other"},"fields":{"year":{"displayName":"year","relative":{"0":"this year","1":"next year","-1":"last year"},"relativeTime":{"future":{"one":"in {0} year","other":"in {0} years"},"past":{"one":"{0} year ago","other":"{0} years ago"}}},"year-short":{"displayName":"yr.","relative":{"0":"this yr.","1":"next yr.","-1":"last yr."},"relativeTime":{"future":{"one":"in {0} yr.","other":"in {0} yr."},"past":{"one":"{0} yr. ago","other":"{0} yr. ago"}}},"month":{"displayName":"month","relative":{"0":"this month","1":"next month","-1":"last month"},"relativeTime":{"future":{"one":"in {0} month","other":"in {0} months"},"past":{"one":"{0} month ago","other":"{0} months ago"}}},"month-short":{"displayName":"mo.","relative":{"0":"this mo.","1":"next mo.","-1":"last mo."},"relativeTime":{"future":{"one":"in {0} mo.","other":"in {0} mo."},"past":{"one":"{0} mo. ago","other":"{0} mo. ago"}}},"day":{"displayName":"day","relative":{"0":"today","1":"tomorrow","-1":"yesterday"},"relativeTime":{"future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"}}},"day-short":{"displayName":"day","relative":{"0":"today","1":"tomorrow","-1":"yesterday"},"relativeTime":{"future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"}}},"hour":{"displayName":"hour","relative":{"0":"this hour"},"relativeTime":{"future":{"one":"in {0} hour","other":"in {0} hours"},"past":{"one":"{0} hour ago","other":"{0} hours ago"}}},"hour-short":{"displayName":"hr.","relative":{"0":"this hour"},"relativeTime":{"future":{"one":"in {0} hr.","other":"in {0} hr."},"past":{"one":"{0} hr. ago","other":"{0} hr. ago"}}},"minute":{"displayName":"minute","relative":{"0":"this minute"},"relativeTime":{"future":{"one":"in {0} minute","other":"in {0} minutes"},"past":{"one":"{0} minute ago","other":"{0} minutes ago"}}},"minute-short":{"displayName":"min.","relative":{"0":"this minute"},"relativeTime":{"future":{"one":"in {0} min.","other":"in {0} min."},"past":{"one":"{0} min. ago","other":"{0} min. ago"}}},"second":{"displayName":"second","relative":{"0":"now"},"relativeTime":{"future":{"one":"in {0} second","other":"in {0} seconds"},"past":{"one":"{0} second ago","other":"{0} seconds ago"}}},"second-short":{"displayName":"sec.","relative":{"0":"now"},"relativeTime":{"future":{"one":"in {0} sec.","other":"in {0} sec."},"past":{"one":"{0} sec. ago","other":"{0} sec. ago"}}}}};
-
-	//# sourceMappingURL=en.js.map
-
-/***/ }),
-/* 333 */
-/***/ (function(module, exports) {
-
-	/* (ignored) */
-
-/***/ }),
-/* 334 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	/**
-	 * Copyright 2015, Yahoo! Inc.
-	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
-	 */
-	var REACT_STATICS = {
-	    childContextTypes: true,
-	    contextTypes: true,
-	    defaultProps: true,
-	    displayName: true,
-	    getDefaultProps: true,
-	    getDerivedStateFromProps: true,
-	    mixins: true,
-	    propTypes: true,
-	    type: true
-	};
-
-	var KNOWN_STATICS = {
-	    name: true,
-	    length: true,
-	    prototype: true,
-	    caller: true,
-	    callee: true,
-	    arguments: true,
-	    arity: true
-	};
-
-	var defineProperty = Object.defineProperty;
-	var getOwnPropertyNames = Object.getOwnPropertyNames;
-	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-	var getPrototypeOf = Object.getPrototypeOf;
-	var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
-
-	function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-
-	        if (objectPrototype) {
-	            var inheritedComponent = getPrototypeOf(sourceComponent);
-	            if (inheritedComponent && inheritedComponent !== objectPrototype) {
-	                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-	            }
-	        }
-
-	        var keys = getOwnPropertyNames(sourceComponent);
-
-	        if (getOwnPropertySymbols) {
-	            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-	        }
-
-	        for (var i = 0; i < keys.length; ++i) {
-	            var key = keys[i];
-	            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
-	                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-	                try { // Avoid failures from read-only properties
-	                    defineProperty(targetComponent, key, descriptor);
-	                } catch (e) {}
-	            }
-	        }
-
-	        return targetComponent;
-	    }
-
-	    return targetComponent;
-	}
-
-	module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-/* 335 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports = module.exports = __webpack_require__(336)['default'];
-	exports['default'] = exports;
-
-
-/***/ }),
-/* 336 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jshint esnext: true */
-
-	"use strict";
-	var src$es5$$ = __webpack_require__(337);
-	exports["default"] = createFormatCache;
-
-	// -----------------------------------------------------------------------------
-
-	function createFormatCache(FormatConstructor) {
-	    var cache = src$es5$$.objCreate(null);
-
-	    return function () {
-	        var args    = Array.prototype.slice.call(arguments);
-	        var cacheId = getCacheId(args);
-	        var format  = cacheId && cache[cacheId];
-
-	        if (!format) {
-	            format = new (src$es5$$.bind.apply(FormatConstructor, [null].concat(args)))();
-
-	            if (cacheId) {
-	                cache[cacheId] = format;
-	            }
-	        }
-
-	        return format;
-	    };
-	}
-
-	// -- Utilities ----------------------------------------------------------------
-
-	function getCacheId(inputs) {
-	    // When JSON is not available in the runtime, we will not create a cache id.
-	    if (typeof JSON === 'undefined') { return; }
-
-	    var cacheId = [];
-
-	    var i, len, input;
-
-	    for (i = 0, len = inputs.length; i < len; i += 1) {
-	        input = inputs[i];
-
-	        if (input && typeof input === 'object') {
-	            cacheId.push(orderedProps(input));
-	        } else {
-	            cacheId.push(input);
-	        }
-	    }
-
-	    return JSON.stringify(cacheId);
-	}
-
-	function orderedProps(obj) {
-	    var props = [],
-	        keys  = [];
-
-	    var key, i, len, prop;
-
-	    for (key in obj) {
-	        if (obj.hasOwnProperty(key)) {
-	            keys.push(key);
-	        }
-	    }
-
-	    var orderedKeys = keys.sort();
-
-	    for (i = 0, len = orderedKeys.length; i < len; i += 1) {
-	        key  = orderedKeys[i];
-	        prop = {};
-
-	        prop[key] = obj[key];
-	        props[i]  = prop;
-	    }
-
-	    return props;
-	}
-
-	//# sourceMappingURL=memoizer.js.map
-
-/***/ }),
-/* 337 */
-/***/ (function(module, exports) {
-
-	/*
-	Copyright (c) 2014, Yahoo! Inc. All rights reserved.
-	Copyrights licensed under the New BSD License.
-	See the accompanying LICENSE file for terms.
-	*/
-
-	/* jslint esnext: true */
-
-	// Function.prototype.bind implementation from Mozilla Developer Network:
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Polyfill
-
-	"use strict";
-
-	var bind = Function.prototype.bind || function (oThis) {
-	    if (typeof this !== 'function') {
-	      // closest thing possible to the ECMAScript 5
-	      // internal IsCallable function
-	      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-	    }
-
-	    var aArgs   = Array.prototype.slice.call(arguments, 1),
-	        fToBind = this,
-	        fNOP    = function() {},
-	        fBound  = function() {
-	          return fToBind.apply(this instanceof fNOP
-	                 ? this
-	                 : oThis,
-	                 aArgs.concat(Array.prototype.slice.call(arguments)));
-	        };
-
-	    if (this.prototype) {
-	      // native functions don't have a prototype
-	      fNOP.prototype = this.prototype;
-	    }
-	    fBound.prototype = new fNOP();
-
-	    return fBound;
-	};
-
-	// Purposely using the same implementation as the Intl.js `Intl` polyfill.
-	// Copyright 2013 Andy Earnshaw, MIT License
-
-	var hop = Object.prototype.hasOwnProperty;
-
-	var realDefineProp = (function () {
-	    try { return !!Object.defineProperty({}, 'a', {}); }
-	    catch (e) { return false; }
-	})();
-
-	var es3 = !realDefineProp && !Object.prototype.__defineGetter__;
-
-	var defineProperty = realDefineProp ? Object.defineProperty :
-	        function (obj, name, desc) {
-
-	    if ('get' in desc && obj.__defineGetter__) {
-	        obj.__defineGetter__(name, desc.get);
-	    } else if (!hop.call(obj, name) || 'value' in desc) {
-	        obj[name] = desc.value;
-	    }
-	};
-
-	var objCreate = Object.create || function (proto, props) {
-	    var obj, k;
-
-	    function F() {}
-	    F.prototype = proto;
-	    obj = new F();
-
-	    for (k in props) {
-	        if (hop.call(props, k)) {
-	            defineProperty(obj, k, props[k]);
-	        }
-	    }
-
-	    return obj;
-	};
-
-	exports.bind = bind, exports.defineProperty = defineProperty, exports.objCreate = objCreate;
-
-	//# sourceMappingURL=es5.js.map
-
-/***/ }),
 /* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50669,15 +50682,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(174);
+	var _FormControl = __webpack_require__(197);
 
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(178);
+	var _methods = __webpack_require__(201);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50790,13 +50803,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactIntl = __webpack_require__(315);
+	var _reactIntl = __webpack_require__(72);
 
-	var _moment = __webpack_require__(180);
+	var _moment = __webpack_require__(203);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _Button = __webpack_require__(72);
+	var _Button = __webpack_require__(95);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
@@ -50871,27 +50884,27 @@
 
 	exports.__esModule = true;
 
-	var _extends3 = __webpack_require__(110);
+	var _extends3 = __webpack_require__(133);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -50903,7 +50916,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
@@ -50931,11 +50944,11 @@
 
 	var _NavbarToggle2 = _interopRequireDefault(_NavbarToggle);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
-	var _StyleConfig = __webpack_require__(170);
+	var _StyleConfig = __webpack_require__(193);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -51560,27 +51573,27 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -51592,11 +51605,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _elementType = __webpack_require__(161);
+	var _elementType = __webpack_require__(184);
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51659,27 +51672,27 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -51691,7 +51704,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51748,23 +51761,23 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -51780,7 +51793,7 @@
 
 	var _Collapse2 = _interopRequireDefault(_Collapse);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51835,29 +51848,29 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
 	var _collapseStyles;
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -51881,7 +51894,7 @@
 
 	var _capitalize2 = _interopRequireDefault(_capitalize);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -53131,27 +53144,27 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -53163,7 +53176,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53209,27 +53222,27 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -53241,9 +53254,9 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -53328,27 +53341,27 @@
 
 	exports.__esModule = true;
 
-	var _extends3 = __webpack_require__(110);
+	var _extends3 = __webpack_require__(133);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -53376,9 +53389,9 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _bootstrapUtils = __webpack_require__(166);
+	var _bootstrapUtils = __webpack_require__(189);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -53920,7 +53933,7 @@
 	});
 	exports.default = all;
 
-	var _createChainableTypeChecker = __webpack_require__(165);
+	var _createChainableTypeChecker = __webpack_require__(188);
 
 	var _createChainableTypeChecker2 = _interopRequireDefault(_createChainableTypeChecker);
 
@@ -54161,27 +54174,27 @@
 
 	exports.__esModule = true;
 
-	var _extends2 = __webpack_require__(110);
+	var _extends2 = __webpack_require__(133);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(109);
+	var _objectWithoutProperties2 = __webpack_require__(132);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _classCallCheck2 = __webpack_require__(117);
+	var _classCallCheck2 = __webpack_require__(140);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(118);
+	var _possibleConstructorReturn2 = __webpack_require__(141);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(152);
+	var _inherits2 = __webpack_require__(175);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _classnames = __webpack_require__(160);
+	var _classnames = __webpack_require__(183);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -54193,11 +54206,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _SafeAnchor = __webpack_require__(171);
+	var _SafeAnchor = __webpack_require__(194);
 
 	var _SafeAnchor2 = _interopRequireDefault(_SafeAnchor);
 
-	var _createChainedFunction = __webpack_require__(172);
+	var _createChainedFunction = __webpack_require__(195);
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
@@ -54307,13 +54320,13 @@
 /* 370 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье"}
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
 
 /***/ }),
 /* 371 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
 
 /***/ })
 /******/ ]);

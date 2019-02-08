@@ -24,5 +24,22 @@
   "calendar.thursday": "Четверг",
   "calendar.friday": "Пятница",
   "calendar.saturday": "Суббота",
-  "calendar.sunday": "Воскресенье"
+  "calendar.sunday": "Воскресенье",
+  "client.time": "Time",
+  "client.list": "Список клиентов",
+  "client.card": "Карта клиента",
+  "client.history": "История визитов",
+  "client.name": "Имя",
+  "client.desease": "Диагноз",
+  "client.birthdate": "Дата рождения",
+  "client.phone": "Номер телефона",
+  "client.email": "Эл. почта",
+  "client.description": "Комментарии",
+  "client.add": "Добавить",
+  "client.edit": "Редактировать",
+  "client.save": "Сохранить изменения",
+  "client.visits": "Визиты",
+  "client.date": "Дата",
+  "client.status": "Статус",
+  "client.isPaid": "Оплачен"
 }

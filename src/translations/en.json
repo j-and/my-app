@@ -24,5 +24,22 @@
   "calendar.thursday": "Thursday",
   "calendar.friday": "Friday",
   "calendar.saturday": "Saturday",
-  "calendar.sunday": "Sunday"
+  "calendar.sunday": "Sunday",
+  "client.time": "Time",
+  "client.list": "Clients list",
+  "client.card": "Card of ",
+  "client.history": "Visits",
+  "client.name": "Name",
+  "client.desease": "Desease",
+  "client.birthdate": "Date of birth",
+  "client.phone": "Mobile phone",
+  "client.email": "Email",
+  "client.description": "Comments",
+  "client.add": "Add client",
+  "client.edit": "Edit client",
+  "client.save": "Save changes",
+  "client.visits": "Visits of",
+  "client.date": "Date",
+  "client.status": "Status",
+  "client.isPaid": "Is paid"
 }
