@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(33);
+	var _template = __webpack_require__(32);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(34);
+	var bodyParser = __webpack_require__(33);
 
-	var express = __webpack_require__(35);
+	var express = __webpack_require__(34);
 	var server = express();
-	var mysql = __webpack_require__(36);
+	var mysql = __webpack_require__(35);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -372,31 +372,31 @@ module.exports =
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(17);
+	var _Calendar = __webpack_require__(16);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(25);
+	var _reactRouterDom = __webpack_require__(24);
 
-	var _Navbar = __webpack_require__(26);
+	var _Navbar = __webpack_require__(25);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(27);
+	var _Nav = __webpack_require__(26);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(28);
+	var _NavItem = __webpack_require__(27);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
 	var _reactIntl = __webpack_require__(6);
 
-	var _en = __webpack_require__(29);
+	var _en = __webpack_require__(28);
 
 	var _en2 = _interopRequireDefault(_en);
 
-	var _ru = __webpack_require__(30);
+	var _ru = __webpack_require__(29);
 
 	var _ru2 = _interopRequireDefault(_ru);
 
@@ -404,11 +404,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ru3 = __webpack_require__(31);
+	var _ru3 = __webpack_require__(30);
 
 	var _ru4 = _interopRequireDefault(_ru3);
 
-	var _en3 = __webpack_require__(32);
+	var _en3 = __webpack_require__(31);
 
 	var _en4 = _interopRequireDefault(_en3);
 
@@ -724,7 +724,9 @@ module.exports =
 	                                    _this4.setState({ isAdded: true });_this4.setState({ client: {} });
 	                                } },
 	                            ' ',
-	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add', defaultMessage: 'Add client', description: '' })
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add',
+	                                defaultMessage: 'Add client',
+	                                description: '' })
 	                        ),
 	                        _react2.default.createElement(
 	                            _Button2.default,
@@ -1188,13 +1190,13 @@ module.exports =
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' ',
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.\u0440\u0448\u044B\u0435\u0449\u043A\u043D', defaultMessage: 'Client history', description: '' })
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.history', defaultMessage: 'Client history', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of', description: '' }),
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of',
+	                        description: '' }),
 	                    ' ',
 	                    this.props.client.name
 	                ),
@@ -1285,8 +1287,6 @@ module.exports =
 
 	var _methods = __webpack_require__(10);
 
-	var _Context = __webpack_require__(16);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1357,28 +1357,6 @@ module.exports =
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.FamilyConsumer = exports.FamilyProvider = undefined;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var FamilyContext = _react2.default.createContext({});
-
-	var FamilyProvider = exports.FamilyProvider = FamilyContext.Provider;
-	var FamilyConsumer = exports.FamilyConsumer = FamilyContext.Consumer;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
@@ -1388,15 +1366,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(18);
+	var _MonthTable = __webpack_require__(17);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(23);
+	var _LoginForm = __webpack_require__(22);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(24);
+	var _MonthNavigation = __webpack_require__(23);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1474,10 +1452,6 @@ module.exports =
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.test',
-	                    defaultMessage: 'Clients',
-	                    description: '',
-	                    values: { what: 'logo' } }),
 	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount,
 	                    currentMonth: this.state.currentDate.currentMonth,
 	                    currentYear: this.state.currentDate.currentYear }),
@@ -1493,7 +1467,7 @@ module.exports =
 	exports.default = Calendar;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1508,7 +1482,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(19);
+	var _DayList = __webpack_require__(18);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
@@ -1787,7 +1761,9 @@ module.exports =
 	                                ) : _react2.default.createElement(
 	                                    'th',
 	                                    { className: 'day_weekend' },
-	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day,
+	                                        defaultMessage: day,
+	                                        description: '' })
 	                                );
 	                            })
 	                        )
@@ -1852,7 +1828,7 @@ module.exports =
 	exports.default = MonthTable;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1867,11 +1843,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(20);
+	var _RegisterList = __webpack_require__(19);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(22);
+	var _ClientNameInput = __webpack_require__(21);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -2001,7 +1977,7 @@ module.exports =
 	exports.default = DayList;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2020,13 +1996,11 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(21);
+	var _Glyphicon = __webpack_require__(20);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
 	var _methods = __webpack_require__(10);
-
-	var _Context = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2118,13 +2092,13 @@ module.exports =
 	exports.default = RegisterList;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Glyphicon");
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2143,7 +2117,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Glyphicon = __webpack_require__(21);
+	var _Glyphicon = __webpack_require__(20);
 
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
@@ -2261,7 +2235,7 @@ module.exports =
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2382,7 +2356,7 @@ module.exports =
 	exports.default = LoginForm;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2471,55 +2445,55 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-intl/locale-data/en");
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-intl/locale-data/ru");
 
 /***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
+
+/***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
 
 /***/ }),
 /* 32 */
-/***/ (function(module, exports) {
-
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
-
-/***/ }),
-/* 33 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2536,19 +2510,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

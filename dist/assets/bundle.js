@@ -24386,31 +24386,31 @@
 
 	var _Clients2 = _interopRequireDefault(_Clients);
 
-	var _Calendar = __webpack_require__(333);
+	var _Calendar = __webpack_require__(332);
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
 	var _reactRouterDom = __webpack_require__(25);
 
-	var _Navbar = __webpack_require__(340);
+	var _Navbar = __webpack_require__(339);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(363);
+	var _Nav = __webpack_require__(362);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(367);
+	var _NavItem = __webpack_require__(366);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
 	var _reactIntl = __webpack_require__(72);
 
-	var _en = __webpack_require__(368);
+	var _en = __webpack_require__(367);
 
 	var _en2 = _interopRequireDefault(_en);
 
-	var _ru = __webpack_require__(369);
+	var _ru = __webpack_require__(368);
 
 	var _ru2 = _interopRequireDefault(_ru);
 
@@ -24418,11 +24418,11 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _ru3 = __webpack_require__(370);
+	var _ru3 = __webpack_require__(369);
 
 	var _ru4 = _interopRequireDefault(_ru3);
 
-	var _en3 = __webpack_require__(371);
+	var _en3 = __webpack_require__(370);
 
 	var _en4 = _interopRequireDefault(_en3);
 
@@ -24738,7 +24738,9 @@
 	                                    _this4.setState({ isAdded: true });_this4.setState({ client: {} });
 	                                } },
 	                            ' ',
-	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add', defaultMessage: 'Add client', description: '' })
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.add',
+	                                defaultMessage: 'Add client',
+	                                description: '' })
 	                        ),
 	                        _react2.default.createElement(
 	                            _Button2.default,
@@ -49498,13 +49500,13 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' ',
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.\u0440\u0448\u044B\u0435\u0449\u043A\u043D', defaultMessage: 'Client history', description: '' })
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.history', defaultMessage: 'Client history', description: '' })
 	                ),
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of', description: '' }),
+	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of',
+	                        description: '' }),
 	                    ' ',
 	                    this.props.client.name
 	                ),
@@ -49697,8 +49699,6 @@
 
 	var _methods = __webpack_require__(201);
 
-	var _Context = __webpack_require__(332);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49769,28 +49769,6 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.FamilyConsumer = exports.FamilyProvider = undefined;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var FamilyContext = _react2.default.createContext({});
-
-	var FamilyProvider = exports.FamilyProvider = FamilyContext.Provider;
-	var FamilyConsumer = exports.FamilyConsumer = FamilyContext.Consumer;
-
-/***/ }),
-/* 333 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
@@ -49800,15 +49778,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MonthTable = __webpack_require__(334);
+	var _MonthTable = __webpack_require__(333);
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(338);
+	var _LoginForm = __webpack_require__(337);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
-	var _MonthNavigation = __webpack_require__(339);
+	var _MonthNavigation = __webpack_require__(338);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -49886,10 +49864,6 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'calendar.test',
-	                    defaultMessage: 'Clients',
-	                    description: '',
-	                    values: { what: 'logo' } }),
 	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount,
 	                    currentMonth: this.state.currentDate.currentMonth,
 	                    currentYear: this.state.currentDate.currentYear }),
@@ -49905,7 +49879,7 @@
 	exports.default = Calendar;
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49920,7 +49894,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DayList = __webpack_require__(335);
+	var _DayList = __webpack_require__(334);
 
 	var _DayList2 = _interopRequireDefault(_DayList);
 
@@ -50199,7 +50173,9 @@
 	                                ) : _react2.default.createElement(
 	                                    'th',
 	                                    { className: 'day_weekend' },
-	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day, defaultMessage: day, description: '' })
+	                                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: "calendar." + day,
+	                                        defaultMessage: day,
+	                                        description: '' })
 	                                );
 	                            })
 	                        )
@@ -50264,7 +50240,7 @@
 	exports.default = MonthTable;
 
 /***/ }),
-/* 335 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50279,11 +50255,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RegisterList = __webpack_require__(336);
+	var _RegisterList = __webpack_require__(335);
 
 	var _RegisterList2 = _interopRequireDefault(_RegisterList);
 
-	var _ClientNameInput = __webpack_require__(337);
+	var _ClientNameInput = __webpack_require__(336);
 
 	var _ClientNameInput2 = _interopRequireDefault(_ClientNameInput);
 
@@ -50413,7 +50389,7 @@
 	exports.default = DayList;
 
 /***/ }),
-/* 336 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50437,8 +50413,6 @@
 	var _Glyphicon2 = _interopRequireDefault(_Glyphicon);
 
 	var _methods = __webpack_require__(201);
-
-	var _Context = __webpack_require__(332);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50530,7 +50504,7 @@
 	exports.default = RegisterList;
 
 /***/ }),
-/* 337 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50667,7 +50641,7 @@
 	exports.default = ClientNameInput;
 
 /***/ }),
-/* 338 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50788,7 +50762,7 @@
 	exports.default = LoginForm;
 
 /***/ }),
-/* 339 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50877,7 +50851,7 @@
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 340 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50920,27 +50894,27 @@
 
 	var _elementType2 = _interopRequireDefault(_elementType);
 
-	var _uncontrollable = __webpack_require__(341);
+	var _uncontrollable = __webpack_require__(340);
 
 	var _uncontrollable2 = _interopRequireDefault(_uncontrollable);
 
-	var _Grid = __webpack_require__(344);
+	var _Grid = __webpack_require__(343);
 
 	var _Grid2 = _interopRequireDefault(_Grid);
 
-	var _NavbarBrand = __webpack_require__(345);
+	var _NavbarBrand = __webpack_require__(344);
 
 	var _NavbarBrand2 = _interopRequireDefault(_NavbarBrand);
 
-	var _NavbarCollapse = __webpack_require__(346);
+	var _NavbarCollapse = __webpack_require__(345);
 
 	var _NavbarCollapse2 = _interopRequireDefault(_NavbarCollapse);
 
-	var _NavbarHeader = __webpack_require__(361);
+	var _NavbarHeader = __webpack_require__(360);
 
 	var _NavbarHeader2 = _interopRequireDefault(_NavbarHeader);
 
-	var _NavbarToggle = __webpack_require__(362);
+	var _NavbarToggle = __webpack_require__(361);
 
 	var _NavbarToggle2 = _interopRequireDefault(_NavbarToggle);
 
@@ -51208,14 +51182,14 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 341 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _createUncontrollable = __webpack_require__(342);
+	var _createUncontrollable = __webpack_require__(341);
 
 	var _createUncontrollable2 = _interopRequireDefault(_createUncontrollable);
 
@@ -51244,7 +51218,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 342 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51263,7 +51237,7 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _utils = __webpack_require__(343);
+	var _utils = __webpack_require__(342);
 
 	var utils = _interopRequireWildcard(_utils);
 
@@ -51444,7 +51418,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 343 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -51566,7 +51540,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 344 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51665,7 +51639,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 345 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51754,7 +51728,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 346 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51789,7 +51763,7 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Collapse = __webpack_require__(347);
+	var _Collapse = __webpack_require__(346);
 
 	var _Collapse2 = _interopRequireDefault(_Collapse);
 
@@ -51841,7 +51815,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 347 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51874,7 +51848,7 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _style = __webpack_require__(348);
+	var _style = __webpack_require__(347);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -51886,11 +51860,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Transition = __webpack_require__(358);
+	var _Transition = __webpack_require__(357);
 
 	var _Transition2 = _interopRequireDefault(_Transition);
 
-	var _capitalize = __webpack_require__(360);
+	var _capitalize = __webpack_require__(359);
 
 	var _capitalize2 = _interopRequireDefault(_capitalize);
 
@@ -52105,7 +52079,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 348 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52115,25 +52089,25 @@
 	});
 	exports.default = style;
 
-	var _camelizeStyle = __webpack_require__(349);
+	var _camelizeStyle = __webpack_require__(348);
 
 	var _camelizeStyle2 = _interopRequireDefault(_camelizeStyle);
 
-	var _hyphenateStyle = __webpack_require__(351);
+	var _hyphenateStyle = __webpack_require__(350);
 
 	var _hyphenateStyle2 = _interopRequireDefault(_hyphenateStyle);
 
-	var _getComputedStyle2 = __webpack_require__(353);
+	var _getComputedStyle2 = __webpack_require__(352);
 
 	var _getComputedStyle3 = _interopRequireDefault(_getComputedStyle2);
 
-	var _removeStyle = __webpack_require__(354);
+	var _removeStyle = __webpack_require__(353);
 
 	var _removeStyle2 = _interopRequireDefault(_removeStyle);
 
-	var _properties = __webpack_require__(355);
+	var _properties = __webpack_require__(354);
 
-	var _isTransform = __webpack_require__(357);
+	var _isTransform = __webpack_require__(356);
 
 	var _isTransform2 = _interopRequireDefault(_isTransform);
 
@@ -52172,7 +52146,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 349 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52182,7 +52156,7 @@
 	});
 	exports.default = camelizeStyleName;
 
-	var _camelize = __webpack_require__(350);
+	var _camelize = __webpack_require__(349);
 
 	var _camelize2 = _interopRequireDefault(_camelize);
 
@@ -52199,7 +52173,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 350 */
+/* 349 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -52218,7 +52192,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 351 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52228,7 +52202,7 @@
 	});
 	exports.default = hyphenateStyleName;
 
-	var _hyphenate = __webpack_require__(352);
+	var _hyphenate = __webpack_require__(351);
 
 	var _hyphenate2 = _interopRequireDefault(_hyphenate);
 
@@ -52246,7 +52220,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 352 */
+/* 351 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52264,7 +52238,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 353 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52274,7 +52248,7 @@
 	});
 	exports.default = _getComputedStyle;
 
-	var _camelizeStyle = __webpack_require__(349);
+	var _camelizeStyle = __webpack_require__(348);
 
 	var _camelizeStyle2 = _interopRequireDefault(_camelizeStyle);
 
@@ -52324,7 +52298,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 354 */
+/* 353 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52339,7 +52313,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 355 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52349,7 +52323,7 @@
 	});
 	exports.animationEnd = exports.animationDelay = exports.animationTiming = exports.animationDuration = exports.animationName = exports.transitionEnd = exports.transitionDuration = exports.transitionDelay = exports.transitionTiming = exports.transitionProperty = exports.transform = undefined;
 
-	var _inDOM = __webpack_require__(356);
+	var _inDOM = __webpack_require__(355);
 
 	var _inDOM2 = _interopRequireDefault(_inDOM);
 
@@ -52454,7 +52428,7 @@
 	}
 
 /***/ }),
-/* 356 */
+/* 355 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -52466,7 +52440,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 357 */
+/* 356 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -52483,7 +52457,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 358 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -52503,7 +52477,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _PropTypes = __webpack_require__(359);
+	var _PropTypes = __webpack_require__(358);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53069,7 +53043,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 359 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53124,7 +53098,7 @@
 	})]);
 
 /***/ }),
-/* 360 */
+/* 359 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -53137,7 +53111,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 361 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53215,7 +53189,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 362 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53334,7 +53308,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 363 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -53365,7 +53339,7 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _keycode = __webpack_require__(364);
+	var _keycode = __webpack_require__(363);
 
 	var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -53381,7 +53355,7 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _all = __webpack_require__(365);
+	var _all = __webpack_require__(364);
 
 	var _all2 = _interopRequireDefault(_all);
 
@@ -53395,7 +53369,7 @@
 
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 
-	var _ValidComponentChildren = __webpack_require__(366);
+	var _ValidComponentChildren = __webpack_require__(365);
 
 	var _ValidComponentChildren2 = _interopRequireDefault(_ValidComponentChildren);
 
@@ -53742,7 +53716,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 364 */
+/* 363 */
 /***/ (function(module, exports) {
 
 	// Source: http://jsfiddle.net/vWx8V/
@@ -53923,7 +53897,7 @@
 
 
 /***/ }),
-/* 365 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53970,7 +53944,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 366 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54167,7 +54141,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 367 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54303,30 +54277,30 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 368 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	!function(e,a){ true?module.exports=a():"function"==typeof define&&define.amd?define(a):(e.ReactIntlLocaleData=e.ReactIntlLocaleData||{},e.ReactIntlLocaleData.en=a())}(this,function(){"use strict";return[{locale:"en",pluralRuleFunction:function(e,a){var t=String(e).split("."),o=!t[1],n=Number(t[0])==e,r=n&&t[0].slice(-1),i=n&&t[0].slice(-2);return a?1==r&&11!=i?"one":2==r&&12!=i?"two":3==r&&13!=i?"few":"other":1==e&&o?"one":"other"},fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},"year-short":{displayName:"yr.",relative:{0:"this yr.",1:"next yr.","-1":"last yr."},relativeTime:{future:{one:"in {0} yr.",other:"in {0} yr."},past:{one:"{0} yr. ago",other:"{0} yr. ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},"month-short":{displayName:"mo.",relative:{0:"this mo.",1:"next mo.","-1":"last mo."},relativeTime:{future:{one:"in {0} mo.",other:"in {0} mo."},past:{one:"{0} mo. ago",other:"{0} mo. ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},"day-short":{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},"hour-short":{displayName:"hr.",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hr.",other:"in {0} hr."},past:{one:"{0} hr. ago",other:"{0} hr. ago"}}},minute:{displayName:"minute",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},"minute-short":{displayName:"min.",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} min.",other:"in {0} min."},past:{one:"{0} min. ago",other:"{0} min. ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}},"second-short":{displayName:"sec.",relative:{0:"now"},relativeTime:{future:{one:"in {0} sec.",other:"in {0} sec."},past:{one:"{0} sec. ago",other:"{0} sec. ago"}}}}},{locale:"en-001",parentLocale:"en",fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},"year-short":{displayName:"yr",relative:{0:"this yr.",1:"next yr.","-1":"last yr."},relativeTime:{future:{one:"in {0} yr",other:"in {0} yr"},past:{one:"{0} yr ago",other:"{0} yr ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},"month-short":{displayName:"mo",relative:{0:"this mo.",1:"next mo.","-1":"last mo."},relativeTime:{future:{one:"in {0} mo",other:"in {0} mo"},past:{one:"{0} mo ago",other:"{0} mo ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},"day-short":{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},"hour-short":{displayName:"hr",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hr",other:"in {0} hr"},past:{one:"{0} hr ago",other:"{0} hr ago"}}},minute:{displayName:"minute",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},"minute-short":{displayName:"min",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} min",other:"in {0} min"},past:{one:"{0} min ago",other:"{0} min ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}},"second-short":{displayName:"sec",relative:{0:"now"},relativeTime:{future:{one:"in {0} sec",other:"in {0} sec"},past:{one:"{0} sec ago",other:"{0} sec ago"}}}}},{locale:"en-150",parentLocale:"en-001"},{locale:"en-AG",parentLocale:"en-001"},{locale:"en-AI",parentLocale:"en-001"},{locale:"en-AS",parentLocale:"en"},{locale:"en-AT",parentLocale:"en-150"},{locale:"en-AU",parentLocale:"en-001",fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},"year-short":{displayName:"yr",relative:{0:"this yr.",1:"next yr.","-1":"last yr."},relativeTime:{future:{one:"in {0} yr",other:"in {0} yrs"},past:{one:"{0} yr ago",other:"{0} yrs ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},"month-short":{displayName:"mo.",relative:{0:"this mo.",1:"next mo.","-1":"last mo."},relativeTime:{future:{one:"in {0} mo.",other:"in {0} mo."},past:{one:"{0} mo. ago",other:"{0} mo. ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},"day-short":{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},"hour-short":{displayName:"h",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hr",other:"in {0} hrs"},past:{one:"{0} hr ago",other:"{0} hrs ago"}}},minute:{displayName:"minute",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},"minute-short":{displayName:"min.",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} min.",other:"in {0} mins"},past:{one:"{0} min. ago",other:"{0} mins ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}},"second-short":{displayName:"sec.",relative:{0:"now"},relativeTime:{future:{one:"in {0} sec.",other:"in {0} secs"},past:{one:"{0} sec. ago",other:"{0} secs ago"}}}}},{locale:"en-BB",parentLocale:"en-001"},{locale:"en-BE",parentLocale:"en-001"},{locale:"en-BI",parentLocale:"en"},{locale:"en-BM",parentLocale:"en-001"},{locale:"en-BS",parentLocale:"en-001"},{locale:"en-BW",parentLocale:"en-001"},{locale:"en-BZ",parentLocale:"en-001"},{locale:"en-CA",parentLocale:"en-001",fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},"year-short":{displayName:"yr.",relative:{0:"this yr.",1:"next yr.","-1":"last yr."},relativeTime:{future:{one:"in {0} yr.",other:"in {0} yrs."},past:{one:"{0} yr. ago",other:"{0} yrs. ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},"month-short":{displayName:"mo.",relative:{0:"this mo.",1:"next mo.","-1":"last mo."},relativeTime:{future:{one:"in {0} mo.",other:"in {0} mos."},past:{one:"{0} mo. ago",other:"{0} mos. ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},"day-short":{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},"hour-short":{displayName:"hr.",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hr.",other:"in {0} hrs."},past:{one:"{0} hr. ago",other:"{0} hrs. ago"}}},minute:{displayName:"minute",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},"minute-short":{displayName:"min.",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} min.",other:"in {0} mins."},past:{one:"{0} min. ago",other:"{0} mins. ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}},"second-short":{displayName:"sec.",relative:{0:"now"},relativeTime:{future:{one:"in {0} sec.",other:"in {0} secs."},past:{one:"{0} sec. ago",other:"{0} secs. ago"}}}}},{locale:"en-CC",parentLocale:"en-001"},{locale:"en-CH",parentLocale:"en-150"},{locale:"en-CK",parentLocale:"en-001"},{locale:"en-CM",parentLocale:"en-001"},{locale:"en-CX",parentLocale:"en-001"},{locale:"en-CY",parentLocale:"en-001"},{locale:"en-DE",parentLocale:"en-150"},{locale:"en-DG",parentLocale:"en-001"},{locale:"en-DK",parentLocale:"en-150"},{locale:"en-DM",parentLocale:"en-001"},{locale:"en-Dsrt",pluralRuleFunction:function(e,a){return"other"},fields:{year:{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},"year-short":{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},month:{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},"month-short":{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},day:{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},"day-short":{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},hour:{displayName:"Hour",relative:{0:"this hour"},relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},"hour-short":{displayName:"Hour",relative:{0:"this hour"},relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},minute:{displayName:"Minute",relative:{0:"this minute"},relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},"minute-short":{displayName:"Minute",relative:{0:"this minute"},relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},second:{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}},"second-short":{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}}}},{locale:"en-ER",parentLocale:"en-001"},{locale:"en-FI",parentLocale:"en-150"},{locale:"en-FJ",parentLocale:"en-001"},{locale:"en-FK",parentLocale:"en-001"},{locale:"en-FM",parentLocale:"en-001"},{locale:"en-GB",parentLocale:"en-001"},{locale:"en-GD",parentLocale:"en-001"},{locale:"en-GG",parentLocale:"en-001"},{locale:"en-GH",parentLocale:"en-001"},{locale:"en-GI",parentLocale:"en-001"},{locale:"en-GM",parentLocale:"en-001"},{locale:"en-GU",parentLocale:"en"},{locale:"en-GY",parentLocale:"en-001"},{locale:"en-HK",parentLocale:"en-001"},{locale:"en-IE",parentLocale:"en-001"},{locale:"en-IL",parentLocale:"en-001"},{locale:"en-IM",parentLocale:"en-001"},{locale:"en-IN",parentLocale:"en-001"},{locale:"en-IO",parentLocale:"en-001"},{locale:"en-JE",parentLocale:"en-001"},{locale:"en-JM",parentLocale:"en-001"},{locale:"en-KE",parentLocale:"en-001"},{locale:"en-KI",parentLocale:"en-001"},{locale:"en-KN",parentLocale:"en-001"},{locale:"en-KY",parentLocale:"en-001"},{locale:"en-LC",parentLocale:"en-001"},{locale:"en-LR",parentLocale:"en-001"},{locale:"en-LS",parentLocale:"en-001"},{locale:"en-MG",parentLocale:"en-001"},{locale:"en-MH",parentLocale:"en"},{locale:"en-MO",parentLocale:"en-001"},{locale:"en-MP",parentLocale:"en"},{locale:"en-MS",parentLocale:"en-001"},{locale:"en-MT",parentLocale:"en-001"},{locale:"en-MU",parentLocale:"en-001"},{locale:"en-MW",parentLocale:"en-001"},{locale:"en-MY",parentLocale:"en-001"},{locale:"en-NA",parentLocale:"en-001"},{locale:"en-NF",parentLocale:"en-001"},{locale:"en-NG",parentLocale:"en-001"},{locale:"en-NL",parentLocale:"en-150"},{locale:"en-NR",parentLocale:"en-001"},{locale:"en-NU",parentLocale:"en-001"},{locale:"en-NZ",parentLocale:"en-001"},{locale:"en-PG",parentLocale:"en-001"},{locale:"en-PH",parentLocale:"en-001"},{locale:"en-PK",parentLocale:"en-001"},{locale:"en-PN",parentLocale:"en-001"},{locale:"en-PR",parentLocale:"en"},{locale:"en-PW",parentLocale:"en-001"},{locale:"en-RW",parentLocale:"en-001"},{locale:"en-SB",parentLocale:"en-001"},{locale:"en-SC",parentLocale:"en-001"},{locale:"en-SD",parentLocale:"en-001"},{locale:"en-SE",parentLocale:"en-150"},{locale:"en-SG",parentLocale:"en-001",fields:{year:{displayName:"year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{one:"in {0} year",other:"in {0} years"},past:{one:"{0} year ago",other:"{0} years ago"}}},"year-short":{displayName:"yr",relative:{0:"this yr",1:"next yr","-1":"last yr"},relativeTime:{future:{one:"in {0} yr",other:"in {0} yr"},past:{one:"{0} yr ago",other:"{0} yr ago"}}},month:{displayName:"month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{one:"in {0} month",other:"in {0} months"},past:{one:"{0} month ago",other:"{0} months ago"}}},"month-short":{displayName:"mth",relative:{0:"this mth",1:"next mth","-1":"last mth"},relativeTime:{future:{one:"in {0} mth",other:"in {0} mth"},past:{one:"{0} mth ago",other:"{0} mth ago"}}},day:{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},"day-short":{displayName:"day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{one:"in {0} day",other:"in {0} days"},past:{one:"{0} day ago",other:"{0} days ago"}}},hour:{displayName:"hour",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hour",other:"in {0} hours"},past:{one:"{0} hour ago",other:"{0} hours ago"}}},"hour-short":{displayName:"hr",relative:{0:"this hour"},relativeTime:{future:{one:"in {0} hr",other:"in {0} hr"},past:{one:"{0} hr ago",other:"{0} hr ago"}}},minute:{displayName:"minute",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} minute",other:"in {0} minutes"},past:{one:"{0} minute ago",other:"{0} minutes ago"}}},"minute-short":{displayName:"min",relative:{0:"this minute"},relativeTime:{future:{one:"in {0} min",other:"in {0} min"},past:{one:"{0} min ago",other:"{0} min ago"}}},second:{displayName:"second",relative:{0:"now"},relativeTime:{future:{one:"in {0} second",other:"in {0} seconds"},past:{one:"{0} second ago",other:"{0} seconds ago"}}},"second-short":{displayName:"sec",relative:{0:"now"},relativeTime:{future:{one:"in {0} sec",other:"in {0} sec"},past:{one:"{0} sec ago",other:"{0} sec ago"}}}}},{locale:"en-SH",parentLocale:"en-001"},{locale:"en-SI",parentLocale:"en-150"},{locale:"en-SL",parentLocale:"en-001"},{locale:"en-SS",parentLocale:"en-001"},{locale:"en-SX",parentLocale:"en-001"},{locale:"en-SZ",parentLocale:"en-001"},{locale:"en-Shaw",pluralRuleFunction:function(e,a){return"other"},fields:{year:{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},"year-short":{displayName:"Year",relative:{0:"this year",1:"next year","-1":"last year"},relativeTime:{future:{other:"+{0} y"},past:{other:"-{0} y"}}},month:{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},"month-short":{displayName:"Month",relative:{0:"this month",1:"next month","-1":"last month"},relativeTime:{future:{other:"+{0} m"},past:{other:"-{0} m"}}},day:{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},"day-short":{displayName:"Day",relative:{0:"today",1:"tomorrow","-1":"yesterday"},relativeTime:{future:{other:"+{0} d"},past:{other:"-{0} d"}}},hour:{displayName:"Hour",relative:{0:"this hour"},relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},"hour-short":{displayName:"Hour",relative:{0:"this hour"},relativeTime:{future:{other:"+{0} h"},past:{other:"-{0} h"}}},minute:{displayName:"Minute",relative:{0:"this minute"},relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},"minute-short":{displayName:"Minute",relative:{0:"this minute"},relativeTime:{future:{other:"+{0} min"},past:{other:"-{0} min"}}},second:{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}},"second-short":{displayName:"Second",relative:{0:"now"},relativeTime:{future:{other:"+{0} s"},past:{other:"-{0} s"}}}}},{locale:"en-TC",parentLocale:"en-001"},{locale:"en-TK",parentLocale:"en-001"},{locale:"en-TO",parentLocale:"en-001"},{locale:"en-TT",parentLocale:"en-001"},{locale:"en-TV",parentLocale:"en-001"},{locale:"en-TZ",parentLocale:"en-001"},{locale:"en-UG",parentLocale:"en-001"},{locale:"en-UM",parentLocale:"en"},{locale:"en-US",parentLocale:"en"},{locale:"en-VC",parentLocale:"en-001"},{locale:"en-VG",parentLocale:"en-001"},{locale:"en-VI",parentLocale:"en"},{locale:"en-VU",parentLocale:"en-001"},{locale:"en-WS",parentLocale:"en-001"},{locale:"en-ZA",parentLocale:"en-001"},{locale:"en-ZM",parentLocale:"en-001"},{locale:"en-ZW",parentLocale:"en-001"}]});
 
 
 /***/ }),
-/* 369 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	!function(e,a){ true?module.exports=a():"function"==typeof define&&define.amd?define(a):(e.ReactIntlLocaleData=e.ReactIntlLocaleData||{},e.ReactIntlLocaleData.ru=a())}(this,function(){"use strict";return[{locale:"ru",pluralRuleFunction:function(e,a){var t=String(e).split("."),r=t[0],o=!t[1],n=r.slice(-1),l=r.slice(-2);return a?"other":o&&1==n&&11!=l?"one":o&&n>=2&&n<=4&&(l<12||l>14)?"few":o&&0==n||o&&n>=5&&n<=9||o&&l>=11&&l<=14?"many":"other"},fields:{year:{displayName:"год",relative:{0:"в этом году",1:"в следующем году","-1":"в прошлом году"},relativeTime:{future:{one:"через {0} год",few:"через {0} года",many:"через {0} лет",other:"через {0} года"},past:{one:"{0} год назад",few:"{0} года назад",many:"{0} лет назад",other:"{0} года назад"}}},"year-short":{displayName:"г.",relative:{0:"в этом г.",1:"в след. г.","-1":"в прошлом г."},relativeTime:{future:{one:"через {0} г.",few:"через {0} г.",many:"через {0} л.",other:"через {0} г."},past:{one:"{0} г. назад",few:"{0} г. назад",many:"{0} л. назад",other:"{0} г. назад"}}},month:{displayName:"месяц",relative:{0:"в этом месяце",1:"в следующем месяце","-1":"в прошлом месяце"},relativeTime:{future:{one:"через {0} месяц",few:"через {0} месяца",many:"через {0} месяцев",other:"через {0} месяца"},past:{one:"{0} месяц назад",few:"{0} месяца назад",many:"{0} месяцев назад",other:"{0} месяца назад"}}},"month-short":{displayName:"мес.",relative:{0:"в этом мес.",1:"в следующем мес.","-1":"в прошлом мес."},relativeTime:{future:{one:"через {0} мес.",few:"через {0} мес.",many:"через {0} мес.",other:"через {0} мес."},past:{one:"{0} мес. назад",few:"{0} мес. назад",many:"{0} мес. назад",other:"{0} мес. назад"}}},day:{displayName:"день",relative:{0:"сегодня",1:"завтра",2:"послезавтра","-2":"позавчера","-1":"вчера"},relativeTime:{future:{one:"через {0} день",few:"через {0} дня",many:"через {0} дней",other:"через {0} дня"},past:{one:"{0} день назад",few:"{0} дня назад",many:"{0} дней назад",other:"{0} дня назад"}}},"day-short":{displayName:"дн.",relative:{0:"сегодня",1:"завтра",2:"послезавтра","-2":"позавчера","-1":"вчера"},relativeTime:{future:{one:"через {0} дн.",few:"через {0} дн.",many:"через {0} дн.",other:"через {0} дн."},past:{one:"{0} дн. назад",few:"{0} дн. назад",many:"{0} дн. назад",other:"{0} дн. назад"}}},hour:{displayName:"час",relative:{0:"в этот час"},relativeTime:{future:{one:"через {0} час",few:"через {0} часа",many:"через {0} часов",other:"через {0} часа"},past:{one:"{0} час назад",few:"{0} часа назад",many:"{0} часов назад",other:"{0} часа назад"}}},"hour-short":{displayName:"ч",relative:{0:"в этот час"},relativeTime:{future:{one:"через {0} ч.",few:"через {0} ч.",many:"через {0} ч.",other:"через {0} ч."},past:{one:"{0} ч. назад",few:"{0} ч. назад",many:"{0} ч. назад",other:"{0} ч. назад"}}},minute:{displayName:"минута",relative:{0:"в эту минуту"},relativeTime:{future:{one:"через {0} минуту",few:"через {0} минуты",many:"через {0} минут",other:"через {0} минуты"},past:{one:"{0} минуту назад",few:"{0} минуты назад",many:"{0} минут назад",other:"{0} минуты назад"}}},"minute-short":{displayName:"мин.",relative:{0:"в эту минуту"},relativeTime:{future:{one:"через {0} мин.",few:"через {0} мин.",many:"через {0} мин.",other:"через {0} мин."},past:{one:"{0} мин. назад",few:"{0} мин. назад",many:"{0} мин. назад",other:"{0} мин. назад"}}},second:{displayName:"секунда",relative:{0:"сейчас"},relativeTime:{future:{one:"через {0} секунду",few:"через {0} секунды",many:"через {0} секунд",other:"через {0} секунды"},past:{one:"{0} секунду назад",few:"{0} секунды назад",many:"{0} секунд назад",other:"{0} секунды назад"}}},"second-short":{displayName:"сек.",relative:{0:"сейчас"},relativeTime:{future:{one:"через {0} сек.",few:"через {0} сек.",many:"через {0} сек.",other:"через {0} сек."},past:{one:"{0} сек. назад",few:"{0} сек. назад",many:"{0} сек. назад",other:"{0} сек. назад"}}}}},{locale:"ru-BY",parentLocale:"ru"},{locale:"ru-KG",parentLocale:"ru"},{locale:"ru-KZ",parentLocale:"ru"},{locale:"ru-MD",parentLocale:"ru"},{locale:"ru-UA",parentLocale:"ru"}]});
 
 
 /***/ }),
+/* 369 */
+/***/ (function(module, exports) {
+
+	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
+
+/***/ }),
 /* 370 */
 /***/ (function(module, exports) {
 
-	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.test":"Календарь","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
-
-/***/ }),
-/* 371 */
-/***/ (function(module, exports) {
-
-	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.test":"calendar","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
+	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
 
 /***/ })
 /******/ ]);

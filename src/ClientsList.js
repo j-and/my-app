@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {sortByKey} from './methods.js';
-import {LocaleContext}  from './Context';
-
 
 class ClientsList extends Component {
     constructor(props) {
