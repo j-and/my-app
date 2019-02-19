@@ -9,20 +9,17 @@ import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import {addLocaleData, IntlProvider} from 'react-intl';
 import locale_en from 'react-intl/locale-data/en';
 import locale_ru from 'react-intl/locale-data/ru';
-import Button from 'react-bootstrap/lib/Button';
 import ruTranslations  from "./translations/ru.json";
 import enTranslations  from "./translations/en.json";
 
-
 addLocaleData([...locale_en, ...locale_ru]);
-
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: '',//true
+            isOpen: '',
             locale: 'ru'
         };
         this.toggleModal = this.toggleModal.bind(this);
@@ -68,9 +65,9 @@ class App extends Component {
                         </Navbar.Header>
                         <Nav>
                             <NavItem href="/"> <FormattedMessage id="nav.home"
-                                                                     defaultMessage="Home"
-                                                                     description=""
-                                                                     values={{ what: 'logo' }}/></NavItem>
+                                                                 defaultMessage="Home"
+                                                                 description=""
+                                                                 values={{ what: 'logo' }}/></NavItem>
                             <NavItem href="/clients"><FormattedMessage id="nav.clients"
                                                                        defaultMessage="Clients"
                                                                        description=""
@@ -90,17 +87,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <h1 className="App-title">
-//     <FormattedMessage id="app.title"
-//                       defaultMessage="Welcome to {what}"
-//                       description="Welcome header on app main page"
-//                       values={{ what: 'react-intl' }}/>
-// </h1>
-//
-// <h2>
-// <FormattedMessage id="app.intro"
-// defaultMessage="Welcome to {what}"
-// description="Press {what}"
-// values={{ what: 'logo' }}/>
-// </h2>

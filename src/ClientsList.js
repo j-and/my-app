@@ -29,7 +29,6 @@ class ClientsList extends Component {
             </div>
 
         );
-
     }
 }
 

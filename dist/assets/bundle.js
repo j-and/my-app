@@ -49430,10 +49430,6 @@
 
 	var _Table2 = _interopRequireDefault(_Table);
 
-	var _Button = __webpack_require__(95);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
 	var _methods = __webpack_require__(201);
 
 	var _moment = __webpack_require__(203);
@@ -49459,38 +49455,10 @@
 	        _this.state = {
 	            visitComment: 'comment'
 	        };
-	        _this.changeComment = _this.changeComment.bind(_this);
-	        _this.handleInputChange = _this.handleInputChange.bind(_this);
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
 	        return _this;
 	    }
 
 	    _createClass(ClientsHistory, [{
-	        key: 'changeComment',
-	        value: function changeComment() {
-	            // document.getElementsByClassName("visit_comment")[0].style.display = 'block';
-	            // event.target.style.display = 'none';
-	            // this.setState({visitComment: event.target.value});
-	        }
-	    }, {
-	        key: 'handleInputChange',
-	        value: function handleInputChange(event) {
-	            // const target = event.target;
-	            // const value = target.value;
-	            // const name = target.name;
-	            // this.setState({
-	            //     [name]: value
-	            // });
-	        }
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(event) {
-	            // event.preventDefault();
-	            // document.getElementsByClassName("visit_label")[0].style.display = 'block';
-	            // this.refs.registerForm.reset();
-	            // event.target.style.display = 'none';
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var sortedArr = (0, _methods.sortByKey)(this.props.VISITS, 'datetime');
@@ -49523,16 +49491,6 @@
 	                                'th',
 	                                null,
 	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.date', defaultMessage: 'Date', description: '' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.status', defaultMessage: 'Status', description: '' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'th',
-	                                null,
-	                                _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.isPaid', defaultMessage: 'Is paid', description: '' })
 	                            )
 	                        )
 	                    ),
@@ -49547,16 +49505,6 @@
 	                                    'td',
 	                                    null,
 	                                    (0, _moment2.default)(sortedArr[key].datetime).format('YYYY-MM-DD')
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    sortedArr[key].status
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    sortedArr[key].payment
 	                                )
 	                            );
 	                        })

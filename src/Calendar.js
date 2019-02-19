@@ -9,7 +9,7 @@ class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: '',//true,
+            isOpen: '',
             currentDate: {
                 currentDay: new Date().getDate(),
                 currentMonth: new Date().getMonth() + 1,

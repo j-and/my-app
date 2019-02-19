@@ -37,8 +37,8 @@ class DayList extends Component {
 
     removeRegister(register) {
         var newRegister = {
-            name:register.name,
-            datetime: dateToTimestamp(register.datetime)           
+            name: register.name,
+            datetime: dateToTimestamp(register.datetime)
         };
         fetch('/removeRegister', {
             method: "POST",

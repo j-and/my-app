@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Button from 'react-bootstrap/lib/Button';
-import {sendData} from './methods.js';
 
 class LoginForm extends Component {
 
@@ -12,17 +10,12 @@ class LoginForm extends Component {
             name: '',
             password: '',
             servantData: {},
-            isOpen: false//true
+            isOpen: false
 
         };
-        this.closeLoginForm = this.closeLoginForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    closeLoginForm() {
-
     }
 
     handleChange(event) {
@@ -40,7 +33,6 @@ class LoginForm extends Component {
             servantDataArray.name = this.state.name;
             servantDataArray.password = this.state.password;
             this.setState({servantData: servantDataArray});
-            //sendData(this.state.servantData,"/addRegister");
             this.refs.registerForm.reset();
             this.setState({isOpen: false});
         }
@@ -68,4 +60,3 @@ class LoginForm extends Component {
     }
 }
 export default LoginForm;
-

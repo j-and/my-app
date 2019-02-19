@@ -13,7 +13,7 @@ class ClientsCard extends Component {
             client: {},
             clients: [],
             editable: false,
-            showSaveBtn:'disabled',
+            showSaveBtn: 'disabled',
             clientName: '',
             clientBirthdate: moment(new Date()).format('YYYY-MM-DD'),
             clientDesease: '',
@@ -34,7 +34,7 @@ class ClientsCard extends Component {
         const name = target.name;
         this.setState({
             [name]: value,
-            showSaveBtn:'showSaveBtn'
+            showSaveBtn: 'showSaveBtn'
         });
     }
 
@@ -103,7 +103,7 @@ class ClientsCard extends Component {
         else {
             this.saveEditedClient();
         }
-        this.setState({ showSaveBtn:'disabled'})
+        this.setState({showSaveBtn: 'disabled'})
     }
 
     render() {
@@ -138,18 +138,20 @@ class ClientsCard extends Component {
         return (
             <div>
 
-                <h2> <FormattedMessage id="client.card" defaultMessage="Card of" description=""/> {client.name}</h2>
+                <h2><FormattedMessage id="client.card" defaultMessage="Card of" description=""/> {client.name}</h2>
 
                 <form ref="registerForm" className={className} onSubmit={this.handleSubmit}>
                     <label><FormattedMessage id="client.name" defaultMessage="Name" description=""/></label>
-                    <FieldGroup required type="text" label="Name" placeholder={client.name} onChange={this.handleInputChange}
+                    <FieldGroup required type="text" label="Name" placeholder={client.name}
+                                onChange={this.handleInputChange}
                                 id="clientName" name="clientName"/>
                     <div className="col-xs-6 client_col_left">
                         <label><FormattedMessage id="client.desease" defaultMessage="Desease" description=""/></label>
                         <FieldGroup type="text" label="Desease" placeholder={client.desease}
                                     onChange={this.handleInputChange} id="clientDesease" name="clientDesease"/>
 
-                        <label><FormattedMessage id="client.birthdate" defaultMessage="Date of birth" description=""/></label>
+                        <label><FormattedMessage id="client.birthdate" defaultMessage="Date of birth"
+                                                 description=""/></label>
                         <FieldGroup type="date" label="Date of birth" className={birthdateDateInput}
                                     onChange={this.handleInputChange} id="clientBirthdate" name="clientBirthdate"/>
                         <FieldGroup type="text" label="Date of birth" className={birthdateTextInput}
@@ -157,7 +159,8 @@ class ClientsCard extends Component {
 
                     </div>
                     <div className="col-xs-6 client_col_right">
-                        <label><FormattedMessage id="client.phone" defaultMessage="Mobile phone" description=""/></label>
+                        <label><FormattedMessage id="client.phone" defaultMessage="Mobile phone"
+                                                 description=""/></label>
                         <FieldGroup type="phone" label="Phone" placeholder={client.phone}
                                     onChange={this.handleInputChange} id="clientPhone" name="clientPhone"/>
                         <label><FormattedMessage id="client.email" defaultMessage="Email" description=""/></label>

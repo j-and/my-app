@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
 import DayList from './DayList.js';
-
 import Table from 'react-bootstrap/lib/Table';
 import Button from 'react-bootstrap/lib/Button';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
