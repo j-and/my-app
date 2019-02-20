@@ -5,19 +5,18 @@ body {
   color: #002B5B;
   background-color: #DCEEF7; }
 
-.table thead th {
-  border: 2px solid #002B5B;
-  background-color: #F8EADA;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 1.4em; }
-.table > tbody > tr {
-  border: 1px solid transparent; }
-  .table > tbody > tr:hover {
-    background-color: transparent;
-    border-bottom: 2px solid #FF6C36; }
-.table-responsive {
-  margin-top: 20px; }
+.table {
+  border: 2px solid #002B5B; }
+  .table > thead > tr > th {
+    border: 2px solid #002B5B;
+    background-color: #F8EADA;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.4em; }
+  .table tbody tr {
+    border: 1px solid transparent; }
+  .table-responsive {
+    margin-top: 20px; }
 
 label {
   font-size: 18px;
@@ -25,7 +24,7 @@ label {
 
 a:focus, a:hover {
   cursor: pointer;
-  border-bottom: 2px solid #FF6C36;
+  border-bottom: 2px solid rgba(255, 87, 26, 0.52);
   text-decoration: none; }
 
 .calendar thead tr {
@@ -45,13 +44,9 @@ a:focus, a:hover {
       padding: 0;
       line-height: 1.7em; }
   .calendar tr .day_weekend {
-    border: 2px solid #FF6C36;
-    min-width: 100px; }
-    .calendar tr .day_weekend input, .calendar tr .day_weekend select, .calendar tr .day_weekend Button {
-      display: none; }
-  .calendar tr .day_list {
-    display: inline-flex;
-    flex-direction: row; }
+    max-width: 180px;
+    border: 2px solid #002B5B;
+    background-color: rgba(255, 87, 26, 0.52); }
 
 .dropdown-menu {
   min-width: 57px; }
@@ -62,35 +57,39 @@ a:focus, a:hover {
 .dropdown-toggle.btn.btn-default {
   padding: 3px 6px; }
 
-.login_form {
-  width: 40%;
-  position: absolute;
-  top: 30%;
-  left: 30%;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 20px;
-  /*Override bootstrap styles*/ }
-  .login_form .form-control {
-    margin: 10px auto; }
-.login_overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  background-color: rgba(0, 100, 100, 0.6); }
-
+/*
+.login {
+  &_form {
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    background-color: $black;
+    padding: 20px;
+    .form-control {
+      margin: 10px auto;
+    }
+  }
+  &_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: $overlay;
+  }
+}
+*/
 .nav-centered {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  /*Override bootstrap styles*/ }
+  justify-content: space-between; }
 
 .btn.btn-info {
   height: 40px;
-  width: 120px;
+  width: 130px;
   margin: 20px 0;
   font-size: 16px;
   font-weight: bold; }
@@ -141,14 +140,16 @@ a:focus, a:hover {
     padding-right: 0; }
   .client_col_left {
     padding-left: 0; }
-.client_history th {
-  background-color: #F8EADA; }
-.client_history tr {
-  height: 34px; }
-  .client_history tr:nth-of-type(odd) td {
+.client_history {
+  margin-top: 30px; }
+  .client_history > thead > tr {
+    border: 2px solid #002B5B; }
+    .client_history > thead > tr > th {
+      border-radius: 4px;
+      padding: 0; }
+  .client_history tr {
+    height: 34px;
     background-color: #ffffff; }
-  .client_history tr:nth-of-type(even) td {
-    background-color: #f9f9f9; }
 
 .navbar {
   min-height: 80px;
@@ -220,5 +221,13 @@ a:focus, a:hover {
 
 .flex-right {
   justify-content: flex-end; }
+
+.lang-switcher_row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; }
+  .lang-switcher_row .btn-info {
+    width: unset;
+    background-color: #83c9a6; }
 
 /*# sourceMappingURL=custom-styles.css.map */

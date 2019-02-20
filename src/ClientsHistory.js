@@ -18,9 +18,7 @@ class ClientsHistory extends Component {
         return (
             <div>
                 <h2><FormattedMessage id="client.history" defaultMessage="Client history" description=""/></h2>
-                <label><FormattedMessage id="client.visits" defaultMessage="Visits of"
-                                         description=""/> {this.props.client.name}</label>
-                <Table responsive>
+                <Table responsive className="client_history">
                     <thead>
                     <tr>
                         <th><FormattedMessage id="client.date" defaultMessage="Date" description=""/></th>

@@ -54,13 +54,15 @@ class App extends Component {
         return (
             <IntlProvider locale={this.state.locale} messages={this.messages[this.state.locale]}>
                 <div>
-                    <button onClick={this.setEnLocale}>EN</button>
-                    <button onClick={this.setRuLocale}>RU</button>
+                    <div className="lang-switcher_row">
+                        <button className="btn btn-info" onClick={this.setEnLocale}>EN</button>
+                        <button className="btn btn-info" onClick={this.setRuLocale}>RU</button>
+                    </div>
 
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="">My-app</a>
+                                <a href="/">My-app</a>
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav>

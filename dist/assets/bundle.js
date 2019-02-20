@@ -24414,10 +24414,6 @@
 
 	var _ru2 = _interopRequireDefault(_ru);
 
-	var _Button = __webpack_require__(95);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
 	var _ru3 = __webpack_require__(369);
 
 	var _ru4 = _interopRequireDefault(_ru3);
@@ -24447,7 +24443,7 @@
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '', //true
+	            isOpen: '',
 	            locale: 'ru'
 	        };
 	        _this.toggleModal = _this.toggleModal.bind(_this);
@@ -24492,14 +24488,18 @@
 	                    'div',
 	                    null,
 	                    _react2.default.createElement(
-	                        'button',
-	                        { onClick: this.setEnLocale },
-	                        'EN'
-	                    ),
-	                    _react2.default.createElement(
-	                        'button',
-	                        { onClick: this.setRuLocale },
-	                        'RU'
+	                        'div',
+	                        { className: 'lang-switcher_row' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'btn btn-info', onClick: this.setEnLocale },
+	                            'EN'
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'btn btn-info', onClick: this.setRuLocale },
+	                            'RU'
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        _Navbar2.default,
@@ -24512,7 +24512,7 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    'a',
-	                                    { href: '' },
+	                                    { href: '/' },
 	                                    'My-app'
 	                                )
 	                            )
@@ -24554,20 +24554,6 @@
 	}(_react.Component);
 
 	exports.default = App;
-
-	// <h1 className="App-title">
-	//     <FormattedMessage id="app.title"
-	//                       defaultMessage="Welcome to {what}"
-	//                       description="Welcome header on app main page"
-	//                       values={{ what: 'react-intl' }}/>
-	// </h1>
-	//
-	// <h2>
-	// <FormattedMessage id="app.intro"
-	// defaultMessage="Welcome to {what}"
-	// description="Press {what}"
-	// values={{ what: 'logo' }}/>
-	// </h2>
 
 /***/ }),
 /* 71 */
@@ -32192,7 +32178,6 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    null,
-	                    ' ',
 	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.card', defaultMessage: 'Card of', description: '' }),
 	                    ' ',
 	                    client.name
@@ -32205,7 +32190,8 @@
 	                        null,
 	                        _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.name', defaultMessage: 'Name', description: '' })
 	                    ),
-	                    _react2.default.createElement(_FormControl2.default, { required: true, type: 'text', label: 'Name', placeholder: client.name, onChange: this.handleInputChange,
+	                    _react2.default.createElement(_FormControl2.default, { required: true, type: 'text', label: 'Name', placeholder: client.name,
+	                        onChange: this.handleInputChange,
 	                        id: 'clientName', name: 'clientName' }),
 	                    _react2.default.createElement(
 	                        'div',
@@ -32220,7 +32206,8 @@
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.birthdate', defaultMessage: 'Date of birth', description: '' })
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.birthdate', defaultMessage: 'Date of birth',
+	                                description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'date', label: 'Date of birth', className: birthdateDateInput,
 	                            onChange: this.handleInputChange, id: 'clientBirthdate', name: 'clientBirthdate' }),
@@ -32233,7 +32220,8 @@
 	                        _react2.default.createElement(
 	                            'label',
 	                            null,
-	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.phone', defaultMessage: 'Mobile phone', description: '' })
+	                            _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.phone', defaultMessage: 'Mobile phone',
+	                                description: '' })
 	                        ),
 	                        _react2.default.createElement(_FormControl2.default, { type: 'phone', label: 'Phone', placeholder: client.phone,
 	                            onChange: this.handleInputChange, id: 'clientPhone', name: 'clientPhone' }),
@@ -49471,16 +49459,8 @@
 	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.history', defaultMessage: 'Client history', description: '' })
 	                ),
 	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    _react2.default.createElement(_reactIntl.FormattedMessage, { id: 'client.visits', defaultMessage: 'Visits of',
-	                        description: '' }),
-	                    ' ',
-	                    this.props.client.name
-	                ),
-	                _react2.default.createElement(
 	                    _Table2.default,
-	                    { responsive: true },
+	                    { responsive: true, className: 'client_history' },
 	                    _react2.default.createElement(
 	                        'thead',
 	                        null,
@@ -49757,7 +49737,7 @@
 	        var _this = _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call(this, props));
 
 	        _this.state = {
-	            isOpen: '', //true,
+	            isOpen: '',
 	            currentDate: {
 	                currentDay: new Date().getDate(),
 	                currentMonth: new Date().getMonth() + 1,
@@ -50612,8 +50592,6 @@
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _methods = __webpack_require__(201);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50634,10 +50612,9 @@
 	            name: '',
 	            password: '',
 	            servantData: {},
-	            isOpen: false //true
+	            isOpen: false
 
 	        };
-	        _this.closeLoginForm = _this.closeLoginForm.bind(_this);
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -50645,9 +50622,6 @@
 	    }
 
 	    _createClass(LoginForm, [{
-	        key: 'closeLoginForm',
-	        value: function closeLoginForm() {}
-	    }, {
 	        key: 'handleChange',
 	        value: function handleChange(event) {
 	            this.setState({ name: event.target.value });
@@ -50666,7 +50640,6 @@
 	                servantDataArray.name = this.state.name;
 	                servantDataArray.password = this.state.password;
 	                this.setState({ servantData: servantDataArray });
-	                //sendData(this.state.servantData,"/addRegister");
 	                this.refs.registerForm.reset();
 	                this.setState({ isOpen: false });
 	            } else {

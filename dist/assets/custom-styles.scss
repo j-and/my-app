@@ -1,7 +1,7 @@
 $darkseagreen: #83c9a6;
 $overlay: rgba(0, 100, 100, 0.6);
 $black: rgba(0, 0, 0, 0.9);
-$red: #FF6C36;
+$red: rgba(255, 87, 26, 0.52);
 $white: #ffffff;
 $blue: #002B5B;
 $light-blue: #DCEEF7;
@@ -17,25 +17,22 @@ body {
 }
 
 .table {
-  thead {
-    th {
-      border: 2px solid $blue;
-      background-color: $pale;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 1.4em;
+  border: 2px solid $blue;
+  & > thead > tr > th {
+    border: 2px solid $blue;
+    background-color: $pale;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.4em;
+  }
+  tbody {
+    tr {
+      border: 1px solid transparent
     }
   }
-  & > tbody > tr {
-    border: 1px solid transparent;
-    &:hover {
-      background-color: transparent;
-      border-bottom: 2px solid #FF6C36;
-    }
+  &-responsive {
+    margin-top: 20px;
   }
-&-responsive{
-  margin-top:20px;
-}
 }
 
 label {
@@ -50,9 +47,9 @@ a:focus, a:hover {
 }
 
 .calendar {
-  thead{
-    tr{
-      height:40px;
+  thead {
+    tr {
+      height: 40px;
     }
   }
   tr {
@@ -74,19 +71,11 @@ a:focus, a:hover {
         }
       }
       &_weekend {
-        border: 2px solid $red;
-        min-width: 100px;
-        input, select, Button {
-          display: none;
-        }
-      }
-      &_list {
-        display: inline-flex;
-        flex-direction: row;
-        //flex-wrap: wrap;
+        max-width: 180px;
+        border: 2px solid $blue;
+        background-color: $red;
       }
     }
-
   }
 }
 
@@ -104,6 +93,7 @@ a:focus, a:hover {
   padding: 3px 6px;
 }
 
+/*
 .login {
   &_form {
     width: 40%;
@@ -113,7 +103,6 @@ a:focus, a:hover {
     z-index: 2;
     background-color: $black;
     padding: 20px;
-    /*Override bootstrap styles*/
     .form-control {
       margin: 10px auto;
     }
@@ -128,23 +117,17 @@ a:focus, a:hover {
     background-color: $overlay;
   }
 }
+*/
 
 .nav-centered {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /*Override bootstrap styles*/
-  //.btn.btn-info {
-  //  height: 40px;
-  //  width: 120px;
-  //  margin: 20px 0;
-  //  font-size: 16px;
-  //  font-weight: bold;
-  //}
 }
+
 .btn.btn-info {
   height: 40px;
-  width: 120px;
+  width: 130px;
   margin: 20px 0;
   font-size: 16px;
   font-weight: bold;
@@ -222,22 +205,19 @@ a:focus, a:hover {
     }
   }
   &_history {
-    th {
-      background-color: $pale;
+    margin-top: 30px;
+
+    & > thead > tr {
+      border: 2px solid $blue;
+      & > th {
+        border-radius: 4px;
+        padding: 0;
+      }
     }
+
     tr {
       height: 34px;
-      &:nth-of-type(odd) {
-        td {
-          background-color: $white;
-        }
-
-      }
-      &:nth-of-type(even) {
-        td {
-          background-color: #f9f9f9;
-        }
-      }
+      background-color: $white;
     }
   }
 }
@@ -342,6 +322,18 @@ a:focus, a:hover {
   margin: 20px auto;
 }
 
-.flex-right{
+.flex-right {
   justify-content: flex-end;
+}
+
+.lang-switcher {
+  &_row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    .btn-info {
+      width: unset;
+      background-color: $darkseagreen;
+    }
+  }
 }
