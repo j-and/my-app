@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
-import {sortByKey} from './methods.js';
+import {sortByKey} from '../../methods.js';
 
 class ClientsList extends Component {
     constructor(props) {

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Button from 'react-bootstrap/lib/Button';
-import ClientsCard from './ClientsCard.js';
-import ClientsHistory from './ClientsHistory.js';
-import ClientsList from './ClientsList.js';
+import ClientsCard from './components/clients/ClientsCard.js';
+import ClientsHistory from './components/clients/ClientsHistory.js';
+import ClientsList from './components/clients/ClientsList.js';
 import moment from 'moment';
 
 class Client extends Component {

@@ -61,7 +61,7 @@ module.exports =
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _template = __webpack_require__(32);
+	var _template = __webpack_require__(31);
 
 	var _template2 = _interopRequireDefault(_template);
 
@@ -69,11 +69,11 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var bodyParser = __webpack_require__(33);
+	var bodyParser = __webpack_require__(32);
 
-	var express = __webpack_require__(34);
+	var express = __webpack_require__(33);
 	var server = express();
-	var mysql = __webpack_require__(35);
+	var mysql = __webpack_require__(34);
 
 	server.use(bodyParser.json()); // support json encoded bodies
 	server.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -376,35 +376,35 @@ module.exports =
 
 	var _Calendar2 = _interopRequireDefault(_Calendar);
 
-	var _reactRouterDom = __webpack_require__(24);
+	var _reactRouterDom = __webpack_require__(23);
 
-	var _Navbar = __webpack_require__(25);
+	var _Navbar = __webpack_require__(24);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Nav = __webpack_require__(26);
+	var _Nav = __webpack_require__(25);
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
-	var _NavItem = __webpack_require__(27);
+	var _NavItem = __webpack_require__(26);
 
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 
 	var _reactIntl = __webpack_require__(6);
 
-	var _en = __webpack_require__(28);
+	var _en = __webpack_require__(27);
 
 	var _en2 = _interopRequireDefault(_en);
 
-	var _ru = __webpack_require__(29);
+	var _ru = __webpack_require__(28);
 
 	var _ru2 = _interopRequireDefault(_ru);
 
-	var _ru3 = __webpack_require__(30);
+	var _ru3 = __webpack_require__(29);
 
 	var _ru4 = _interopRequireDefault(_ru3);
 
-	var _en3 = __webpack_require__(31);
+	var _en3 = __webpack_require__(30);
 
 	var _en4 = _interopRequireDefault(_en3);
 
@@ -1298,11 +1298,7 @@ module.exports =
 
 	var _MonthTable2 = _interopRequireDefault(_MonthTable);
 
-	var _LoginForm = __webpack_require__(22);
-
-	var _LoginForm2 = _interopRequireDefault(_LoginForm);
-
-	var _MonthNavigation = __webpack_require__(23);
+	var _MonthNavigation = __webpack_require__(22);
 
 	var _MonthNavigation2 = _interopRequireDefault(_MonthNavigation);
 
@@ -1383,8 +1379,7 @@ module.exports =
 	                _react2.default.createElement(_MonthNavigation2.default, { updateMonthCount: this.updateMonthCount,
 	                    currentMonth: this.state.currentDate.currentMonth,
 	                    currentYear: this.state.currentDate.currentYear }),
-	                _react2.default.createElement(_MonthTable2.default, { currentDate: this.state.currentDate, weeksObject: this.state.weeksObject }),
-	                _react2.default.createElement(_LoginForm2.default, { show: this.state.isOpen })
+	                _react2.default.createElement(_MonthTable2.default, { currentDate: this.state.currentDate, weeksObject: this.state.weeksObject })
 	            );
 	        }
 	    }]);
@@ -2178,120 +2173,6 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormControl = __webpack_require__(9);
-
-	var _FormControl2 = _interopRequireDefault(_FormControl);
-
-	var _Button = __webpack_require__(7);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var LoginForm = function (_Component) {
-	    _inherits(LoginForm, _Component);
-
-	    function LoginForm(props) {
-	        _classCallCheck(this, LoginForm);
-
-	        var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
-
-	        _this.state = {
-	            name: '',
-	            password: '',
-	            servantData: {},
-	            isOpen: false
-
-	        };
-	        _this.handleChange = _this.handleChange.bind(_this);
-	        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
-	        _this.handleSubmit = _this.handleSubmit.bind(_this);
-	        return _this;
-	    }
-
-	    _createClass(LoginForm, [{
-	        key: 'handleChange',
-	        value: function handleChange(event) {
-	            this.setState({ name: event.target.value });
-	        }
-	    }, {
-	        key: 'handlePasswordChange',
-	        value: function handlePasswordChange(event) {
-	            this.setState({ password: event.target.value });
-	        }
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(event) {
-	            event.preventDefault();
-	            if (this.state.name && this.state.password) {
-	                var servantDataArray = this.state.servantData;
-	                servantDataArray.name = this.state.name;
-	                servantDataArray.password = this.state.password;
-	                this.setState({ servantData: servantDataArray });
-	                this.refs.registerForm.reset();
-	                this.setState({ isOpen: false });
-	            } else {
-	                alert("Enter name");
-	            }
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-
-	            if (!this.state.isOpen) {
-	                return null;
-	            }
-
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'login_overlay' },
-	                    _react2.default.createElement(
-	                        'form',
-	                        { className: 'login_form', onSubmit: this.handleSubmit, ref: 'registerForm' },
-	                        _react2.default.createElement(_FormControl2.default, { type: 'text', value: this.state.value, onChange: this.handleChange, placeholder: 'Name' }),
-	                        _react2.default.createElement(_FormControl2.default, { type: 'password', value: this.state.value, onChange: this.handlePasswordChange,
-	                            placeholder: 'Password' }),
-	                        _react2.default.createElement(
-	                            _Button2.default,
-	                            { type: 'submit', onClick: this.handleSubmit },
-	                            'Login'
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return LoginForm;
-	}(_react.Component);
-
-	exports.default = LoginForm;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
 	var _reactIntl = __webpack_require__(6);
 
 	var _moment = __webpack_require__(12);
@@ -2366,55 +2247,55 @@ module.exports =
 	exports.default = MonthNavigation;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-router-dom");
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Navbar");
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/Nav");
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-bootstrap/lib/NavItem");
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-intl/locale-data/en");
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-intl/locale-data/ru");
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 	module.exports = {"app.title":"Добро пожаловать react-intl","app.intro":"Чтобы начать, нажмите <code>src/App.js</code>.","nav.home":"Главная","nav.clients":"Клиенты","calendar.1":"Январь","calendar.2":"Февраль","calendar.3":"Март","calendar.4":"Апрель","calendar.5":"Май","calendar.6":"Июнь","calendar.7":"Июль","calendar.8":"Август","calendar.9":"Сентябрь","calendar.10":"Октябрь","calendar.11":"Ноябрь","calendar.12":"Декабрь","calendar.previous":"Предыдущий","calendar.next":"Следующий","calendar.monday":"Понедельник","calendar.tuesday":"Вторник","calendar.wednesday":"Среда","calendar.thursday":"Четверг","calendar.friday":"Пятница","calendar.saturday":"Суббота","calendar.sunday":"Воскресенье","client.time":"Time","client.list":"Список клиентов","client.card":"Карта клиента","client.history":"История визитов","client.name":"Имя","client.desease":"Диагноз","client.birthdate":"Дата рождения","client.phone":"Номер телефона","client.email":"Эл. почта","client.description":"Комментарии","client.add":"Добавить","client.edit":"Редактировать","client.save":"Сохранить изменения","client.visits":"Визиты","client.date":"Дата","client.status":"Статус","client.isPaid":"Оплачен"}
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports) {
 
 	module.exports = {"app.title":"Welcome to react-intl","app.intro":"To get started, edit <code>src/App.js</code> and save to reload.","nav.home":"Home","nav.clients":"Clients","calendar.1":"January","calendar.2":"February","calendar.3":"March","calendar.4":"April","calendar.5":"May","calendar.6":"June","calendar.7":"July","calendar.8":"August","calendar.9":"September","calendar.10":"October","calendar.11":"November","calendar.12":"December","calendar.previous":"Previous","calendar.next":"Next","calendar.monday":"Monday","calendar.tuesday":"Tuesday","calendar.wednesday":"Wednesday","calendar.thursday":"Thursday","calendar.friday":"Friday","calendar.saturday":"Saturday","calendar.sunday":"Sunday","client.time":"Time","client.list":"Clients list","client.card":"Card of ","client.history":"Visits","client.name":"Name","client.desease":"Desease","client.birthdate":"Date of birth","client.phone":"Mobile phone","client.email":"Email","client.description":"Comments","client.add":"Add client","client.edit":"Edit client","client.save":"Save changes","client.visits":"Visits of","client.date":"Date","client.status":"Status","client.isPaid":"Is paid"}
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -2431,19 +2312,19 @@ module.exports =
 	};
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mysql");

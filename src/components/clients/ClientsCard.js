@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Button from 'react-bootstrap/lib/Button';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
-import {sendData} from './methods.js';
-import {dateToTimestamp} from './methods.js';
+import {sendData} from '../../methods.js';
+import {dateToTimestamp} from '../../methods.js';
 import moment from 'moment';
 
 class ClientsCard extends Component {

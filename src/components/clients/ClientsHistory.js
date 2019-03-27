@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Table from 'react-bootstrap/lib/Table';
-import {sortByKey} from './methods.js';
-import {sendClientData} from './methods.js';
+import {sortByKey} from '../../methods.js';
+import {sendClientData} from '../../methods.js';
 import moment from 'moment';
 
 class ClientsHistory extends Component {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import MonthTable from './MonthTable.js';
-import LoginForm from './LoginForm.js';
-import MonthNavigation from './MonthNavigation.js';
+import MonthTable from './components/calendar/MonthTable.js';
+import MonthNavigation from './components/calendar/MonthNavigation.js';
 import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 
 class Calendar extends Component {
@@ -62,7 +61,6 @@ class Calendar extends Component {
                                  currentMonth={this.state.currentDate.currentMonth}
                                  currentYear={this.state.currentDate.currentYear}/>
                 <MonthTable currentDate={this.state.currentDate} weeksObject={this.state.weeksObject}/>
-                <LoginForm show={this.state.isOpen}/>
             </div>
         );
     }

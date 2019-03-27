@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 var fetch = require("node-fetch");
-import RegisterList from './RegisterList.js';
-import ClientNameInput from './ClientNameInput.js';
-import {dateToTimestamp} from './methods.js';
+import RegisterList from './register/RegisterList.js';
+import ClientNameInput from './register/ClientNameInput.js';
+import {dateToTimestamp} from '../../../methods.js';
 
 class DayList extends Component {
 

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import {sendData} from './methods.js';
-import {dateToTimestamp} from './methods.js';
+import {sendData} from '../../../../methods.js';
+import {dateToTimestamp} from '../../../../methods.js';
 
 
 class ClientNameInput extends Component {

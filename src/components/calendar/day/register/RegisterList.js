@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import {dateToTimestamp} from './methods.js';
+import {dateToTimestamp} from '../../../../methods.js';
 
 class RegisterList extends Component {
 
